@@ -1,0 +1,25 @@
+<div class="card">
+  <a *ngIf="auth.isAuthenticated()" routerLink="{{ rental._id }}">
+    <div class="card-image">
+      <img class="img" src="{{ rental.image }}" />
+    </div>
+    <div class="card-body">
+      <h6 class="card-category">{{ rental.selectedCategory }}</h6>
+      <h5 class="card-title">{{ rental.name }}</h5>
+      <div class="card-description">{{ rental.cardDescription }}</div>
+      <br />
+    </div>
+  </a>
+
+  <a *ngIf="!auth.isAuthenticated()" (click)="modalLoginOpen()">
+    <div class="card-image">
+      <img class="img" src="{{ rental.image }}" />
+    </div>
+    <div class="card-body">
+      <h6 class="card-category">{{ rental.selectedCategory }}</h6>
+      <h5 class="card-title">{{ rental.name }}</h5>
+      <div class="card-description">{{ rental.cardDescription }}</div>
+      <br />
+    </div>
+  </a>
+</div>

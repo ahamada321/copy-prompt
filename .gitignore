@@ -43,4 +43,4 @@ Thumbs.db
 
 # Config File
 /server/config/dev.js
-/server/template-data/db-data.json
+/server/template-data/*

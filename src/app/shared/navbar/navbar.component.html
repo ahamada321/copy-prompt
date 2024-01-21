@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg fixed-top nav-down" color-on-scroll="500">
+  <div class="container">
+    <div class="navbar-translate">
+      <div class="navbar-header">
+        <a class="navbar-brand" [routerLink]="['/']"
+          >あつまれ！GPTプロンプト！</a
+        >
+      </div>
+      <button
+        class="navbar-toggler navbar-burger"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarToggler"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="sidebarToggle()"
+      >
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <!-- <div ngbDropdown class="nav-item dropdown">
+          <div class="nav-link dropdown-toggle" ngbDropdownToggle>Examples</div>
+          <div
+            ngbDropdownMenu
+            class="dropdown-menu dropdown-menu-right dropdown-danger"
+          >
+            <a class="dropdown-item" [routerLink]="['/examples/productpage']"
+              ><i class="nc-icon nc-album-2"></i>&nbsp; Product Page</a
+            >
+            <a class="dropdown-item" [routerLink]="['/examples/register']"
+              ><i class="nc-icon nc-bookmark-2"></i>&nbsp; Register Page</a
+            >
+          </div>
+        </div> -->
+        <ng-container *ngIf="!auth.isAuthenticated()">
+          <li class="nav-item clickable">
+            <a class="nav-link" [routerLink]="['/tutorial']"
+              ><i class="nc-icon nc-bell-55"></i> 初めての使い方ガイド</a
+            >
+          </li>
+          <li class="nav-item">
+            <button
+              class="btn btn-primary btn-round"
+              (click)="modalLoginOpen()"
+            >
+              <i class="nc-icon nc-lock-circle-open"></i> ログイン
+            </button>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="auth.isAuthenticated()">
+          <li class="nav-item clickable">
+            <a class="nav-link" [routerLink]="['/rentals/manage']"
+              ><i class="nc-icon nc-album-2"></i>&nbsp; プロフィール管理</a
+            >
+          </li>
+          <li class="nav-item clickable">
+            <a class="nav-link" [routerLink]="['/user']"
+              ><i class="nc-icon nc-settings-gear-65"></i>&nbsp; 設定</a
+            >
+          </li>
+          <li class="nav-item clickable">
+            <a class="nav-link" (click)="logout()"
+              ><i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログアウト</a
+            >
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>

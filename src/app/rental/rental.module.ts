@@ -41,17 +41,6 @@ const routes: Routes = [
     children: [
       { path: '', component: RentalListComponent },
       { path: 'new', component: RentalNewComponent, canActivate: [AuthGuard] },
-
-      {
-        path: 'manage',
-        component: RentalManageComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'manage/revenue',
-        component: RentalRevenueComponent,
-        canActivate: [AuthGuard],
-      },
       { path: ':rentalId', component: RentalDetailComponent }, // Going to replace rentalId to rentalUri
       {
         path: ':rentalId/edit',
@@ -60,6 +49,16 @@ const routes: Routes = [
       },
       {
         path: ':rentalId/revenue',
+        component: RentalRevenueComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'manage',
+        component: RentalManageComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'manage/revenue',
         component: RentalRevenueComponent,
         canActivate: [AuthGuard],
       },

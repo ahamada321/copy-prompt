@@ -53,10 +53,10 @@ export class RentalListComponent implements OnInit, OnDestroy {
     });
   }
 
-  filterByname(name: string) {
+  filterByName(keywords: string) {
     this.router.navigate(['/rentals'], {
       queryParams: {
-        name,
+        keywords,
       },
       queryParamsHandling: 'merge', // Preserve current queryParams
     });

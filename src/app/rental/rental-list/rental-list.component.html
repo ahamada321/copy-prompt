@@ -11,16 +11,16 @@
       <!-- <h3 class="description">\ 起業・経営者 マッチングアプリ /</h3> -->
       <h3 class="description">\ キーワードでプロンプト検索！ /</h3>
       <div class="space-top"></div>
-      <app-searchbar (event)="filterByname($event)"></app-searchbar>
+      <app-searchbar (event)="filterByName($event)"></app-searchbar>
     </div>
   </div>
 </div>
 <div class="main">
-  <div class="section text-center">
+  <div class="section section-nude text-center">
     <div class="container">
       <div class="row">
         <ng-container *ngFor="let rental of rentals">
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <app-rental-list-item [rental]="rental"></app-rental-list-item>
           </div>
         </ng-container>
@@ -43,9 +43,7 @@
   </div>
 
   <!--     *********    CALL TO ACTION    *********      -->
-  <ng-container
-    *ngIf="!auth.isAuthenticated() || auth.getUserRole() === 'User'"
-  >
+  <ng-container *ngIf="!auth.isAuthenticated()">
     <div class="separator"></div>
     <div class="subscribe-line">
       <div class="container">

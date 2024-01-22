@@ -12,10 +12,8 @@
               <i class="nc-icon nc-calendar-60"></i>
             </div>
             <div class="description">
-              <h3>レッスンスケジュールをオンラインで管理</h3>
-              <p>
-                毎月のレッスンスケジュールがいつでもどこでもオンラインで確認できます。
-              </p>
+              <h3>沢山のプロンプトが試せる</h3>
+              <p>多くのプロンプトの中からお気に入りを見つけよう</p>
             </div>
           </div>
           <div class="info info-horizontal">
@@ -23,10 +21,8 @@
               <i class="nc-icon nc-tap-01"></i>
             </div>
             <div class="description">
-              <h3>オンラインで簡単予約</h3>
-              <p>
-                レッスンの予約・変更をオンラインで素早く簡単にできてストレスフリー！
-              </p>
+              <h3>プロンプトノートを作れる</h3>
+              <p>お気に入りのプロンプトはプロンプトノートに保存できる</p>
             </div>
           </div>
         </div>
@@ -62,8 +58,8 @@
                 class="form-control"
                 placeholder="お名前（例：鈴木太郎）"
                 type="text"
-                [(ngModel)]="formData.username"
-                name="username"
+                [(ngModel)]="formData.name"
+                name="name"
                 (focus)="focus = true"
                 (blur)="focus = false"
                 required
@@ -107,8 +103,8 @@
                   <a
                     (click)="termsOpen(Notice)"
                     target="_blank"
-                    class="link-primary"
-                    >利用規約</a
+                    class="link-danger clickable"
+                    ><strong>利用規約</strong></a
                   >に同意しますか？
                   <bSwitch
                     [(ngModel)]="isTermsAgreed"

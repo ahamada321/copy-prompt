@@ -24,5 +24,8 @@ export class TutorialComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
+    if (navbar.classList.contains('nav-up')) {
+      navbar.classList.remove('nav-up');
+    }
   }
 }

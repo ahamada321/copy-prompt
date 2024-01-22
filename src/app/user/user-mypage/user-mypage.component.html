@@ -1,0 +1,99 @@
+<div class="wrapper">
+  <div
+    class="page-header page-header-xs"
+    style="background-image: url('./assets/img/bg/tressure-map.jpg')"
+  >
+    <div class="filter"></div>
+    <div class="content-center">
+      <div class="container">
+        <div class="space-top"></div>
+        <h1 class="title">マイページ</h1>
+        <h5 class="description">My page</h5>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="section section-nude text-center">
+      <div class="container">
+        <div class="project-pills">
+          <ul
+            ngbNav
+            #nav="ngbNav"
+            [(activeId)]="activeTab"
+            type="pills"
+            class="nav nav-pills nav-pills-primary justify-content-center"
+          >
+            <li [ngbNavItem]="1">
+              <a ngbNavLink> お気に入りプロンプト</a>
+              <ng-template ngbNavContent>
+                <div class="tab-pane" id="home" role="tabpanel">
+                  <h3>お気に入りプロンプト</h3>
+                  <div class="row">
+                    <ng-container
+                      *ngFor="let favouriteRental of favoriteRentals"
+                    >
+                      <!-- <div
+                        *ngIf="
+                          favouriteRental.selectedCategory &&
+                          favouriteRental.selectedCategory[0].id === 1
+                        "
+                        class="col-md-3 col-xs-6"
+                      >
+                        <app-bookmark-list-item
+                          [rental]="favouriteRental"
+                        ></app-bookmark-list-item>
+                      </div> -->
+                    </ng-container>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink> GETしたプロンプト </a>
+              <ng-template ngbNavContent>
+                <h3>GETしたプロンプト</h3>
+                <div class="row">
+                  <ng-container *ngFor="let favouriteRental of favoriteRentals">
+                    <!-- <div
+                      *ngIf="
+                        favouriteRental.selectedCategory &&
+                        favouriteRental.selectedCategory[0].id === 2
+                      "
+                      class="col-md-3 col-xs-6"
+                    >
+                      <app-bookmark-list-item
+                        [rental]="favouriteRental"
+                      ></app-bookmark-list-item>
+                    </div> -->
+                  </ng-container>
+                </div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink> 登録済プロンプト </a>
+              <ng-template ngbNavContent>
+                <h3>登録済プロンプト</h3>
+                <div class="row">
+                  <ng-container *ngFor="let favouriteRental of favoriteRentals">
+                    <!-- <div
+                      *ngIf="
+                        favouriteRental.selectedCategory &&
+                        favouriteRental.selectedCategory[0].id === 2
+                      "
+                      class="col-md-3 col-xs-6"
+                    >
+                      <app-bookmark-list-item
+                        [rental]="favouriteRental"
+                      ></app-bookmark-list-item>
+                    </div> -->
+                  </ng-container>
+                </div>
+              </ng-template>
+            </li>
+          </ul>
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

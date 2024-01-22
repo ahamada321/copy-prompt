@@ -9,7 +9,7 @@ const jwt = new JwtHelperService();
 
 class DecodedToken {
   userId: string = '';
-  username: string = '';
+  name: string = '';
   userRole: string = '';
   exp: number = 0;
 }
@@ -64,13 +64,13 @@ export class MyOriginAuthService {
     return this.decodedToken.userId;
   }
 
-  public getUsername(): string {
-    return this.decodedToken.username;
+  public getname(): string {
+    return this.decodedToken.name;
   }
 
-  public getUserRole(): string {
-    return this.decodedToken.userRole;
-  }
+  // public getUserRole(): string {
+  //   return this.decodedToken.userRole;
+  // }
 
   public register(userData: any): Observable<any> {
     return this.http.post('api/v1/users/register', userData);

@@ -1,82 +1,87 @@
 <div class="wrapper">
   <div
     class="page-header page-header-xs settings-background"
-    style="background-image: url('./assets/img/lp/back-image.jpg')"
+    style="background-image: url('./assets/img/bg/tressure-map.jpg')"
   >
     <div class="filter"></div>
+    <div class="content-center">
+      <div class="container">
+        <div class="space-top"></div>
+        <h1 class="title">アカウント設定</h1>
+        <h5 class="description">Account settings</h5>
+      </div>
+    </div>
   </div>
-  <div class="profile-content section">
+  <div class="profile-content section section-nude">
     <div class="container">
-      <!-- <div class="row">
-                <div class="profile-picture">
-                    <app-image-upload [image]="'./assets/img/default-avatar.png'"></app-image-upload>
-                </div>
-            </div> -->
       <div class="row">
+        <div class="profile-picture">
+          <app-image-upload
+            [image]="'./assets/img/placeholder.jpg'"
+          ></app-image-upload>
+        </div>
+      </div>
+      <div class="row" *ngIf="userData">
         <div class="col-md-6 ml-auto mr-auto">
           <form
-            *ngIf="userData"
             class="settings-form"
             #userForm="ngForm"
             (ngSubmit)="updateUser(userForm)"
           >
-            <!-- <div class="form-group">
+            <div class="form-group">
               <label>名前 <span class="icon-danger">*</span></label>
               <input
                 type="text"
                 class="form-control border-input"
                 placeholder="あなたの名前（必須）"
-                [(ngModel)]="userData.username"
-                name="username"
+                [(ngModel)]="userData.name"
+                name="name"
                 required
               />
-            </div> -->
-            <!-- <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="text" class="form-control border-input" placeholder="Email Address" [ngModel]="userData.email" name="email" required>
-                        </div>  -->
-
-            <!-- <div class="form-group">
-                            <label>自己紹介 <span class="icon-danger">*</span></label>
-                                <textarea 
-                                    type="text"
-                                    class="form-control textarea-limited" 
-                                    placeholder="充実させることで相手からリクエスト受理されやすくなります。" 
-                                    [(ngModel)]="userData.description" 
-                                    name="description"
-                                    rows="3" 
-                                    maxlength="150" 
-                                    required
-                                    ></textarea>
-                                <h5><small><span id="textarea-limited-message" class="pull-right">最大150文字まで</span></small></h5>
-                        </div> -->
-
+            </div>
             <div class="form-group">
-              <label>新しいパスワード</label>
+              <label>Email <span class="icon-danger">*</span></label>
               <input
-                (ngModel)="(userData.password)"
-                name="password"
-                type="password"
+                type="text"
                 class="form-control border-input"
-                placeholder="新しいパスワードを入力"
+                placeholder="メールアドレス"
+                [ngModel]="userData.email"
+                name="email"
+                required
               />
             </div>
 
             <div class="form-group">
-              <label>新しいパスワード（確認）</label>
-              <input
-                (ngModel)="(userData.passwordConfirmation)"
-                name="passwordConfirmation"
-                type="password"
-                class="form-control"
-                placeholder="新しいパスワードを入力（確認）"
-              />
+              <label>自己紹介</label>
+              <textarea
+                type="text"
+                class="form-control textarea-limited"
+                placeholder="自分の魅力をPRすることができます。"
+                [(ngModel)]="userData.description"
+                name="description"
+                rows="3"
+                maxlength="150"
+              ></textarea>
+              <h5>
+                <small
+                  ><span id="textarea-limited-message" class="pull-right"
+                    >最大150文字まで</span
+                  ></small
+                >
+              </h5>
             </div>
 
-            <!-- <div class="form-group">
-                            <label>User can meet you in</label>
-                            <input type="text" class="form-control border-input" placeholder="あなたと会える場所" [ngModel]="userData.nearStation" name="nearStation" required>
-                        </div> -->
+            <div class="form-group">
+              <label>パスワード変更</label>
+              <div>
+                <a
+                  class="btn btn-primary btn-link"
+                  [routerLink]="['/user/password']"
+                >
+                  パスワードを変更する
+                </a>
+              </div>
+            </div>
 
             <label>通知</label>
             <ul class="notifications">
@@ -101,24 +106,30 @@
               <li class="notification-item">
                 ニュースレター＆クーポン
                 <bSwitch
-                  [(ngModel)]="coupon_switch"
-                  name="coupon_switch"
+                  [(ngModel)]="userData.newsletter"
+                  name="newsletter"
                   [switch-on-color]="'primary'"
                   [switch-off-color]="'primary'"
                 ></bSwitch>
               </li>
             </ul>
+            <div class="space-50"></div>
             <div class="text-center">
               <button
                 [disabled]="!(userForm.valid && userForm.dirty)"
                 type="submit"
-                class="btn btn-wd btn-primary"
+                class="btn btn-lg btn-wd btn-primary"
               >
                 更新する
               </button>
             </div>
           </form>
         </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary btn-link" (click)="logout()">
+          ログアウトする
+        </button>
       </div>
     </div>
   </div>

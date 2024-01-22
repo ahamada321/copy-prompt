@@ -10,9 +10,12 @@ import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 // import { ReviewModule } from '../shared/review/review.module';
 
 import { UserComponent } from './user.component';
-import { UserBookmarkComponent } from './user-bookmark/user-bookmark.component';
-import { BookmarkListItemComponent } from './user-bookmark/bookmark-list-item/bookmark-list-item.component';
+import { UserBookmarkComponent } from './user-mypage/user-bookmark/user-bookmark.component';
+import { BookmarkListItemComponent } from './user-mypage/user-bookmark/bookmark-list-item/bookmark-list-item.component';
+import { UserChangePasswordComponent } from './user-change-password/user-change-password.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { UserService } from './shared/user.service';
+import { UserMypageComponent } from './user-mypage/user-mypage.component';
 
 const routes: Routes = [
   {
@@ -24,7 +27,22 @@ const routes: Routes = [
         component: UserBookmarkComponent,
         canActivate: [AuthGuard],
       },
-      { path: '', component: UserSettingsComponent, canActivate: [AuthGuard] },
+      {
+        path: 'manage',
+        component: UserBookmarkComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'settings',
+        component: UserSettingsComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'password',
+        component: UserChangePasswordComponent,
+        canActivate: [AuthGuard],
+      },
+      { path: '', component: UserMypageComponent, canActivate: [AuthGuard] },
     ],
   },
 ];
@@ -32,9 +50,11 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     UserComponent,
-    BookmarkListItemComponent,
+    UserMypageComponent,
     UserBookmarkComponent,
+    BookmarkListItemComponent,
     UserSettingsComponent,
+    UserChangePasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +66,6 @@ const routes: Routes = [
     ImageUploadModule,
     // ImageUploadMyverModule,
   ],
-  providers: [],
+  providers: [UserService],
 })
 export class UserModule {}

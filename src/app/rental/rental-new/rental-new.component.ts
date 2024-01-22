@@ -103,9 +103,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.newRental = new Rental();
     this.newRental.image = 'assets/img/image_placeholder.jpg';
-    if (this.auth.getUserRole() === 'Trainer') {
-      this.newRental.name = this.auth.getUsername();
-    }
+    this.newRental.name = this.auth.getname();
 
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');

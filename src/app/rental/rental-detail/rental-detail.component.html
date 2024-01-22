@@ -1,20 +1,20 @@
-<section id="rentalDetail" *ngIf="rental">
+<div class="wrapper" *ngIf="rental">
   <div
-    class="page-header page-header-small"
-    data-parallax="true"
-    [ngStyle]="{ 'background-image': 'url(' + rental.image + ')' }"
+    class="page-header page-header-xs"
+    [ngStyle]="{
+      'background-image':
+        'url(' +
+        (rental.image ? rental.image : './assets/img/image_placeholder.jpg') +
+        ')'
+    }"
   >
     <div class="filter"></div>
     <div class="content-center">
       <div class="container">
-        <div class="space-110"></div>
-        <div class="row">
-          <div class="col-md-7 text-left">
-            <h1 class="title">{{ rental.name }}</h1>
-            <h5>{{ rental.cardDescription }}</h5>
-            <!-- <h5>{{ rental.description }}</h5> -->
-          </div>
-        </div>
+        <div class="space-top"></div>
+        <h1 class="title">{{ rental.name }}</h1>
+        <h5>{{ rental.cardDescription }}</h5>
+
         <div class="row">
           <div class="col-md-7 text-left">
             <div class="buttons">
@@ -54,13 +54,12 @@
   </div>
 
   <div class="wrapper">
-    <div class="section" id="detail-of-lessons">
+    <!--     *********     Detail info     *********      -->
+    <div class="section section-nude" id="detail-of-lessons">
       <div class="container">
         <div class="col-md-10 ml-auto mr-auto">
           <div class="section-description text-center">
-            <h6 class="text-primary">Profile</h6>
-            <!-- <h2 class="title">{{ rental.course1Title }}</h2> -->
-            <h2 class="title">自己紹介</h2>
+            <h2 class="title">概要</h2>
             <p class="description pre-wrap">
               {{ rental.description }}
             </p>
@@ -156,58 +155,13 @@
       </div>
     </div>
 
-    <!--     *********     Reviews & Comments     *********      -->
-    <div class="section section-dark text-center">
+    <!--     *********     Prompt     *********      -->
+    <div class="section section-gray text-center">
       <div class="container">
-        <h2 class="title">求めていること</h2>
-        <h4 class="title">{{ rental.memo }}</h4>
-        <div class="row">
-          <!-- <ng-container *ngIf="reviews && reviews.length > 0">
-            <div class="col-md-4" *ngFor="let review of reviews">
-              <div class="card card-profile card-plain">
-                <div class="card-avatar">
-                  <a href="#avatar"
-                    ><img
-                      src="./assets/img/faces/clem-onojeghuo-3.jpg"
-                      alt="..."
-                  /></a>
-                </div>
-                <div class="card-block">
-                  <div class="author">
-                    <h4 class="card-title">{{ review.user.username }}</h4>
-                    <h6 class="card-category">Product Manager</h6>
-                    <bar-rating
-                      [rate]="review.rating"
-                      [max]="5"
-                      [theme]="'stars'"
-                      [readOnly]="true"
-                    ></bar-rating>
-                  </div>
-                  <p class="card-description text-center">
-                    {{ review.comment }}
-                  </p>
-                </div>
-                <div class="card-footer text-center"></div>
-              </div>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="!reviews || reviews.length == 0">
-            <div class="card card-profile card-plain ml-auto mr-auto">
-              <div class="card-avatar">
-                <a href="#avatar"
-                  ><img src="./assets/img/faces/clem-onojeghuo-3.jpg" alt="..."
-                /></a>
-              </div>
-              <div class="card-block">
-                <div class="author">
-                  <h4 class="card-title">まだ感想はありません！</h4>
-                  <h6 class="card-category"></h6>
-                </div>
-              </div>
-              <div class="card-footer text-center"></div>
-            </div>
-          </ng-container> -->
-        </div>
+        <h2 class="title">プロンプト</h2>
+        <!-- <h4 class="title">{{ rental.memo }}</h4> -->
+        <h4 class="title">プロンプトコード</h4>
+        <div class="row"></div>
       </div>
     </div>
 
@@ -216,7 +170,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
-            <h2 class="title">会えるエリア</h2>
+            <h2 class="title">コメント一覧</h2>
           </div>
         </div>
       </div>
@@ -228,4 +182,4 @@
     ></app-googlemaps> -->
   </div>
   <!-- <app-bottom-navbar [rental]="rental"></app-bottom-navbar> -->
-</section>
+</div>

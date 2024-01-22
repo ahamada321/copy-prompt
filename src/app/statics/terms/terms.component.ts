@@ -3,11 +3,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 @Component({
   selector: 'app-terms',
   templateUrl: './terms.component.html',
-  styleUrls: ['./terms.component.scss']
+  styleUrls: ['./terms.component.scss'],
 })
 export class TermsComponent implements OnInit, OnDestroy {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     let navbar = document.getElementsByTagName('nav')[0];
@@ -16,6 +15,8 @@ export class TermsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
+    if (navbar.classList.contains('nav-up')) {
+      navbar.classList.remove('nav-up');
+    }
   }
-
 }

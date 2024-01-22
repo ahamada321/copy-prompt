@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Router } from '@angular/router';
@@ -12,8 +12,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./login-popup.component.scss'],
 })
 export class LoginPopupComponent implements OnInit, OnDestroy {
-  // isFBloggedIn: boolean;
-  pressedFBButton: boolean = false;
   user: any;
 
   loginForm!: FormGroup;
@@ -25,7 +23,6 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private auth: MyOriginAuthService,
     private router: Router,
-    private ref: ChangeDetectorRef,
     private location: Location
   ) {}
 

@@ -18,10 +18,10 @@ router.delete("/:id", UserCtrl.authMiddleware, RentalCtrl.deleteRental);
 
 router.patch("/:id", UserCtrl.authMiddleware, RentalCtrl.updateRental);
 
-router.post("", UserCtrl.authMiddleware, RentalCtrl.createRental);
+router.post("/create", UserCtrl.authMiddleware, RentalCtrl.createRental);
 
-router.get("", RentalCtrl.getRentals);
+router.post("", RentalCtrl.getRentals);
 
-router.get("/search/:searchWords", RentalCtrl.searchRentals);
+// router.get("/search/:searchWords", RentalCtrl.searchRentals);
 
 module.exports = router;

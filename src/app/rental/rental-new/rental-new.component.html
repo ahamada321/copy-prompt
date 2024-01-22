@@ -38,43 +38,26 @@
                 </select>
               </div>
 
-              <ng-container *ngIf="auth.getUserRole() === 'Owner'">
-                <h6>名前（個人名を推薦） <span class="icon-danger">*</span></h6>
-                <input
-                  [(ngModel)]="newRental.name"
-                  name="name"
-                  type="text"
-                  class="form-control"
-                  placeholder="鈴木太郎"
-                  maxlength="20"
-                  required
-                />
-                <h5>
-                  <small
-                    ><span id="textarea-limited-message" class="pull-right">
-                      <div *ngIf="!newRental.name">残文字数 20</div>
-                      <div *ngIf="newRental.name">
-                        残文字数 {{ 20 - newRental.name.length }}
-                      </div>
-                    </span></small
-                  >
-                </h5>
-              </ng-container>
-              <ng-container *ngIf="auth.getUserRole() === 'Trainer'">
-                <h6>
-                  商品名（ユーザー名と連動します）
-                  <span class="icon-danger">*</span>
-                </h6>
-                <input
-                  [(ngModel)]="newRental.name"
-                  name="name"
-                  type="text"
-                  class="form-control"
-                  placeholder="田中 太郎"
-                  maxlength="20"
-                  disabled
-                />
-              </ng-container>
+              <h6>名前（個人名を推薦） <span class="icon-danger">*</span></h6>
+              <input
+                [(ngModel)]="newRental.name"
+                name="name"
+                type="text"
+                class="form-control"
+                placeholder="鈴木太郎"
+                maxlength="20"
+                required
+              />
+              <h5>
+                <small
+                  ><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!newRental.name">残文字数 20</div>
+                    <div *ngIf="newRental.name">
+                      残文字数 {{ 20 - newRental.name.length }}
+                    </div>
+                  </span></small
+                >
+              </h5>
             </div>
 
             <div class="form-group">

@@ -1,5 +1,4 @@
 const Rental = require("./routes/controllers/models/rental");
-const Booking = require("./routes/controllers/models/booking");
 const User = require("./routes/controllers/models/user");
 const Payment = require("./routes/controllers/models/payment");
 const Notification = require("./routes/controllers/models/notification");
@@ -13,7 +12,6 @@ class FakeDb {
   async cleanDb() {
     await Rental.deleteMany({});
     await User.deleteMany({});
-    await Booking.deleteMany({});
     await Payment.deleteMany({});
     await Notification.deleteMany({});
   }

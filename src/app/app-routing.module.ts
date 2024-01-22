@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StaticModule } from './statics/statics.module';
 import { AuthModule } from './auth/auth.module';
 import { RentalModule } from './rental/rental.module';
+import { UserModule } from './user/user.module';
 
 const routes: Routes = [];
 
@@ -12,6 +13,7 @@ const routes: Routes = [];
     AuthModule,
     StaticModule,
     RentalModule,
+    UserModule,
   ],
   exports: [RouterModule],
 })

@@ -3,7 +3,7 @@ import { MyOriginAuthService } from '../shared/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '../../shared/services/user.model';
+import { User } from '../../user/shared/user.model';
 import Swal from 'sweetalert2';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 

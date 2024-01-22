@@ -59,6 +59,9 @@ $warning-states-color: darken($warning-color, 10%) !default;
 $danger-color: #f5593d !default;
 $danger-states-color: darken($danger-color, 8%) !default;
 
+$nude-color: #fffcf5 !default; /* Added by Hamada */
+$nude-states-color: darken($nude-color, 8%) !default;
+
 $link-disabled-color: #666666 !default;
 
 $purple-color: #c178c1 !default;

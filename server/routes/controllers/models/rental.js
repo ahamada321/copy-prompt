@@ -11,7 +11,9 @@ const rentalSchema = new Schema({
     max: [128, "Too long, max is 128 characters."],
     required: "Prompt name is required",
   },
+  description: String,
   memo: String,
+  prompt: String,
 
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });

@@ -28,23 +28,7 @@
               <ng-template ngbNavContent>
                 <div class="tab-pane" id="home" role="tabpanel">
                   <h3>お気に入りプロンプト</h3>
-                  <div class="row">
-                    <ng-container
-                      *ngFor="let favouriteRental of favoriteRentals"
-                    >
-                      <!-- <div
-                        *ngIf="
-                          favouriteRental.selectedCategory &&
-                          favouriteRental.selectedCategory[0].id === 1
-                        "
-                        class="col-md-3 col-xs-6"
-                      >
-                        <app-bookmark-list-item
-                          [rental]="favouriteRental"
-                        ></app-bookmark-list-item>
-                      </div> -->
-                    </ng-container>
-                  </div>
+                  <div class="space-top"></div>
                 </div>
               </ng-template>
             </li>
@@ -52,42 +36,15 @@
               <a ngbNavLink> GETしたプロンプト </a>
               <ng-template ngbNavContent>
                 <h3>GETしたプロンプト</h3>
-                <div class="row">
-                  <ng-container *ngFor="let favouriteRental of favoriteRentals">
-                    <!-- <div
-                      *ngIf="
-                        favouriteRental.selectedCategory &&
-                        favouriteRental.selectedCategory[0].id === 2
-                      "
-                      class="col-md-3 col-xs-6"
-                    >
-                      <app-bookmark-list-item
-                        [rental]="favouriteRental"
-                      ></app-bookmark-list-item>
-                    </div> -->
-                  </ng-container>
-                </div>
+                <div class="space-top"></div>
               </ng-template>
             </li>
             <li [ngbNavItem]="3">
               <a ngbNavLink> 登録済プロンプト </a>
               <ng-template ngbNavContent>
                 <h3>登録済プロンプト</h3>
-                <div class="row">
-                  <ng-container *ngFor="let favouriteRental of favoriteRentals">
-                    <!-- <div
-                      *ngIf="
-                        favouriteRental.selectedCategory &&
-                        favouriteRental.selectedCategory[0].id === 2
-                      "
-                      class="col-md-3 col-xs-6"
-                    >
-                      <app-bookmark-list-item
-                        [rental]="favouriteRental"
-                      ></app-bookmark-list-item>
-                    </div> -->
-                  </ng-container>
-                </div>
+                <div class="space-top"></div>
+                <app-user-myrentals></app-user-myrentals>
               </ng-template>
             </li>
           </ul>

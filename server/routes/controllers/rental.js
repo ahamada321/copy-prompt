@@ -36,6 +36,17 @@ exports.getRentals = async function (req, res) {
   const { page, limit } = req.query;
   const { selectedCategory, keywords } = req.body;
 
+  if (!page || !limit) {
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Data missing!",
+          detail: "ページリミット情報が取得できませんでした。",
+        },
+      ],
+    });
+  }
+
   try {
     if (!keywords) {
       if (!selectedCategory) {
@@ -146,17 +157,44 @@ exports.searchRentals = function (req, res) {
   );
 };
 
-exports.getOwnerRentals = function (req, res) {
+exports.getOwnerRentals = async function (req, res) {
   const user = res.locals.user;
+  const { page, limit } = req.query;
 
-  Rental.find({ user, isShared: true })
-    .sort({ createdAt: -1 })
-    .exec(function (err, foundRentals) {
-      if (err) {
-        return res.status(422).send({ errors: normalizeErrors(err.errors) });
-      }
-      return res.json(foundRentals);
+  if (!page || !limit) {
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Data missing!",
+          detail: "ページリミット情報が取得できませんでした。",
+        },
+      ],
     });
+  }
+
+  try {
+    const result = await Rental.aggregate([
+      {
+        $match: {
+          user: user._id,
+          isShared: true,
+        },
+      },
+      { $sort: { createdAt: -1 } },
+      {
+        $facet: {
+          metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+          foundRentals: [
+            { $skip: (page - 1) * limit },
+            { $limit: Number(limit) },
+          ],
+        },
+      },
+    ]);
+    return res.json(result);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
 };
 
 exports.deleteRental = async function (req, res) {

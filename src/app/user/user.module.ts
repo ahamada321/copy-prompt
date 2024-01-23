@@ -16,6 +16,7 @@ import { UserChangePasswordComponent } from './user-change-password/user-change-
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserService } from './shared/user.service';
 import { UserMypageComponent } from './user-mypage/user-mypage.component';
+import { UserMyrentalsComponent } from './user-mypage/user-myrentals/user-myrentals.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,7 @@ const routes: Routes = [
   declarations: [
     UserComponent,
     UserMypageComponent,
+    UserMyrentalsComponent,
     UserBookmarkComponent,
     BookmarkListItemComponent,
     UserSettingsComponent,

@@ -19,35 +19,23 @@
           ></app-image-upload-myver>
           <form #rentalForm="ngForm">
             <!--<form [formGroup]="myGroup" action="" method="">-->
-            <div class="form-group">
-              <div class="form-group">
-                <h6>カテゴリ <span class="icon-danger">*</span></h6>
-                <select
-                  class="custom-select"
-                  [(ngModel)]="newRental.selectedCategory"
-                  name="selectedCategory"
-                  required
-                >
-                  <option [value]="undefined" disabled>カテゴリを選択</option>
-                  <option
-                    *ngFor="let dropdownCategoryList of dropdownCategoryLists"
-                    [value]="dropdownCategoryList"
-                  >
-                    {{ dropdownCategoryList }}
-                  </option>
-                </select>
-              </div>
 
-              <h6>名前（個人名を推薦） <span class="icon-danger">*</span></h6>
-              <input
-                [(ngModel)]="newRental.name"
-                name="name"
-                type="text"
-                class="form-control"
-                placeholder="鈴木太郎"
-                maxlength="20"
-                required
-              />
+            <div class="form-group">
+              <h6>プロンプト名 <span class="icon-danger">*</span></h6>
+              <div class="input-group">
+                <input
+                  [(ngModel)]="newRental.name"
+                  name="name"
+                  type="text"
+                  placeholder="織田信長と会話ができる"
+                  class="form-control"
+                  maxlength="20"
+                  required
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text">プロンプト</span>
+                </div>
+              </div>
               <h5>
                 <small
                   ><span id="textarea-limited-message" class="pull-right">
@@ -61,12 +49,27 @@
             </div>
 
             <div class="form-group">
-              <h6>自己紹介文 <span class="icon-danger">*</span></h6>
+              <h6>カテゴリ <span class="icon-danger">*</span></h6>
+              <angular2-multiselect
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                name="selectedItems"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+                (onDeSelect)="OnItemDeSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                (onDeSelectAll)="onDeSelectAll($event)"
+              >
+              </angular2-multiselect>
+            </div>
+
+            <div class="form-group">
+              <h6>プロンプト説明<span class="icon-danger">*</span></h6>
               <textarea
                 [(ngModel)]="newRental.description"
                 name="description"
                 class="form-control textarea-limited"
-                placeholder="自己紹介文を入力できます。具代的に書くことで初見の人があなたに興味を持ち、メッセージを送りやすくなります。"
+                placeholder="プロンプトの説明を入力してください。具代的に書くことで初見の人が理解しやすくなります。"
                 rows="7"
                 maxlength="1500"
                 required
@@ -84,22 +87,70 @@
             </div>
 
             <div class="form-group">
-              <h6>求めていること <span class="icon-danger">*</span></h6>
+              <h6>プロンプト<span class="icon-danger">*</span></h6>
+              <textarea
+                [(ngModel)]="newRental.description"
+                name="description"
+                class="form-control textarea-limited"
+                placeholder="プロンプトを入力してください。"
+                rows="7"
+                maxlength="1500"
+                required
+              ></textarea>
+              <h5>
+                <small
+                  ><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!newRental.description">残文字数 1500</div>
+                    <div *ngIf="newRental.description">
+                      残文字数 {{ 1500 - newRental.description.length }}
+                    </div>
+                  </span></small
+                >
+              </h5>
+            </div>
+
+            <div class="form-group">
+              <h6>
+                カスタム指示1<br />(ChatGPTにあなたについて何を知らせれば、より良い応答を提供できると思いますか？)
+              </h6>
               <input
                 [(ngModel)]="newRental.memo"
                 name="memo"
                 type="text"
                 class="form-control"
-                placeholder="従業員募集など"
-                maxlength="100"
-                required
+                placeholder="私は中学一年生です"
+                maxlength="1500"
               />
               <h5>
                 <small
                   ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.memo">残文字数 100</div>
+                    <div *ngIf="!newRental.memo">残文字数 1500</div>
                     <div *ngIf="newRental.memo">
-                      残文字数 {{ 100 - newRental.memo.length }}
+                      残文字数 {{ 1500 - newRental.memo.length }}
+                    </div>
+                  </span></small
+                >
+              </h5>
+            </div>
+
+            <div class="form-group">
+              <h6>
+                カスタム指示2<br />(ChatGPTにどのように応答してほしいですか？)
+              </h6>
+              <input
+                [(ngModel)]="newRental.memo"
+                name="memo"
+                type="text"
+                class="form-control"
+                placeholder="なるべくわかりやすく教えてください"
+                maxlength="1500"
+              />
+              <h5>
+                <small
+                  ><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!newRental.memo">残文字数 1500</div>
+                    <div *ngIf="newRental.memo">
+                      残文字数 {{ 1500 - newRental.memo.length }}
                     </div>
                   </span></small
                 >
@@ -169,7 +220,7 @@
               </div>
             </div> -->
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <h6>Instagram ID <span class="icon-danger">*</span></h6>
               <div
                 class="input-group"
@@ -191,8 +242,8 @@
                   required
                 />
               </div>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
               <h6>Twitter ID（任意）</h6>
               <div
                 class="input-group"
@@ -213,8 +264,8 @@
                   (blur)="focus2 = false"
                 />
               </div>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
               <h6>Youtube URL（任意）</h6>
               <input
                 type="text"
@@ -223,8 +274,8 @@
                 [(ngModel)]="newRental.youtube"
                 name="youtube"
               />
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
               <h6>Facebook URL（任意）</h6>
               <input
                 type="text"
@@ -233,7 +284,7 @@
                 [(ngModel)]="newRental.facebook"
                 name="facebook"
               />
-            </div>
+            </div> -->
 
             <!-- <div class="form-group">
               <h6>

@@ -35,3 +35,12 @@
 .pre-wrap {
   white-space: pre-wrap;
 }
+.blur {
+  color: transparent;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.ban_select {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}

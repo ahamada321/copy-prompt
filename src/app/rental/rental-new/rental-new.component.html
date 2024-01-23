@@ -2,7 +2,14 @@
   <div
     class="page-header page-header-small"
     data-parallax="true"
-    [ngStyle]="{ 'background-image': 'url(' + newRental.image + ')' }"
+    [ngStyle]="{
+      'background-image':
+        'url(' +
+        (newRental.image
+          ? newRental.image
+          : './assets/img/image_placeholder.jpg') +
+        ')'
+    }"
   >
     <div class="filter"></div>
   </div>
@@ -108,203 +115,6 @@
                 >
               </h5>
             </div>
-
-            <div class="form-group">
-              <h6>
-                カスタム指示1<br />(ChatGPTにあなたについて何を知らせれば、より良い応答を提供できると思いますか？)
-              </h6>
-              <input
-                [(ngModel)]="newRental.memo"
-                name="memo"
-                type="text"
-                class="form-control"
-                placeholder="私は中学一年生です"
-                maxlength="1500"
-              />
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.memo">残文字数 1500</div>
-                    <div *ngIf="newRental.memo">
-                      残文字数 {{ 1500 - newRental.memo.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
-            </div>
-
-            <div class="form-group">
-              <h6>
-                カスタム指示2<br />(ChatGPTにどのように応答してほしいですか？)
-              </h6>
-              <input
-                [(ngModel)]="newRental.memo"
-                name="memo"
-                type="text"
-                class="form-control"
-                placeholder="なるべくわかりやすく教えてください"
-                maxlength="1500"
-              />
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.memo">残文字数 1500</div>
-                    <div *ngIf="newRental.memo">
-                      残文字数 {{ 1500 - newRental.memo.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
-            </div>
-
-            <!-- <div class="form-group">
-              <h6>提供コース２タイトル（任意）</h6>
-              <textarea
-                class="form-control textarea-limited"
-                placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう"
-                [(ngModel)]="newRental.course2Title"
-                name="course2Title"
-                rows="3"
-                maxlength="150"
-              ></textarea>
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.course2Title">残文字数 150</div>
-                    <div *ngIf="newRental.course2Title">
-                      残文字数 {{ 150 - newRental.course2Title.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
-            </div>
-
-            <div class="form-group">
-              <h6>提供コース２説明文（任意）</h6>
-              <textarea
-                class="form-control textarea-limited"
-                placeholder="提供するサービス内容を出来る限り簡潔に魅力的に書きましょう"
-                [(ngModel)]="newRental.course2Description"
-                name="course2Description"
-                rows="3"
-                maxlength="150"
-              ></textarea>
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.course2Description">
-                      残文字数 150
-                    </div>
-                    <div *ngIf="newRental.course2Description">
-                      残文字数 {{ 150 - newRental.course2Description.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
-            </div> -->
-
-            <!-- <div class="form-group">
-              <h6>活動最寄駅 <span class="icon-danger">*</span></h6>
-              <div class="input-group border-input">
-                <input
-                  type="text"
-                  placeholder="新宿"
-                  class="form-control border-input"
-                  [(ngModel)]="newRental.nearStation"
-                  name="nearStation"
-                  required
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text">駅</span>
-                </div>
-              </div>
-            </div> -->
-
-            <!-- <div class="form-group">
-              <h6>Instagram ID <span class="icon-danger">*</span></h6>
-              <div
-                class="input-group"
-                [ngClass]="{ 'input-group-focus': focus === true }"
-              >
-                <div class="input-group-prepend">
-                  <span class="input-group-text"
-                    ><i class="fa fa-instagram"></i
-                  ></span>
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="newRental.instagram"
-                  name="instagram"
-                  placeholder="Instagram ID（@は不要）"
-                  (focus)="focus = true"
-                  (blur)="focus = false"
-                  required
-                />
-              </div>
-            </div> -->
-            <!-- <div class="form-group">
-              <h6>Twitter ID（任意）</h6>
-              <div
-                class="input-group"
-                [ngClass]="{ 'input-group-focus': focus2 === true }"
-              >
-                <div class="input-group-prepend">
-                  <span class="input-group-text"
-                    ><i class="fa fa-twitter"></i
-                  ></span>
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="newRental.twitter"
-                  name="twitter"
-                  placeholder="Twitter ID（@は不要）"
-                  (focus)="focus2 = true"
-                  (blur)="focus2 = false"
-                />
-              </div>
-            </div> -->
-            <!-- <div class="form-group">
-              <h6>Youtube URL（任意）</h6>
-              <input
-                type="text"
-                class="form-control border-input"
-                placeholder="Youtube URLが入力できます"
-                [(ngModel)]="newRental.youtube"
-                name="youtube"
-              />
-            </div> -->
-            <!-- <div class="form-group">
-              <h6>Facebook URL（任意）</h6>
-              <input
-                type="text"
-                class="form-control border-input"
-                placeholder="FacebookURLが入力できます"
-                [(ngModel)]="newRental.facebook"
-                name="facebook"
-              />
-            </div> -->
-
-            <!-- <div class="form-group">
-              <h6>
-                提供サービス時給（1万円以上推薦）
-                <span class="icon-danger">*</span>
-              </h6>
-              <div class="input-group border-input">
-                <input
-                  type="number"
-                  placeholder="時給を任意に設定できます"
-                  class="form-control border-input"
-                  [(ngModel)]="newRental.hourlyPrice"
-                  name="hourlyPrice"
-                  required
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text">円</span>
-                </div>
-              </div>
-            </div> -->
 
             <div class="row buttons-row">
               <div class="col-md-6">

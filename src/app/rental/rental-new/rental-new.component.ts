@@ -107,22 +107,24 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     this.newRental.isShared = true;
     this.newRental.categories = this.selectedItems;
 
-    if (!this.isImage) {
-      this.errors.push({
-        detail: 'プロフィール写真の選択と切り抜きを先に押してください',
-      });
-    } else {
-      this.rentalService.createRental(this.newRental).subscribe(
-        (rental: Rental) => {
-          this.showSwalSuccess();
-        },
-        (errorResponse: HttpErrorResponse) => {
-          console.error(errorResponse);
-          this.errors = errorResponse.error.errors;
-          this.isClicked = false;
-        }
-      );
-    }
+    // if (!this.isImage) {
+    //   this.errors.push({
+    //     detail: 'プロフィール写真の選択と切り抜きを先に押してください',
+    //   });
+    //   this.isClicked = false;
+    //   return;
+    // }
+
+    this.rentalService.createRental(this.newRental).subscribe(
+      (rental: Rental) => {
+        this.showSwalSuccess();
+      },
+      (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse);
+        this.errors = errorResponse.error.errors;
+        this.isClicked = false;
+      }
+    );
   }
 
   private showSwalSuccess() {

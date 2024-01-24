@@ -63,14 +63,17 @@
                 placeholder="自分の魅力をPRすることができます。"
                 [(ngModel)]="userData.description"
                 name="description"
-                rows="3"
-                maxlength="150"
+                rows="10"
+                maxlength="2000"
               ></textarea>
               <h5>
                 <small
-                  ><span id="textarea-limited-message" class="pull-right"
-                    >最大150文字まで</span
-                  ></small
+                  ><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!userData.description">残文字数 2000</div>
+                    <div *ngIf="userData.description">
+                      残文字数 {{ 2000 - userData.description.length }}
+                    </div>
+                  </span></small
                 >
               </h5>
             </div>

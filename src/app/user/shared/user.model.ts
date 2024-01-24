@@ -10,7 +10,6 @@ export class User {
 
   name!: string;
   email!: string;
-  oldEmail?: string;
   password?: string;
   passwordConfirmation?: string; // Frontend only!
   description?: string;

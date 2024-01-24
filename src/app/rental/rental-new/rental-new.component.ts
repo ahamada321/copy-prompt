@@ -35,7 +35,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     { id: 12, itemName: '語学' },
     { id: 13, itemName: 'エンタメ' },
   ];
-  selectedItems = [];
+  selectedItems: object[] = [];
   dropdownSettings = {
     singleSelection: false,
     text: '複数選択できます',
@@ -71,8 +71,25 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     body.classList.remove('add-product');
   }
 
+  onItemSelect(item: any) {
+    // Have to limit upto 3 items.
+    if (this.selectedItems.length > 3) {
+      this.selectedItems.pop();
+    }
+  }
+
+  // onItemDeSelect(item: any) {
+  //   if (this.selectedItems.length > 2) {
+  //     debugger;
+  //   }
+  //   console.log(item);
+  // }
+
   createUnpublishedRental() {
+    this.isClicked = true;
     this.newRental.isShared = false;
+    this.newRental.categories = this.selectedItems;
+
     this.rentalService.createRental(this.newRental).subscribe(
       (rental: Rental) => {
         this.showSwalSuccess();
@@ -80,18 +97,21 @@ export class RentalNewComponent implements OnInit, OnDestroy {
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
         this.errors = errorResponse.error.errors;
+        this.isClicked = false;
       }
     );
   }
 
   createRental() {
+    this.isClicked = true;
+    this.newRental.isShared = true;
+    this.newRental.categories = this.selectedItems;
+
     if (!this.isImage) {
       this.errors.push({
         detail: 'プロフィール写真の選択と切り抜きを先に押してください',
       });
     } else {
-      this.newRental.isShared = true;
-      this.isClicked = true;
       this.rentalService.createRental(this.newRental).subscribe(
         (rental: Rental) => {
           this.showSwalSuccess();

@@ -13,7 +13,6 @@ import { LoginPopupComponent } from '../login-popup/login-popup.component';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  date: Date = new Date();
   isTermsAgreed: boolean = false;
   isClicked: boolean = false;
 
@@ -70,9 +69,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
         }
       },
       (errorResponse: HttpErrorResponse) => {
-        this.isClicked = false;
         console.error(errorResponse);
         this.errors = errorResponse.error.errors;
+        this.isClicked = false;
       }
     );
   }
@@ -93,7 +92,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       buttonsStyling: false,
       allowOutsideClick: false,
     }).then(() => {
-      this.router.navigate(['/login']);
+      this.modalLoginOpen();
     });
   }
 

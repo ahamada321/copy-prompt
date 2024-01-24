@@ -15,7 +15,6 @@ import { Rental } from '../service/rental.model';
 // import { Review } from "src/app/common/review/service/review.model";
 import { RentalService } from '../service/rental.service';
 // import { ReviewService } from "src/app/common/review/service/review.service";
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rental-detail',

@@ -22,7 +22,7 @@
           <app-image-upload-myver
             (imageUploaded)="imageChange($event)"
             placement="top"
-            ngbTooltip="顔が写っているものを設定"
+            ngbTooltip="プロンプトの画像を設定します"
           ></app-image-upload-myver>
           <form #rentalForm="ngForm">
             <!--<form [formGroup]="myGroup" action="" method="">-->
@@ -34,7 +34,7 @@
                   [(ngModel)]="newRental.name"
                   name="name"
                   type="text"
-                  placeholder="織田信長と会話ができる"
+                  placeholder="例）織田信長と会話ができる"
                   class="form-control"
                   maxlength="30"
                   required
@@ -56,12 +56,15 @@
             </div>
 
             <div class="form-group">
-              <h6>カテゴリ <span class="icon-danger">*</span></h6>
+              <h6>
+                カテゴリ（最大３つまで） <span class="icon-danger">*</span>
+              </h6>
               <angular2-multiselect
                 [data]="dropdownList"
                 [(ngModel)]="selectedItems"
                 name="selectedItems"
                 [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
               >
               </angular2-multiselect>
             </div>
@@ -90,30 +93,38 @@
               ></textarea>
             </div>
 
+            <div class="space-top"></div>
+            <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+              <p *ngFor="let error of errors">{{ error.detail }}</p>
+            </div>
+
             <div class="row buttons-row">
               <div class="col-md-6">
                 <button
-                  (click)="createUnpublishedRental()"
-                  class="btn btn-outline-default btn-block btn-round"
-                >
-                  下書き保存
-                </button>
-              </div>
-              <div class="col-md-6">
-                <button
-                  [disabled]="!(rentalForm.form.valid && !isClicked)"
+                  [disabled]="
+                    !(
+                      rentalForm.form.valid &&
+                      !isClicked &&
+                      selectedItems.length > 0
+                    )
+                  "
                   (click)="createRental()"
                   class="btn btn-primary btn-block btn-round"
                 >
                   公開
                 </button>
               </div>
+              <div class="col-md-6">
+                <button
+                  [disabled]="isClicked"
+                  (click)="createUnpublishedRental()"
+                  class="btn btn-outline-default btn-block btn-round"
+                >
+                  下書き保存
+                </button>
+              </div>
             </div>
           </form>
-          <div class="space-top"></div>
-          <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
-            <p *ngFor="let error of errors">{{ error.detail }}</p>
-          </div>
         </div>
       </div>
     </div>

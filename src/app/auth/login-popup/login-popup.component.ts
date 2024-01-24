@@ -12,11 +12,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./login-popup.component.scss'],
 })
 export class LoginPopupComponent implements OnInit, OnDestroy {
-  user: any;
-
+  isClicked: boolean = false;
   loginForm!: FormGroup;
   errors: any[] = [];
-  notifyMessage: string = '';
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -28,7 +26,6 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     var body = document.getElementsByTagName('body')[0];
-    // body.classList.add('full-screen');
     body.classList.add('login-popup');
 
     // this.seeFBLoginState();
@@ -87,20 +84,16 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   }
 
   login() {
+    this.isClicked = true;
     this.auth.login(this.loginForm.value).subscribe(
       (token) => {
         this.activeModal.close('Close click');
-
-        let _locationExamples = this.location.path();
-        const isLocationOfRentals =
-          _locationExamples.split('/')[1] === 'rentals';
-        if (!isLocationOfRentals) {
-          this.router.navigate(['/rentals/manage']);
-        }
+        this.router.navigate(['/user']);
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
         this.errors = errorResponse.error.errors;
+        this.isClicked = false;
       }
     );
   }

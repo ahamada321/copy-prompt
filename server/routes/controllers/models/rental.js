@@ -8,14 +8,19 @@ const rentalSchema = new Schema({
 
   name: {
     type: String,
-    max: [128, "Too long, max is 128 characters."],
-    required: "Prompt name is required",
+    max: [30, "Too long, max is 30 characters."],
+    required: "プロンプト名の入力は必須です",
   },
+  categories: [],
   description: String,
   prompt: String,
   memo: String,
 
-  user: { type: Schema.Types.ObjectId, ref: "User" },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: "プロンプト作成者の紐付けに失敗しました",
+  },
 });
 
 module.exports = mongoose.model("Rental", rentalSchema);

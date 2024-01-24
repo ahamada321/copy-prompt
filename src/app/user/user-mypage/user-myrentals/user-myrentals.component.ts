@@ -31,7 +31,7 @@ export class UserMyrentalsComponent implements OnInit {
     Swal.fire({
       icon: 'warning',
       title: 'この操作は取り消せません',
-      text: 'この商品を削除します',
+      text: 'このプロンプトを削除します',
       confirmButtonColor: '#f5593d',
       cancelButtonColor: '#9A9A9A',
       confirmButtonText: '削除',
@@ -46,19 +46,19 @@ export class UserMyrentalsComponent implements OnInit {
 
   deleteRental(rentalId: string) {
     this.rentalService.deleteRental(rentalId).subscribe(
-      () => {
+      (status) => {
         const index = this.rentals.findIndex((x) => x._id === rentalId);
         this.rentals.splice(index, 1);
         Swal.fire({
-          text: '商品を削除しました',
+          title: '削除しました',
           customClass: {
             confirmButton: 'btn btn-danger btn-lg',
           },
           buttonsStyling: false,
         });
       },
-      (errorResponse: HttpErrorResponse) => {
-        console.error(errorResponse.error.errors);
+      (err) => {
+        console.error(err);
         // Expecting to show error if try to dalete rental which has active bookings
         // this.toastr.error(errorResponse.error.errors[0].detail, 'Failed!')
       }

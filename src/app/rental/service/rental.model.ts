@@ -18,6 +18,7 @@ export class Rental {
   selectedCategory?: string;
 
   name!: string;
+  categories!: object[];
   description!: string;
   prompt!: string;
 

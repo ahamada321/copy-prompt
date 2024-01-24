@@ -28,7 +28,7 @@
         </div>
         <div class="card-body">
           <h6 class="card-category">{{ rental.selectedCategory }}</h6>
-          <h5 class="card-title">{{ rental.name }}</h5>
+          <h5 class="card-title">{{ rental.name }}プロンプト</h5>
           <div class="card-description">
             <p>
               <button
@@ -43,7 +43,7 @@
             <!-- <p><button class="btn btn-danger" routerLink="/rentals/manage/bookings/{{rental._id}}">確定予約の確認</button></p> -->
             <p>
               <button
-                class="btn btn-wd btn-danger btn-link"
+                class="btn btn-wd btn-primary btn-link"
                 (click)="onDelete(rental._id)"
               >
                 <i class="nc-icon nc-box"></i>&nbsp; 削除
@@ -74,7 +74,7 @@
         </div>
         <div class="card-body">
           <h6 class="card-category">{{ rental.selectedCategory }}</h6>
-          <h5 class="card-title">{{ rental.name }}</h5>
+          <h5 class="card-title">{{ rental.name }}プロンプト</h5>
           <div class="card-description">
             <p>
               <button

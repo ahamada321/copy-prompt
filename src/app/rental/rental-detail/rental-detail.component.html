@@ -11,8 +11,8 @@
     <div class="filter"></div>
     <div class="content-center">
       <div class="container">
-        <div class="space-top"></div>
-        <h1 class="title">{{ rental.name }}</h1>
+        <div class="space-50"></div>
+        <h1 class="title">{{ rental.name }}<br /><small>プロンプト</small></h1>
 
         <div class="row">
           <div class="col-md-7 text-left">
@@ -58,16 +58,19 @@
       <div class="container">
         <div class="col-md-10 ml-auto mr-auto">
           <div class="section-description text-center">
-            <h2 class="title">概要</h2>
-            <p class="description pre-wrap">
-              {{ rental.description }}
-            </p>
+            <h2 class="title">プロンプトの説明</h2>
+            <div class="ql-editor">
+              <div
+                [innerHTML]="
+                  sanitizer.bypassSecurityTrustHtml(rental.description)
+                "
+              ></div>
+            </div>
           </div>
         </div>
         <br />
       </div>
 
-      <div class="space-100"></div>
       <div class="blog-1">
         <div class="container">
           <!-- <div class="row">

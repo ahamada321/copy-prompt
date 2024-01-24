@@ -20,12 +20,12 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
       modules: {
         syntax: { highlight: (text: string) => hljs.highlightAuto(text).value },
         toolbar: [
-          [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+          ['clean'],
+          [{ header: [3, 4, 5, false] }],
           [{ color: [] }, { background: [] }],
           ['bold', 'underline'],
           ['code-block'],
           [{ list: 'ordered' }, { list: 'bullet' }],
-          ['clean'],
         ],
       },
     }),

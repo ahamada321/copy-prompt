@@ -16,7 +16,8 @@ export class UserSettingsComponent implements OnInit {
   state_info = true;
   state_info1 = true;
 
-  data: Date = new Date();
+  isClicked: boolean = false;
+  errors: any[] = [];
 
   constructor(
     private auth: MyOriginAuthService,
@@ -47,20 +48,26 @@ export class UserSettingsComponent implements OnInit {
       (foundUser) => {
         this.userData = foundUser;
       },
-      (err) => {
-        console.error(err);
+      (errorResponse) => {
+        console.error(errorResponse);
+        this.errors = errorResponse.error.errors;
+        this.isClicked = false;
       }
     );
   }
 
   updateUser(userForm: NgForm) {
+    this.isClicked = true;
+
     this.auth.updateUser(this.userData._id, userForm.value).subscribe(
       (UserUpdated) => {
         userForm.reset(userForm.value);
         this.showSwalSuccess();
       },
-      (err) => {
-        console.error(err);
+      (errorResponse) => {
+        console.error(errorResponse);
+        this.errors = errorResponse.error.errors;
+        this.isClicked = false;
       }
     );
   }

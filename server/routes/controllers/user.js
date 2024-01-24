@@ -95,7 +95,7 @@ exports.auth = async function (req, res) {
         ],
       });
     }
-    User.updateOne({ _id: foundUser.id }, { lastLogin: Date.now() });
+    await User.updateOne({ _id: foundUser._id }, { lastLogin: new Date() });
     const token = jwt.sign(
       {
         userId: foundUser.id,
@@ -151,6 +151,7 @@ exports.register = async function (req, res) {
   const user = new User({
     name,
     email,
+    oldEmail: email,
     password,
   });
 
@@ -197,7 +198,7 @@ exports.deleteUser = async function (req, res) {
 exports.updateUser = async function (req, res) {
   const user = res.locals.user; // This is logined user infomation.
   const userData = req.body;
-  const { password, passwordConfirmation } = req.body;
+  const { email, password, passwordConfirmation } = req.body;
   const reqUserId = req.params.id;
 
   if (reqUserId !== user.id) {
@@ -211,6 +212,20 @@ exports.updateUser = async function (req, res) {
 
   try {
     if (!password) {
+      if (email !== user.email) {
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+          return res.status(422).send({
+            errors: [
+              {
+                title: "Invalid email!",
+                detail: "このメールアドレスは既に登録されています！",
+              },
+            ],
+          });
+        }
+      }
+
       await User.updateOne({ _id: user.id }, userData);
       const token = jwt.sign(
         {

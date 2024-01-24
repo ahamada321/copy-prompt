@@ -174,12 +174,7 @@ exports.getOwnerRentals = async function (req, res) {
 
   try {
     const result = await Rental.aggregate([
-      {
-        $match: {
-          user: user._id,
-          isShared: true,
-        },
-      },
+      { $match: { user: user._id } },
       { $sort: { createdAt: -1 } },
       {
         $facet: {
@@ -201,61 +196,71 @@ exports.deleteRental = async function (req, res) {
   const rentalId = req.params.id;
   const user = res.locals.user;
 
-  Rental.findById(rentalId).exec(async function (err, foundRental) {
-    if (err) {
-      return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  try {
+    const foundRental = await Rental.findById(rentalId).populate("user");
+    if (foundRental.user.id !== user.id) {
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Can't delete prompt!",
+            detail: "他ユーザーのプロンプトは削除できません",
+          },
+        ],
+      });
     }
 
-    try {
-      foundRental.remove();
-      return res.json({ status: "deleted" });
-    } catch (err) {
-      return res.status(422).send({ errors: normalizeErrors(err.errors) });
-    }
-  });
+    await User.updateOne(
+      { _id: user._id },
+      { $pull: { rentals: foundRental._id } }
+    ); // Delete rental from User
+
+    await foundRental.deleteOne();
+    return res.json({ status: "deleted" });
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
 };
 
-exports.updateRental = function (req, res) {
+exports.updateRental = async function (req, res) {
   const rentalData = req.body;
   const rentalId = req.params.id;
   const user = res.locals.user;
 
-  Rental.findById(rentalId).exec(function (err, foundRental) {
-    if (err) {
-      return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  try {
+    const foundRental = await Rental.findById(rentalId).populate("user");
+    if (foundRental.user.id !== user.id) {
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Can't update prompt!",
+            detail: "他ユーザーのプロンプトは更新できません",
+          },
+        ],
+      });
     }
 
-    User.findOne({ patientId }, function (err, foundUser) {
-      if (err) {
-        return res.status(422).send({ errors: normalizeErrors(err.errors) });
-      }
-      rentalData.user = foundUser;
+    // await User.updateOne(
+    //   { _id: user._id },
+    //   { $push: { rentals: foundRental._id } }
+    // ); // No needed. Already attached with user when created.
 
-      try {
-        const updatedRental = Rental.updateOne(
-          { _id: foundRental.id },
-          rentalData,
-          () => {}
-        );
-        return res.json(updatedRental);
-      } catch (err) {
-        return res.json(err);
-      }
-    });
-  });
+    rentalData.updatedAt = new Date();
+    await Rental.updateOne({ _id: foundRental._id }, rentalData);
+    return res.json({ status: "updated" });
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
 };
 
 exports.createRental = async function (req, res) {
-  const rental = new Rental(req.body);
-  rental.user = res.locals.user;
+  const rentalData = new Rental(req.body);
+  const user = res.locals.user;
+  rentalData.user = user;
 
   try {
-    const newRental = await Rental.create(rental);
-    const result = await User.updateOne(
-      { _id: rental.user.id },
-      { $push: { rentals: newRental } }
-    );
-    return res.json(result);
+    const newRental = await Rental.create(rentalData);
+    await User.updateOne({ _id: user.id }, { $push: { rentals: newRental } });
+    return res.json({ status: "created" });
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
   }

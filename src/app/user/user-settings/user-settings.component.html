@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="profile-content section section-nude">
-    <div class="container">
+    <div class="container" *ngIf="userData">
       <div class="row">
         <div class="profile-picture">
           <app-image-upload
@@ -21,8 +21,12 @@
           ></app-image-upload>
         </div>
       </div>
-      <div class="row" *ngIf="userData">
+
+      <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
+          <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+            <p *ngFor="let error of errors">{{ error.detail }}</p>
+          </div>
           <form
             class="settings-form"
             #userForm="ngForm"

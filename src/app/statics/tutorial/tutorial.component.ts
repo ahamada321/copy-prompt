@@ -6,6 +6,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 // import { GoogleTagManagerService } from 'angular-google-tag-manager';
 // import { BookingDemoComponent } from 'src/app/common/booking-demo/booking-demo.component';
 
@@ -15,6 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./tutorial.component.scss'],
 })
 export class TutorialComponent implements OnInit, OnDestroy {
+  activeTab = 1;
   constructor() {}
 
   ngOnInit() {

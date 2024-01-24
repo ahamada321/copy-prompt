@@ -22,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LandingComponent, TermsComponent],
+  declarations: [LandingComponent, TermsComponent, TutorialComponent],
   exports: [],
   providers: [],
   imports: [

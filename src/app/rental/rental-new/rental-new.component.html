@@ -56,20 +56,6 @@
             </div>
 
             <div class="form-group">
-              <h6>
-                カテゴリ（最大３つまで） <span class="icon-danger">*</span>
-              </h6>
-              <angular2-multiselect
-                [data]="dropdownList"
-                [(ngModel)]="selectedItems"
-                name="selectedItems"
-                [settings]="dropdownSettings"
-                (onSelect)="onItemSelect($event)"
-              >
-              </angular2-multiselect>
-            </div>
-
-            <div class="form-group">
               <h6>プロンプトの説明 <span class="icon-danger">*</span></h6>
               <quill-editor
                 [(ngModel)]="newRental.description"
@@ -87,10 +73,24 @@
                 name="prompt"
                 class="form-control textarea-limited"
                 placeholder="プロンプトを入力してください。"
-                rows="5"
+                rows="10"
                 maxlength="3000"
                 required
               ></textarea>
+            </div>
+
+            <div class="form-group">
+              <h6>
+                カテゴリ（最大３つまで） <span class="icon-danger">*</span>
+              </h6>
+              <angular2-multiselect
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                name="selectedItems"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+              >
+              </angular2-multiselect>
             </div>
 
             <div class="space-top"></div>

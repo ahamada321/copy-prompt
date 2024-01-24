@@ -29,6 +29,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
   safeUrl!: SafeResourceUrl;
 
   headerOffset: number = 75; // want to replace like DEFINE HEADER_OFFSET
+  page = 1;
 
   constructor(
     private route: ActivatedRoute,

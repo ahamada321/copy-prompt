@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./rental-new.component.scss'],
 })
 export class RentalNewComponent implements OnInit, OnDestroy {
-  newRental!: Rental;
+  newRental = new Rental();
   isClicked: boolean = false;
   isImage: boolean = false;
   focus!: boolean;
@@ -48,7 +48,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     noDataLabel: '検索結果無し',
     // primaryKey: "id",
     // labelKey: "itemName",
-    classes: '',
+    // classes: '',
   };
 
   constructor(
@@ -58,27 +58,10 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.newRental = new Rental();
-    this.newRental.name = this.auth.getname();
-
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('add-product');
-  }
-  onItemSelect(item: any) {
-    console.log(item);
-    console.log(this.selectedItems);
-  }
-  OnItemDeSelect(item: any) {
-    console.log(item);
-    console.log(this.selectedItems);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
-  onDeSelectAll(items: any) {
-    console.log(items);
   }
 
   ngOnDestroy() {

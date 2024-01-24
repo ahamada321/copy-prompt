@@ -12,8 +12,8 @@ const rentalSchema = new Schema({
     required: "Prompt name is required",
   },
   description: String,
-  memo: String,
   prompt: String,
+  memo: String,
 
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });

@@ -36,7 +36,7 @@
                   type="text"
                   placeholder="織田信長と会話ができる"
                   class="form-control"
-                  maxlength="20"
+                  maxlength="30"
                   required
                 />
                 <div class="input-group-append">
@@ -46,9 +46,9 @@
               <h5>
                 <small
                   ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.name">残文字数 20</div>
+                    <div *ngIf="!newRental.name">残文字数 30</div>
                     <div *ngIf="newRental.name">
-                      残文字数 {{ 20 - newRental.name.length }}
+                      残文字数 {{ 30 - newRental.name.length }}
                     </div>
                   </span></small
                 >
@@ -62,58 +62,32 @@
                 [(ngModel)]="selectedItems"
                 name="selectedItems"
                 [settings]="dropdownSettings"
-                (onSelect)="onItemSelect($event)"
-                (onDeSelect)="OnItemDeSelect($event)"
-                (onSelectAll)="onSelectAll($event)"
-                (onDeSelectAll)="onDeSelectAll($event)"
               >
               </angular2-multiselect>
             </div>
 
             <div class="form-group">
-              <h6>プロンプト説明<span class="icon-danger">*</span></h6>
-              <textarea
+              <h6>プロンプトの説明 <span class="icon-danger">*</span></h6>
+              <quill-editor
                 [(ngModel)]="newRental.description"
                 name="description"
-                class="form-control textarea-limited"
-                placeholder="プロンプトの説明を入力してください。具代的に書くことで初見の人が理解しやすくなります。"
-                rows="7"
-                maxlength="1500"
-                required
-              ></textarea>
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.description">残文字数 1500</div>
-                    <div *ngIf="newRental.description">
-                      残文字数 {{ 1500 - newRental.description.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
+                maxlength="5000"
+                placeholder="作成したプロンプトでどのようなことができるのかを具体的に記述することができます。"
+                [required]="true"
+              ></quill-editor>
             </div>
 
             <div class="form-group">
               <h6>プロンプト<span class="icon-danger">*</span></h6>
               <textarea
-                [(ngModel)]="newRental.description"
-                name="description"
+                [(ngModel)]="newRental.prompt"
+                name="prompt"
                 class="form-control textarea-limited"
                 placeholder="プロンプトを入力してください。"
-                rows="7"
-                maxlength="1500"
+                rows="5"
+                maxlength="3000"
                 required
               ></textarea>
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.description">残文字数 1500</div>
-                    <div *ngIf="newRental.description">
-                      残文字数 {{ 1500 - newRental.description.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
             </div>
 
             <div class="row buttons-row">

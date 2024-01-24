@@ -19,7 +19,7 @@ export class Rental {
 
   name!: string;
   description!: string;
-  cardDescription!: string;
+  prompt!: string;
 
   // courseImg: string;
   // courseTitle: string;

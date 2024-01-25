@@ -8,9 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { BottomNavComponent } from './shared/bottom-nav/bottom-nav.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, BottomNavComponent],
   imports: [
     NgbModule,
     BrowserAnimationsModule,

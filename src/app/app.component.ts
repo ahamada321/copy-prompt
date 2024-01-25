@@ -140,4 +140,12 @@ export class AppComponent implements OnInit {
       return true;
     }
   }
+  isMobile() {
+    let innerWidth = window.innerWidth;
+    if (innerWidth < 560) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

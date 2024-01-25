@@ -1,5 +1,3 @@
-import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-
 export class Rental {
   static readonly CATEGORIES: string[];
   _id!: string;

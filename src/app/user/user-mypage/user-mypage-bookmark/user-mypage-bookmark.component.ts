@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RentalService } from 'src/app/rental/service/rental.service';
-import { Rental } from 'src/app/rental/service/rental.model';
+import { RentalService } from 'src/app/rental/shared/rental.service';
+import { Rental } from 'src/app/rental/shared/rental.model';
 
 @Component({
-  selector: 'app-user-bookmark',
-  templateUrl: './user-bookmark.component.html',
-  styleUrls: ['./user-bookmark.component.scss'],
+  selector: 'app-user-mypage-bookmark',
+  templateUrl: './user-mypage-bookmark.component.html',
+  styleUrls: ['./user-mypage-bookmark.component.scss'],
 })
-export class UserBookmarkComponent implements OnInit, OnDestroy {
+export class UserMypageBookmarkComponent implements OnInit, OnDestroy {
   favoriteRentals: Rental[] = [];
   errors: any[] = [];
 

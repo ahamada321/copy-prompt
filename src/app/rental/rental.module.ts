@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { sharedModule } from '@angular/shared';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
@@ -16,21 +15,17 @@ import { RentalComponent } from './rental.component';
 import { RentalListComponent } from './rental-list/rental-list.component';
 import { RentalListItemComponent } from './rental-list/rental-list-item/rental-list-item.component';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
-import { RentalEditComponent } from './rental-edit/rental-edit.component';
 
 import { RentalNewComponent } from './rental-new/rental-new.component';
-import { RentalRevenueComponent } from './rental-revenue/rental-revenue.component';
-// import { RentalDetailUpdateComponent } from './rental-detail/rental-detail-update/rental-detail-update.component';
-// import { NavbarBottomComponent } from '../common/navbar-bottom/navbar-bottom.component';
+import { RentalEditComponent } from './rental-edit/rental-edit.component';
+
 // import { GoogleMapsModule } from "../common/googlemaps/googlemaps.module";
 // import { PaymentModule } from '../common/payment/payment.module';
 // import { ReviewModule } from '../common/review/review.module';
-// import { EditableModule } from '../shared/editable/editable.module';
 import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 // import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-upload-myver.module';
 
-import { RentalService } from './service/rental.service';
-// import { ImageUploadQrCodeModule } from '../common/image-upload-qr-code/image-upload-qr-code.module';
+import { RentalService } from './shared/rental.service';
 import { SearchbarModule } from '../shared/searchbar/searchbar.module';
 import { QuillModule } from 'ngx-quill';
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
@@ -42,22 +37,12 @@ const routes: Routes = [
     children: [
       { path: '', component: RentalListComponent },
       { path: 'new', component: RentalNewComponent, canActivate: [AuthGuard] },
-      { path: ':rentalId', component: RentalDetailComponent }, // Going to replace rentalId to rentalUri
       {
-        path: ':rentalId/edit',
+        path: 'edit/:rentalId',
         component: RentalEditComponent,
         canActivate: [AuthGuard],
       },
-      {
-        path: ':rentalId/revenue',
-        component: RentalRevenueComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'manage/revenue',
-        component: RentalRevenueComponent,
-        canActivate: [AuthGuard],
-      },
+      { path: ':rentalId', component: RentalDetailComponent }, // Going to replace rentalId to rentalUri
     ],
   },
 ];
@@ -70,11 +55,8 @@ const routes: Routes = [
     RentalDetailComponent,
     RentalNewComponent,
     RentalEditComponent,
-    RentalRevenueComponent,
-    // NavbarBottomComponent,
   ],
   imports: [
-    //   sharedModule,
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
@@ -89,7 +71,6 @@ const routes: Routes = [
     // ReviewModule,
     // BarRatingModule,
     SearchbarModule,
-    // BookingSelecterModule,
     ImageUploadModule,
     // ImageUploadMyverModule,
     // ImageUploadQrCodeModule,

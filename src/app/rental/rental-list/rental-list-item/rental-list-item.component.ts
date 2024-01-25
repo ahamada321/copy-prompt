@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
-import { RentalService } from '../../service/rental.service';
-import { Rental } from '../../service/rental.model';
+import { RentalService } from '../../shared/rental.service';
+import { Rental } from '../../shared/rental.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 

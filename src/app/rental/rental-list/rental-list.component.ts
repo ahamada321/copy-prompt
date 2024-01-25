@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Rental } from '../service/rental.model';
-import { RentalService } from '../service/rental.service';
+import { Rental } from '../shared/rental.model';
+import { RentalService } from '../shared/rental.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 

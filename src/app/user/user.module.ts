@@ -10,13 +10,13 @@ import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 // import { ReviewModule } from '../shared/review/review.module';
 
 import { UserComponent } from './user.component';
-import { UserBookmarkComponent } from './user-mypage/user-bookmark/user-bookmark.component';
-import { BookmarkListItemComponent } from './user-mypage/user-bookmark/bookmark-list-item/bookmark-list-item.component';
-import { UserSettingsPasswordComponent } from './user-settings/user-settings-password/user-settings-password.component';
-import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserService } from './shared/user.service';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { UserSettingsPasswordComponent } from './user-settings/user-settings-password/user-settings-password.component';
 import { UserMypageComponent } from './user-mypage/user-mypage.component';
-import { UserMyrentalsComponent } from './user-mypage/user-myrentals/user-myrentals.component';
+import { UserMypageBookmarkComponent } from './user-mypage/user-mypage-bookmark/user-mypage-bookmark.component';
+import { BookmarkListItemComponent } from './user-mypage/user-mypage-bookmark/bookmark-list-item/bookmark-list-item.component';
+import { UserMypageMyrentalsComponent } from './user-mypage/user-mypage-myrentals/user-mypage-myrentals.component';
 
 const routes: Routes = [
   {
@@ -25,12 +25,7 @@ const routes: Routes = [
     children: [
       {
         path: 'bookmark',
-        component: UserBookmarkComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'manage',
-        component: UserBookmarkComponent,
+        component: UserMypageBookmarkComponent,
         canActivate: [AuthGuard],
       },
       {
@@ -52,9 +47,9 @@ const routes: Routes = [
   declarations: [
     UserComponent,
     UserMypageComponent,
-    UserMyrentalsComponent,
-    UserBookmarkComponent,
+    UserMypageBookmarkComponent,
     BookmarkListItemComponent,
+    UserMypageMyrentalsComponent,
     UserSettingsComponent,
     UserSettingsPasswordComponent,
   ],

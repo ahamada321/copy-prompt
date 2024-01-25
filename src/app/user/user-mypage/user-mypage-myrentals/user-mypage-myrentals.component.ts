@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { RentalService } from 'src/app/rental/service/rental.service';
-import { Rental } from 'src/app/rental/service/rental.model';
+import { RentalService } from 'src/app/rental/shared/rental.service';
+import { Rental } from 'src/app/rental/shared/rental.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-user-myrentals',
-  templateUrl: './user-myrentals.component.html',
-  styleUrls: ['./user-myrentals.component.scss'],
+  selector: 'app-user-mypage-myrentals',
+  templateUrl: './user-mypage-myrentals.component.html',
+  styleUrls: ['./user-mypage-myrentals.component.scss'],
 })
-export class UserMyrentalsComponent implements OnInit {
+export class UserMypageMyrentalsComponent implements OnInit {
   rentals: Rental[] = [];
   rentalDeleteIndex!: number;
 

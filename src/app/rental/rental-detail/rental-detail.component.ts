@@ -11,9 +11,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Rental } from '../service/rental.model';
+import { Rental } from '../shared/rental.model';
 // import { Review } from "src/app/common/review/service/review.model";
-import { RentalService } from '../service/rental.service';
+import { RentalService } from '../shared/rental.service';
 // import { ReviewService } from "src/app/common/review/service/review.service";
 
 @Component({

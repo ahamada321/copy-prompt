@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RentalService } from '../service/rental.service';
+import { RentalService } from '../shared/rental.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Rental } from '../service/rental.model';
+import { Rental } from '../shared/rental.model';
 import Swal from 'sweetalert2';
 
 @Component({

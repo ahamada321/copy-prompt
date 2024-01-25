@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
-import { RentalService } from 'src/app/rental/service/rental.service';
+import { RentalService } from 'src/app/rental/shared/rental.service';
 
 @Component({
   selector: 'app-bookmark-list-item',

@@ -17,6 +17,7 @@ import { UserMypageComponent } from './user-mypage/user-mypage.component';
 import { UserMypageBookmarkComponent } from './user-mypage/user-mypage-bookmark/user-mypage-bookmark.component';
 import { BookmarkListItemComponent } from './user-mypage/user-mypage-bookmark/bookmark-list-item/bookmark-list-item.component';
 import { UserMypageMyrentalsComponent } from './user-mypage/user-mypage-myrentals/user-mypage-myrentals.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
         component: UserSettingsPasswordComponent,
         canActivate: [AuthGuard],
       },
+      {
+        path: ':userId',
+        component: UserProfileComponent,
+      },
       { path: '', component: UserMypageComponent, canActivate: [AuthGuard] },
     ],
   },
@@ -52,6 +57,7 @@ const routes: Routes = [
     UserMypageMyrentalsComponent,
     UserSettingsComponent,
     UserSettingsPasswordComponent,
+    UserProfileComponent,
   ],
   imports: [
     CommonModule,

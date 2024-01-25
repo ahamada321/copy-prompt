@@ -14,13 +14,13 @@ router.get("/total", RentalCtrl.getRentalsTotal);
 
 router.get("/:id", RentalCtrl.getRentalById);
 
-router.delete("/:id", UserCtrl.authMiddleware, RentalCtrl.deleteRental);
-
-router.patch("/:id", UserCtrl.authMiddleware, RentalCtrl.updateRental);
-
 router.post("/create", UserCtrl.authMiddleware, RentalCtrl.createRental);
 
 router.post("", RentalCtrl.getRentals);
+
+router.patch("/:id", UserCtrl.authMiddleware, RentalCtrl.updateRental);
+
+router.delete("/:id", UserCtrl.authMiddleware, RentalCtrl.deleteRental);
 
 // router.get("/search/:searchWords", RentalCtrl.searchRentals);
 

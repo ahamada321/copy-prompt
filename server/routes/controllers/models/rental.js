@@ -11,10 +11,12 @@ const rentalSchema = new Schema({
     max: [30, "Too long, max is 30 characters."],
     required: "プロンプト名の入力は必須です",
   },
+  selectedCategory: String, // Will be deleted in future.
   categories: [],
   description: String,
   prompt: String,
-  memo: String,
+  image: String,
+  rating: Number,
 
   user: {
     type: Schema.Types.ObjectId,

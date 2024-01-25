@@ -1,7 +1,5 @@
 import { Schema } from 'mongoose';
-import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-// import { Booking } from "../booking-selecter/shared/booking.model";
-import { Notification } from './notification.model';
+import { Rental } from 'src/app/rental/shared/rental.model';
 
 export class User {
   _id?: Schema.Types.ObjectId;
@@ -13,9 +11,12 @@ export class User {
   password?: string;
   passwordConfirmation?: string; // Frontend only!
   description?: string;
-  notification?: Notification[];
-
-  affiliateCode?: string;
+  image?: string;
   stripe?: string;
+
+  homepage?: string;
+  twitter?: string;
+
+  rentals!: Rental[];
   newsletter!: boolean;
 }

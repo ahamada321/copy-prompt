@@ -45,7 +45,9 @@ exports.getUserById = async function (req, res) {
   const user = res.locals.user;
 
   try {
-    const foundUser = await User.findOne({ _id: reqUserId });
+    const foundUser = await User.findOne({ _id: reqUserId }).populate(
+      "rentals"
+    );
     if (foundUser.id !== user.id) {
       foundUser.password = null;
     }

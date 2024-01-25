@@ -4,10 +4,6 @@
     style="background-image: url('./assets/img/bg/tressure-map.jpg')"
   >
     <div class="filter"></div>
-
-    <div class="content-center">
-      <div class="container"></div>
-    </div>
   </div>
   <div class="profile-content section section-nude">
     <div class="container" *ngIf="userData">
@@ -15,11 +11,18 @@
         <div class="profile-picture">
           <div class="fileinput fileinput-new" data-provides="fileinput">
             <div class="fileinput-new img-no-padding">
-              <img src="./assets/img/placeholder.jpg" alt="..." />
+              <img
+                [src]="
+                  userData.image
+                    ? userData.image
+                    : './assets/img/placeholder.jpg'
+                "
+              />
             </div>
             <div class="name">
               <h5 class="text-center">
-                田中たなお<br /><small>@tanatao</small>
+                {{ userData.name }}
+                <!-- <br /><small>@tanatao</small> -->
               </h5>
             </div>
           </div>
@@ -28,31 +31,38 @@
       <div class="row">
         <div class="col-md-12 ml-auto mr-auto text-center">
           <p>
-            こんにちは！カナダでリモートしてるエンジニアです！いっぱいプロンプト書くのでいっぱいコメントくれると嬉しいです！Youtubeもやっています！
+            {{ userData.description }}
           </p>
         </div>
 
         <div class="info info-horizontal">
-          <a class="icon" href="/">
+          <a
+            *ngIf="userData.homepage"
+            class="icon"
+            href="{{ userData.homepage }}"
+            target="_blank"
+          >
             <i class="fa fa-laptop"></i>
           </a>
-          <a class="icon" href="/">
-            <i class="fa fa fa-facebook-square"></i>
-          </a>
-          <a class="icon" href="/">
+          <a
+            *ngIf="userData.twitter"
+            class="icon"
+            href="https://twitter.com/{{ userData.twitter }}"
+            target="_blank"
+          >
             <i class="fa fa-twitter"></i>
           </a>
         </div>
       </div>
-      <div *ngIf="rentals && rentals.length > 0">
+      <div *ngIf="userData.rentals.length > 0">
         <div class="row">
           <div
-            *ngFor="let rental of rentals; let i = index"
+            *ngFor="let rental of userData.rentals; let i = index"
             class="col-6 col-sm-4 col-md-3 col-xl-2"
           >
             <div *ngIf="rental.isShared" class="card">
-              <div class="card-image">
-                <a routerLink="/rentals/{{ rental._id }}">
+              <a routerLink="/rentals/{{ rental._id }}">
+                <div class="card-image">
                   <img
                     class="img"
                     [src]="
@@ -61,16 +71,15 @@
                         : './assets/img/image_placeholder.jpg'
                     "
                   />
-                </a>
-              </div>
-              <div class="card-body">
-                <h6 class="card-category">{{ rental.selectedCategory }}</h6>
-                <h5 class="card-title">{{ rental.name }}プロンプト</h5>
-              </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ rental.name }}プロンプト</h5>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-        <div class="space-top"></div>
+        <!-- <div class="space-top"></div>
         <div class="pagination-area pagination-primary justify-content-center">
           <ngb-pagination
             [collectionSize]="pageCollectionSize"
@@ -81,7 +90,7 @@
             aria-label="Default pagination"
             (pageChange)="pageChange()"
           ></ngb-pagination>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

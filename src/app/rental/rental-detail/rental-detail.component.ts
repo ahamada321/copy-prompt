@@ -44,8 +44,6 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
-    // let body = document.getElementsByTagName('body')[0];
-    // body.classList.add('presentation-page');
 
     this.route.params.subscribe((params) => {
       this.getRental(params['rentalId']);
@@ -55,17 +53,15 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
-    // let body = document.getElementsByTagName('body')[0];
-    // body.classList.remove('presentation-page');
 
     if (navbar.classList.contains('nav-up')) {
       navbar.classList.remove('nav-up');
     }
   }
 
-  isYourRental() {
-    return this.rental.user._id === this.auth.getUserId();
-  }
+  // isYourRental() {
+  //   return this.rental.user._id === this.auth.getUserId();
+  // }
 
   getRental(rentalId: string) {
     this.rentalService.getRentalById(rentalId).subscribe((rental: Rental) => {

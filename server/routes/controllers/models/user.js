@@ -26,13 +26,13 @@ const userSchema = new Schema({
     required: "Password is required",
   },
   description: String,
-  notification: [{ type: Schema.Types.ObjectId, ref: "Notification" }],
-
-  rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
-
-  affiliateCode: String,
+  image: String,
   stripe: String,
 
+  homepage: String,
+  twitter: String,
+
+  rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
   newsletter: { type: Boolean, default: true },
 });
 

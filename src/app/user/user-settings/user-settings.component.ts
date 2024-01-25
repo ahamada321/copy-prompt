@@ -13,8 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class UserSettingsComponent implements OnInit {
   userData!: User;
-  state_info = true;
-  state_info1 = true;
+  focus1 = false;
 
   isClicked: boolean = false;
   errors: any[] = [];

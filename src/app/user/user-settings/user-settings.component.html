@@ -90,6 +90,41 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label>ホームページURL</label>
+              <input
+                type="text"
+                class="form-control border-input"
+                placeholder="https://www.○○○○.com"
+                [(ngModel)]="userData.homepage"
+                name="homepage"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Twitter ID</label>
+              <div
+                class="input-group"
+                [ngClass]="{ 'input-group-focus': focus1 === true }"
+              >
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fa fa-twitter"></i
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="userData.twitter"
+                  name="twitter"
+                  placeholder="Twitter ID（@は不要）"
+                  (focus)="focus1 = true"
+                  (blur)="focus1 = false"
+                />
+              </div>
+            </div>
+
+            <div class="space-top"></div>
             <label>通知</label>
             <ul class="notifications">
               <!-- <li class="notification-item">

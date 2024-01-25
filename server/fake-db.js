@@ -22,7 +22,7 @@ class FakeDb {
     this.rentals.forEach((rental) => {
       const newRental = new Rental(rental);
       newRental.user = user3;
-      user.rentals.push(newRental);
+      user3.rentals.push(newRental);
       newRental.save();
     });
     user.save();

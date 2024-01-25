@@ -13,41 +13,6 @@
       <div class="container">
         <div class="space-50"></div>
         <h1 class="title">{{ rental.name }}<br /><small>プロンプト</small></h1>
-
-        <div class="row">
-          <div class="col-md-7 text-left">
-            <div class="buttons">
-              <a
-                *ngIf="rental.instagram"
-                href="https://www.instagram.com/{{ rental.instagram }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-instagram"></i>
-              </a>
-              <a
-                *ngIf="rental.twitter"
-                href="https://twitter.com/{{ rental.twitter }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-twitter"></i>
-              </a>
-              <a
-                *ngIf="rental.youtube"
-                href="{{ rental.youtube }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-youtube"></i>
-              </a>
-              <a
-                *ngIf="rental.facebook"
-                href="{{ rental.facebook }}"
-                class="btn btn-neutral btn-link btn-just-icon"
-                target="_blank"
-                ><i class="fa fa-facebook-square"></i>
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

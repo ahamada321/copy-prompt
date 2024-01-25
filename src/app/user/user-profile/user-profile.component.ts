@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RentalService } from 'src/app/rental/shared/rental.service';
 import { Rental } from 'src/app/rental/shared/rental.model';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,20 +11,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-  rentals: Rental[] = [];
   userData!: User;
+  userId!: string;
 
   pageIndex: number = 1;
   pageSize: number = 40; // Displaying contents per page.
   pageCollectionSize: number = 1;
-  state_info = true;
-  state_info1 = true;
-
-  isClicked: boolean = false;
   errors: any[] = [];
 
   constructor(
-    private auth: MyOriginAuthService,
+    private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
     private rentalService: RentalService
@@ -38,8 +31,10 @@ export class UserProfileComponent implements OnInit {
     navbar.classList.add('navbar-transparent');
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('settings-page');
-    this.getUser();
-    this.getOwnerRentals();
+
+    this.route.params.subscribe((params) => {
+      this.getUserById(params['userId']);
+    });
   }
   ngOnDestroy() {
     let navbar = document.getElementsByTagName('nav')[0];
@@ -51,8 +46,7 @@ export class UserProfileComponent implements OnInit {
     body.classList.remove('settings-page');
   }
 
-  getUser() {
-    const userId = this.auth.getUserId();
+  getUserById(userId: string) {
     this.userService.getUserById(userId).subscribe(
       (foundUser) => {
         this.userData = foundUser;
@@ -60,27 +54,12 @@ export class UserProfileComponent implements OnInit {
       (errorResponse) => {
         console.error(errorResponse);
         this.errors = errorResponse.error.errors;
-        this.isClicked = false;
       }
     );
   }
 
-  getOwnerRentals() {
-    this.rentalService.getOwnerRentals(this.pageIndex, this.pageSize).subscribe(
-      (result) => {
-        if (result[0].foundRentals.length > 0) {
-          this.rentals = result[0].foundRentals;
-          this.pageCollectionSize = result[0].metadata[0].total;
-        }
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
-  }
-
-  pageChange() {
-    this.rentals = [];
-    this.getOwnerRentals();
-  }
+  // pageChange() {
+  //   // this.rentals = [];
+  //   // this.getUserRentals();
+  // }
 }

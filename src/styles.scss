@@ -7,6 +7,12 @@ body {
   background-color: #fffcf5;
 }
 
+// Using in ngb-pagination
+.justify-content-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+
 // Quill editor
 .ql-container {
   background-color: white;

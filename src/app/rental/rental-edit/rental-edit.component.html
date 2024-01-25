@@ -117,7 +117,9 @@
               </div>
               <div class="col-md-6">
                 <button
-                  [disabled]="!(rentalForm.dirty && !isClicked)"
+                  [disabled]="
+                    !((rentalForm.dirty || foundRental.isShared) && !isClicked)
+                  "
                   (click)="unpublishRental()"
                   class="btn btn-outline-default btn-block btn-round"
                 >

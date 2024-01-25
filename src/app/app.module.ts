@@ -25,7 +25,7 @@ import { BottomNavComponent } from './shared/bottom-nav/bottom-nav.component';
           [{ header: [3, 4, 5, false] }],
           [{ color: [] }, { background: [] }],
           ['bold', 'underline'],
-          ['code-block'],
+          // ['code-block'],
           [{ list: 'ordered' }, { list: 'bullet' }],
         ],
       },

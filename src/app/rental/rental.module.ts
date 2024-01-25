@@ -33,6 +33,7 @@ import { RentalService } from './service/rental.service';
 // import { ImageUploadQrCodeModule } from '../common/image-upload-qr-code/image-upload-qr-code.module';
 import { SearchbarModule } from '../shared/searchbar/searchbar.module';
 import { QuillModule } from 'ngx-quill';
+import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 
 const routes: Routes = [
   {
@@ -95,6 +96,7 @@ const routes: Routes = [
     JwBootstrapSwitchNg2Module,
     // TagInputModule,
     QuillModule,
+    CodeSnippetModule,
   ],
   providers: [RentalService],
 })

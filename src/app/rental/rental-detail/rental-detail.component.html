@@ -158,11 +158,12 @@
     </div>
 
     <!--     *********     Prompt     *********      -->
-    <div class="section section-gray text-center">
+    <div class="section section-dark text-center">
       <div class="container">
         <h2 class="title">プロンプト</h2>
         <!-- <h4 class="title">{{ rental.memo }}</h4> -->
         <h4 class="title blur ban_select">プロンプトコード</h4>
+        <app-code-snippet [code]="rental.description"></app-code-snippet>
         <div class="row"></div>
       </div>
     </div>

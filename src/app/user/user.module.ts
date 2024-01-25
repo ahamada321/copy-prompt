@@ -12,7 +12,7 @@ import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 import { UserComponent } from './user.component';
 import { UserBookmarkComponent } from './user-mypage/user-bookmark/user-bookmark.component';
 import { BookmarkListItemComponent } from './user-mypage/user-bookmark/bookmark-list-item/bookmark-list-item.component';
-import { UserChangePasswordComponent } from './user-change-password/user-change-password.component';
+import { UserSettingsPasswordComponent } from './user-settings/user-settings-password/user-settings-password.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserService } from './shared/user.service';
 import { UserMypageComponent } from './user-mypage/user-mypage.component';
@@ -40,7 +40,7 @@ const routes: Routes = [
       },
       {
         path: 'password',
-        component: UserChangePasswordComponent,
+        component: UserSettingsPasswordComponent,
         canActivate: [AuthGuard],
       },
       { path: '', component: UserMypageComponent, canActivate: [AuthGuard] },
@@ -56,7 +56,7 @@ const routes: Routes = [
     UserBookmarkComponent,
     BookmarkListItemComponent,
     UserSettingsComponent,
-    UserChangePasswordComponent,
+    UserSettingsPasswordComponent,
   ],
   imports: [
     CommonModule,

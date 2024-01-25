@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../shared/user.model';
+import { User } from '../../shared/user.model';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-user-change-password',
-  templateUrl: './user-change-password.component.html',
-  styleUrls: ['./user-change-password.component.scss'],
+  selector: 'app-user-settings-password',
+  templateUrl: './user-settings-password.component.html',
+  styleUrls: ['./user-settings-password.component.scss'],
 })
-export class UserChangePasswordComponent implements OnInit {
+export class UserSettingsPasswordComponent implements OnInit {
   userData!: User;
 
   constructor(private auth: MyOriginAuthService, private router: Router) {}

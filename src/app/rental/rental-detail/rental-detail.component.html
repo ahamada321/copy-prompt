@@ -16,7 +16,10 @@
           {{ rental.name }}<br />
           <small>プロンプト</small><br />
         </h1>
-        <a href="javascript:void(0)" class="btn btn-link btn-lg btn-neutral">
+        <a
+          class="btn btn-link btn-lg btn-neutral"
+          [routerLink]="['/user', rental.user._id]"
+        >
           <i class="fa fa-pencil" aria-hidden="true"></i>
           {{ rental.user.name }}
         </a>

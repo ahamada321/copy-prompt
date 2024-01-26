@@ -48,7 +48,7 @@ exports.getUserById = async function (req, res) {
     const foundUser = await User.findOne({ _id: reqUserId }).populate(
       "rentals"
     );
-    if (foundUser.id !== user.id) {
+    if (foundUser.id !== (user && user.id)) {
       foundUser.password = null;
     }
     return res.json(foundUser);

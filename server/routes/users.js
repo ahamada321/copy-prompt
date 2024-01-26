@@ -8,7 +8,7 @@ router.post("/auth", UserCtrl.auth);
 
 router.post("/register", UserCtrl.register);
 
-router.get("/:id", UserCtrl.authMiddleware, UserCtrl.getUserById);
+router.get("/:id", UserCtrl.getUserById);
 
 router.get("", UserCtrl.getUsers);
 

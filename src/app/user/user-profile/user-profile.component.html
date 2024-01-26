@@ -8,22 +8,24 @@
   <div class="profile-content section section-nude">
     <div class="container" *ngIf="userData">
       <div class="row">
-        <div class="profile-picture">
-          <div class="fileinput fileinput-new" data-provides="fileinput">
-            <div class="fileinput-new img-no-padding">
-              <img
-                [src]="
-                  userData.image
-                    ? userData.image
-                    : './assets/img/placeholder.jpg'
-                "
-              />
-            </div>
-            <div class="name">
-              <h5 class="text-center">
-                {{ userData.name }}
-                <!-- <br /><small>@tanatao</small> -->
-              </h5>
+        <div class="col-md-12 ml-auto mr-auto text-center">
+          <div class="profile-picture">
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+              <div class="fileinput-new img-no-padding">
+                <img
+                  [src]="
+                    userData.image
+                      ? userData.image
+                      : './assets/img/placeholder.jpg'
+                  "
+                />
+              </div>
+              <div class="name">
+                <h5>
+                  {{ userData.name }}
+                  <!-- <br /><small>@tanatao</small> -->
+                </h5>
+              </div>
             </div>
           </div>
         </div>
@@ -61,7 +63,7 @@
             class="col-6 col-sm-4 col-md-3 col-xl-2"
           >
             <div *ngIf="rental.isShared" class="card">
-              <a routerLink="/rentals/{{ rental._id }}">
+              <a [routerLink]="['/rentals', rental._id]">
                 <div class="card-image">
                   <img
                     class="img"

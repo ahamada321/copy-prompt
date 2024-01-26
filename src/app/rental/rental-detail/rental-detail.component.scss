@@ -4,12 +4,6 @@ h1 small {
   font-size: 75%;
 }
 
-// Using in ngb-pagination
-.justify-content-center {
-  display: flex !important;
-  justify-content: center !important;
-}
-
 .video-responsive {
   overflow: hidden;
   padding-bottom: 66.66%;
@@ -38,4 +32,8 @@ h1 small {
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
+}
+
+.btn {
+  text-transform: none;
 }

@@ -35,21 +35,16 @@ app.use("/api/v1/contactforms", contactformRoutes);
 // app.use("/api/v1", imageUploadRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  const redirectToHttpsAndWww = (req, res, next) => {
+  const appPath = path.join(__dirname, "..", "dist", "copy-prompt");
+
+  const redirectToHttps = (req, res, next) => {
     if (req.headers["x-forwarded-proto"] !== "https") {
       const httpsUrl = "https://" + req.headers.host + req.url;
       return res.redirect(301, httpsUrl);
     }
-    if (req.headers.host && req.headers.host.slice(0, 4) !== "www.") {
-      const wwwUrl = "https://www." + req.headers.host + req.url;
-      return res.redirect(301, wwwUrl);
-    }
     next();
   };
-  app.use(redirectToHttpsAndWww);
-
-  // const appPath = path.join(__dirname, "..", "dist", "copy-prompt");
-  const appPath = path.join(__dirname, "dist", "copy-prompt");
+  app.use(redirectToHttps);
 
   app.use(express.static(appPath));
   app.get("*", function (req, res) {

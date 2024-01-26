@@ -35,19 +35,23 @@ app.use("/api/v1/contactforms", contactformRoutes);
 // app.use("/api/v1", imageUploadRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  const appPath = path.join(__dirname, "..", "dist", "copy-prompt");
-  const https_redirect = function () {
-    return function (req, res, next) {
-      if (req.headers["x-forwarded-proto"] !== "https") {
-        return res.redirect("https://" + req.headers.host + req.url);
-      } else {
-        return next();
-      }
-    };
+  const redirectToHttpsAndWww = (req, res, next) => {
+    if (req.headers["x-forwarded-proto"] !== "https") {
+      const httpsUrl = "https://" + req.headers.host + req.url;
+      return res.redirect(301, httpsUrl);
+    }
+    if (req.headers.host && req.headers.host.slice(0, 4) !== "www.") {
+      const wwwUrl = "https://www." + req.headers.host + req.url;
+      return res.redirect(301, wwwUrl);
+    }
+    next();
   };
-  app.use(https_redirect());
+  app.use(redirectToHttpsAndWww);
+
+  // const appPath = path.join(__dirname, "..", "dist", "copy-prompt");
+  const appPath = path.join(__dirname, "dist", "copy-prompt");
+
   app.use(express.static(appPath));
-  app.set("view cache", true); // Enable cache for user
   app.get("*", function (req, res) {
     res.sendFile(path.resolve(appPath, "index.html"));
   });

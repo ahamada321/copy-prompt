@@ -23,7 +23,7 @@ export class ImageUploadComponent implements OnInit {
         this.image !== undefined
           ? this.image
           : this.isRound
-          ? './assets/img/placeholder.jpg'
+          ? './assets/img/placeholder.png'
           : './assets/img/image_placeholder.jpg',
     };
   }
@@ -56,7 +56,7 @@ export class ImageUploadComponent implements OnInit {
       this.image !== undefined
         ? this.image
         : this.isRound
-        ? './assets/img/placeholder.jpg'
+        ? './assets/img/placeholder.png'
         : './assets/img/image_placeholder.jpg';
   }
 }

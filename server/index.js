@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const compression = require("compression");
 const path = require("path");
 const config = require("./config");
-const FakeDb = require("./fake-db");
 
 const rentalRoutes = require("./routes/rentals");
 const userRoutes = require("./routes/users");
@@ -11,6 +10,7 @@ const paymentRoutes = require("./routes/payments");
 const reviewRoutes = require("./routes/reviews");
 const contactformRoutes = require("./routes/contactforms");
 // const imageUploadRoutes = require("./routes/image-upload");
+// const FakeDb = require("./template-data/fake-db");
 
 mongoose
   .connect(config.DB_URI, {})

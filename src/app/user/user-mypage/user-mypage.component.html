@@ -1,0 +1,88 @@
+<div class="wrapper">
+  <div
+    class="page-header page-header-xs"
+    style="background-image: url('./assets/img/bg/tressure-map.jpg')"
+  >
+    <div class="filter"></div>
+    <div class="content-center">
+      <div class="container">
+        <div class="space-top"></div>
+        <h1 class="title">マイページ</h1>
+        <h5 class="description">My page</h5>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="section section-nude text-center">
+      <div class="container">
+        <div class="project-pills">
+          <ul
+            ngbNav
+            #nav="ngbNav"
+            [(activeId)]="activeTab"
+            type="pills"
+            class="nav nav-pills nav-pills-primary justify-content-center"
+          >
+            <li [ngbNavItem]="1">
+              <a ngbNavLink> お気に入りプロンプト</a>
+              <ng-template ngbNavContent>
+                <div class="tab-pane" id="home" role="tabpanel">
+                  <h3>お気に入りプロンプト</h3>
+                  <div class="space-top"></div>
+                  <div class="area-line">
+                    <div id="input">
+                      <pre class="prettyprint">
+                        &lt;div class="col-md-6"&gt;
+                            &lt;div class="form-group"&gt;
+                                &lt;input type="text" class="form-control" placeholder="Default"&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="col-md-6"&gt;
+                            &lt;div class="form-group has-success"&gt;
+                                &lt;input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Success"&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                     &lt;/div&gt;
+                     &lt;div class="row"&gt;
+                        &lt;div class="col-md-6"&gt;
+                            &lt;div class="form-group has-danger"&gt;
+                                &lt;input type="text" class="form-control form-control-danger" id="inputDanger1" placeholder="Error"&gt;
+                                &lt;div class="form-control-feedback"&gt;Sorry, that username's taken. Try another?&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="col-md-6"&gt;
+                            &lt;div class="input-group"&gt;
+                                &lt;input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"&gt;
+                                &lt;span class="input-group-addon" id="basic-addon1"&gt;&lt;i class="fa fa-group" aria-hidden="true"&gt;&lt;/i&gt;&lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                     &lt;/div&gt;
+                    </pre
+                      >
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink> GETしたプロンプト </a>
+              <ng-template ngbNavContent>
+                <h3>GETしたプロンプト</h3>
+                <div class="space-top"></div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink> 登録済プロンプト </a>
+              <ng-template ngbNavContent>
+                <h3>登録済プロンプト</h3>
+                <div class="space-top"></div>
+                <app-user-mypage-myrentals></app-user-mypage-myrentals>
+              </ng-template>
+            </li>
+          </ul>
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

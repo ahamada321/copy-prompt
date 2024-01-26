@@ -1,0 +1,26 @@
+.section {
+  padding: 30px 0;
+}
+
+@media (max-width: 530px) {
+  .project-pills {
+    & .nav.nav-pills {
+      display: block !important;
+      .nav-item {
+        &:first-child .nav-link {
+          border-radius: 12px 12px 0 0 !important;
+          margin-left: -1px;
+        }
+        &.active:first-child .nav-link {
+          border-radius: 12px 12px 0 0 !important;
+          margin-left: -1px;
+        }
+
+        &:last-child .nav-link {
+          border-radius: 0 0 12px 12px !important;
+          margin-left: -1px;
+        }
+      }
+    }
+  }
+}

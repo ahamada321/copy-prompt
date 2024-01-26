@@ -1,0 +1,164 @@
+<div class="wrapper">
+  <div
+    class="page-header"
+    style="background-image: url('./assets/img/bg/tressure-map.jpg')"
+  >
+    <div class="filter"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-12 ml-auto">
+          <div class="info info-horizontal">
+            <div class="icon">
+              <i class="nc-icon nc-calendar-60"></i>
+            </div>
+            <div class="description">
+              <h3>沢山のプロンプトが試せる</h3>
+              <p>多くのプロンプトの中からお気に入りを見つけよう</p>
+            </div>
+          </div>
+          <div class="info info-horizontal">
+            <div class="icon">
+              <i class="nc-icon nc-tap-01"></i>
+            </div>
+            <div class="description">
+              <h3>プロンプトノートを作れる</h3>
+              <p>お気に入りのプロンプトはプロンプトノートに保存できる</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 mr-auto ml-auto">
+          <div class="card card-register">
+            <h3 class="card-title text-center">新規会員登録する</h3>
+            <!-- <div class="social">
+              <button
+                (click)="signInWithFB()"
+                class="btn btn-just-icon btn-facebook mr-1"
+              >
+                <i class="fa fa-facebook"></i>
+              </button>
+            </div>
+
+            <div class="division">
+              <div class="line l"></div>
+              <span>or</span>
+              <div class="line r"></div>
+            </div> -->
+
+            <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+              <p *ngFor="let error of errors">{{ error.detail }}</p>
+            </div>
+
+            <form
+              class="register-form"
+              #registerForm="ngForm"
+              (ngSubmit)="register()"
+            >
+              <div class="space-top"></div>
+              <input
+                class="form-control"
+                placeholder="お名前（例：鈴木太郎）"
+                type="text"
+                [(ngModel)]="formData.name"
+                name="name"
+                (focus)="focus = true"
+                (blur)="focus = false"
+                required
+              />
+
+              <input
+                class="form-control"
+                placeholder="Email"
+                type="email"
+                [(ngModel)]="formData.email"
+                name="email"
+                (focus)="focus1 = true"
+                (blur)="focus1 = false"
+                required
+              />
+
+              <input
+                class="form-control"
+                placeholder="パスワード"
+                type="password"
+                [(ngModel)]="formData.password"
+                name="password"
+                (focus)="focus2 = true"
+                (blur)="focus2 = false"
+                required
+              />
+
+              <input
+                class="form-control"
+                placeholder="パスワード（確認）"
+                type="password"
+                [(ngModel)]="formData.passwordConfirmation"
+                name="passwordConfirmation"
+                (focus)="focus3 = true"
+                (blur)="focus3 = false"
+                required
+              />
+
+              <ul class="notifications">
+                <li class="notification-item">
+                  <a
+                    (click)="termsOpen(Notice)"
+                    target="_blank"
+                    class="link-danger clickable"
+                    ><strong>利用規約</strong></a
+                  >に同意しますか？
+                  <bSwitch
+                    [(ngModel)]="isTermsAgreed"
+                    name="isTermsAgreed"
+                    [switch-on-color]="'primary'"
+                    [switch-off-color]="'primary'"
+                    switch-on-text="<i class='nc-icon nc-check-2'></i>"
+                    switch-off-text="<i class='nc-icon nc-simple-remove'></i>"
+                  >
+                    Toggle is off >
+                  </bSwitch>
+                </li>
+              </ul>
+
+              <button
+                [disabled]="!registerForm.valid || !isTermsAgreed || isClicked"
+                type="submit"
+                class="btn btn-block btn-round btn-primary"
+              >
+                会員登録する
+              </button>
+            </form>
+            <div class="text-center">
+              <button
+                class="btn btn-link btn-primary"
+                (click)="modalLoginOpen()"
+              >
+                ログインはこちら
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #Notice let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title">利用規約</h5>
+    <button type="button" class="close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-terms-text></app-terms-text>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>

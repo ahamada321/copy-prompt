@@ -1,0 +1,132 @@
+<div class="wrapper">
+  <div
+    class="page-header page-header-small"
+    data-parallax="true"
+    [ngStyle]="{
+      'background-image':
+        'url(' +
+        (newRental.image
+          ? newRental.image
+          : './assets/img/image_placeholder.jpg') +
+        ')'
+    }"
+  >
+    <div class="filter"></div>
+  </div>
+
+  <div class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 ml-auto mr-auto">
+          <div class="space-top"></div>
+          <app-image-upload-myver
+            (imageUploaded)="imageChange($event)"
+            placement="top"
+            ngbTooltip="プロンプトの画像を設定します"
+          ></app-image-upload-myver>
+          <form #rentalForm="ngForm">
+            <!--<form [formGroup]="myGroup" action="" method="">-->
+
+            <div class="form-group">
+              <h6>プロンプト名 <span class="icon-danger">*</span></h6>
+              <div class="input-group">
+                <input
+                  [(ngModel)]="newRental.name"
+                  name="name"
+                  type="text"
+                  placeholder="例）織田信長と会話ができる"
+                  class="form-control"
+                  maxlength="30"
+                  required
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text">プロンプト</span>
+                </div>
+              </div>
+              <h5>
+                <small
+                  ><span id="textarea-limited-message" class="pull-right">
+                    <div *ngIf="!newRental.name">残文字数 30</div>
+                    <div *ngIf="newRental.name">
+                      残文字数 {{ 30 - newRental.name.length }}
+                    </div>
+                  </span></small
+                >
+              </h5>
+            </div>
+
+            <div class="form-group">
+              <h6>プロンプトの説明 <span class="icon-danger">*</span></h6>
+              <quill-editor
+                [(ngModel)]="newRental.description"
+                name="description"
+                maxlength="5000"
+                placeholder="作成したプロンプトでどのようなことができるのかを具体的に記述することができます。"
+                [required]="true"
+              ></quill-editor>
+            </div>
+
+            <div class="form-group">
+              <h6>プロンプト<span class="icon-danger">*</span></h6>
+              <textarea
+                [(ngModel)]="newRental.prompt"
+                name="prompt"
+                class="form-control textarea-limited"
+                placeholder="プロンプトを入力してください。"
+                rows="10"
+                maxlength="3000"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <h6>
+                カテゴリ（最大３つまで） <span class="icon-danger">*</span>
+              </h6>
+              <angular2-multiselect
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                name="selectedItems"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+              >
+              </angular2-multiselect>
+            </div>
+
+            <div class="space-top"></div>
+            <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+              <p *ngFor="let error of errors">{{ error.detail }}</p>
+            </div>
+
+            <div class="row buttons-row">
+              <div class="col-md-6">
+                <button
+                  [disabled]="
+                    !(
+                      rentalForm.form.valid &&
+                      !isClicked &&
+                      selectedItems.length > 0
+                    )
+                  "
+                  (click)="createRental()"
+                  class="btn btn-primary btn-block btn-round"
+                >
+                  公開
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button
+                  [disabled]="isClicked"
+                  (click)="createUnpublishedRental()"
+                  class="btn btn-outline-default btn-block btn-round"
+                >
+                  下書き保存
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

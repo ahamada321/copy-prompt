@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #fffcf5;
+}
+
+// Using in ngb-pagination
+.justify-content-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+// Quill editor
+.ql-container {
+  background-color: white;
+  height: 30vh !important;
+}

@@ -12,7 +12,14 @@
     <div class="content-center">
       <div class="container">
         <div class="space-50"></div>
-        <h1 class="title">{{ rental.name }}<br /><small>プロンプト</small></h1>
+        <h1 class="title">
+          {{ rental.name }}<br />
+          <small>プロンプト</small><br />
+        </h1>
+        <a href="javascript:void(0)" class="btn btn-link btn-lg btn-neutral">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+          {{ rental.user.name }}
+        </a>
       </div>
     </div>
   </div>

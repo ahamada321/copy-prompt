@@ -7,9 +7,9 @@
     *ngFor="let history of histories; let i = index"
     class="col-6 col-sm-4 col-md-3 col-xl-2"
   >
-    <div class="card">
-      <div class="card-image">
-        <a routerLink="/prompt/{{ history._id }}">
+    <a routerLink="/prompt/{{ history._id }}">
+      <div class="card">
+        <div class="card-image">
           <img
             class="img"
             [src]="
@@ -18,31 +18,31 @@
                 : './assets/img/image_placeholder.jpg'
             "
           />
-        </a>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">
-          {{ history.name }}<br /><small>プロンプト</small>
-        </h5>
-        <div class="card-description">
-          <p>
-            <!-- <button
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ history.name }}<br /><small>プロンプト</small>
+          </h5>
+          <div class="card-description">
+            <p>
+              <!-- <button
               class="btn btn-primary btn-block btn-round"
               routerLink="/prompt/edit/{{ history._id }}"
             >
               編集する
             </button> -->
-          </p>
-          <p>
-            <!-- <button
+            </p>
+            <p>
+              <!-- <button
               class="btn btn-primary btn-link"
               (click)="onDelete(history._id)"
             >
               <i class="nc-icon nc-box"></i>&nbsp; 削除
             </button> -->
-          </p>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </div>

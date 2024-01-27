@@ -1,10 +1,10 @@
-<div class="wrapper" *ngIf="rental">
+<div class="wrapper" *ngIf="prompt">
   <div
     class="page-header page-header-xs"
     [ngStyle]="{
       'background-image':
         'url(' +
-        (rental.image ? rental.image : './assets/img/image_placeholder.jpg') +
+        (prompt.image ? prompt.image : './assets/img/image_placeholder.jpg') +
         ')'
     }"
   >
@@ -13,15 +13,15 @@
       <div class="container">
         <div class="space-50"></div>
         <h1 class="title">
-          {{ rental.name }}<br />
+          {{ prompt.name }}<br />
           <small>プロンプト</small><br />
         </h1>
         <a
           class="btn btn-link btn-lg btn-neutral"
-          [routerLink]="['/user', rental.user._id]"
+          [routerLink]="['/user', prompt.user._id]"
         >
           <i class="fa fa-pencil" aria-hidden="true"></i>
-          {{ rental.user.name }}
+          {{ prompt.user.name }}
         </a>
       </div>
     </div>
@@ -37,7 +37,7 @@
             <div class="ql-editor">
               <div
                 [innerHTML]="
-                  sanitizer.bypassSecurityTrustHtml(rental.description)
+                  sanitizer.bypassSecurityTrustHtml(prompt.description)
                 "
               ></div>
             </div>
@@ -56,10 +56,10 @@
                     <div class="card-body">
                       <h6 class="card-category text-primary">Entry course</h6>
                       <h3 class="card-title">
-                        {{ rental.course2Title }}
+                        {{ prompt.course2Title }}
                       </h3>
                       <p class="card-description">
-                        {{ rental.course2Description }}
+                        {{ prompt.course2Description }}
                       </p>
                     </div>
                   </div>
@@ -79,13 +79,13 @@
                         </p>
                         <div class="card-footer">
                           <div class="btn btn-neutral btn-round">
-                            {{ rental.hourlyPrice }}円 / 60分
+                            {{ prompt.hourlyPrice }}円 / 60分
                           </div>
                         </div>
                       </div>
                     </button>
                     <button
-                      *ngIf="isYourRental() && auth.isAuthenticated()"
+                      *ngIf="isYourPrompt() && auth.isAuthenticated()"
                       class="card"
                       data-background="color"
                       data-color="gray"
@@ -98,13 +98,13 @@
                         </p>
                         <div class="card-footer">
                           <div class="btn btn-neutral btn-round">
-                            {{ rental.hourlyPrice }}円 / 60分
+                            {{ prompt.hourlyPrice }}円 / 60分
                           </div>
                         </div>
                       </div>
                     </button>
                     <button
-                      *ngIf="!isYourRental() && auth.isAuthenticated()"
+                      *ngIf="!isYourPrompt() && auth.isAuthenticated()"
                       (click)="modalBookingOpen(60)"
                       class="card"
                       data-background="color"
@@ -118,7 +118,7 @@
                         </p>
                         <div class="card-footer">
                           <div class="btn btn-neutral btn-round">
-                            {{ rental.hourlyPrice }}円 / 60分
+                            {{ prompt.hourlyPrice }}円 / 60分
                           </div>
                         </div>
                       </div>
@@ -137,7 +137,7 @@
       <div class="container">
         <h2 class="title">プロンプト</h2>
         <!-- <h4 class="blur ban_select">プロンプトコード</h4> -->
-        <app-code-snippet [code]="rental.prompt"></app-code-snippet>
+        <app-code-snippet [code]="prompt.prompt"></app-code-snippet>
       </div>
     </div>
 
@@ -274,9 +274,9 @@
     </div>
     <!-- <app-googlemaps
       [location]="
-        rental.province[0].itemName + ', ' + rental.address1 + rental.address2
+        prompt.province[0].itemName + ', ' + prompt.address1 + prompt.address2
       "
     ></app-googlemaps> -->
   </div>
-  <!-- <app-bottom-navbar [rental]="rental"></app-bottom-navbar> -->
+  <!-- <app-bottom-navbar [prompt]="prompt"></app-bottom-navbar> -->
 </div>

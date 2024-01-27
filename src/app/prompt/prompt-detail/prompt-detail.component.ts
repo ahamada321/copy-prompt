@@ -11,19 +11,19 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Rental } from '../shared/rental.model';
+import { Prompt } from '../shared/prompt.model';
 // import { Review } from "src/app/common/review/service/review.model";
-import { RentalService } from '../shared/rental.service';
+import { PromptService } from '../shared/prompt.service';
 // import { ReviewService } from "src/app/common/review/service/review.service";
 
 @Component({
-  selector: 'app-rental-detail',
-  templateUrl: './rental-detail.component.html',
-  styleUrls: ['./rental-detail.component.scss'],
+  selector: 'app-prompt-detail',
+  templateUrl: './prompt-detail.component.html',
+  styleUrls: ['./prompt-detail.component.scss'],
 })
-export class RentalDetailComponent implements OnInit, OnDestroy {
+export class PromptDetailComponent implements OnInit, OnDestroy {
   currentId!: string;
-  rental!: Rental;
+  prompt!: Prompt;
   rating!: number;
   // reviews: Review[] = [];
   safeUrl!: SafeResourceUrl;
@@ -33,7 +33,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private rentalService: RentalService,
+    private promptService: PromptService,
     // private reviewService: ReviewService,
     private modalService: NgbModal,
     public router: Router,
@@ -46,7 +46,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     navbar.classList.add('navbar-transparent');
 
     this.route.params.subscribe((params) => {
-      this.getRental(params['rentalId']);
+      this.getPrompt(params['promptId']);
     });
   }
 
@@ -59,16 +59,16 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  // isYourRental() {
-  //   return this.rental.user._id === this.auth.getUserId();
+  // isYourPrompt() {
+  //   return this.prompt.user._id === this.auth.getUserId();
   // }
 
-  getRental(rentalId: string) {
-    this.rentalService.getRentalById(rentalId).subscribe((rental: Rental) => {
-      this.rental = rental;
-      // this.getAvgRating(rental._id)
-      // this.getReviews(rental._id);
-      // this.getSafeUrl(rental.course1Img);
+  getPrompt(promptId: string) {
+    this.promptService.getPromptById(promptId).subscribe((prompt: Prompt) => {
+      this.prompt = prompt;
+      // this.getAvgRating(prompt._id)
+      // this.getReviews(prompt._id);
+      // this.getSafeUrl(prompt.course1Img);
     });
   }
 
@@ -76,14 +76,14 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
     this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-  // getAvgRating(rentalId: string) {
-  //   this.reviewService.getAvgRating(rentalId).subscribe((rating: number) => {
+  // getAvgRating(promptId: string) {
+  //   this.reviewService.getAvgRating(promptId).subscribe((rating: number) => {
   //     this.rating = rating;
   //   });
   // }
 
-  // getReviews(rentalId: string) {
-  //   this.reviewService.getRentalReviews(rentalId).subscribe(
+  // getReviews(promptId: string) {
+  //   this.reviewService.getPromptReviews(promptId).subscribe(
   //     (reviews: Review[]) => {
   //       this.reviews = reviews;
   //     },

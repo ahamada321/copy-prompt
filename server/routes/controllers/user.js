@@ -45,7 +45,7 @@ exports.getUserById = async function (req, res) {
 
   try {
     const foundUser = await User.findOne({ _id: reqUserId }).populate(
-      "rentals"
+      "prompts"
     );
     if (foundUser.id !== (user && user.id)) {
       foundUser.password = null;

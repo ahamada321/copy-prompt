@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Rental } from 'src/app/rental/shared/rental.model';
+import { Prompt } from 'src/app/prompt/shared/prompt.model';
 
 export class User {
   _id?: Schema.Types.ObjectId;
@@ -17,6 +17,6 @@ export class User {
   homepage?: string;
   twitter?: string;
 
-  rentals!: Rental[];
+  prompts!: Prompt[];
   newsletter!: boolean;
 }

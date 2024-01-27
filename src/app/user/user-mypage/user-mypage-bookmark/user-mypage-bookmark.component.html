@@ -24,7 +24,7 @@
           <div class="space-top"></div>
         </div>
         <div class="row">
-          <ng-container *ngFor="let favouriteRental of favoriteRentals">
+          <ng-container *ngFor="let favouritePrompt of favoritePrompts">
           </ng-container>
         </div>
 
@@ -33,16 +33,16 @@
           <div class="space-top"></div>
         </div>
         <div class="row">
-          <ng-container *ngFor="let favouriteRental of favoriteRentals">
+          <ng-container *ngFor="let favouritePrompt of favoritePrompts">
             <!-- <div
               *ngIf="
-                favouriteRental.selectedCategory &&
-                favouriteRental.selectedCategory[0].id === 2
+                favouritePrompt.selectedCategory &&
+                favouritePrompt.selectedCategory[0].id === 2
               "
               class="col-md-3 col-xs-6"
             >
               <app-bookmark-list-item
-                [rental]="favouriteRental"
+                [prompt]="favouritePrompt"
               ></app-bookmark-list-item>
             </div> -->
           </ng-container>
@@ -53,16 +53,16 @@
           <div class="space-top"></div>
         </div>
         <div class="row">
-          <ng-container *ngFor="let favouriteRental of favoriteRentals">
+          <ng-container *ngFor="let favouritePrompt of favoritePrompts">
             <!-- <div
               *ngIf="
-                favouriteRental.selectedCategory &&
-                favouriteRental.selectedCategory[0].id === 3
+                favouritePrompt.selectedCategory &&
+                favouritePrompt.selectedCategory[0].id === 3
               "
               class="col-md-3 col-xs-6"
             >
               <app-bookmark-list-item
-                [rental]="favouriteRental"
+                [prompt]="favouritePrompt"
               ></app-bookmark-list-item>
             </div> -->
           </ng-container>

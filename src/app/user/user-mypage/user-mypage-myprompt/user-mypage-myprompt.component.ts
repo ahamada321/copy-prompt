@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { RentalService } from 'src/app/rental/shared/rental.service';
-import { Rental } from 'src/app/rental/shared/rental.model';
+import { PromptService } from 'src/app/prompt/shared/prompt.service';
+import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-user-mypage-myrentals',
-  templateUrl: './user-mypage-myrentals.component.html',
-  styleUrls: ['./user-mypage-myrentals.component.scss'],
+  selector: 'app-user-mypage-myprompt',
+  templateUrl: './user-mypage-myprompt.component.html',
+  styleUrls: ['./user-mypage-myprompt.component.scss'],
 })
-export class UserMypageMyrentalsComponent implements OnInit {
-  rentals: Rental[] = [];
-  rentalDeleteIndex!: number;
+export class UserMypageMypromptComponent implements OnInit {
+  prompts: Prompt[] = [];
+  promptDeleteIndex!: number;
 
   pageIndex: number = 1;
   pageSize: number = 40; // Displaying contents per page.
   pageCollectionSize: number = 1;
 
   constructor(
-    private rentalService: RentalService,
+    private promptService: PromptService,
     public auth: MyOriginAuthService
   ) {}
 
   ngOnInit() {
-    this.getOwnerRentals();
+    this.getOwnerPrompts();
   }
 
-  onDelete(rentalId: any) {
+  onDelete(promptId: any) {
     Swal.fire({
       icon: 'warning',
       title: 'この操作は取り消せません',
@@ -39,16 +39,16 @@ export class UserMypageMyrentalsComponent implements OnInit {
       showCancelButton: true,
     }).then((result) => {
       if (!result.dismiss) {
-        this.deleteRental(rentalId);
+        this.deletePrompt(promptId);
       }
     });
   }
 
-  deleteRental(rentalId: string) {
-    this.rentalService.deleteRental(rentalId).subscribe(
+  deletePrompt(promptId: string) {
+    this.promptService.deletePrompt(promptId).subscribe(
       (status) => {
-        const index = this.rentals.findIndex((x) => x._id === rentalId);
-        this.rentals.splice(index, 1);
+        const index = this.prompts.findIndex((x) => x._id === promptId);
+        this.prompts.splice(index, 1);
         Swal.fire({
           title: '削除しました',
           customClass: {
@@ -59,17 +59,17 @@ export class UserMypageMyrentalsComponent implements OnInit {
       },
       (err) => {
         console.error(err);
-        // Expecting to show error if try to dalete rental which has active bookings
+        // Expecting to show error if try to dalete prompt which has active bookings
         // this.toastr.error(errorResponse.error.errors[0].detail, 'Failed!')
       }
     );
   }
 
-  getOwnerRentals() {
-    this.rentalService.getOwnerRentals(this.pageIndex, this.pageSize).subscribe(
+  getOwnerPrompts() {
+    this.promptService.getOwnerPrompts(this.pageIndex, this.pageSize).subscribe(
       (result) => {
-        if (result[0].foundRentals.length > 0) {
-          this.rentals = result[0].foundRentals;
+        if (result[0].foundPrompts.length > 0) {
+          this.prompts = result[0].foundPrompts;
           this.pageCollectionSize = result[0].metadata[0].total;
         }
       },
@@ -80,7 +80,7 @@ export class UserMypageMyrentalsComponent implements OnInit {
   }
 
   pageChange() {
-    this.rentals = [];
-    this.getOwnerRentals();
+    this.prompts = [];
+    this.getOwnerPrompts();
   }
 }

@@ -52,9 +52,9 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     );
   }
 
-  isRentalDetail() {
+  isPromptDetail() {
     const titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee.split('/')[1] === 'rentals') {
+    if (titlee.split('/')[2] !== undefined) {
       return true;
     } else {
       return false;
@@ -66,7 +66,7 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     this.auth.login(this.loginForm.value).subscribe(
       (token) => {
         this.activeModal.close('Close click');
-        if (!this.isRentalDetail()) {
+        if (!this.isPromptDetail()) {
           this.router.navigate(['/user']);
         }
       },

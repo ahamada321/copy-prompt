@@ -11,13 +11,13 @@ import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 // import { TagInputModule } from 'ngx-chips';
 // import { BarRatingModule } from "ngx-bar-rating";
 
-import { RentalComponent } from './rental.component';
-import { RentalListComponent } from './rental-list/rental-list.component';
-import { RentalListItemComponent } from './rental-list/rental-list-item/rental-list-item.component';
-import { RentalDetailComponent } from './rental-detail/rental-detail.component';
+import { PromptComponent } from './prompt.component';
+import { PromptListComponent } from './prompt-list/prompt-list.component';
+import { PromptListItemComponent } from './prompt-list/prompt-list-item/prompt-list-item.component';
+import { PromptDetailComponent } from './prompt-detail/prompt-detail.component';
 
-import { RentalNewComponent } from './rental-new/rental-new.component';
-import { RentalEditComponent } from './rental-edit/rental-edit.component';
+import { PromptNewComponent } from './prompt-new/prompt-new.component';
+import { PromptEditComponent } from './prompt-edit/prompt-edit.component';
 
 // import { GoogleMapsModule } from "../common/googlemaps/googlemaps.module";
 // import { PaymentModule } from '../common/payment/payment.module';
@@ -25,35 +25,35 @@ import { RentalEditComponent } from './rental-edit/rental-edit.component';
 import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 // import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-upload-myver.module';
 
-import { RentalService } from './shared/rental.service';
+import { PromptService } from './shared/prompt.service';
 import { SearchbarModule } from '../shared/searchbar/searchbar.module';
 import { QuillModule } from 'ngx-quill';
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 
 const routes: Routes = [
   {
-    path: 'rentals',
-    component: RentalComponent,
+    path: 'prompt',
+    component: PromptComponent,
     children: [
-      { path: '', component: RentalListComponent },
-      { path: 'new', component: RentalNewComponent, canActivate: [AuthGuard] },
+      { path: '', component: PromptListComponent },
+      { path: 'new', component: PromptNewComponent, canActivate: [AuthGuard] },
       {
-        path: 'edit/:rentalId',
-        component: RentalEditComponent,
+        path: 'edit/:promptId',
+        component: PromptEditComponent,
       },
-      { path: ':rentalId', component: RentalDetailComponent }, // Going to replace rentalId to rentalUri
+      { path: ':promptId', component: PromptDetailComponent }, // Going to replace promptId to promptUri
     ],
   },
 ];
 
 @NgModule({
   declarations: [
-    RentalComponent,
-    RentalListComponent,
-    RentalListItemComponent,
-    RentalDetailComponent,
-    RentalNewComponent,
-    RentalEditComponent,
+    PromptComponent,
+    PromptListComponent,
+    PromptListItemComponent,
+    PromptDetailComponent,
+    PromptNewComponent,
+    PromptEditComponent,
   ],
   imports: [
     CommonModule,
@@ -78,6 +78,6 @@ const routes: Routes = [
     QuillModule,
     CodeSnippetModule,
   ],
-  providers: [RentalService],
+  providers: [PromptService],
 })
-export class RentalModule {}
+export class PromptModule {}

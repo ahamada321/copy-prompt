@@ -32,10 +32,10 @@ const userSchema = new Schema({
   homepage: String,
   twitter: String,
 
-  rentals: [
+  prompts: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Rental",
+      ref: "Prompt",
     },
   ],
   newsletter: { type: Boolean, default: true },

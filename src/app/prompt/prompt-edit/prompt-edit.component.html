@@ -1,12 +1,12 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="foundPrompt">
   <div
     class="page-header page-header-small"
     data-parallax="true"
     [ngStyle]="{
       'background-image':
         'url(' +
-        (newRental.image
-          ? newRental.image
+        (foundPrompt.image
+          ? foundPrompt.image
           : './assets/img/image_placeholder.jpg') +
         ')'
     }"
@@ -20,18 +20,18 @@
         <div class="col-md-6 ml-auto mr-auto">
           <div class="space-top"></div>
           <app-image-upload-myver
-            (imageUploaded)="imageChange($event)"
+            (imageUploaded)="foundPrompt.image = $event; isTouched = true"
             placement="top"
             ngbTooltip="プロンプトの画像を設定します"
           ></app-image-upload-myver>
-          <form #rentalForm="ngForm">
+          <form #promptForm="ngForm">
             <!--<form [formGroup]="myGroup" action="" method="">-->
 
             <div class="form-group">
               <h6>プロンプト名 <span class="icon-danger">*</span></h6>
               <div class="input-group">
                 <input
-                  [(ngModel)]="newRental.name"
+                  [(ngModel)]="foundPrompt.name"
                   name="name"
                   type="text"
                   placeholder="例）織田信長と会話ができる"
@@ -46,9 +46,9 @@
               <h5>
                 <small
                   ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newRental.name">残文字数 30</div>
-                    <div *ngIf="newRental.name">
-                      残文字数 {{ 30 - newRental.name.length }}
+                    <div *ngIf="!foundPrompt.name">残文字数 30</div>
+                    <div *ngIf="foundPrompt.name">
+                      残文字数 {{ 30 - foundPrompt.name.length }}
                     </div>
                   </span></small
                 >
@@ -58,7 +58,7 @@
             <div class="form-group">
               <h6>プロンプトの説明 <span class="icon-danger">*</span></h6>
               <quill-editor
-                [(ngModel)]="newRental.description"
+                [(ngModel)]="foundPrompt.description"
                 name="description"
                 maxlength="5000"
                 placeholder="作成したプロンプトでどのようなことができるのかを具体的に記述することができます。"
@@ -69,7 +69,7 @@
             <div class="form-group">
               <h6>プロンプト<span class="icon-danger">*</span></h6>
               <textarea
-                [(ngModel)]="newRental.prompt"
+                [(ngModel)]="foundPrompt.prompt"
                 name="prompt"
                 class="form-control textarea-limited"
                 placeholder="プロンプトを入力してください。"
@@ -103,21 +103,24 @@
                 <button
                   [disabled]="
                     !(
-                      rentalForm.form.valid &&
+                      promptForm.valid &&
+                      (promptForm.dirty || !foundPrompt.isShared) &&
                       !isClicked &&
                       selectedItems.length > 0
                     )
                   "
-                  (click)="createRental()"
+                  (click)="updatePrompt()"
                   class="btn btn-primary btn-block btn-round"
                 >
-                  公開
+                  更新＆公開
                 </button>
               </div>
               <div class="col-md-6">
                 <button
-                  [disabled]="isClicked"
-                  (click)="createUnpublishedRental()"
+                  [disabled]="
+                    !((promptForm.dirty || foundPrompt.isShared) && !isClicked)
+                  "
+                  (click)="unpublishPrompt()"
                   class="btn btn-outline-default btn-block btn-round"
                 >
                   下書き保存

@@ -1,25 +1,25 @@
 <p>\ プロンプトを登録しよう /</p>
 <a
   class="btn btn-lg btn-primary btn-rotate btn-round"
-  [routerLink]="['/rentals/new']"
+  [routerLink]="['/prompt/new']"
 >
   <i class="nc-icon nc-diamond"></i> 追加する
 </a>
 <div class="space-top"></div>
-<div *ngIf="rentals && rentals.length > 0">
+<div *ngIf="prompts && prompts.length > 0">
   <div class="row">
     <div
-      *ngFor="let rental of rentals; let i = index"
+      *ngFor="let prompt of prompts; let i = index"
       class="col-6 col-sm-4 col-md-3 col-xl-2"
     >
-      <div *ngIf="!rental.isShared" class="card" data-background="image">
+      <div *ngIf="!prompt.isShared" class="card" data-background="image">
         <div class="card-image">
-          <a routerLink="/rentals/{{ rental._id }}">
+          <a routerLink="/prompt/{{ prompt._id }}">
             <img
               class="img"
               [src]="
-                rental.image
-                  ? rental.image
+                prompt.image
+                  ? prompt.image
                   : './assets/img/image_placeholder.jpg'
               "
             />
@@ -27,13 +27,13 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">
-            {{ rental.name }}<br /><small>プロンプト</small>
+            {{ prompt.name }}<br /><small>プロンプト</small>
           </h5>
           <div class="card-description">
             <p>
               <button
                 class="btn btn-primary btn-block btn-round"
-                routerLink="/rentals/edit/{{ rental._id }}"
+                routerLink="/prompt/edit/{{ prompt._id }}"
               >
                 編集する
               </button>
@@ -41,7 +41,7 @@
             <p>
               <button
                 class="btn btn-primary btn-link"
-                (click)="onDelete(rental._id)"
+                (click)="onDelete(prompt._id)"
               >
                 <i class="nc-icon nc-box"></i>&nbsp; 削除
               </button>
@@ -50,14 +50,14 @@
         </div>
       </div>
 
-      <div *ngIf="rental.isShared" class="card">
+      <div *ngIf="prompt.isShared" class="card">
         <div class="card-image">
-          <a routerLink="/rentals/{{ rental._id }}">
+          <a routerLink="/prompt/{{ prompt._id }}">
             <img
               class="img"
               [src]="
-                rental.image
-                  ? rental.image
+                prompt.image
+                  ? prompt.image
                   : './assets/img/image_placeholder.jpg'
               "
             />
@@ -65,13 +65,13 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">
-            {{ rental.name }}<br /><small>プロンプト</small>
+            {{ prompt.name }}<br /><small>プロンプト</small>
           </h5>
           <div class="card-description">
             <p>
               <button
                 class="btn btn-primary btn-block btn-round"
-                routerLink="/rentals/edit/{{ rental._id }}"
+                routerLink="/prompt/edit/{{ prompt._id }}"
               >
                 編集する
               </button>
@@ -79,7 +79,7 @@
             <p>
               <button
                 class="btn btn-danger btn-link"
-                (click)="onDelete(rental._id)"
+                (click)="onDelete(prompt._id)"
               >
                 <i class="nc-icon nc-box"></i>&nbsp; 削除
               </button>

@@ -9,7 +9,7 @@ const reviewSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   isApproved: { type: Boolean, default: false },
   user: { type: Schema.Types.ObjectId, ref: "User" },
-  rental: { type: Schema.Types.ObjectId, ref: "Rental" },
+  prompt: { type: Schema.Types.ObjectId, ref: "Prompt" },
 });
 
 reviewSchema.pre("save", function (next) {

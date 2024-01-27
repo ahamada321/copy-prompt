@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'tutorial', component: TutorialComponent },
   //   { path: 'aboutus', component: AboutusComponent },
 
-  { path: '', redirectTo: 'rentals', pathMatch: 'full' },
+  { path: '', redirectTo: 'prompt', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
 ];
 

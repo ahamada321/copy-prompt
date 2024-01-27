@@ -1,30 +1,30 @@
-const Rental = require("./models/rental");
+const Prompt = require("./models/prompt");
 const User = require("./models/user");
 const { normalizeErrors } = require("./helpers/mongoose");
 
-exports.getRentalById = async function (req, res) {
-  const rentalId = req.params.id;
+exports.getPromptById = async function (req, res) {
+  const promptId = req.params.id;
 
   try {
-    const foundRental = await Rental.findById(rentalId).populate(
+    const foundPrompt = await Prompt.findById(promptId).populate(
       "user",
       "-password"
     );
-    return res.json(foundRental);
+    return res.json(foundPrompt);
   } catch (err) {
     if (err) {
       return res.status(422).send({
         errors: {
-          title: "Rental error!",
-          detail: "Could not find Rental!",
+          title: "Prompt error!",
+          detail: "Could not find Prompt!",
         },
       });
     }
   }
 };
 
-exports.getRentalsTotal = function (req, res) {
-  Rental.countDocuments({}, function (err, total) {
+exports.getPromptsTotal = function (req, res) {
+  Prompt.countDocuments({}, function (err, total) {
     if (err) {
       return res.status(422).send({ errors: normalizeErrors(err.errors) });
     }
@@ -32,7 +32,7 @@ exports.getRentalsTotal = function (req, res) {
   });
 };
 
-exports.getRentals = async function (req, res) {
+exports.getPrompts = async function (req, res) {
   const { page, limit } = req.query;
   const { selectedCategory, keywords } = req.body;
 
@@ -50,12 +50,12 @@ exports.getRentals = async function (req, res) {
   try {
     if (!keywords) {
       if (!selectedCategory) {
-        const result = await Rental.aggregate([
+        const result = await Prompt.aggregate([
           { $match: { isShared: true } },
           {
             $facet: {
               metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-              foundRentals: [
+              foundPrompts: [
                 { $skip: (page - 1) * limit },
                 { $limit: Number(limit) },
               ],
@@ -64,7 +64,7 @@ exports.getRentals = async function (req, res) {
         ]);
         return res.json(result);
       } else {
-        const result = await Rental.aggregate([
+        const result = await Prompt.aggregate([
           {
             $match: {
               isShared: true,
@@ -74,7 +74,7 @@ exports.getRentals = async function (req, res) {
           {
             $facet: {
               metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-              foundRentals: [
+              foundPrompts: [
                 { $skip: (page - 1) * limit },
                 { $limit: Number(limit) },
               ],
@@ -85,7 +85,7 @@ exports.getRentals = async function (req, res) {
       }
     } else {
       if (!selectedCategory) {
-        const result = await Rental.aggregate([
+        const result = await Prompt.aggregate([
           {
             $match: {
               isShared: true,
@@ -98,7 +98,7 @@ exports.getRentals = async function (req, res) {
           {
             $facet: {
               metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-              foundRentals: [
+              foundPrompts: [
                 { $skip: (page - 1) * limit },
                 { $limit: Number(limit) },
               ],
@@ -107,7 +107,7 @@ exports.getRentals = async function (req, res) {
         ]);
         return res.json(result);
       } else {
-        const result = await Rental.aggregate([
+        const result = await Prompt.aggregate([
           {
             $match: {
               isShared: true,
@@ -121,7 +121,7 @@ exports.getRentals = async function (req, res) {
           {
             $facet: {
               metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-              foundRentals: [
+              foundPrompts: [
                 { $skip: (page - 1) * limit },
                 { $limit: Number(limit) },
               ],
@@ -136,10 +136,10 @@ exports.getRentals = async function (req, res) {
   }
 };
 
-exports.searchRentals = function (req, res) {
+exports.searchPrompts = function (req, res) {
   const { searchWords } = req.params;
 
-  Rental.aggregate(
+  Prompt.aggregate(
     [
       {
         $match: {
@@ -151,13 +151,13 @@ exports.searchRentals = function (req, res) {
       },
       { $sort: { createdAt: -1 } },
     ],
-    function (err, foundRentals) {
-      return res.json(foundRentals);
+    function (err, foundPrompts) {
+      return res.json(foundPrompts);
     }
   );
 };
 
-exports.getOwnerRentals = async function (req, res) {
+exports.getOwnerPrompts = async function (req, res) {
   const user = res.locals.user;
   const { page, limit } = req.query;
 
@@ -173,13 +173,13 @@ exports.getOwnerRentals = async function (req, res) {
   }
 
   try {
-    const result = await Rental.aggregate([
+    const result = await Prompt.aggregate([
       { $match: { user: user._id } },
       { $sort: { createdAt: -1 } },
       {
         $facet: {
           metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-          foundRentals: [
+          foundPrompts: [
             { $skip: (page - 1) * limit },
             { $limit: Number(limit) },
           ],
@@ -192,13 +192,13 @@ exports.getOwnerRentals = async function (req, res) {
   }
 };
 
-exports.deleteRental = async function (req, res) {
-  const rentalId = req.params.id;
+exports.deletePrompt = async function (req, res) {
+  const promptId = req.params.id;
   const user = res.locals.user;
 
   try {
-    const foundRental = await Rental.findById(rentalId).populate("user");
-    if (foundRental.user.id !== user.id) {
+    const foundPrompt = await Prompt.findById(promptId).populate("user");
+    if (foundPrompt.user.id !== user.id) {
       return res.status(422).send({
         errors: [
           {
@@ -211,24 +211,24 @@ exports.deleteRental = async function (req, res) {
 
     await User.updateOne(
       { _id: user._id },
-      { $pull: { rentals: foundRental._id } }
-    ); // Delete rental from User
+      { $pull: { prompts: foundPrompt._id } }
+    ); // Delete prompt from User
 
-    await foundRental.deleteOne();
+    await foundPrompt.deleteOne();
     return res.json({ status: "deleted" });
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
   }
 };
 
-exports.updateRental = async function (req, res) {
-  const rentalData = req.body;
-  const rentalId = req.params.id;
+exports.updatePrompt = async function (req, res) {
+  const promptData = req.body;
+  const promptId = req.params.id;
   const user = res.locals.user;
 
   try {
-    const foundRental = await Rental.findById(rentalId).populate("user");
-    if (foundRental.user.id !== user.id) {
+    const foundPrompt = await Prompt.findById(promptId).populate("user");
+    if (foundPrompt.user.id !== user.id) {
       return res.status(422).send({
         errors: [
           {
@@ -241,25 +241,25 @@ exports.updateRental = async function (req, res) {
 
     // await User.updateOne(
     //   { _id: user._id },
-    //   { $push: { rentals: foundRental._id } }
+    //   { $push: { prompts: foundPrompt._id } }
     // ); // No needed. Already attached with user when created.
 
-    rentalData.updatedAt = new Date();
-    await Rental.updateOne({ _id: foundRental._id }, rentalData);
+    promptData.updatedAt = new Date();
+    await Prompt.updateOne({ _id: foundPrompt._id }, promptData);
     return res.json({ status: "updated" });
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
   }
 };
 
-exports.createRental = async function (req, res) {
-  const rentalData = new Rental(req.body);
+exports.createPrompt = async function (req, res) {
+  const promptData = new Prompt(req.body);
   const user = res.locals.user;
-  rentalData.user = user;
+  promptData.user = user;
 
   try {
-    const newRental = await Rental.create(rentalData);
-    await User.updateOne({ _id: user.id }, { $push: { rentals: newRental } });
+    const newPrompt = await Prompt.create(promptData);
+    await User.updateOne({ _id: user.id }, { $push: { prompts: newPrompt } });
     return res.json({ status: "created" });
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });

@@ -1,5 +1,4 @@
 const User = require("./models/user");
-const Notification = require("./models/notification");
 const { normalizeErrors } = require("./helpers/mongoose");
 const jwt = require("jsonwebtoken");
 const config = require("../../config");

@@ -12,7 +12,6 @@
       *ngFor="let rental of rentals; let i = index"
       class="col-6 col-sm-4 col-md-3 col-xl-2"
     >
-      <!-- <app-rental-incoming-list-item [booking]="bookin"></app-rental-incoming-list-item> -->
       <div *ngIf="!rental.isShared" class="card" data-background="image">
         <div class="card-image">
           <a routerLink="/rentals/{{ rental._id }}">
@@ -39,9 +38,6 @@
                 編集する
               </button>
             </p>
-            <!-- <p><button class="btn btn-outline-default btn-block btn-round" routerLink="/rentals/{{rental._id}}/editschedule">受付日時管理</button></p> -->
-            <!-- <p><button class="btn btn-danger" routerLink="/rentals/manage/revenue/{{rental._id}}">この商品の売上</button></p> -->
-            <!-- <p><button class="btn btn-danger" routerLink="/rentals/manage/bookings/{{rental._id}}">確定予約の確認</button></p> -->
             <p>
               <button
                 class="btn btn-primary btn-link"
@@ -50,14 +46,8 @@
                 <i class="nc-icon nc-box"></i>&nbsp; 削除
               </button>
             </p>
-            <!-- <hr> -->
           </div>
         </div>
-        <!-- </a> -->
-        <!-- <div class="card-footer" *ngIf="payment.status === 'pending'">
-                  <button class="btn btn-sm btn-danger" (click)="acceptPayment(payment)">Accept</button>
-                  <button class="btn btn-sm" (click)="declinePayment(payment)">Decline</button>
-                </div> -->
       </div>
 
       <div *ngIf="rental.isShared" class="card">
@@ -86,9 +76,6 @@
                 編集する
               </button>
             </p>
-            <!-- <p><button class="btn btn-outline-default btn-block btn-round" routerLink="/rentals/{{rental._id}}/editschedule">受付日時管理</button></p> -->
-            <!-- <p><button class="btn btn-danger" routerLink="/rentals/manage/revenue/{{rental._id}}">この商品の売上</button></p> -->
-            <!-- <p><button class="btn btn-danger" routerLink="/rentals/manage/bookings/{{rental._id}}">確定予約の確認</button></p> -->
             <p>
               <button
                 class="btn btn-danger btn-link"
@@ -97,14 +84,8 @@
                 <i class="nc-icon nc-box"></i>&nbsp; 削除
               </button>
             </p>
-            <!-- <hr> -->
           </div>
         </div>
-        <!-- </a> -->
-        <!-- <div class="card-footer" *ngIf="payment.status === 'pending'">
-                  <button class="btn btn-sm btn-danger" (click)="acceptPayment(payment)">Accept</button>
-                  <button class="btn btn-sm" (click)="declinePayment(payment)">Decline</button>
-                </div> -->
       </div>
     </div>
   </div>

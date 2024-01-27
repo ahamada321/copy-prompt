@@ -40,7 +40,6 @@ const routes: Routes = [
       {
         path: 'edit/:rentalId',
         component: RentalEditComponent,
-        canActivate: [AuthGuard],
       },
       { path: ':rentalId', component: RentalDetailComponent }, // Going to replace rentalId to rentalUri
     ],

@@ -15,28 +15,11 @@ h1 {
   border-radius: 10px;
   margin-bottom: 30px;
   margin-top: 30px;
-}
-.video-responsive iframe {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-}
-
-.pre-wrap {
-  white-space: pre-wrap;
-}
-.blur {
-  color: transparent;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-.ban_select {
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-user-drag: none;
-}
-
-.btn {
-  text-transform: none;
+  iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
 }

@@ -10,14 +10,14 @@ const paymentRoutes = require("./routes/payments");
 const reviewRoutes = require("./routes/reviews");
 const contactformRoutes = require("./routes/contactforms");
 // const imageUploadRoutes = require("./routes/image-upload");
-const FakeDb = require("./template-data/fake-db");
+// const FakeDb = require("./template-data/fake-db");
 
 mongoose
   .connect(config.DB_URI, {})
   .then(() => {
     if (process.env.NODE_ENV !== "production") {
-      const fakeDb = new FakeDb();
-      fakeDb.seeDb();
+      // const fakeDb = new FakeDb();
+      // fakeDb.seeDb();
     }
   })
   .catch((err) => console.error(err));

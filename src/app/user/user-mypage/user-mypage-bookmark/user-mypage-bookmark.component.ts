@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RentalService } from 'src/app/rental/shared/rental.service';
-import { Rental } from 'src/app/rental/shared/rental.model';
+import { PromptService } from 'src/app/prompt/shared/prompt.service';
+import { Prompt } from 'src/app/prompt/shared/prompt.model';
 
 @Component({
   selector: 'app-user-mypage-bookmark',
@@ -9,16 +9,16 @@ import { Rental } from 'src/app/rental/shared/rental.model';
   styleUrls: ['./user-mypage-bookmark.component.scss'],
 })
 export class UserMypageBookmarkComponent implements OnInit, OnDestroy {
-  favoriteRentals: Rental[] = [];
+  favoritePrompts: Prompt[] = [];
   errors: any[] = [];
 
-  constructor(private rentalService: RentalService) {}
+  constructor(private promptService: PromptService) {}
 
   ngOnInit() {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
 
-    this.getUserfavoriteRentals();
+    this.getUserfavoritePrompts();
   }
 
   ngOnDestroy() {
@@ -29,10 +29,10 @@ export class UserMypageBookmarkComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getUserfavoriteRentals() {
-    this.rentalService.getUserfavoriteRentals().subscribe(
-      (foundRentals: Rental[]) => {
-        this.favoriteRentals = foundRentals;
+  private getUserfavoritePrompts() {
+    this.promptService.getUserfavoritePrompts().subscribe(
+      (foundPrompts: Prompt[]) => {
+        this.favoritePrompts = foundPrompts;
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);

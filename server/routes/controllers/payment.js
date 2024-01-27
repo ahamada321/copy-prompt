@@ -1,6 +1,6 @@
 const { normalizeErrors } = require("./helpers/mongoose");
 const Payment = require("./models/payment");
-const Rental = require("./models/rental");
+const Prompt = require("./models/prompt");
 const User = require("./models/user");
 
 const config = require("../../config");

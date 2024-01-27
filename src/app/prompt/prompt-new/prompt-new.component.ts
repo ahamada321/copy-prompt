@@ -1,23 +1,23 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RentalService } from '../shared/rental.service';
+import { PromptService } from '../shared/prompt.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Router } from '@angular/router';
-import { Rental } from '../shared/rental.model';
+import { Prompt } from '../shared/prompt.model';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-rental-new',
-  templateUrl: './rental-new.component.html',
-  styleUrls: ['./rental-new.component.scss'],
+  selector: 'app-prompt-new',
+  templateUrl: './prompt-new.component.html',
+  styleUrls: ['./prompt-new.component.scss'],
 })
-export class RentalNewComponent implements OnInit, OnDestroy {
-  newRental = new Rental();
+export class PromptNewComponent implements OnInit, OnDestroy {
+  newPrompt = new Prompt();
   isClicked: boolean = false;
   isImage: boolean = false;
   focus!: boolean;
   focus2!: boolean;
-  rentalCategories = Rental.CATEGORIES;
+  promptCategories = Prompt.CATEGORIES;
   errors: any[] = [];
 
   dropdownList = [
@@ -52,7 +52,7 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   };
 
   constructor(
-    private rentalService: RentalService,
+    private promptService: PromptService,
     private router: Router,
     public auth: MyOriginAuthService
   ) {}
@@ -85,13 +85,13 @@ export class RentalNewComponent implements OnInit, OnDestroy {
   //   console.log(item);
   // }
 
-  createUnpublishedRental() {
+  createUnpublishedPrompt() {
     this.isClicked = true;
-    this.newRental.isShared = false;
-    this.newRental.categories = this.selectedItems;
+    this.newPrompt.isShared = false;
+    this.newPrompt.categories = this.selectedItems;
 
-    this.rentalService.createRental(this.newRental).subscribe(
-      (rental: Rental) => {
+    this.promptService.createPrompt(this.newPrompt).subscribe(
+      (prompt: Prompt) => {
         this.showSwalSuccess();
       },
       (errorResponse: HttpErrorResponse) => {
@@ -102,10 +102,10 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     );
   }
 
-  createRental() {
+  createPrompt() {
     this.isClicked = true;
-    this.newRental.isShared = true;
-    this.newRental.categories = this.selectedItems;
+    this.newPrompt.isShared = true;
+    this.newPrompt.categories = this.selectedItems;
 
     // if (!this.isImage) {
     //   this.errors.push({
@@ -115,8 +115,8 @@ export class RentalNewComponent implements OnInit, OnDestroy {
     //   return;
     // }
 
-    this.rentalService.createRental(this.newRental).subscribe(
-      (rental: Rental) => {
+    this.promptService.createPrompt(this.newPrompt).subscribe(
+      (prompt: Prompt) => {
         this.showSwalSuccess();
       },
       (errorResponse: HttpErrorResponse) => {
@@ -143,6 +143,6 @@ export class RentalNewComponent implements OnInit, OnDestroy {
 
   imageChange(uploadedImage: any) {
     this.isImage = true;
-    this.newRental.image = uploadedImage;
+    this.newPrompt.image = uploadedImage;
   }
 }

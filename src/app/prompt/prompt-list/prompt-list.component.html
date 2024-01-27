@@ -19,9 +19,9 @@
   <div class="section section-nude text-center">
     <div class="container">
       <div class="row">
-        <ng-container *ngFor="let rental of rentals">
+        <ng-container *ngFor="let prompt of prompts">
           <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <app-rental-list-item [rental]="rental"></app-rental-list-item>
+            <app-prompt-list-item [prompt]="prompt"></app-prompt-list-item>
           </div>
         </ng-container>
       </div>

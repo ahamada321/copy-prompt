@@ -1,12 +1,12 @@
 const Review = require("./models/review");
 const User = require("./models/user");
-const Rental = require("./models/rental");
+const Prompt = require("./models/prompt");
 const { normalizeErrors } = require("./helpers/mongoose");
 
 exports.getReviews = function (req, res) {
-  const { rentalId } = req.query;
+  const { promptId } = req.query;
 
-  Review.find({ rental: rentalId })
+  Review.find({ prompt: promptId })
     .populate("user", "-password")
     .sort({ cretatedAt: -1 })
     .limit(3)
@@ -18,15 +18,15 @@ exports.getReviews = function (req, res) {
     });
 };
 
-exports.getRentalRating = function (req, res) {
-  const rentalId = req.query.id;
+exports.getPromptRating = function (req, res) {
+  const promptId = req.query.id;
 
   Review.aggregate(
     [
-      { $unwind: "$rental" },
+      { $unwind: "$prompt" },
       {
         $group: {
-          _id: rentalId,
+          _id: promptId,
           ratingAvg: { $avg: "$rating" },
         },
       },

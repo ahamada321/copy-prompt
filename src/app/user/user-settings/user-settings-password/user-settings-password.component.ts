@@ -53,7 +53,7 @@ export class UserSettingsPasswordComponent implements OnInit {
       },
       buttonsStyling: false,
     }).then(() => {
-      this.router.navigate(['/rentals', { registered: 'success' }]);
+      this.router.navigate(['/prompt', { registered: 'success' }]);
     });
   }
 }

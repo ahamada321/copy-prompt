@@ -1,0 +1,17 @@
+<div class="card">
+  <a routerLink="{{ prompt._id }}">
+    <div class="card-image">
+      <img
+        class="img"
+        [src]="
+          prompt.image ? prompt.image : './assets/img/image_placeholder.jpg'
+        "
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ prompt.name }}</h5>
+      <h5 class="card-title"><small>プロンプト</small></h5>
+      <br />
+    </div>
+  </a>
+</div>

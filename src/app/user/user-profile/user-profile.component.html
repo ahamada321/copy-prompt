@@ -56,26 +56,26 @@
           </a>
         </div>
       </div>
-      <div *ngIf="userData.rentals.length > 0">
+      <div *ngIf="userData.prompts.length > 0">
         <div class="row">
           <div
-            *ngFor="let rental of userData.rentals; let i = index"
+            *ngFor="let prompt of userData.prompts; let i = index"
             class="col-6 col-sm-4 col-md-3 col-xl-2"
           >
-            <div *ngIf="rental.isShared" class="card">
-              <a [routerLink]="['/rentals', rental._id]">
+            <div *ngIf="prompt.isShared" class="card">
+              <a [routerLink]="['/prompt', prompt._id]">
                 <div class="card-image">
                   <img
                     class="img"
                     [src]="
-                      rental.image
-                        ? rental.image
+                      prompt.image
+                        ? prompt.image
                         : './assets/img/image_placeholder.jpg'
                     "
                   />
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{ rental.name }}プロンプト</h5>
+                  <h5 class="card-title">{{ prompt.name }}プロンプト</h5>
                 </div>
               </a>
             </div>

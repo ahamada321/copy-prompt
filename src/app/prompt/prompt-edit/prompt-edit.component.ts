@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RentalService } from '../shared/rental.service';
+import { PromptService } from '../shared/prompt.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Rental } from '../shared/rental.model';
+import { Prompt } from '../shared/prompt.model';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-rental-edit',
-  templateUrl: './rental-edit.component.html',
-  styleUrls: ['./rental-edit.component.scss'],
+  selector: 'app-prompt-edit',
+  templateUrl: './prompt-edit.component.html',
+  styleUrls: ['./prompt-edit.component.scss'],
 })
-export class RentalEditComponent implements OnInit {
-  foundRental!: Rental;
+export class PromptEditComponent implements OnInit {
+  foundPrompt!: Prompt;
   isTouched: boolean = false;
   isClicked: boolean = false;
   focus!: boolean;
@@ -53,13 +53,13 @@ export class RentalEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private rentalService: RentalService,
+    private promptService: PromptService,
     public auth: MyOriginAuthService
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.getRental(params['rentalId']);
+      this.getPrompt(params['promptId']);
     });
 
     let navbar = document.getElementsByTagName('nav')[0];
@@ -84,11 +84,11 @@ export class RentalEditComponent implements OnInit {
     }
   }
 
-  getRental(rentalId: string) {
-    this.rentalService.getRentalById(rentalId).subscribe(
-      (foundRental: Rental) => {
-        this.foundRental = foundRental;
-        this.selectedItems = this.foundRental.categories;
+  getPrompt(promptId: string) {
+    this.promptService.getPromptById(promptId).subscribe(
+      (foundPrompt: Prompt) => {
+        this.foundPrompt = foundPrompt;
+        this.selectedItems = this.foundPrompt.categories;
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
@@ -97,15 +97,15 @@ export class RentalEditComponent implements OnInit {
     );
   }
 
-  unpublishRental() {
+  unpublishPrompt() {
     this.isClicked = true;
-    this.foundRental.isShared = false;
-    this.foundRental.categories = this.selectedItems;
+    this.foundPrompt.isShared = false;
+    this.foundPrompt.categories = this.selectedItems;
 
-    this.rentalService
-      .updateRental(this.foundRental._id, this.foundRental)
+    this.promptService
+      .updatePrompt(this.foundPrompt._id, this.foundPrompt)
       .subscribe(
-        (updatedRental) => {
+        (updatedPrompt) => {
           this.showSwalSuccess();
         },
         (errorResponse: HttpErrorResponse) => {
@@ -116,15 +116,15 @@ export class RentalEditComponent implements OnInit {
       );
   }
 
-  updateRental() {
+  updatePrompt() {
     this.isClicked = true;
-    this.foundRental.isShared = true;
-    this.foundRental.categories = this.selectedItems;
+    this.foundPrompt.isShared = true;
+    this.foundPrompt.categories = this.selectedItems;
 
-    this.rentalService
-      .updateRental(this.foundRental._id, this.foundRental)
+    this.promptService
+      .updatePrompt(this.foundPrompt._id, this.foundPrompt)
       .subscribe(
-        (updatedRental) => {
+        (updatedPrompt) => {
           this.showSwalSuccess();
         },
         (errorResponse: HttpErrorResponse) => {

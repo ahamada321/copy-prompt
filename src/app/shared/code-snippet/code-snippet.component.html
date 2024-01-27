@@ -1,6 +1,33 @@
 <div class="code-snippet">
-  <pre class="prettyprint"><code>{{ code }}</code></pre>
-  <button class="btn btn-outline-primary" (click)="copyCode()">
-    コピーする
-  </button>
+  <div *ngIf="!auth.isAuthenticated()">
+    <pre class="prettyprint"><code class="blur no-copy">{{ code }}</code></pre>
+    <button class="btn btn-primary btn-round btn-lg" (click)="modalLoginOpen()">
+      ログインしてコピーする
+    </button>
+  </div>
+  <div *ngIf="auth.isAuthenticated()">
+    <pre class="prettyprint"><code>{{ code }}</code></pre>
+    <button
+      *ngIf="!isCopied"
+      class="btn btn-outline-primary"
+      (click)="copyCode(); isCopied = true"
+    >
+      コピーする
+    </button>
+    <button
+      *ngIf="isCopied"
+      class="btn btn-outline-primary"
+      (click)="copyCode()"
+    >
+      コピーしました！
+    </button>
+    <a
+      type="button"
+      class="btn btn-success btn-lg btn-round text-center"
+      href="https://chat.openai.com/"
+      target="_blank"
+    >
+      <i class="fa fa-external-link"></i> Chat GPTで試す
+    </a>
+  </div>
 </div>

@@ -1,22 +1,22 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Rental } from '../shared/rental.model';
-import { RentalService } from '../shared/rental.service';
+import { Prompt } from '../shared/prompt.model';
+import { PromptService } from '../shared/prompt.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-rental-list',
-  templateUrl: './rental-list.component.html',
-  styleUrls: ['./rental-list.component.scss'],
+  selector: 'app-prompt-list',
+  templateUrl: './prompt-list.component.html',
+  styleUrls: ['./prompt-list.component.scss'],
 })
-export class RentalListComponent implements OnInit, OnDestroy {
-  rentals: Rental[] = [];
+export class PromptListComponent implements OnInit, OnDestroy {
+  prompts: Prompt[] = [];
   pageIndex: number = 1;
   pageSize: number = 40; // Displaying contents per page.
   pageCollectionSize: number = 1;
 
   constructor(
-    private rentalService: RentalService,
+    private promptService: PromptService,
     public auth: MyOriginAuthService,
     private router: Router,
     private route: ActivatedRoute
@@ -26,7 +26,7 @@ export class RentalListComponent implements OnInit, OnDestroy {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
 
-    this.getRentals();
+    this.getPrompts();
   }
 
   ngOnDestroy() {
@@ -37,13 +37,13 @@ export class RentalListComponent implements OnInit, OnDestroy {
     }
   }
 
-  getRentals() {
+  getPrompts() {
     this.route.queryParams.subscribe((keywords) => {
-      this.rentalService
-        .getRentals(keywords, this.pageIndex, this.pageSize)
+      this.promptService
+        .getPrompts(keywords, this.pageIndex, this.pageSize)
         .subscribe(
           (result) => {
-            this.rentals = result[0].foundRentals;
+            this.prompts = result[0].foundPrompts;
             this.pageCollectionSize = result[0].metadata[0].total;
           },
           (err) => {
@@ -54,7 +54,7 @@ export class RentalListComponent implements OnInit, OnDestroy {
   }
 
   filterByName(keywords: string) {
-    this.router.navigate(['/rentals'], {
+    this.router.navigate(['/prompt'], {
       queryParams: {
         keywords,
       },
@@ -63,7 +63,7 @@ export class RentalListComponent implements OnInit, OnDestroy {
   }
 
   pageChange() {
-    this.rentals = [];
-    this.getRentals();
+    this.prompts = [];
+    this.getPrompts();
   }
 }

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const rentalSchema = new Schema({
+const promptSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: Date,
   isShared: { type: Boolean, default: false },
@@ -25,4 +25,4 @@ const rentalSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Rental", rentalSchema);
+module.exports = mongoose.model("Prompt", promptSchema);

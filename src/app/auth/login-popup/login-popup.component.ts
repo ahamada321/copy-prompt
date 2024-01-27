@@ -28,7 +28,6 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('login-popup');
 
-    // this.seeFBLoginState();
     this.initForm();
   }
 
@@ -37,36 +36,6 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     //   body.classList.remove('full-screen');
     body.classList.remove('login-popup');
   }
-
-  // signInWithFB() {
-  //   if (!this.user) {
-  //     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  //     this.pressedFBButton = true;
-  //   } else {
-  //     this.auth.FBlogin(this.user).subscribe(
-  //       (token) => {
-  //         this.activeModal.close("Close click");
-  //         this.router.navigate(["/rentals/manage"]);
-  //       },
-  //       (errorResponse: HttpErrorResponse) => {
-  //         console.error(errorResponse);
-  //         this.errors = errorResponse.error.errors;
-  //         this.ref.detectChanges(); // In order to detect changes here immidiately.
-  //       }
-  //     );
-  //   }
-  // }
-
-  // seeFBLoginState() {
-  //   return this.socialAuthService.authState.subscribe((user) => {
-  //     this.user = user;
-  //     this.isFBloggedIn = this.user != null;
-
-  //     if (this.pressedFBButton && this.user) {
-  //       this.signInWithFB();
-  //     }
-  //   });
-  // }
 
   initForm() {
     this.loginForm = this.formBuilder.group({
@@ -83,12 +52,23 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     );
   }
 
+  isPromptDetail() {
+    const titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee.split('/')[2] !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   login() {
     this.isClicked = true;
     this.auth.login(this.loginForm.value).subscribe(
       (token) => {
         this.activeModal.close('Close click');
-        this.router.navigate(['/user']);
+        if (!this.isPromptDetail()) {
+          this.router.navigate(['/user']);
+        }
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);

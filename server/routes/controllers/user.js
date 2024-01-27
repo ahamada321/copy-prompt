@@ -1,5 +1,4 @@
 const User = require("./models/user");
-const Notification = require("./models/notification");
 const { normalizeErrors } = require("./helpers/mongoose");
 const jwt = require("jsonwebtoken");
 const config = require("../../config");
@@ -46,7 +45,7 @@ exports.getUserById = async function (req, res) {
 
   try {
     const foundUser = await User.findOne({ _id: reqUserId }).populate(
-      "rentals"
+      "prompts"
     );
     if (foundUser.id !== (user && user.id)) {
       foundUser.password = null;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RentalService } from 'src/app/rental/shared/rental.service';
-import { Rental } from 'src/app/rental/shared/rental.model';
+import { PromptService } from 'src/app/prompt/shared/prompt.service';
+import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
 
@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private rentalService: RentalService
+    private promptService: PromptService
   ) {}
 
   ngOnInit() {
@@ -59,7 +59,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   // pageChange() {
-  //   // this.rentals = [];
-  //   // this.getUserRentals();
+  //   // this.prompts = [];
+  //   // this.getUserPrompts();
   // }
 }

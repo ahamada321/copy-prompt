@@ -4,7 +4,7 @@ const compression = require("compression");
 const path = require("path");
 const config = require("./config");
 
-const rentalRoutes = require("./routes/rentals");
+const promptRoutes = require("./routes/prompts");
 const userRoutes = require("./routes/users");
 const paymentRoutes = require("./routes/payments");
 const reviewRoutes = require("./routes/reviews");
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression()); // compress middleware
 
-app.use("/api/v1/rentals", rentalRoutes);
+app.use("/api/v1/prompts", promptRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/payments", paymentRoutes);
 app.use("/api/v1/reviews", reviewRoutes);

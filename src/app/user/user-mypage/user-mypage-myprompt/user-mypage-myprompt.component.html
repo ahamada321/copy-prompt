@@ -1,0 +1,104 @@
+<p>\ プロンプトを登録しよう /</p>
+<a
+  class="btn btn-lg btn-primary btn-rotate btn-round"
+  [routerLink]="['/prompt/new']"
+>
+  <i class="nc-icon nc-diamond"></i> 追加する
+</a>
+<div class="space-top"></div>
+<div *ngIf="prompts && prompts.length > 0">
+  <div class="row">
+    <div
+      *ngFor="let prompt of prompts; let i = index"
+      class="col-6 col-sm-4 col-md-3 col-xl-2"
+    >
+      <div *ngIf="!prompt.isShared" class="card" data-background="image">
+        <div class="card-image">
+          <a routerLink="/prompt/{{ prompt._id }}">
+            <img
+              class="img"
+              [src]="
+                prompt.image
+                  ? prompt.image
+                  : './assets/img/image_placeholder.jpg'
+              "
+            />
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ prompt.name }}<br /><small>プロンプト</small>
+          </h5>
+          <div class="card-description">
+            <p>
+              <button
+                class="btn btn-primary btn-block btn-round"
+                routerLink="/prompt/edit/{{ prompt._id }}"
+              >
+                編集する
+              </button>
+            </p>
+            <p>
+              <button
+                class="btn btn-primary btn-link"
+                (click)="onDelete(prompt._id)"
+              >
+                <i class="nc-icon nc-box"></i>&nbsp; 削除
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="prompt.isShared" class="card">
+        <div class="card-image">
+          <a routerLink="/prompt/{{ prompt._id }}">
+            <img
+              class="img"
+              [src]="
+                prompt.image
+                  ? prompt.image
+                  : './assets/img/image_placeholder.jpg'
+              "
+            />
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ prompt.name }}<br /><small>プロンプト</small>
+          </h5>
+          <div class="card-description">
+            <p>
+              <button
+                class="btn btn-primary btn-block btn-round"
+                routerLink="/prompt/edit/{{ prompt._id }}"
+              >
+                編集する
+              </button>
+            </p>
+            <p>
+              <button
+                class="btn btn-danger btn-link"
+                (click)="onDelete(prompt._id)"
+              >
+                <i class="nc-icon nc-box"></i>&nbsp; 削除
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="space-top"></div>
+  <div class="pagination-area pagination-primary justify-content-center">
+    <ngb-pagination
+      [collectionSize]="pageCollectionSize"
+      [(page)]="pageIndex"
+      [pageSize]="pageSize"
+      [maxSize]="5"
+      [boundaryLinks]="true"
+      aria-label="Default pagination"
+      (pageChange)="pageChange()"
+    ></ngb-pagination>
+  </div>
+</div>

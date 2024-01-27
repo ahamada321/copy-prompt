@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Prompt } from '../shared/prompt.model';
 // import { Review } from "src/app/common/review/service/review.model";
 import { PromptService } from '../shared/prompt.service';
+import { UserService } from 'src/app/user/shared/user.service';
 // import { ReviewService } from "src/app/common/review/service/review.service";
 
 @Component({
@@ -22,23 +23,23 @@ import { PromptService } from '../shared/prompt.service';
   styleUrls: ['./prompt-detail.component.scss'],
 })
 export class PromptDetailComponent implements OnInit, OnDestroy {
-  currentId!: string;
+  isClicked: boolean = false;
   prompt!: Prompt;
+  isBookmarked: boolean = false;
   rating!: number;
   // reviews: Review[] = [];
   safeUrl!: SafeResourceUrl;
 
-  headerOffset: number = 75; // want to replace like DEFINE HEADER_OFFSET
   page = 1;
 
   constructor(
-    private route: ActivatedRoute,
-    private promptService: PromptService,
-    // private reviewService: ReviewService,
-    private modalService: NgbModal,
-    public router: Router,
     public auth: MyOriginAuthService,
-    public sanitizer: DomSanitizer
+    private route: ActivatedRoute,
+    public router: Router,
+    public sanitizer: DomSanitizer,
+    private promptService: PromptService,
+    private userService: UserService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -59,17 +60,45 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  // isYourPrompt() {
-  //   return this.prompt.user._id === this.auth.getUserId();
-  // }
-
   getPrompt(promptId: string) {
     this.promptService.getPromptById(promptId).subscribe((prompt: Prompt) => {
       this.prompt = prompt;
+      const userId = this.auth.getUserId();
+      const index = prompt.isBookmarkedFrom.findIndex((x) => x === userId);
+      if (index !== -1) {
+        this.isBookmarked = true;
+      }
       // this.getAvgRating(prompt._id)
       // this.getReviews(prompt._id);
-      // this.getSafeUrl(prompt.course1Img);
     });
+  }
+
+  addBookmark() {
+    this.isClicked = true;
+    this.userService.addBookmark(this.prompt._id).subscribe(
+      (success) => {
+        this.isBookmarked = true;
+        this.isClicked = false;
+      },
+      (err) => {
+        this.isClicked = false;
+        console.error(err);
+      }
+    );
+  }
+
+  deleteBookmark() {
+    this.isClicked = true;
+    this.userService.deleteBookmark(this.prompt._id).subscribe(
+      (success) => {
+        this.isBookmarked = false;
+        this.isClicked = false;
+      },
+      (err) => {
+        this.isClicked = false;
+        console.error(err);
+      }
+    );
   }
 
   getSafeUrl(url: string) {
@@ -90,6 +119,10 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   //     () => {}
   //   );
   // }
+
+  isMine() {
+    return this.prompt.user._id === this.auth.getUserId();
+  }
 
   modalLoginOpen() {
     this.modalService.open(LoginPopupComponent);

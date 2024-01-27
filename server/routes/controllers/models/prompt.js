@@ -18,6 +18,18 @@ const promptSchema = new Schema({
   image: String,
   rating: Number,
 
+  isBookmarkedFrom: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  isCopiedFrom: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

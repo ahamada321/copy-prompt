@@ -24,24 +24,24 @@ export class PromptListItemComponent implements OnInit {
     // this.initFavourite();
   }
 
-  private initFavourite() {
-    const index = this.prompt.favoritesFrom.indexOf(this.auth.getUserId());
-    this.isFavorite = index >= 0;
-  }
+  // private initFavourite() {
+  //   const index = this.prompt.favoritesFrom.indexOf(this.auth.getUserId());
+  //   this.isFavorite = index >= 0;
+  // }
 
-  toggleFavourite() {
-    this.promptService.toggleFavourite(this.prompt._id).subscribe(
-      (index) => {
-        if (index >= 0) {
-          this.prompt.favoritesFrom.splice(index, 1); // Dlete user from array.
-        } else {
-          this.prompt.favoritesFrom.push(this.auth.getUserId());
-        }
-        this.isFavorite = !(index >= 0); // Be careful. Need to return opposite.
-      },
-      (error) => {}
-    );
-  }
+  // toggleFavourite() {
+  //   this.promptService.toggleFavourite(this.prompt._id).subscribe(
+  //     (index) => {
+  //       if (index >= 0) {
+  //         this.prompt.favoritesFrom.splice(index, 1); // Dlete user from array.
+  //       } else {
+  //         this.prompt.favoritesFrom.push(this.auth.getUserId());
+  //       }
+  //       this.isFavorite = !(index >= 0); // Be careful. Need to return opposite.
+  //     },
+  //     (error) => {}
+  //   );
+  // }
 
   modalLoginOpen() {
     this.modalService.open(LoginPopupComponent, { backdrop: 'static' });

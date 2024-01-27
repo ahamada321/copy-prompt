@@ -16,6 +16,8 @@ export class Prompt {
   prompt!: string;
   image?: any;
   rating?: number;
+
+  isBookmarkedFrom!: User[];
+  isCopiedFrom!: User[];
   user!: User;
-  favoritesFrom!: any[];
 }

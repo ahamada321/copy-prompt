@@ -17,6 +17,7 @@ export class User {
   homepage?: string;
   twitter?: string;
 
+  bookmarks!: Prompt[];
   prompts!: Prompt[];
   newsletter!: boolean;
 }

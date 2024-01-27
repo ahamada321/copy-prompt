@@ -6,7 +6,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./user-mypage.component.scss'],
 })
 export class UserMypageComponent implements OnInit, OnDestroy {
-  activeTab = 1;
+  // activeTab = 1;
+  activeTab = 3; // Tmp
 
   constructor() {}
 

@@ -40,6 +40,7 @@ const routes: Routes = [
       {
         path: 'edit/:promptId',
         component: PromptEditComponent,
+        canActivate: [AuthGuard],
       },
       { path: ':promptId', component: PromptDetailComponent }, // Going to replace promptId to promptUri
     ],

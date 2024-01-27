@@ -4,24 +4,24 @@ import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { UserService } from '../../shared/user.service';
 
 @Component({
-  selector: 'app-user-mypage-bookmark',
-  templateUrl: './user-mypage-bookmark.component.html',
-  styleUrls: ['./user-mypage-bookmark.component.scss'],
+  selector: 'app-user-mypage-history',
+  templateUrl: './user-mypage-history.component.html',
+  styleUrls: ['./user-mypage-history.component.scss'],
 })
-export class UserMypageBookmarkComponent implements OnInit {
-  bookmarks: Prompt[] = [];
+export class UserMypageHistoryComponent implements OnInit {
+  histories: Prompt[] = [];
   errors: any[] = [];
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.getBookmarks();
+    this.getHistories();
   }
 
-  private getBookmarks() {
-    this.userService.getBookmarks().subscribe(
-      (foundBookmarks: Prompt[]) => {
-        this.bookmarks = foundBookmarks;
+  private getHistories() {
+    this.userService.getHistories().subscribe(
+      (foundHistories: Prompt[]) => {
+        this.histories = foundHistories;
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);

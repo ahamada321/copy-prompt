@@ -39,12 +39,4 @@ export class PromptService {
       `/api/v1/prompts/manage?page=${pageIndex}&limit=${pageSize}`
     );
   }
-
-  public getUserfavoritePrompts(): Observable<any> {
-    return this.http.get('/api/v1/prompts/favourite');
-  }
-
-  public toggleFavourite(promptId: string): Observable<any> {
-    return this.http.get('/api/v1/prompts/favourite/' + promptId);
-  }
 }

@@ -15,7 +15,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserSettingsPasswordComponent } from './user-settings/user-settings-password/user-settings-password.component';
 import { UserMypageComponent } from './user-mypage/user-mypage.component';
 import { UserMypageBookmarkComponent } from './user-mypage/user-mypage-bookmark/user-mypage-bookmark.component';
-import { BookmarkListItemComponent } from './user-mypage/user-mypage-bookmark/bookmark-list-item/bookmark-list-item.component';
+import { UserMypageHistoryComponent } from './user-mypage/user-mypage-history/user-mypage-history.component';
 import { UserMypageMypromptComponent } from './user-mypage/user-mypage-myprompt/user-mypage-myprompt.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
@@ -53,7 +53,7 @@ const routes: Routes = [
     UserComponent,
     UserMypageComponent,
     UserMypageBookmarkComponent,
-    BookmarkListItemComponent,
+    UserMypageHistoryComponent,
     UserMypageMypromptComponent,
     UserSettingsComponent,
     UserSettingsPasswordComponent,

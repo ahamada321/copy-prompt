@@ -32,6 +32,18 @@ const userSchema = new Schema({
   homepage: String,
   twitter: String,
 
+  bookmarks: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Prompt",
+    },
+  ],
+  histories: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Prompt",
+    },
+  ],
   prompts: [
     {
       type: Schema.Types.ObjectId,

@@ -1,6 +1,6 @@
 <div class="wrapper" *ngIf="prompt">
   <div
-    class="page-header page-header-xs"
+    class="page-header page-header-small"
     [ngStyle]="{
       'background-image':
         'url(' +
@@ -196,15 +196,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="margin-top"></div>
-    <div *ngIf="isMine()" class="text-center">
-      <a
-        class="btn btn-lg btn-outline-primary btn-round"
-        [routerLink]="['/prompt/edit', prompt._id]"
-      >
-        <i class="fa fa-pencil"></i> このプロンプトを編集する
-      </a>
     </div>
   </div>
 </div>

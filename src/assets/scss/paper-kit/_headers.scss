@@ -11,8 +11,11 @@
 
   &.page-header-small {
     // min-height: 65vh !important;
-    min-height: 50vh !important; // Changed by Hamada
+    min-height: 60vh !important; // Changed by Hamada
     max-height: 700px;
+  }
+  &.page-header-s {
+    min-height: 50vh !important; // Added by Hamada
   }
   &.page-header-xs {
     min-height: 40vh !important;

@@ -3,8 +3,11 @@
     <pre
       class="prettyprint"
     ><code class="blur no-copy">{{ prompt.prompt }}</code></pre>
-    <button class="btn btn-primary btn-round btn-lg" (click)="modalLoginOpen()">
-      ログインしてコピーする
+    <button
+      class="btn btn-primary btn-round btn-lg btn-wd"
+      (click)="modalLoginOpen()"
+    >
+      <i class="nc-icon nc-lock-circle-open"></i> ログインしてコピーする
     </button>
   </div>
   <div *ngIf="auth.isAuthenticated()">

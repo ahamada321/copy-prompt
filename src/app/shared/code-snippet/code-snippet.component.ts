@@ -10,6 +10,7 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 })
 export class CodeSnippetComponent {
   @Input() code!: string;
+  isCopied: boolean = false;
 
   constructor(
     public auth: MyOriginAuthService,

@@ -7,8 +7,19 @@
   </div>
   <div *ngIf="auth.isAuthenticated()">
     <pre class="prettyprint"><code>{{ code }}</code></pre>
-    <button class="btn btn-outline-primary" (click)="copyCode()">
+    <button
+      *ngIf="!isCopied"
+      class="btn btn-outline-primary"
+      (click)="copyCode(); isCopied = true"
+    >
       コピーする
+    </button>
+    <button
+      *ngIf="isCopied"
+      class="btn btn-outline-primary"
+      (click)="copyCode()"
+    >
+      コピーしました！
     </button>
     <a
       type="button"

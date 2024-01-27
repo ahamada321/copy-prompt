@@ -21,19 +21,22 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   errors: any[] = [];
 
   dropdownList = [
-    { id: 1, itemName: '文章作成' },
-    { id: 2, itemName: '計算' },
-    { id: 3, itemName: '偉人' },
-    { id: 4, itemName: '時短' },
-    { id: 5, itemName: '学校' },
-    { id: 6, itemName: '壁打ち' },
-    { id: 7, itemName: 'コミュニケーション' },
-    { id: 8, itemName: '占い' },
-    { id: 9, itemName: '金融' },
-    { id: 10, itemName: '分析' },
-    { id: 11, itemName: '英語' },
-    { id: 12, itemName: '語学' },
-    { id: 13, itemName: 'エンタメ' },
+    { id: 1, itemName: '時短' },
+    { id: 2, itemName: '語学' },
+    { id: 3, itemName: '占い' },
+    { id: 4, itemName: '金融' },
+    { id: 5, itemName: 'コミュニケーション' },
+    { id: 6, itemName: 'コーチング・コンサルタント' },
+    { id: 7, itemName: 'プログラミング' },
+    { id: 8, itemName: '文章作成・ブログ関連' },
+    { id: 9, itemName: '要約' },
+    { id: 10, itemName: 'アイデア・企画' },
+    { id: 11, itemName: 'マーケティング・データ分析・統計' },
+    { id: 12, itemName: '資料作成' },
+    { id: 13, itemName: 'ロールプレイ' },
+    { id: 14, itemName: '法律・規約関連' },
+    { id: 15, itemName: '生活・エンタメ' },
+    { id: 16, itemName: 'その他' },
   ];
   selectedItems: object[] = [];
   dropdownSettings = {

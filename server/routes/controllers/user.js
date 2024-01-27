@@ -1,7 +1,102 @@
 const User = require("./models/user");
+const Prompt = require("./models/prompt");
 const { normalizeErrors } = require("./helpers/mongoose");
 const jwt = require("jsonwebtoken");
 const config = require("../../config");
+
+exports.getBookmarks = async function (req, res) {
+  const user = res.locals.user;
+
+  try {
+    const foundUser = await User.findOne({ _id: user._id }).populate(
+      "bookmarks"
+    );
+    return res.json(foundUser.bookmarks);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+exports.getHistories = async function (req, res) {
+  const user = res.locals.user;
+
+  try {
+    const foundUser = await User.findOne({ _id: user._id }).populate(
+      "histories"
+    );
+    return res.json(foundUser.histories);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+exports.addBookmark = async function (req, res) {
+  const reqPromptId = req.params.id;
+  const user = res.locals.user;
+
+  try {
+    await User.updateOne(
+      { _id: user._id },
+      { $push: { bookmarks: reqPromptId } }
+    );
+    await Prompt.updateOne(
+      { _id: reqPromptId },
+      { $push: { isBookmarkedFrom: user._id } }
+    );
+
+    return res.json({ ok: true });
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+exports.addHistory = async function (req, res) {
+  const reqPromptId = req.params.id;
+  const user = res.locals.user;
+
+  try {
+    await User.updateOne(
+      { _id: user._id },
+      { $pull: { histories: reqPromptId } }
+    );
+    await User.updateOne(
+      { _id: user._id },
+      { $push: { histories: reqPromptId } }
+    );
+    await Prompt.updateOne(
+      { _id: reqPromptId },
+      { $pull: { isCopiedFrom: user._id } }
+    );
+    await Prompt.updateOne(
+      { _id: reqPromptId },
+      { $push: { isCopiedFrom: user._id } }
+    );
+
+    return res.json({ ok: true });
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+exports.deleteBookmark = async function (req, res) {
+  const reqPromptId = req.params.id;
+  const user = res.locals.user;
+
+  try {
+    await User.updateOne(
+      { _id: user._id },
+      { $pull: { bookmarks: reqPromptId } }
+    );
+    await Prompt.updateOne(
+      { _id: reqPromptId },
+      { $pull: { isBookmarkedFrom: user._id } }
+    );
+
+    return res.json({ status: "deleted" });
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
 
 exports.getUsers = function (req, res) {
   const { page, limit } = req.query;

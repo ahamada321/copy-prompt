@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from './user.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -15,11 +14,23 @@ export class UserService {
     return this.http.patch('/api/v1/users/' + userId, userData);
   }
 
-  //   public getUserFavouritePosts(): Observable<any> {
-  //     return this.http.get('/api/v1/posts/favourite');
-  //   }
+  public getBookmarks(): Observable<any> {
+    return this.http.get('/api/v1/users/bookmark');
+  }
 
-  //   public toggleFavourite(postId: string): Observable<any> {
-  //     return this.http.get('/api/v1/posts/favourite/' + postId);
-  //   }
+  public addBookmark(promptId: any): Observable<any> {
+    return this.http.get('/api/v1/users/bookmark/' + promptId);
+  }
+
+  public getHistories(): Observable<any> {
+    return this.http.get('/api/v1/users/history');
+  }
+
+  public addHistory(promptId: any): Observable<any> {
+    return this.http.get('/api/v1/users/history/' + promptId);
+  }
+
+  public deleteBookmark(promptId: any): Observable<any> {
+    return this.http.delete('/api/v1/users/bookmark/' + promptId);
+  }
 }

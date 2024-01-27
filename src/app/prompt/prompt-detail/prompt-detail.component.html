@@ -20,17 +20,43 @@
           class="btn btn-link btn-lg btn-neutral"
           [routerLink]="['/user', prompt.user._id]"
         >
-          <i class="fa fa-pencil" aria-hidden="true"></i>
           {{ prompt.user.name }}
+        </a>
+      </div>
+      <div *ngIf="auth.isAuthenticated()" class="text-center">
+        <div *ngIf="!isMine()">
+          <button
+            *ngIf="!isBookmarked"
+            (click)="addBookmark()"
+            [disabled]="isClicked"
+            class="btn btn-primary btn-round"
+          >
+            <i class="fa fa-heart"></i> お気に入り追加
+          </button>
+          <button
+            *ngIf="isBookmarked"
+            (click)="deleteBookmark()"
+            [disabled]="isClicked"
+            class="btn btn-neutral btn-round"
+          >
+            <i class="fa fa-heart"></i> お気に入りから削除
+          </button>
+        </div>
+        <a
+          *ngIf="isMine()"
+          class="btn btn-primary btn-round"
+          [routerLink]="['/prompt/edit', prompt._id]"
+        >
+          <i class="fa fa-pencil"></i> このプロンプトを編集する
         </a>
       </div>
     </div>
   </div>
 
-  <div class="wrapper">
-    <!--     *********     Detail info     *********      -->
-    <div class="section section-nude" id="detail-of-lessons">
-      <div class="container">
+  <!--     *********     Detail info     *********      -->
+  <div class="section section-nude">
+    <div class="container">
+      <div class="row">
         <div class="col-md-10 ml-auto mr-auto">
           <div class="section-description text-center">
             <h2 class="title">プロンプトの説明</h2>
@@ -43,240 +69,142 @@
             </div>
           </div>
         </div>
-        <br />
       </div>
+    </div>
+  </div>
 
-      <div class="blog-1">
-        <div class="container">
-          <!-- <div class="row">
-            <div class="col-md-10 ml-auto mr-auto">
-              <div class="card card-plain card-blog">
-                <div class="row">
-                  <div class="col-md-8 col-11 ml-auto mr-auto">
-                    <div class="card-body">
-                      <h6 class="card-category text-primary">Entry course</h6>
-                      <h3 class="card-title">
-                        {{ prompt.course2Title }}
-                      </h3>
-                      <p class="card-description">
-                        {{ prompt.course2Description }}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-10 ml-auto mr-auto">
-                    <button
-                      *ngIf="!auth.isAuthenticated()"
-                      (click)="modalLoginOpen()"
-                      class="card"
-                      data-background="color"
-                      data-color="green"
-                    >
-                      <div class="card-body text-center">
-                        <h6 class="card-category">ログイン後に予約できます</h6>
-                        <h2 class="card-title">60min</h2>
-                        <p class="card-description">
-                          60minのパーソナルトレーニングが受けられるチケットです.
-                        </p>
-                        <div class="card-footer">
-                          <div class="btn btn-neutral btn-round">
-                            {{ prompt.hourlyPrice }}円 / 60分
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                    <button
-                      *ngIf="isYourPrompt() && auth.isAuthenticated()"
-                      class="card"
-                      data-background="color"
-                      data-color="gray"
-                    >
-                      <div class="card-body text-center">
-                        <h6 class="card-category">自分のコースは選べません</h6>
-                        <h2 class="card-title">60min</h2>
-                        <p class="card-description">
-                          自分のコースは予約できません
-                        </p>
-                        <div class="card-footer">
-                          <div class="btn btn-neutral btn-round">
-                            {{ prompt.hourlyPrice }}円 / 60分
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                    <button
-                      *ngIf="!isYourPrompt() && auth.isAuthenticated()"
-                      (click)="modalBookingOpen(60)"
-                      class="card"
-                      data-background="color"
-                      data-color="green"
-                    >
-                      <div class="card-body text-center">
-                        <h6 class="card-category">このコースを選ぶ</h6>
-                        <h2 class="card-title">60min</h2>
-                        <p class="card-description">
-                          60minのパーソナルトレーニングが受けられるチケットです.
-                        </p>
-                        <div class="card-footer">
-                          <div class="btn btn-neutral btn-round">
-                            {{ prompt.hourlyPrice }}円 / 60分
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
+  <!--     *********     Prompt     *********      -->
+  <div class="section section-dark text-center">
+    <div class="container">
+      <h2 class="title">プロンプト</h2>
+      <!-- <h4 class="blur ban_select">プロンプトコード</h4> -->
+      <app-code-snippet [prompt]="prompt"></app-code-snippet>
+    </div>
+  </div>
+
+  <!--     *********     Comments      *********      -->
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="title text-center">コメント(10)</h2>
+          <div class="media-area">
+            <div class="media media-post">
+              <a class="pull-left author" href="javascript:void(0)">
+                <div class="avatar">
+                  <img
+                    class="media-object"
+                    alt="64x64"
+                    src="assets/img/placeholder.png"
+                  />
+                </div>
+              </a>
+              <div class="media-body">
+                <textarea
+                  class="form-control"
+                  placeholder="Write a nice reply or go home..."
+                  rows="4"
+                ></textarea>
+                <div class="media-footer">
+                  <a
+                    href="javascript:void(0)"
+                    class="btn btn-primary pull-right"
+                    >コメントする</a
+                  >
                 </div>
               </div>
             </div>
-          </div> -->
-        </div>
-      </div>
-    </div>
 
-    <!--     *********     Prompt     *********      -->
-    <div class="section section-dark text-center">
-      <div class="container">
-        <h2 class="title">プロンプト</h2>
-        <!-- <h4 class="blur ban_select">プロンプトコード</h4> -->
-        <app-code-snippet [code]="prompt.prompt"></app-code-snippet>
-      </div>
-    </div>
-
-    <!--     *********     Call to action      *********      -->
-    <div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto">
-            <h2 class="title text-center">コメント(10)</h2>
-            <div class="media-area">
-              <div class="media media-post">
-                <a class="pull-left author" href="javascript:void(0)">
-                  <div class="avatar">
-                    <img
-                      class="media-object"
-                      alt="64x64"
-                      src="assets/img/placeholder.png"
-                    />
-                  </div>
-                </a>
-                <div class="media-body">
-                  <textarea
-                    class="form-control"
-                    placeholder="Write a nice reply or go home..."
-                    rows="4"
-                  ></textarea>
-                  <div class="media-footer">
-                    <a
-                      href="javascript:void(0)"
-                      class="btn btn-primary pull-right"
-                      >コメントする</a
-                    >
-                  </div>
+            <!-- end media -->
+            <div class="media">
+              <a class="pull-left" href="javascript:void(0)">
+                <div class="avatar">
+                  <img
+                    class="media-object"
+                    alt="64x64"
+                    src="assets/img/placeholder.png"
+                  />
+                </div>
+              </a>
+              <div class="media-body">
+                <h5 class="media-heading">Bon</h5>
+                <div class="pull-right">
+                  <h6 class="text-muted">2024/01/13 12:22</h6>
+                </div>
+                <p>
+                  プロンプトがいっぱい集まってくれて嬉しい<br />Don't forget,
+                  You're Awesome!
+                </p>
+                <div class="media-footer">
+                  <a
+                    href="javascript:void(0)"
+                    class="btn btn-primary btn-link pull-right"
+                  >
+                    <i class="fa fa-reply"></i>返信する</a
+                  >
+                  <a href="javascript:void(0)" class="btn btn-link pull-right">
+                    <i class="fa fa-flag"></i>報告する</a
+                  >
                 </div>
               </div>
-
-              <!-- end media -->
-              <div class="media">
-                <a class="pull-left" href="javascript:void(0)">
-                  <div class="avatar">
-                    <img
-                      class="media-object"
-                      alt="64x64"
-                      src="assets/img/placeholder.png"
-                    />
-                  </div>
-                </a>
-                <div class="media-body">
-                  <h5 class="media-heading">Bon</h5>
-                  <div class="pull-right">
-                    <h6 class="text-muted">2024/01/13 12:22</h6>
-                  </div>
-                  <p>
-                    プロンプトがいっぱい集まってくれて嬉しい<br />Don't forget,
-                    You're Awesome!
-                  </p>
-                  <div class="media-footer">
-                    <a
-                      href="javascript:void(0)"
-                      class="btn btn-primary btn-link pull-right"
-                    >
-                      <i class="fa fa-reply"></i>返信する</a
-                    >
-                    <a
-                      href="javascript:void(0)"
-                      class="btn btn-link pull-right"
-                    >
-                      <i class="fa fa-flag"></i>報告する</a
-                    >
-                  </div>
+            </div>
+            <!-- end media -->
+            <div class="media">
+              <a class="pull-left" href="javascript:void(0)">
+                <div class="avatar">
+                  <img
+                    class="media-object"
+                    alt="64x64"
+                    src="assets/img/placeholder.png"
+                  />
+                </div>
+              </a>
+              <div class="media-body">
+                <h5 class="media-heading">Banks</h5>
+                <div class="pull-right">
+                  <h6 class="text-muted">2023/12/15 10:22</h6>
+                </div>
+                <p>
+                  Hello guys, nice to have you on the platform! There will be a
+                  lot of great stuff coming soon. We will keep you posted for
+                  the latest news.<br />Don't forget, You're Awesome!
+                </p>
+                <div class="media-footer">
+                  <a
+                    href="javascript:void(0)"
+                    class="btn btn-primary btn-link pull-right"
+                  >
+                    <i class="fa fa-reply"></i>返信する</a
+                  >
+                  <a href="javascript:void(0)" class="btn btn-link pull-right">
+                    <i class="fa fa-flag"></i>報告する</a
+                  >
                 </div>
               </div>
-              <!-- end media -->
-              <div class="media">
-                <a class="pull-left" href="javascript:void(0)">
-                  <div class="avatar">
-                    <img
-                      class="media-object"
-                      alt="64x64"
-                      src="assets/img/placeholder.png"
-                    />
-                  </div>
-                </a>
-                <div class="media-body">
-                  <h5 class="media-heading">Banks</h5>
-                  <div class="pull-right">
-                    <h6 class="text-muted">2023/12/15 10:22</h6>
-                  </div>
-                  <p>
-                    Hello guys, nice to have you on the platform! There will be
-                    a lot of great stuff coming soon. We will keep you posted
-                    for the latest news.<br />Don't forget, You're Awesome!
-                  </p>
-                  <div class="media-footer">
-                    <a
-                      href="javascript:void(0)"
-                      class="btn btn-primary btn-link pull-right"
-                    >
-                      <i class="fa fa-reply"></i>返信する</a
-                    >
-                    <a
-                      href="javascript:void(0)"
-                      class="btn btn-link pull-right"
-                    >
-                      <i class="fa fa-flag"></i>報告する</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <!-- end media -->
-              <br />
-              <div
-                class="pagination-area pagination-primary justify-content-center"
-              >
-                <ngb-pagination
-                  [collectionSize]="50"
-                  [(page)]="page"
-                  aria-label="Default pagination"
-                ></ngb-pagination>
-              </div>
+            </div>
+            <!-- end media -->
+            <br />
+            <div
+              class="pagination-area pagination-primary justify-content-center"
+            >
+              <ngb-pagination
+                [collectionSize]="50"
+                [(page)]="page"
+                aria-label="Default pagination"
+              ></ngb-pagination>
             </div>
           </div>
         </div>
       </div>
-      <div class="margin-top"></div>
-      <div class="text-center">
-        <a
-          class="btn btn-lg btn-outline-primary btn-round"
-          [routerLink]="['/edit']"
-        >
-          <i class="fa fa-pencil"></i> このプロンプトを編集する
-        </a>
-      </div>
     </div>
-    <!-- <app-googlemaps
-      [location]="
-        prompt.province[0].itemName + ', ' + prompt.address1 + prompt.address2
-      "
-    ></app-googlemaps> -->
+    <div class="margin-top"></div>
+    <div *ngIf="isMine()" class="text-center">
+      <a
+        class="btn btn-lg btn-outline-primary btn-round"
+        [routerLink]="['/prompt/edit', prompt._id]"
+      >
+        <i class="fa fa-pencil"></i> このプロンプトを編集する
+      </a>
+    </div>
   </div>
-  <!-- <app-bottom-navbar [prompt]="prompt"></app-bottom-navbar> -->
 </div>

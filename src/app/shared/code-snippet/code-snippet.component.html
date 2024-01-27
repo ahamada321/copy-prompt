@@ -1,16 +1,19 @@
 <div class="code-snippet">
   <div *ngIf="!auth.isAuthenticated()">
-    <pre class="prettyprint"><code class="blur no-copy">{{ code }}</code></pre>
+    <pre
+      class="prettyprint"
+    ><code class="blur no-copy">{{ prompt.prompt }}</code></pre>
     <button class="btn btn-primary btn-round btn-lg" (click)="modalLoginOpen()">
       ログインしてコピーする
     </button>
   </div>
   <div *ngIf="auth.isAuthenticated()">
-    <pre class="prettyprint"><code>{{ code }}</code></pre>
+    <pre class="prettyprint"><code>{{ prompt.prompt }}</code></pre>
     <button
       *ngIf="!isCopied"
       class="btn btn-outline-primary"
       (click)="copyCode(); isCopied = true"
+      [disabled]="isClicked"
     >
       コピーする
     </button>

@@ -4,17 +4,17 @@
 </div> -->
 <div class="row">
   <div
-    *ngFor="let bookmark of bookmarks; let i = index"
+    *ngFor="let history of histories; let i = index"
     class="col-6 col-sm-4 col-md-3 col-xl-2"
   >
     <div class="card">
       <div class="card-image">
-        <a routerLink="/prompt/{{ bookmark._id }}">
+        <a routerLink="/prompt/{{ history._id }}">
           <img
             class="img"
             [src]="
-              bookmark.image
-                ? bookmark.image
+              history.image
+                ? history.image
                 : './assets/img/image_placeholder.jpg'
             "
           />
@@ -22,13 +22,13 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">
-          {{ bookmark.name }}<br /><small>プロンプト</small>
+          {{ history.name }}<br /><small>プロンプト</small>
         </h5>
         <div class="card-description">
           <p>
             <!-- <button
               class="btn btn-primary btn-block btn-round"
-              routerLink="/prompt/edit/{{ bookmark._id }}"
+              routerLink="/prompt/edit/{{ history._id }}"
             >
               編集する
             </button> -->
@@ -36,7 +36,7 @@
           <p>
             <!-- <button
               class="btn btn-primary btn-link"
-              (click)="onDelete(bookmark._id)"
+              (click)="onDelete(history._id)"
             >
               <i class="nc-icon nc-box"></i>&nbsp; 削除
             </button> -->

@@ -59,11 +59,6 @@ exports.getLatestPrompts = async function (req, res) {
       {
         $unwind: "$user",
       },
-      {
-        $addFields: {
-          user: "$user",
-        },
-      },
       { $sort: { _id: -1 } }, // Sorting by latest.
       {
         $facet: {
@@ -114,16 +109,11 @@ exports.getPromptRanking = async function (req, res) {
           ],
         },
       },
+      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+      { $sort: { arraySize: -1 } },
       {
         $unwind: "$user",
       },
-      {
-        $addFields: {
-          user: "$user",
-        },
-      },
-      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
-      { $sort: { arraySize: -1 } },
       {
         $facet: {
           metadata: [{ $count: "total" }, { $addFields: { page: page } }],
@@ -174,16 +164,11 @@ exports.getPrompts = async function (req, res) {
             ],
           },
         },
+        { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+        { $sort: { arraySize: -1 } },
         {
           $unwind: "$user",
         },
-        {
-          $addFields: {
-            user: "$user",
-          },
-        },
-        { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
-        { $sort: { arraySize: -1 } },
         {
           $facet: {
             metadata: [{ $count: "total" }, { $addFields: { page: page } }],
@@ -226,16 +211,11 @@ exports.getPrompts = async function (req, res) {
           ],
         },
       },
+      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+      { $sort: { arraySize: -1 } },
       {
         $unwind: "$user",
       },
-      {
-        $addFields: {
-          user: "$user",
-        },
-      },
-      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
-      { $sort: { arraySize: -1 } },
       {
         $facet: {
           metadata: [{ $count: "total" }, { $addFields: { page: page } }],

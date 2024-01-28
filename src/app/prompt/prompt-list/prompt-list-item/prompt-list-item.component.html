@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
   <a routerLink="{{ prompt._id }}">
     <div class="card-image">
       <img
@@ -12,6 +12,34 @@
       <h5 class="card-title">{{ prompt.name }}</h5>
       <h5 class="card-title"><small>プロンプト</small></h5>
       <br />
+    </div>
+  </a>
+</div> -->
+<div
+  class="card"
+  data-background="image"
+  style="background-image: url('assets/img/thumbnail/fortune-telling.png')"
+>
+  <a [routerLink]="['/prompt', prompt._id]">
+    <div class="card-body">
+      <h6 class="card-category"><i class="fa fa-newspaper-o"></i> 占い</h6>
+      <h5 class="card-title">{{ prompt.name }}</h5>
+      <h5 class="card-title"><small>プロンプト</small></h5>
+      <div class="card-footer">
+        <div class="author">
+          <img
+            src="assets/img/placeholder.png"
+            alt="..."
+            class="avatar img-raised"
+          />
+          <span>{{ prompt.user.name }}</span>
+        </div>
+        <br />
+        <div class="stats">
+          <i class="fa fa-heart" aria-hidden="true"></i>
+          {{ prompt.isBookmarkedFrom.length }}
+        </div>
+      </div>
     </div>
   </a>
 </div>

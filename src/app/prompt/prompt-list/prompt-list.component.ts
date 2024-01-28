@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Prompt } from '../shared/prompt.model';
-import { PromptService } from '../shared/prompt.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prompt-list',
@@ -15,18 +14,11 @@ export class PromptListComponent implements OnInit, OnDestroy {
   pageSize: number = 40; // Displaying contents per page.
   pageCollectionSize: number = 1;
 
-  constructor(
-    private promptService: PromptService,
-    public auth: MyOriginAuthService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(public auth: MyOriginAuthService, private router: Router) {}
 
   ngOnInit() {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
-
-    this.getPrompts();
   }
 
   ngOnDestroy() {
@@ -37,33 +29,7 @@ export class PromptListComponent implements OnInit, OnDestroy {
     }
   }
 
-  getPrompts() {
-    this.route.queryParams.subscribe((keywords) => {
-      this.promptService
-        .getPrompts(keywords, this.pageIndex, this.pageSize)
-        .subscribe(
-          (result) => {
-            this.prompts = result[0].foundPrompts;
-            this.pageCollectionSize = result[0].metadata[0].total;
-          },
-          (err) => {
-            console.error(err);
-          }
-        );
-    });
-  }
-
   filterByName(keywords: string) {
-    this.router.navigate(['/prompt'], {
-      queryParams: {
-        keywords,
-      },
-      queryParamsHandling: 'merge', // Preserve current queryParams
-    });
-  }
-
-  pageChange() {
-    this.prompts = [];
-    this.getPrompts();
+    this.router.navigate(['/prompt/search', { keywords: keywords }]);
   }
 }

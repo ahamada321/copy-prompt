@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PromptService } from 'src/app/prompt/shared/prompt.service';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   templateUrl: './user-mypage-myprompt.component.html',
   styleUrls: ['./user-mypage-myprompt.component.scss'],
 })
-export class UserMypageMypromptComponent implements OnInit {
+export class UserMypageMypromptComponent implements OnInit, OnDestroy {
   prompts: Prompt[] = [];
   promptDeleteIndex!: number;
 
@@ -25,6 +25,13 @@ export class UserMypageMypromptComponent implements OnInit {
 
   ngOnInit() {
     this.getOwnerPrompts();
+  }
+
+  ngOnDestroy() {
+    let navbar = document.getElementsByTagName('nav')[0];
+    if (navbar.classList.contains('nav-up')) {
+      navbar.classList.remove('nav-up');
+    }
   }
 
   onDelete(promptId: any) {

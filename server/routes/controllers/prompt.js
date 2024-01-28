@@ -136,25 +136,28 @@ exports.getPrompts = async function (req, res) {
   }
 };
 
-exports.searchPrompts = function (req, res) {
+exports.searchPrompts = async function (req, res) {
   const { searchWords } = req.params;
+  const regexPatterns = searchWords
+    .split(/\s+/)
+    .map((word) => new RegExp(word, "i"));
 
-  Prompt.aggregate(
-    [
+  try {
+    const foundPrompts = await Prompt.aggregate([
       {
         $match: {
-          name: {
-            $regex: searchWords,
-            $options: "i",
-          },
+          $or: [
+            { name: { $in: regexPatterns } },
+            { description: { $in: regexPatterns } },
+          ],
         },
       },
       { $sort: { createdAt: -1 } },
-    ],
-    function (err, foundPrompts) {
-      return res.json(foundPrompts);
-    }
-  );
+    ]);
+    return res.json(foundPrompts);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
 };
 
 exports.getOwnerPrompts = async function (req, res) {

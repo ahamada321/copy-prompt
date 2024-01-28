@@ -11,14 +11,31 @@ export class PromptService {
     return this.http.get('/api/v1/prompts/' + promptId);
   }
 
+  public getLatestPrompts(
+    pageIndex: number,
+    pageSize: number
+  ): Observable<any> {
+    return this.http.get(
+      `/api/v1/prompts/latest?page=${pageIndex}&limit=${pageSize}`
+    );
+  }
+
+  public getPromptRanking(
+    pageIndex: number,
+    pageSize: number
+  ): Observable<any> {
+    return this.http.get(
+      `/api/v1/prompts/ranking?page=${pageIndex}&limit=${pageSize}`
+    );
+  }
+
   public getPrompts(
     keywords: any,
     pageIndex: number,
     pageSize: number
   ): Observable<any> {
-    return this.http.post(
-      `/api/v1/prompts?page=${pageIndex}&limit=${pageSize}`,
-      keywords
+    return this.http.get(
+      `/api/v1/prompts?keywords=${keywords}&page=${pageIndex}&limit=${pageSize}`
     );
   }
 

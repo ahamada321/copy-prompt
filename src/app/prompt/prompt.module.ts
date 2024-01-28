@@ -31,6 +31,7 @@ import { QuillModule } from 'ngx-quill';
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PromptListLatestComponent } from './prompt-list/prompt-list-latest/prompt-list-latest.component';
 import { PromptListRankingComponent } from './prompt-list/prompt-list-ranking/prompt-list-ranking.component';
+import { PromptSearchComponent } from './prompt-search/prompt-search.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
     component: PromptComponent,
     children: [
       { path: '', component: PromptListComponent },
+      { path: 'search', component: PromptSearchComponent },
       { path: 'new', component: PromptNewComponent, canActivate: [AuthGuard] },
       {
         path: 'edit/:promptId',
@@ -56,6 +58,7 @@ const routes: Routes = [
     PromptListItemComponent,
     PromptListLatestComponent,
     PromptListRankingComponent,
+    PromptSearchComponent,
     PromptDetailComponent,
     PromptNewComponent,
     PromptEditComponent,

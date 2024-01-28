@@ -23,18 +23,125 @@ exports.getPromptById = async function (req, res) {
   }
 };
 
-exports.getPromptsTotal = function (req, res) {
-  Prompt.countDocuments({}, function (err, total) {
-    if (err) {
-      return res.status(422).send({ errors: normalizeErrors(err.errors) });
-    }
-    return res.json(total);
-  });
+exports.getLatestPrompts = async function (req, res) {
+  const { page, limit } = req.query;
+
+  if (!page || !limit) {
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Data missing!",
+          detail: "ページリミット情報が取得できませんでした。",
+        },
+      ],
+    });
+  }
+
+  try {
+    const result = await Prompt.aggregate([
+      { $match: { isShared: true } },
+      {
+        $lookup: {
+          from: "users", // 結合するコレクション
+          localField: "user", // rentalsコレクションのフィールド
+          foreignField: "_id", // usersコレクションのフィールド
+          as: "user", // 結果を格納するフィールド名
+          pipeline: [
+            {
+              $project: {
+                email: 0,
+                password: 0, // パスワードフィールドを除外
+              },
+            },
+          ],
+        },
+      },
+      {
+        $unwind: "$user",
+      },
+      {
+        $addFields: {
+          user: "$user",
+        },
+      },
+      { $sort: { _id: -1 } }, // Sorting by latest.
+      {
+        $facet: {
+          metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+          foundPrompts: [
+            { $skip: (page - 1) * limit },
+            { $limit: Number(limit) },
+          ],
+        },
+      },
+    ]);
+    return res.json(result);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+exports.getPromptRanking = async function (req, res) {
+  const { page, limit } = req.query;
+
+  if (!page || !limit) {
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Data missing!",
+          detail: "ページリミット情報が取得できませんでした。",
+        },
+      ],
+    });
+  }
+
+  try {
+    const result = await Prompt.aggregate([
+      { $match: { isShared: true } },
+      {
+        $lookup: {
+          from: "users", // 結合するコレクション
+          localField: "user", // rentalsコレクションのフィールド
+          foreignField: "_id", // usersコレクションのフィールド
+          as: "user", // 結果を格納するフィールド名
+          pipeline: [
+            {
+              $project: {
+                email: 0,
+                password: 0, // パスワードフィールドを除外
+              },
+            },
+          ],
+        },
+      },
+      {
+        $unwind: "$user",
+      },
+      {
+        $addFields: {
+          user: "$user",
+        },
+      },
+      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+      { $sort: { arraySize: -1 } },
+      {
+        $facet: {
+          metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+          foundPrompts: [
+            { $skip: (page - 1) * limit },
+            { $limit: Number(limit) },
+          ],
+        },
+      },
+    ]);
+    return res.json(result);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
 };
 
 exports.getPrompts = async function (req, res) {
-  const { page, limit } = req.query;
-  const { keywords } = req.body;
+  const { keywords, page, limit } = req.query;
 
   if (!page || !limit) {
     return res.status(422).send({
@@ -51,6 +158,32 @@ exports.getPrompts = async function (req, res) {
     if (!keywords) {
       const result = await Prompt.aggregate([
         { $match: { isShared: true } },
+        {
+          $lookup: {
+            from: "users", // 結合するコレクション
+            localField: "user", // rentalsコレクションのフィールド
+            foreignField: "_id", // usersコレクションのフィールド
+            as: "user", // 結果を格納するフィールド名
+            pipeline: [
+              {
+                $project: {
+                  email: 0,
+                  password: 0, // パスワードフィールドを除外
+                },
+              },
+            ],
+          },
+        },
+        {
+          $unwind: "$user",
+        },
+        {
+          $addFields: {
+            user: "$user",
+          },
+        },
+        { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+        { $sort: { arraySize: -1 } },
         {
           $facet: {
             metadata: [{ $count: "total" }, { $addFields: { page: page } }],
@@ -77,6 +210,32 @@ exports.getPrompts = async function (req, res) {
           ],
         },
       },
+      {
+        $lookup: {
+          from: "users", // 結合するコレクション
+          localField: "user", // rentalsコレクションのフィールド
+          foreignField: "_id", // usersコレクションのフィールド
+          as: "user", // 結果を格納するフィールド名
+          pipeline: [
+            {
+              $project: {
+                email: 0,
+                password: 0, // パスワードフィールドを除外
+              },
+            },
+          ],
+        },
+      },
+      {
+        $unwind: "$user",
+      },
+      {
+        $addFields: {
+          user: "$user",
+        },
+      },
+      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+      { $sort: { arraySize: -1 } },
       {
         $facet: {
           metadata: [{ $count: "total" }, { $addFields: { page: page } }],

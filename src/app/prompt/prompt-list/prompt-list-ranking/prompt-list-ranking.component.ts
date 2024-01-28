@@ -23,13 +23,13 @@ export class PromptListRankingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getPrompts();
+    this.getPromptRanking();
   }
 
-  getPrompts() {
+  getPromptRanking() {
     this.route.queryParams.subscribe((keywords) => {
       this.promptService
-        .getPrompts(keywords, this.pageIndex, this.pageSize)
+        .getPromptRanking(this.pageIndex, this.pageSize)
         .subscribe(
           (result) => {
             this.prompts = result[0].foundPrompts;
@@ -44,17 +44,8 @@ export class PromptListRankingComponent implements OnInit {
     });
   }
 
-  filterByName(keywords: string) {
-    this.router.navigate(['/prompt'], {
-      queryParams: {
-        keywords,
-      },
-      queryParamsHandling: 'merge', // Preserve current queryParams
-    });
-  }
-
   pageChange() {
     this.prompts = [];
-    this.getPrompts();
+    this.getPromptRanking();
   }
 }

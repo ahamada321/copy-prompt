@@ -34,7 +34,7 @@ exports.getPromptsTotal = function (req, res) {
 
 exports.getPrompts = async function (req, res) {
   const { page, limit } = req.query;
-  const { selectedCategory, keywords } = req.body;
+  const { keywords } = req.body;
 
   if (!page || !limit) {
     return res.status(422).send({
@@ -49,112 +49,45 @@ exports.getPrompts = async function (req, res) {
 
   try {
     if (!keywords) {
-      if (!selectedCategory) {
-        const result = await Prompt.aggregate([
-          { $match: { isShared: true } },
-          {
-            $facet: {
-              metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-              foundPrompts: [
-                { $skip: (page - 1) * limit },
-                { $limit: Number(limit) },
-              ],
-            },
+      const result = await Prompt.aggregate([
+        { $match: { isShared: true } },
+        {
+          $facet: {
+            metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+            foundPrompts: [
+              { $skip: (page - 1) * limit },
+              { $limit: Number(limit) },
+            ],
           },
-        ]);
-        return res.json(result);
-      } else {
-        const result = await Prompt.aggregate([
-          {
-            $match: {
-              isShared: true,
-              selectedCategory: { $in: selectedCategory },
-            },
-          },
-          {
-            $facet: {
-              metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-              foundPrompts: [
-                { $skip: (page - 1) * limit },
-                { $limit: Number(limit) },
-              ],
-            },
-          },
-        ]);
-        return res.json(result);
-      }
-    } else {
-      if (!selectedCategory) {
-        const result = await Prompt.aggregate([
-          {
-            $match: {
-              isShared: true,
-              name: {
-                $regex: name,
-                $options: "i",
-              },
-            },
-          },
-          {
-            $facet: {
-              metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-              foundPrompts: [
-                { $skip: (page - 1) * limit },
-                { $limit: Number(limit) },
-              ],
-            },
-          },
-        ]);
-        return res.json(result);
-      } else {
-        const result = await Prompt.aggregate([
-          {
-            $match: {
-              isShared: true,
-              selectedCategory: { $in: selectedCategory },
-              name: {
-                $regex: name,
-                $options: "i",
-              },
-            },
-          },
-          {
-            $facet: {
-              metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-              foundPrompts: [
-                { $skip: (page - 1) * limit },
-                { $limit: Number(limit) },
-              ],
-            },
-          },
-        ]);
-        return res.json(result);
-      }
+        },
+      ]);
+      return res.json(result);
     }
-  } catch (err) {
-    return res.status(422).send({ errors: normalizeErrors(err.errors) });
-  }
-};
 
-exports.searchPrompts = async function (req, res) {
-  const { searchWords } = req.params;
-  const regexPatterns = searchWords
-    .split(/\s+/)
-    .map((word) => new RegExp(word, "i"));
-
-  try {
-    const foundPrompts = await Prompt.aggregate([
+    const regexPatterns = keywords
+      .split(/\s+/)
+      .map((word) => new RegExp(word, "i"));
+    const result = await Prompt.aggregate([
       {
         $match: {
+          isShared: true,
           $or: [
             { name: { $in: regexPatterns } },
             { description: { $in: regexPatterns } },
           ],
         },
       },
-      { $sort: { createdAt: -1 } },
+      {
+        $facet: {
+          metadata: [{ $count: "total" }, { $addFields: { page: page } }],
+          foundPrompts: [
+            { $skip: (page - 1) * limit },
+            { $limit: Number(limit) },
+          ],
+        },
+      },
     ]);
-    return res.json(foundPrompts);
+    return res.json(result);
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
   }

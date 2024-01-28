@@ -44,7 +44,9 @@ export class PromptListComponent implements OnInit, OnDestroy {
         .subscribe(
           (result) => {
             this.prompts = result[0].foundPrompts;
-            this.pageCollectionSize = result[0].metadata[0].total;
+            if (this.prompts.length > 0) {
+              this.pageCollectionSize = result[0].metadata[0].total;
+            }
           },
           (err) => {
             console.error(err);

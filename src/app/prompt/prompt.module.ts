@@ -29,6 +29,8 @@ import { PromptService } from './shared/prompt.service';
 import { SearchbarModule } from '../shared/searchbar/searchbar.module';
 import { QuillModule } from 'ngx-quill';
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
+import { PromptListLatestComponent } from './prompt-list/prompt-list-latest/prompt-list-latest.component';
+import { PromptListRankingComponent } from './prompt-list/prompt-list-ranking/prompt-list-ranking.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,8 @@ const routes: Routes = [
     PromptComponent,
     PromptListComponent,
     PromptListItemComponent,
+    PromptListLatestComponent,
+    PromptListRankingComponent,
     PromptDetailComponent,
     PromptNewComponent,
     PromptEditComponent,

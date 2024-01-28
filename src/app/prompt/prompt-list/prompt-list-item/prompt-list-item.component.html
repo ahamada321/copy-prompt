@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
   <a routerLink="{{ prompt._id }}">
     <div class="card-image">
       <img
@@ -12,6 +12,37 @@
       <h5 class="card-title">{{ prompt.name }}</h5>
       <h5 class="card-title"><small>プロンプト</small></h5>
       <br />
+    </div>
+  </a>
+</div> -->
+<div
+  class="card"
+  data-background="image"
+  style="background-image: url('assets/img/thumbnail/fortune-telling.png')"
+>
+  <a routerLink="{{ prompt._id }}">
+    <div class="card-body">
+      <h6 class="card-category"><i class="fa fa-newspaper-o"></i> 占い</h6>
+      <a href="javascript:void(0)">
+        <h5 class="card-title">{{ prompt.name }}</h5>
+        <h5 class="card-title"><small>プロンプト</small></h5>
+      </a>
+      <div class="card-footer">
+        <div class="author">
+          <a href="javascript:void(0)">
+            <img
+              src="assets/img/placeholder.png"
+              alt="..."
+              class="avatar img-raised"
+            />
+            <span>作者のノノノノのノンおん</span>
+          </a>
+        </div>
+        <br />
+        <div class="stats">
+          <i class="fa fa-heart" aria-hidden="true"></i> 578
+        </div>
+      </div>
     </div>
   </a>
 </div>

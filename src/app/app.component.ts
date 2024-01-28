@@ -22,6 +22,7 @@ var navbarHeight = 0;
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  titlee!: string; // Added by Hamada
   private _router!: Subscription;
   private lastPoppedUrl?: string;
   private yScrollStack: number[] = [];
@@ -90,6 +91,16 @@ export class AppComponent implements OnInit {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
         this.navbar.sidebarClose();
+
+        // Below code is using at Bottom Nav bar.
+        if (event instanceof NavigationEnd) {
+          const locationPath = this.location.prepareExternalUrl(
+            this.location.path()
+          );
+          this.titlee = locationPath.slice(1);
+          console.log(this.titlee);
+        }
+        // Bottom Nab bar control end.
 
         this.renderer.listen('window', 'scroll', (event) => {
           const number = window.scrollY;

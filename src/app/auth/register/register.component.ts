@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   showSwalSuccess() {
     Swal.fire({
       icon: 'success',
-      title: 'メンバー登録完了',
+      title: '登録完了',
       text: '無事にログイン出来るようになりました！',
       customClass: {
         confirmButton: 'btn btn-primary btn-lg',

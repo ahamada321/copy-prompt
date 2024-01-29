@@ -40,6 +40,7 @@ exports.getLatestPrompts = async function (req, res) {
   try {
     const result = await Prompt.aggregate([
       { $match: { isShared: true } },
+      { $sort: { _id: -1 } }, // Sorting by latest.
       {
         $lookup: {
           from: "users", // 結合するコレクション
@@ -59,7 +60,6 @@ exports.getLatestPrompts = async function (req, res) {
       {
         $unwind: "$user",
       },
-      { $sort: { _id: -1 } }, // Sorting by latest.
       {
         $facet: {
           metadata: [{ $count: "total" }, { $addFields: { page: page } }],
@@ -93,6 +93,8 @@ exports.getPromptRanking = async function (req, res) {
   try {
     const result = await Prompt.aggregate([
       { $match: { isShared: true } },
+      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+      { $sort: { arraySize: -1 } },
       {
         $lookup: {
           from: "users", // 結合するコレクション
@@ -109,8 +111,6 @@ exports.getPromptRanking = async function (req, res) {
           ],
         },
       },
-      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
-      { $sort: { arraySize: -1 } },
       {
         $unwind: "$user",
       },
@@ -148,6 +148,8 @@ exports.getPrompts = async function (req, res) {
     if (!keywords) {
       const result = await Prompt.aggregate([
         { $match: { isShared: true } },
+        { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+        { $sort: { arraySize: -1 } },
         {
           $lookup: {
             from: "users", // 結合するコレクション
@@ -164,8 +166,6 @@ exports.getPrompts = async function (req, res) {
             ],
           },
         },
-        { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
-        { $sort: { arraySize: -1 } },
         {
           $unwind: "$user",
         },
@@ -195,6 +195,8 @@ exports.getPrompts = async function (req, res) {
           ],
         },
       },
+      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+      { $sort: { arraySize: -1 } },
       {
         $lookup: {
           from: "users", // 結合するコレクション
@@ -211,8 +213,6 @@ exports.getPrompts = async function (req, res) {
           ],
         },
       },
-      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
-      { $sort: { arraySize: -1 } },
       {
         $unwind: "$user",
       },

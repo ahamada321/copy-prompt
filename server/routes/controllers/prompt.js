@@ -152,7 +152,11 @@ exports.getPrompts = async function (req, res) {
     if (!keywords) {
       const result = await Prompt.aggregate([
         { $match: { isShared: true } },
-        { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+        {
+          $addFields: {
+            arraySize: { $size: { $ifNull: ["$isBookmarkedFrom", []] } },
+          },
+        },
         { $sort: { arraySize: -1 } },
         {
           $lookup: {
@@ -199,7 +203,11 @@ exports.getPrompts = async function (req, res) {
           ],
         },
       },
-      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+      {
+        $addFields: {
+          arraySize: { $size: { $ifNull: ["$isBookmarkedFrom", []] } },
+        },
+      },
       { $sort: { arraySize: -1 } },
       {
         $lookup: {

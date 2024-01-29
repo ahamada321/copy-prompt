@@ -93,27 +93,31 @@ exports.getPromptRanking = async function (req, res) {
   try {
     const result = await Prompt.aggregate([
       { $match: { isShared: true } },
-      { $addFields: { arraySize: { $size: "$isBookmarkedFrom" } } },
+      {
+        $addFields: {
+          arraySize: { $size: { $ifNull: ["$isBookmarkedFrom", []] } },
+        },
+      },
       { $sort: { arraySize: -1 } },
-      // {
-      //   $lookup: {
-      //     from: "users", // 結合するコレクション
-      //     localField: "user", // rentalsコレクションのフィールド
-      //     foreignField: "_id", // usersコレクションのフィールド
-      //     as: "user", // 結果を格納するフィールド名
-      //     pipeline: [
-      //       {
-      //         $project: {
-      //           email: 0,
-      //           password: 0, // パスワードフィールドを除外
-      //         },
-      //       },
-      //     ],
-      //   },
-      // },
-      // {
-      //   $unwind: "$user",
-      // },
+      {
+        $lookup: {
+          from: "users", // 結合するコレクション
+          localField: "user", // rentalsコレクションのフィールド
+          foreignField: "_id", // usersコレクションのフィールド
+          as: "user", // 結果を格納するフィールド名
+          pipeline: [
+            {
+              $project: {
+                email: 0,
+                password: 0, // パスワードフィールドを除外
+              },
+            },
+          ],
+        },
+      },
+      {
+        $unwind: "$user",
+      },
       {
         $facet: {
           metadata: [{ $count: "total" }, { $addFields: { page: page } }],

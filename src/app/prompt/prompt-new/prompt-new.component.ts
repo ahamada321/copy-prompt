@@ -38,7 +38,7 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     { id: 15, itemName: '生活・エンタメ' },
     { id: 16, itemName: 'その他' },
   ];
-  selectedItems: object[] = [];
+  selectedItems!: { id: number; itemName: string }[];
   dropdownSettings = {
     singleSelection: false,
     text: '複数選択できます',
@@ -78,8 +78,8 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   }
 
   onItemSelect(item: any) {
-    // Have to limit upto 3 items.
-    if (this.selectedItems.length > 3) {
+    // Have to limit upto 1 items.
+    if (this.selectedItems.length > 1) {
       this.selectedItems.pop();
     }
   }

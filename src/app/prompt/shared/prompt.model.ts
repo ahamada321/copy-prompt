@@ -11,7 +11,7 @@ export class Prompt {
   reasonOfBanned?: string;
 
   name!: string;
-  categories!: object[];
+  categories!: { id: number; itemName: string }[];
   description!: string;
   prompt!: string;
   image?: any;

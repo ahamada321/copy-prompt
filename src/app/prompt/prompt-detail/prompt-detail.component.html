@@ -3,9 +3,7 @@
     class="page-header page-header-s"
     [ngStyle]="{
       'background-image':
-        'url(' +
-        (prompt.image ? prompt.image : './assets/img/image_placeholder.jpg') +
-        ')'
+        'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
     }"
   >
     <div class="filter"></div>

@@ -30,6 +30,9 @@ export class PromptListComponent implements OnInit, OnDestroy {
   }
 
   filterByName(keywords: string) {
-    this.router.navigate(['/prompt/search', { keywords: keywords }]);
+    this.router.navigate([
+      '/prompt/search',
+      { keywords: keywords ? keywords : '' },
+    ]);
   }
 }

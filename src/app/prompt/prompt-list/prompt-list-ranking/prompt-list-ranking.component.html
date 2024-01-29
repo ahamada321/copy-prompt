@@ -8,15 +8,17 @@
       <div class="space-top"></div>
       <app-prompt-list-item [prompt]="prompt"> </app-prompt-list-item>
     </div>
-    <div class="col-md-2 ml-auto mr-auto">
+    <div class="col-md-3 col-xl-2 ml-auto mr-auto">
       <div class="space-top"></div>
-      <div class="card" data-color="orange">
-        <div class="card-body">
-          <div class="card-icon">
-            <i class="fa fa-angle-right"></i>
+      <a [routerLink]="['/prompt/search', { condition: 'ranking' }]">
+        <div class="card" data-color="orange">
+          <div class="card-body">
+            <div class="card-icon">
+              <i class="fa fa-angle-right"></i>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

@@ -1,13 +1,15 @@
 <h3>人気ランキング</h3>
 <div class="container">
-  <div class="space-top"></div>
   <div class="row">
-    <ng-container *ngFor="let prompt of prompts">
-      <div class="col-10 col-sm-5 col-md-5 col-xl-5">
-        <app-prompt-list-item [prompt]="prompt"> </app-prompt-list-item>
-      </div>
-    </ng-container>
+    <div
+      *ngFor="let prompt of prompts"
+      class="col-10 col-sm-5 col-md-5 col-xl-5"
+    >
+      <div class="space-top"></div>
+      <app-prompt-list-item [prompt]="prompt"> </app-prompt-list-item>
+    </div>
     <div class="col-md-2 ml-auto mr-auto">
+      <div class="space-top"></div>
       <div class="card" data-color="orange">
         <div class="card-body">
           <div class="card-icon">

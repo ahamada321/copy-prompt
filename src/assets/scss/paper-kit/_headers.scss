@@ -20,6 +20,9 @@
   &.page-header-xs {
     min-height: 40vh !important;
   }
+  &.page-header-xxs {
+    min-height: 25vh !important; // Added by Hamada
+  }
 
   .page-header-image {
     position: absolute;

@@ -3,41 +3,40 @@
   <div class="space-top"></div>
 </div> -->
 <div class="row">
-  <div
-    *ngFor="let history of histories; let i = index"
-    class="col-6 col-sm-4 col-md-3 col-xl-2"
-  >
+  <div *ngFor="let history of histories; let i = index" class="col-6 col-sm-4">
     <a routerLink="/prompt/{{ history._id }}">
-      <div class="card">
-        <div class="card-image">
-          <img
-            class="img"
-            [src]="
-              './assets/img/thumbnail/' + history.categories[0].id + '.jpg'
-            "
-          />
-        </div>
+      <div
+        class="card"
+        data-background="image"
+        [ngStyle]="{
+          'background-image':
+            'url(assets/img/thumbnail/' + history.categories[0].id + '.jpg)'
+        }"
+      >
         <div class="card-body">
-          <h5 class="card-title">
-            {{ history.name }}<br /><small>プロンプト</small>
-          </h5>
-          <div class="card-description">
-            <p>
-              <!-- <button
-              class="btn btn-primary btn-block btn-round"
-              routerLink="/prompt/edit/{{ history._id }}"
-            >
-              編集する
-            </button> -->
-            </p>
-            <p>
-              <!-- <button
-              class="btn btn-primary btn-link"
-              (click)="onDelete(history._id)"
-            >
-              <i class="nc-icon nc-box"></i>&nbsp; 削除
-            </button> -->
-            </p>
+          <h6 class="card-category">
+            <i class="fa fa-newspaper-o"></i>
+            {{ history.categories[0].itemName }}
+          </h6>
+          <h5 class="card-title">{{ history.name }}</h5>
+          <h5 class="card-title"><small>プロンプト</small></h5>
+        </div>
+        <div class="card-footer">
+          <div class="author">
+            <img
+              [src]="
+                history.user.image
+                  ? history.user.image
+                  : './assets/img/placeholder.png'
+              "
+              class="avatar img-raised"
+            />
+            <span>{{ history.user.name }}</span>
+          </div>
+          <br />
+          <div class="stats" *ngIf="history.isBookmarkedFrom">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            {{ history.isBookmarkedFrom.length }}
           </div>
         </div>
       </div>

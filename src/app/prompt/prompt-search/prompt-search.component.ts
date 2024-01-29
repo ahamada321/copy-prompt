@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class PromptSearchComponent implements OnInit, OnDestroy {
   keywords!: string;
+  condition!: string;
   prompts: Prompt[] = [];
   pageIndex: number = 1;
   pageSize: number = 30; // Displaying contents per page.
@@ -37,25 +38,6 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  getPrompts() {
-    this.route.params.subscribe((params) => {
-      this.keywords = params["keywords"];
-      this.promptService
-        .getPrompts(this.keywords, this.pageIndex, this.pageSize)
-        .subscribe(
-          (result) => {
-            this.prompts = result[0].foundPrompts;
-            if (this.prompts.length > 0) {
-              this.pageCollectionSize = result[0].metadata[0].total;
-            }
-          },
-          (err) => {
-            console.error(err);
-          }
-        );
-    });
-  }
-
   filterByName(keywords: string) {
     this.router.navigate(["/prompt/search", { keywords: keywords }]);
     this.getPrompts();
@@ -64,5 +46,65 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   pageChange() {
     this.prompts = [];
     this.getPrompts();
+  }
+
+  getPrompts() {
+    this.route.params.subscribe((params) => {
+      this.condition = params["condition"];
+      this.keywords = params["keywords"];
+
+      if (this.condition === "latest") {
+        this.getLatestPrompts();
+        return;
+      } else if (this.condition === "ranking") {
+        this.getPromptRanking();
+      } else {
+        this.promptService
+          .getPrompts(this.keywords, this.pageIndex, this.pageSize)
+          .subscribe(
+            (result) => {
+              this.prompts = result[0].foundPrompts;
+              if (this.prompts.length > 0) {
+                this.pageCollectionSize = result[0].metadata[0].total;
+              }
+            },
+            (err) => {
+              console.error(err);
+            }
+          );
+      }
+    });
+  }
+
+  private getLatestPrompts() {
+    this.promptService
+      .getLatestPrompts(this.pageIndex, this.pageSize)
+      .subscribe(
+        (result) => {
+          this.prompts = result[0].foundPrompts;
+          if (this.prompts.length > 0) {
+            this.pageCollectionSize = result[0].metadata[0].total;
+          }
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+  }
+
+  private getPromptRanking() {
+    this.promptService
+      .getPromptRanking(this.pageIndex, this.pageSize)
+      .subscribe(
+        (result) => {
+          this.prompts = result[0].foundPrompts;
+          if (this.prompts.length > 0) {
+            this.pageCollectionSize = result[0].metadata[0].total;
+          }
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
   }
 }

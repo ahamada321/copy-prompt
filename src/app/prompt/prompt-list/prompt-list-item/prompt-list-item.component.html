@@ -18,11 +18,16 @@
 <div
   class="card"
   data-background="image"
-  style="background-image: url('assets/img/thumbnail/fortune-telling.png');"
+  [ngStyle]="{
+    'background-image':
+      'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
+  }"
 >
   <a [routerLink]="['/prompt', prompt._id]">
     <div class="card-body">
-      <h6 class="card-category"><i class="fa fa-newspaper-o"></i> 占い</h6>
+      <h6 class="card-category">
+        <i class="fa fa-newspaper-o"></i> {{ prompt.categories[0].itemName }}
+      </h6>
       <h5 class="card-title">{{ prompt.name }}</h5>
       <h5 class="card-title"><small>プロンプト</small></h5>
       <div class="card-footer">

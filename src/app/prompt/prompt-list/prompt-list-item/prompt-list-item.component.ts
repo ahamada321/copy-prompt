@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { MyOriginAuthService } from "src/app/auth/shared/auth.service";
-import { Prompt } from "../../shared/prompt.model";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { LoginPopupComponent } from "src/app/auth/login-popup/login-popup.component";
+import { Component, OnInit, Input } from '@angular/core';
+import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
+import { Prompt } from '../../shared/prompt.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 
 @Component({
-  selector: "app-prompt-list-item",
-  templateUrl: "./prompt-list-item.component.html",
-  styleUrls: ["./prompt-list-item.component.scss"],
+  selector: 'app-prompt-list-item',
+  templateUrl: './prompt-list-item.component.html',
+  styleUrls: ['./prompt-list-item.component.scss'],
 })
 export class PromptListItemComponent implements OnInit {
   @Input() prompt!: Prompt;
@@ -20,6 +20,6 @@ export class PromptListItemComponent implements OnInit {
   ngOnInit() {}
 
   modalLoginOpen() {
-    this.modalService.open(LoginPopupComponent, { backdrop: "static" });
+    this.modalService.open(LoginPopupComponent, { backdrop: 'static' });
   }
 }

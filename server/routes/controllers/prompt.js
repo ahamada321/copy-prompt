@@ -111,9 +111,9 @@ exports.getPromptRanking = async function (req, res) {
           ],
         },
       },
-      {
-        $unwind: "$user",
-      },
+      // {
+      //   $unwind: "$user",
+      // },
       {
         $facet: {
           metadata: [{ $count: "total" }, { $addFields: { page: page } }],

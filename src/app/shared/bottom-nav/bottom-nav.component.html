@@ -1,15 +1,5 @@
 <div class="space-50"></div>
 <div class="bottom_nav text-center">
-  <ul *ngIf="!auth.isAuthenticated()" class="bottom_nav_ul">
-    <li class="bottom_nav_link">
-      <button
-        class="btn btn-primary btn-lg btn-round btn-wd"
-        (click)="modalLoginOpen()"
-      >
-        <i class="nc-icon nc-lock-circle-open"></i> ログインする
-      </button>
-    </li>
-  </ul>
   <ul *ngIf="auth.isAuthenticated()" class="bottom_nav_ul row">
     <li class="col-4">
       <a

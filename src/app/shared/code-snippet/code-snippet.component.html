@@ -4,12 +4,19 @@
       class="prettyprint"
     ><code class="blur no-copy">{{ prompt.prompt }}</code></pre>
     <button
-      class="btn btn-primary btn-round btn-lg btn-wd"
+      class="btn btn-primary btn-round btn-lg btn-wd btn-login"
       (click)="modalLoginOpen()"
     >
       <i class="nc-icon nc-lock-circle-open"></i> ログインしてコピーする
     </button>
+    <a
+      class="btn btn-primary btn-link btn-lg btn-wd"
+      [routerLink]="['/register']"
+    >
+      <i class="nc-icon nc-lock-circle-open"></i> 無料会員登録する
+    </a>
   </div>
+
   <div *ngIf="auth.isAuthenticated()">
     <pre class="prettyprint"><code>{{ prompt.prompt }}</code></pre>
     <button

@@ -9,7 +9,14 @@
     >
       <i class="nc-icon nc-lock-circle-open"></i> ログインしてコピーする
     </button>
+    <a
+      class="btn btn-primary btn-link btn-lg btn-wd"
+      [routerLink]="['/register']"
+    >
+      <i class="nc-icon nc-lock-circle-open"></i> 無料会員登録する
+    </a>
   </div>
+
   <div *ngIf="auth.isAuthenticated()">
     <pre class="prettyprint"><code>{{ prompt.prompt }}</code></pre>
     <button

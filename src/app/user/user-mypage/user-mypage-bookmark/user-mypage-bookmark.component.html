@@ -13,9 +13,7 @@
           <img
             class="img"
             [src]="
-              bookmark.image
-                ? bookmark.image
-                : './assets/img/image_placeholder.jpg'
+              './assets/img/thumbnail/' + bookmark.categories[0].id + '.jpg'
             "
           />
         </div>

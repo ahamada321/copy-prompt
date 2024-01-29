@@ -13,9 +13,7 @@
           <img
             class="img"
             [src]="
-              history.image
-                ? history.image
-                : './assets/img/image_placeholder.jpg'
+              './assets/img/thumbnail/' + history.categories[0].id + '.jpg'
             "
           />
         </div>

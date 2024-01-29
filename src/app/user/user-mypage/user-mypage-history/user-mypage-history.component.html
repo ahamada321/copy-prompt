@@ -1,7 +1,3 @@
-<!-- <div class="tim-title">
-  <h2>BBBBB</h2>
-  <div class="space-top"></div>
-</div> -->
 <div class="row">
   <div *ngFor="let history of histories; let i = index" class="col-6 col-sm-4">
     <a routerLink="/prompt/{{ history._id }}">
@@ -20,23 +16,23 @@
           </h6>
           <h5 class="card-title">{{ history.name }}</h5>
           <h5 class="card-title"><small>プロンプト</small></h5>
-        </div>
-        <div class="card-footer">
-          <div class="author">
-            <img
-              [src]="
-                history.user.image
-                  ? history.user.image
-                  : './assets/img/placeholder.png'
-              "
-              class="avatar img-raised"
-            />
-            <span>{{ history.user.name }}</span>
-          </div>
-          <br />
-          <div class="stats" *ngIf="history.isBookmarkedFrom">
-            <i class="fa fa-heart" aria-hidden="true"></i>
-            {{ history.isBookmarkedFrom.length }}
+          <div class="card-footer">
+            <div class="author">
+              <img
+                [src]="
+                  history.user.image
+                    ? history.user.image
+                    : './assets/img/placeholder.png'
+                "
+                class="avatar img-raised"
+              />
+              <span>{{ history.user.name }}</span>
+            </div>
+            <br />
+            <div class="stats" *ngIf="history.isBookmarkedFrom">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              {{ history.isBookmarkedFrom.length }}
+            </div>
           </div>
         </div>
       </div>

@@ -16,24 +16,24 @@
           </h6>
           <h5 class="card-title">{{ bookmark.name }}</h5>
           <h5 class="card-title"><small>プロンプト</small></h5>
-        </div>
-        <div class="card-footer">
-          <div class="author">
-            <img
-              [src]="
-                bookmark.user.image
-                  ? bookmark.user.image
-                  : './assets/img/placeholder.png'
-              "
-              class="avatar img-raised"
-            />
+          <div class="card-footer">
+            <div class="author">
+              <img
+                [src]="
+                  bookmark.user.image
+                    ? bookmark.user.image
+                    : './assets/img/placeholder.png'
+                "
+                class="avatar img-raised"
+              />
 
-            <span>{{ bookmark.user.name }}</span>
-          </div>
-          <br />
-          <div class="stats" *ngIf="bookmark.isBookmarkedFrom">
-            <i class="fa fa-heart" aria-hidden="true"></i>
-            {{ bookmark.isBookmarkedFrom.length }}
+              <span>{{ bookmark.user.name }}</span>
+            </div>
+            <br />
+            <div class="stats" *ngIf="bookmark.isBookmarkedFrom">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              {{ bookmark.isBookmarkedFrom.length }}
+            </div>
           </div>
         </div>
       </div>

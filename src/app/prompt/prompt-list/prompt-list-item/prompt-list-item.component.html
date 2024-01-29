@@ -18,7 +18,7 @@
 <div
   class="card"
   data-background="image"
-  style="background-image: url('assets/img/thumbnail/fortune-telling.png')"
+  style="background-image: url('assets/img/thumbnail/fortune-telling.png');"
 >
   <a [routerLink]="['/prompt', prompt._id]">
     <div class="card-body">
@@ -35,7 +35,7 @@
           <span>{{ prompt.user.name }}</span>
         </div>
         <br />
-        <div class="stats">
+        <div class="stats" *ngIf="prompt.isBookmarkedFrom">
           <i class="fa fa-heart" aria-hidden="true"></i>
           {{ prompt.isBookmarkedFrom.length }}
         </div>

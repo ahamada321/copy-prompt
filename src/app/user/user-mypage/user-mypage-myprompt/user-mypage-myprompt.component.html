@@ -8,84 +8,58 @@
 <div class="space-top"></div>
 <div *ngIf="prompts && prompts.length > 0">
   <div class="row">
-    <div
-      *ngFor="let prompt of prompts; let i = index"
-      class="col-6 col-sm-4 col-md-3 col-xl-2"
-    >
-      <div *ngIf="!prompt.isShared" class="card" data-background="image">
-        <div class="card-image">
-          <a routerLink="/prompt/{{ prompt._id }}">
-            <img
-              class="img"
-              [src]="
-                prompt.image
-                  ? prompt.image
-                  : './assets/img/image_placeholder.jpg'
-              "
-            />
-          </a>
-        </div>
+    <div *ngFor="let prompt of prompts" class="col-6 col-sm-4">
+      <div
+        *ngIf="!prompt.isShared"
+        class="card unpublished"
+        data-background="image"
+        [ngStyle]="{
+          'background-image': 'url(assets/img/image_placeholder.jpg'
+        }"
+      >
         <div class="card-body">
-          <h5 class="card-title">
-            {{ prompt.name }}<br /><small>プロンプト</small>
-          </h5>
-          <div class="card-description">
-            <p>
-              <button
-                class="btn btn-primary btn-block btn-round"
-                routerLink="/prompt/edit/{{ prompt._id }}"
-              >
-                編集する
-              </button>
-            </p>
-            <!-- <p>
-              <button
-                class="btn btn-primary btn-link"
-                (click)="onDelete(prompt._id)"
-              >
-                <i class="nc-icon nc-box"></i>&nbsp; 削除
-              </button>
-            </p> -->
-          </div>
+          <h6 class="card-category">
+            <i class="fa fa-newspaper-o"></i>
+            {{ prompt.categories[0].itemName }}
+          </h6>
+          <h5 class="card-title">{{ prompt.name }}</h5>
+          <h5 class="card-title"><small>プロンプト</small></h5>
+          <div class="space-top"></div>
+          <a
+            class="btn btn-outline-neutral btn-round"
+            routerLink="/prompt/edit/{{ prompt._id }}"
+          >
+            <i class="fa fa-pencil" aria-hidden="true"></i> 編集して公開する
+          </a>
         </div>
       </div>
 
-      <div *ngIf="prompt.isShared" class="card">
-        <div class="card-image">
-          <a routerLink="/prompt/{{ prompt._id }}">
-            <img
-              class="img"
-              [src]="
-                prompt.image
-                  ? prompt.image
-                  : './assets/img/image_placeholder.jpg'
-              "
-            />
-          </a>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">
-            {{ prompt.name }}<br /><small>プロンプト</small>
-          </h5>
-          <div class="card-description">
-            <p>
-              <button
-                class="btn btn-primary btn-block btn-round"
-                routerLink="/prompt/edit/{{ prompt._id }}"
-              >
-                編集する
-              </button>
-            </p>
-            <!-- <p>
-              <button
-                class="btn btn-danger btn-link"
-                (click)="onDelete(prompt._id)"
-              >
-                <i class="nc-icon nc-box"></i>&nbsp; 削除
-              </button>
-            </p> -->
+      <div
+        *ngIf="prompt.isShared"
+        class="card"
+        data-background="image"
+        [ngStyle]="{
+          'background-image':
+            'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
+        }"
+      >
+        <a routerLink="/prompt/{{ prompt._id }}">
+          <div class="card-body">
+            <h6 class="card-category">
+              <i class="fa fa-newspaper-o"></i>
+              {{ prompt.categories[0].itemName }}
+            </h6>
+            <h5 class="card-title">{{ prompt.name }}</h5>
+            <h5 class="card-title"><small>プロンプト</small></h5>
+            <div class="space-top"></div>
+            <a
+              class="btn btn-outline-neutral btn-round"
+              routerLink="/prompt/edit/{{ prompt._id }}"
+            >
+              <i class="fa fa-pencil" aria-hidden="true"></i> 編集する
+            </a>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

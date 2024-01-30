@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-mypage-myprompt.component.scss'],
 })
 export class UserMypageMypromptComponent implements OnInit, OnDestroy {
-  prompts: Prompt[] = [];
+  prompts!: Prompt[];
   promptDeleteIndex!: number;
 
   pageIndex: number = 1;

@@ -8,9 +8,10 @@ exports.getBookmarks = async function (req, res) {
   const user = res.locals.user;
 
   try {
-    const foundUser = await User.findOne({ _id: user._id }).populate(
-      "bookmarks"
-    );
+    const foundUser = await User.findOne({ _id: user._id }).populate({
+      path: "bookmarks",
+      populate: { path: "user", select: "-email -password" },
+    });
     return res.json(foundUser.bookmarks);
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
@@ -21,9 +22,10 @@ exports.getHistories = async function (req, res) {
   const user = res.locals.user;
 
   try {
-    const foundUser = await User.findOne({ _id: user._id }).populate(
-      "histories"
-    );
+    const foundUser = await User.findOne({ _id: user._id }).populate({
+      path: "histories",
+      populate: { path: "user", select: "-email -password" },
+    });
     return res.json(foundUser.histories);
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });

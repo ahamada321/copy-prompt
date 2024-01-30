@@ -33,8 +33,11 @@
       <div class="card-footer">
         <div class="author">
           <img
-            src="assets/img/placeholder.png"
-            alt="..."
+            [src]="
+              prompt.user.image
+                ? prompt.user.image
+                : './assets/img/placeholder.png'
+            "
             class="avatar img-raised"
           />
           <span>{{ prompt.user.name }}</span>

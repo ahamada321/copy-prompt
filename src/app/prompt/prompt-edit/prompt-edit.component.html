@@ -1,12 +1,12 @@
 <div class="wrapper" *ngIf="foundPrompt">
   <div
-    class="page-header page-header-small"
+    class="page-header page-header-xxs"
     data-parallax="true"
     [ngStyle]="{
       'background-image':
         'url(' +
-        (foundPrompt.image
-          ? foundPrompt.image
+        (selectedItems && selectedItems.length > 0
+          ? './assets/img/thumbnail/' + selectedItems[0].id + '.jpg'
           : './assets/img/image_placeholder.jpg') +
         ')'
     }"
@@ -104,6 +104,7 @@
                       promptForm.valid &&
                       (promptForm.dirty || !foundPrompt.isShared) &&
                       !isClicked &&
+                      selectedItems &&
                       selectedItems.length > 0
                     )
                   "

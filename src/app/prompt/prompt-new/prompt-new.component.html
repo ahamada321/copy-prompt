@@ -1,12 +1,12 @@
 <div class="wrapper">
   <div
-    class="page-header page-header-small"
+    class="page-header page-header-xxs"
     data-parallax="true"
     [ngStyle]="{
       'background-image':
         'url(' +
-        (newPrompt.image
-          ? newPrompt.image
+        (selectedItems && selectedItems.length > 0
+          ? './assets/img/thumbnail/' + selectedItems[0].id + '.jpg'
           : './assets/img/image_placeholder.jpg') +
         ')'
     }"
@@ -103,7 +103,7 @@
                     !(
                       promptForm.form.valid &&
                       !isClicked &&
-                      selectedItems.length > 0
+                      selectedItems && selectedItems.length > 0
                     )
                   "
                   (click)="createPrompt()"

@@ -11,7 +11,6 @@ import { Location, PopStateEvent } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { filter, Subscription } from 'rxjs';
 
-var didScroll;
 var lastScrollTop = 0;
 var delta = 5;
 var navbarHeight = 0;
@@ -70,22 +69,21 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     var navbar: HTMLElement =
       this.element.nativeElement.children[0].children[0];
-    if (this.location.path() !== '/sections') {
-      this.location.subscribe((ev: PopStateEvent) => {
-        this.lastPoppedUrl = ev.url;
-      });
-      this.router.events.subscribe((event: any) => {
-        if (event instanceof NavigationStart) {
-          if (event.url != this.lastPoppedUrl)
-            this.yScrollStack.push(window.scrollY);
-        } else if (event instanceof NavigationEnd) {
-          if (event.url == this.lastPoppedUrl) {
-            this.lastPoppedUrl = undefined;
-            window.scrollTo(0, this.yScrollStack.pop()!);
-          } else window.scrollTo(0, 0);
-        }
-      });
-    }
+
+    this.location.subscribe((ev: PopStateEvent) => {
+      this.lastPoppedUrl = ev.url;
+    });
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationStart) {
+        if (event.url != this.lastPoppedUrl)
+          this.yScrollStack.push(window.scrollY);
+      } else if (event instanceof NavigationEnd) {
+        if (event.url == this.lastPoppedUrl) {
+          this.lastPoppedUrl = undefined;
+          window.scrollTo(0, this.yScrollStack.pop()!);
+        } else window.scrollTo(0, 0);
+      }
+    });
 
     this._router = this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -98,7 +96,6 @@ export class AppComponent implements OnInit {
             this.location.path()
           );
           this.titlee = locationPath.slice(1);
-          console.log(this.titlee);
         }
         // Bottom Nab bar control end.
 
@@ -106,25 +103,18 @@ export class AppComponent implements OnInit {
           const number = window.scrollY;
           var _locationSections = this.location.path();
           _locationSections = _locationSections.split('#')[0];
-          if (_locationSections !== '/sections') {
-            var _locationExamples = this.location.path();
-            _locationExamples = _locationExamples.split('/')[2];
-            if (number > 150 || window.pageYOffset > 150) {
-              // add logic
-              navbar.classList.remove('navbar-transparent');
-            } else if (
-              _locationExamples !== 'addproduct' &&
-              _locationExamples !== 'blogposts' &&
-              _locationExamples !== 'discover' &&
-              _locationExamples !== 'contactus' &&
-              _locationExamples !== 'login' &&
-              _locationExamples !== 'register' &&
-              _locationExamples !== 'search' &&
-              this.location.path() !== '/nucleoicons'
-            ) {
-              // remove logic
-              navbar.classList.add('navbar-transparent');
-            }
+
+          var _locationExamples = this.location.path();
+          _locationExamples = _locationExamples.split('/')[2];
+          if (number > 150 || window.pageYOffset > 150) {
+            // add logic
+            navbar.classList.remove('navbar-transparent');
+          } else if (
+            _locationExamples !== 'contactus' &&
+            _locationExamples !== 'register'
+          ) {
+            // remove logic
+            navbar.classList.add('navbar-transparent');
           }
         });
       });
@@ -142,15 +132,15 @@ export class AppComponent implements OnInit {
     }
     this.hasScrolled();
   }
-  removeFooter() {
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    titlee = titlee.slice(1);
-    if (titlee === 'signup' || titlee === 'nucleoicons') {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  // removeFooter() {
+  //   var titlee = this.location.prepareExternalUrl(this.location.path());
+  //   titlee = titlee.slice(1);
+  //   if (titlee === 'register') {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
   isMobile() {
     let innerWidth = window.innerWidth;
     if (innerWidth < 560) {

@@ -17,7 +17,6 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   isImage: boolean = false;
   focus!: boolean;
   focus2!: boolean;
-  promptCategories = Prompt.CATEGORIES;
   errors: any[] = [];
 
   dropdownList = [
@@ -83,13 +82,6 @@ export class PromptNewComponent implements OnInit, OnDestroy {
       this.selectedItems.pop();
     }
   }
-
-  // onItemDeSelect(item: any) {
-  //   if (this.selectedItems.length > 2) {
-  //     debugger;
-  //   }
-  //   console.log(item);
-  // }
 
   createUnpublishedPrompt() {
     this.isClicked = true;

@@ -4,12 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+// import { LoginComponent } from "./login/login.component";
 import { LoginResetpasswordComponent } from './login-popup/login-resetpassword/login-resetpassword.component';
 import { LoginResetpasswordSentComponent } from './login-popup/login-resetpassword/login-resetpassword-sent/login-resetpassword-sent.component';
 import { LoginNewPasswordComponent } from './login-popup/login-newpassword/login-newpassword.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterVerificationComponent } from './register/register-verification/register-verification.component';
 import { RegisterSentComponent } from './register/register-sent/register-sent.component';
+// import { environment } from "src/environments/environment";
 
 import { MyOriginAuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth.guard';
@@ -17,6 +19,7 @@ import { TokenInterceptor } from './shared/token.interceptor';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { TermsTextModule } from '../statics/terms/helpers/terms-text/terms-text.module';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
+// import { TermsTextModule } from "../static/terms/helpers/terms-text/terms-text.module";
 
 const routes: Routes = [
   { path: 'login/reset', component: LoginResetpasswordComponent },
@@ -32,6 +35,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    // LoginComponent,
     LoginPopupComponent,
     LoginResetpasswordComponent,
     LoginResetpasswordSentComponent,

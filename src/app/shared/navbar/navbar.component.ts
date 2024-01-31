@@ -1,9 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import {
-  Location,
-  LocationStrategy,
-  PathLocationStrategy,
-} from '@angular/common';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';

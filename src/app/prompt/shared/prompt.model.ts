@@ -1,7 +1,6 @@
 import { User } from 'src/app/user/shared/user.model';
 
 export class Prompt {
-  static readonly CATEGORIES: string[];
   _id!: string;
   createdAt?: string;
   updatedAt?: string;

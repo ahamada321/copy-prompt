@@ -5,7 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
-// import { ChartsModule } from "ng2-charts";
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 // import { TagInputModule } from 'ngx-chips';
@@ -15,13 +14,13 @@ import { PromptComponent } from './prompt.component';
 import { PromptListComponent } from './prompt-list/prompt-list.component';
 import { PromptListItemComponent } from './prompt-list/prompt-list-item/prompt-list-item.component';
 import { PromptDetailComponent } from './prompt-detail/prompt-detail.component';
+import { PromptListLatestComponent } from './prompt-list/prompt-list-latest/prompt-list-latest.component';
+import { PromptListRankingComponent } from './prompt-list/prompt-list-ranking/prompt-list-ranking.component';
+import { PromptSearchComponent } from './prompt-search/prompt-search.component';
 
 import { PromptNewComponent } from './prompt-new/prompt-new.component';
 import { PromptEditComponent } from './prompt-edit/prompt-edit.component';
 
-// import { GoogleMapsModule } from "../common/googlemaps/googlemaps.module";
-// import { PaymentModule } from '../common/payment/payment.module';
-// import { ReviewModule } from '../common/review/review.module';
 import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 // import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-upload-myver.module';
 
@@ -29,9 +28,6 @@ import { PromptService } from './shared/prompt.service';
 import { SearchbarModule } from '../shared/searchbar/searchbar.module';
 import { QuillModule } from 'ngx-quill';
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
-import { PromptListLatestComponent } from './prompt-list/prompt-list-latest/prompt-list-latest.component';
-import { PromptListRankingComponent } from './prompt-list/prompt-list-ranking/prompt-list-ranking.component';
-import { PromptSearchComponent } from './prompt-search/prompt-search.component';
 
 const routes: Routes = [
   {
@@ -70,12 +66,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     AngularMultiSelectModule,
     NgbModule,
-    // MaterialModule,
-    // EditableModule,
-    // ChartsModule,
-    // GoogleMapsModule,
-    // PaymentModule,
-    // ReviewModule,
     // BarRatingModule,
     SearchbarModule,
     ImageUploadModule,

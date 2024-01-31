@@ -18,6 +18,22 @@
           class="btn btn-link btn-lg btn-neutral"
           [routerLink]="['/user', prompt.user._id]"
         >
+          <img
+            class="avatar header-avatar"
+            [src]="
+              prompt.user.image
+                ? prompt.user.image
+                : prompt.user.prompts.length < 1
+                ? './assets/icons/1.png'
+                : prompt.user.prompts.length < 2
+                ? './assets/icons/2.png'
+                : prompt.user.prompts.length < 5
+                ? './assets/icons/3.png'
+                : prompt.user.prompts.length < 10
+                ? './assets/icons/4.png'
+                : './assets/icons/5.png'
+            "
+          />
           {{ prompt.user.name }}
         </a>
       </div>

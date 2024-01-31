@@ -200,6 +200,7 @@ exports.getPrompts = async function (req, res) {
           $or: [
             { name: { $in: regexPatterns } },
             { description: { $in: regexPatterns } },
+            { "categories.itemName": { $in: regexPatterns } },
           ],
         },
       },

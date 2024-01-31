@@ -17,7 +17,19 @@
       <div class="row">
         <div class="profile-picture">
           <app-image-upload
-            [image]="'./assets/img/placeholder.png'"
+            [image]="
+              userData.image
+                ? userData.image
+                : userData.prompts.length < 1
+                ? './assets/icons/1.png'
+                : userData.prompts.length < 2
+                ? './assets/icons/2.png'
+                : userData.prompts.length < 5
+                ? './assets/icons/3.png'
+                : userData.prompts.length < 10
+                ? './assets/icons/4.png'
+                : './assets/icons/5.png'
+            "
           ></app-image-upload>
         </div>
       </div>

@@ -8,6 +8,7 @@ const promptRoutes = require("./routes/prompts");
 const userRoutes = require("./routes/users");
 const paymentRoutes = require("./routes/payments");
 const reviewRoutes = require("./routes/reviews");
+const commentRoutes = require("./routes/comments");
 const contactformRoutes = require("./routes/contactforms");
 // const imageUploadRoutes = require("./routes/image-upload");
 // const FakeDb = require("./template-data/fake-db");
@@ -31,6 +32,7 @@ app.use("/api/v1/prompts", promptRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/payments", paymentRoutes);
 app.use("/api/v1/reviews", reviewRoutes);
+app.use("/api/v1/comments", commentRoutes);
 app.use("/api/v1/contactforms", contactformRoutes);
 // app.use("/api/v1", imageUploadRoutes);
 

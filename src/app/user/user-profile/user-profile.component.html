@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div
     class="page-header page-header-xxs settings-background"
-    style="background-image: url('./assets/img/bg/tressure-map.jpg');"
+    style="background-image: url('./assets/img/bg/tressure-map.jpg')"
   >
     <div class="filter"></div>
   </div>
@@ -16,7 +16,15 @@
                   [src]="
                     userData.image
                       ? userData.image
-                      : './assets/img/placeholder.png'
+                      : userData.prompts.length < 1
+                      ? './assets/icons/1.png'
+                      : userData.prompts.length < 2
+                      ? './assets/icons/2.png'
+                      : userData.prompts.length < 5
+                      ? './assets/icons/3.png'
+                      : userData.prompts.length < 10
+                      ? './assets/icons/4.png'
+                      : './assets/icons/5.png'
                   "
                 />
               </div>

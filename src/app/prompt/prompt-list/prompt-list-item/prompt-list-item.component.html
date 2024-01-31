@@ -33,12 +33,20 @@
       <div class="card-footer">
         <div class="author">
           <img
+            class="avatar img-raised"
             [src]="
               prompt.user.image
                 ? prompt.user.image
-                : './assets/img/placeholder.png'
+                : prompt.user.prompts.length < 1
+                ? './assets/icons/1.png'
+                : prompt.user.prompts.length < 2
+                ? './assets/icons/2.png'
+                : prompt.user.prompts.length < 5
+                ? './assets/icons/3.png'
+                : prompt.user.prompts.length < 10
+                ? './assets/icons/4.png'
+                : './assets/icons/5.png'
             "
-            class="avatar img-raised"
           />
           <span>{{ prompt.user.name }}</span>
         </div>

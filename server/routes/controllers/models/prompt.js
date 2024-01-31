@@ -12,7 +12,7 @@ const promptSchema = new Schema({
     required: "プロンプト名の入力は必須です",
   },
   selectedCategory: String, // Will be deleted in future.
-  categories: [],
+  categories: [{ id: Number, itemName: String }],
   description: String,
   prompt: String,
   image: String,

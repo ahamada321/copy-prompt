@@ -1,7 +1,7 @@
 <div
   class="page-header page-header-small"
   data-parallax="true"
-  style="background-image: url('./assets/img/bg/tressure-map.jpg');"
+  style="background-image: url('./assets/img/bg/tressure-map.jpg')"
 >
   <div class="filter"></div>
   <div class="content-center">
@@ -23,7 +23,7 @@
       <div class="row">
         <ng-container *ngFor="let prompt of prompts">
           <div class="col-6 col-md-4">
-            <app-prompt-list-item [prompt]="prompt"></app-prompt-list-item>
+            <app-list-card [prompt]="prompt"></app-list-card>
           </div>
         </ng-container>
       </div>

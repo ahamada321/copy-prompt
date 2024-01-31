@@ -12,7 +12,6 @@ import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 
 import { PromptComponent } from './prompt.component';
 import { PromptListComponent } from './prompt-list/prompt-list.component';
-import { PromptListItemComponent } from './prompt-list/prompt-list-item/prompt-list-item.component';
 import { PromptDetailComponent } from './prompt-detail/prompt-detail.component';
 import { PromptListLatestComponent } from './prompt-list/prompt-list-latest/prompt-list-latest.component';
 import { PromptListRankingComponent } from './prompt-list/prompt-list-ranking/prompt-list-ranking.component';
@@ -28,6 +27,7 @@ import { PromptService } from './shared/prompt.service';
 import { SearchbarModule } from '../shared/searchbar/searchbar.module';
 import { QuillModule } from 'ngx-quill';
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
+import { ListCardModule } from '../shared/list-card/list-card.module';
 
 const routes: Routes = [
   {
@@ -51,7 +51,6 @@ const routes: Routes = [
   declarations: [
     PromptComponent,
     PromptListComponent,
-    PromptListItemComponent,
     PromptListLatestComponent,
     PromptListRankingComponent,
     PromptSearchComponent,
@@ -67,14 +66,15 @@ const routes: Routes = [
     AngularMultiSelectModule,
     NgbModule,
     // BarRatingModule,
-    SearchbarModule,
-    ImageUploadModule,
-    // ImageUploadMyverModule,
     // ImageUploadQrCodeModule,
     JwBootstrapSwitchNg2Module,
     // TagInputModule,
+    ImageUploadModule,
+    // ImageUploadMyverModule,
     QuillModule,
     CodeSnippetModule,
+    SearchbarModule,
+    ListCardModule,
   ],
   providers: [PromptService],
 })

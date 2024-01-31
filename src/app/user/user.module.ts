@@ -18,6 +18,7 @@ import { UserMypageBookmarkComponent } from './user-mypage/user-mypage-bookmark/
 import { UserMypageHistoryComponent } from './user-mypage/user-mypage-history/user-mypage-history.component';
 import { UserMypageMypromptComponent } from './user-mypage/user-mypage-myprompt/user-mypage-myprompt.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ListCardModule } from '../shared/list-card/list-card.module';
 
 const routes: Routes = [
   {
@@ -68,6 +69,7 @@ const routes: Routes = [
     JwBootstrapSwitchNg2Module,
     ImageUploadModule,
     // ImageUploadMyverModule,
+    ListCardModule,
   ],
   providers: [UserService],
 })

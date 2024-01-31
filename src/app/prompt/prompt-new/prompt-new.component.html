@@ -34,7 +34,7 @@
                   [(ngModel)]="newPrompt.name"
                   name="name"
                   type="text"
-                  placeholder="例）織田信長と会話ができる"
+                  placeholder="例）ネイティブと英会話の練習ができる"
                   class="form-control"
                   maxlength="30"
                   required
@@ -61,7 +61,17 @@
                 [(ngModel)]="newPrompt.description"
                 name="description"
                 maxlength="5000"
-                placeholder="作成したプロンプトでどのようなことができるのかを具体的に記述することができます。"
+                placeholder="〇〇の〇〇をしてくれるプロンプトです。
+
+〇〇していて〇〇されたい方にいいかなと思います。
+
+改善の余地があったらコメントください。
+
+
+
+#英語 #ビジネスメール #英文法の添削 #英語添削 
+
+#chatGPT3.5"
                 [required]="true"
               ></quill-editor>
             </div>
@@ -103,7 +113,8 @@
                     !(
                       promptForm.form.valid &&
                       !isClicked &&
-                      selectedItems && selectedItems.length > 0
+                      selectedItems &&
+                      selectedItems.length > 0
                     )
                   "
                   (click)="createPrompt()"

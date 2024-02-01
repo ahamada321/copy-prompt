@@ -30,6 +30,7 @@ const promptSchema = new Schema({
       ref: "User",
     },
   ],
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

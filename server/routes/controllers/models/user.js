@@ -6,7 +6,7 @@ const userSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   lastLogin: Date,
   isVerified: { type: Boolean, default: true },
-  isBanned: Boolean,
+  isReported: [{ type: Schema.Types.ObjectId, ref: "Report" }],
 
   name: {
     type: String,

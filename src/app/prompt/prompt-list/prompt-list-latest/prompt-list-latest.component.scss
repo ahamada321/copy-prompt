@@ -1,9 +1,8 @@
-h3 {
-  // 新着プロンプトテンプレートの隙間を埋めるために記述
-  margin: 0;
-}
-
 .row {
   flex-wrap: nowrap;
   overflow-x: scroll;
+}
+
+.card {
+  min-height: 202px; // For top page Ranking and Latest prompt card height.
 }

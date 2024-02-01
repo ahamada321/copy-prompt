@@ -155,10 +155,10 @@
                 <h5 class="media-heading">{{ comment.user!.name }}</h5>
                 <div class="pull-right">
                   <h6 class="text-muted">
-                    {{ comment.createdAt | date: "yyyy/MM/dd HH:mm" }}
+                    {{ comment.createdAt | date : "yyyy/MM/dd HH:mm" }}
                   </h6>
                 </div>
-                <p style="white-space: pre-line;">
+                <p style="white-space: pre-line">
                   {{ comment.comment }}
                 </p>
                 <div class="media-footer">
@@ -191,4 +191,8 @@
       </div>
     </div>
   </div>
+
+  <!--     *********     Recommend      *********      -->
+  <h3 class="text-center">その他のおすすめプロンプト</h3>
+  <app-prompt-list-latest></app-prompt-list-latest>
 </div>

@@ -10,13 +10,13 @@ const userSchema = new Schema({
 
   name: {
     type: String,
-    max: [32, "Too long, max is 32 characters."],
+    max: [30, "Too long, max is 30 characters."],
     min: [4, "Too short, min is 4 characters."],
     required: "name is required",
   },
   email: {
     type: String,
-    max: [128, "Too long, max is 64 characters."],
+    max: [60, "Too long, max is 60 characters."],
     required: "Email is required",
   },
   password: {

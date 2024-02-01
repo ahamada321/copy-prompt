@@ -4,10 +4,9 @@ const router = express.Router();
 const UserCtrl = require("./controllers/user");
 const CommentCtrl = require("./controllers/comment");
 
-//refering to ./controllers/review.js
-router.get("", CommentCtrl.getComments);
+// router.get("", CommentCtrl.getComments);
 
-router.post("", UserCtrl.authMiddleware, CommentCtrl.createComment);
+router.post("", UserCtrl.authMiddleware, CommentCtrl.postComment);
 
 router.patch("", UserCtrl.authMiddleware, CommentCtrl.editComment);
 

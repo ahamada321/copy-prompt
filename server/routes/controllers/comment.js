@@ -3,32 +3,18 @@ const User = require("./models/user");
 const Prompt = require("./models/prompt");
 const { normalizeErrors } = require("./helpers/mongoose");
 
-exports.getComments = async function (req, res) {
-  const { promptId } = req.query;
-
-  try {
-    const foundComments = await Comment.find({ prompt: promptId })
-      .populate("user", "-email -password")
-      .sort({ createdAt: -1 });
-
-    return res.json(foundComments);
-  } catch (err) {
-    return res.status(422).send({ errors: normalizeErrors(err.errors) });
-  }
-};
-
-exports.createComment = async function (req, res) {
-  const commentData = new Comment(req.body);
+exports.postComment = async function (req, res) {
+  const { comment, promptId } = req.body;
   const user = res.locals.user;
-  commentData.user = user;
+  const commentData = new Comment({ comment, promptId, user });
 
   try {
     const newComment = await Comment.create(commentData);
     await Prompt.updateOne(
-      { _id: commentData.prompt },
+      { _id: newComment.promptId },
       { $push: { comments: newComment } }
     );
-    return res.json({ status: "created" });
+    return res.json(newComment);
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
   }

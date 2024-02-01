@@ -2,12 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
-  comment: String,
   createdAt: { type: Date, default: Date.now },
-  updatedAt: Date,
-  isReported: [{ type: Schema.Types.ObjectId, ref: "Report" }],
-  prompt: { type: Schema.Types.ObjectId, ref: "Prompt" },
-  user: { type: Schema.Types.ObjectId, ref: "User" },
+  comment: { type: String, required: "コメントは必須です" },
+  // updatedAt: Date,
+  // isReported: [{ type: Schema.Types.ObjectId, ref: "Report" }],
+  promptId: {
+    type: Schema.Types.ObjectId,
+    ref: "Prompt",
+    required: "プロンプト情報は必須です",
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: "ユーザー情報は必須です",
+  },
 });
 
 module.exports = mongoose.model("Comment", commentSchema);

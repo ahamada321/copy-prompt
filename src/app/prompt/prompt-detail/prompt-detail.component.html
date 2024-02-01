@@ -45,7 +45,7 @@
             [disabled]="isClicked"
             class="btn btn-primary btn-round"
           >
-            <i class="fa fa-heart"></i> お気に入り追加
+            <i class="fa fa-heart"></i>&nbsp; お気に入り追加
           </button>
           <button
             *ngIf="isBookmarked"
@@ -53,7 +53,7 @@
             [disabled]="isClicked"
             class="btn btn-neutral btn-round"
           >
-            <i class="fa fa-heart"></i> お気に入りから削除
+            <i class="fa fa-heart"></i>&nbsp; お気に入りから削除
           </button>
         </div>
         <a
@@ -61,7 +61,7 @@
           class="btn btn-primary btn-round"
           [routerLink]="['/prompt/edit', prompt._id]"
         >
-          <i class="fa fa-pencil"></i> このプロンプトを編集する
+          <i class="fa fa-pencil"></i>&nbsp; このプロンプトを編集する
         </a>
       </div>
     </div>

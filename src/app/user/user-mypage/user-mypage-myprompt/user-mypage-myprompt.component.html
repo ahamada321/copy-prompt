@@ -3,7 +3,7 @@
   class="btn btn-lg btn-primary btn-rotate btn-round"
   [routerLink]="['/prompt/new']"
 >
-  <i class="nc-icon nc-diamond"></i> 追加する
+  <i class="nc-icon nc-diamond"></i>&nbsp; 追加する
 </a>
 <div class="space-top"></div>
 <div *ngIf="prompts && prompts.length > 0">
@@ -29,7 +29,8 @@
             class="btn btn-outline-neutral btn-round"
             routerLink="/prompt/edit/{{ prompt._id }}"
           >
-            <i class="fa fa-pencil" aria-hidden="true"></i> 編集して公開する
+            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
+            編集して公開する
           </a>
         </div>
       </div>
@@ -56,7 +57,7 @@
               class="btn btn-outline-neutral btn-round"
               routerLink="/prompt/edit/{{ prompt._id }}"
             >
-              <i class="fa fa-pencil" aria-hidden="true"></i> 編集する
+              <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; 編集する
             </a>
           </div>
         </a>

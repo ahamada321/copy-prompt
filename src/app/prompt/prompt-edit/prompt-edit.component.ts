@@ -40,7 +40,7 @@ export class PromptEditComponent implements OnInit {
   selectedItems!: { id: number; itemName: string }[];
   dropdownSettings = {
     singleSelection: false,
-    text: '複数選択できます',
+    text: '選択できます',
     selectAllText: 'すべて選択',
     unSelectAllText: 'すべて選択を解除',
     enableSearchFilter: true,

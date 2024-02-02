@@ -77,6 +77,17 @@
             </div>
 
             <div class="form-group">
+              <h6>利用手順 <span class="icon-danger">*</span></h6>
+              <quill-editor
+                [(ngModel)]="newPrompt.tutorial"
+                name="tutorial"
+                maxlength="5000"
+                placeholder="例）プロンプトをChatGPTにコピペして送信ボタンを押した後の返答から英会話を始めることができます。"
+                [required]="true"
+              ></quill-editor>
+            </div>
+
+            <div class="form-group">
               <h6>プロンプト<span class="icon-danger">*</span></h6>
               <textarea
                 [(ngModel)]="newPrompt.prompt"

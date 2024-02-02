@@ -61,7 +61,28 @@
                 [(ngModel)]="foundPrompt.description"
                 name="description"
                 maxlength="5000"
-                placeholder="作成したプロンプトでどのようなことができるのかを具体的に記述することができます。"
+                placeholder="〇〇の〇〇をしてくれるプロンプトです。
+
+〇〇していて〇〇されたい方にいいかなと思います。
+
+改善の余地があったらコメントください。
+
+
+
+#英語 #ビジネスメール #英文法の添削 #英語添削 
+
+#chatGPT3.5"
+                [required]="true"
+              ></quill-editor>
+            </div>
+
+            <div class="form-group">
+              <h6>利用手順 <span class="icon-danger">*</span></h6>
+              <quill-editor
+                [(ngModel)]="foundPrompt.tutorial"
+                name="tutorial"
+                maxlength="5000"
+                placeholder="例）プロンプトをChatGPTにコピペして送信ボタンを押した後の返答から英会話を始めることができます。"
                 [required]="true"
               ></quill-editor>
             </div>

@@ -14,6 +14,7 @@ const promptSchema = new Schema({
   selectedCategory: String, // Will be deleted in future.
   categories: [{ id: Number, itemName: String }],
   description: String,
+  tutorial: String,
   prompt: String,
   image: String,
   rating: Number,

@@ -2,10 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MyOriginAuthService } from '../shared/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from '../../user/shared/user.model';
 import Swal from 'sweetalert2';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private auth: MyOriginAuthService,
     private modalService: NgbModal,
     private router: Router,
-    private route: ActivatedRoute
+    private meta: Meta
   ) {}
 
   ngOnInit() {
@@ -40,11 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     navbar.classList.add('navbar-transparent');
 
     // this.seeFBLoginState();
-    this.route.params.subscribe((params) => {
-      if (params['as'] == 'trainer') {
-        this.showSwalNotification();
-      }
-    });
+    this.updateMeta();
   }
 
   ngOnDestroy() {
@@ -58,9 +55,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
-  register() {
+  updateMeta() {
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
+    });
+  }
+
+  register(registerFormData: any) {
     this.isClicked = true;
-    this.auth.register(this.formData).subscribe(
+    this.auth.register(registerFormData).subscribe(
       (newUser) => {
         if (newUser.isVerified) {
           this.showSwalSuccess();
@@ -93,17 +103,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       allowOutsideClick: false,
     }).then(() => {
       this.modalLoginOpen();
-    });
-  }
-
-  showSwalNotification() {
-    Swal.fire({
-      icon: 'info',
-      text: '新規会員登録後に出品できます。',
-      customClass: {
-        confirmButton: 'btn btn-primary btn-lg',
-      },
-      buttonsStyling: false,
     });
   }
 

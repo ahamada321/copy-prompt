@@ -51,14 +51,14 @@
             <form
               class="register-form"
               #registerForm="ngForm"
-              (ngSubmit)="register()"
+              (ngSubmit)="register(registerForm.value)"
             >
               <div class="space-top"></div>
               <input
                 class="form-control"
                 placeholder="お名前（例：鈴木太郎）"
                 type="text"
-                [(ngModel)]="formData.name"
+                [ngModel]="formData.name"
                 name="name"
                 (focus)="focus = true"
                 (blur)="focus = false"
@@ -69,7 +69,7 @@
                 class="form-control"
                 placeholder="Email"
                 type="email"
-                [(ngModel)]="formData.email"
+                [ngModel]="formData.email"
                 name="email"
                 (focus)="focus1 = true"
                 (blur)="focus1 = false"
@@ -80,8 +80,9 @@
                 class="form-control"
                 placeholder="パスワード"
                 type="password"
-                [(ngModel)]="formData.password"
+                [ngModel]="formData.password"
                 name="password"
+                autocomplete="new-password"
                 (focus)="focus2 = true"
                 (blur)="focus2 = false"
                 required
@@ -91,8 +92,9 @@
                 class="form-control"
                 placeholder="パスワード（確認）"
                 type="password"
-                [(ngModel)]="formData.passwordConfirmation"
+                [ngModel]="formData.passwordConfirmation"
                 name="passwordConfirmation"
+                autocomplete="off"
                 (focus)="focus3 = true"
                 (blur)="focus3 = false"
                 required

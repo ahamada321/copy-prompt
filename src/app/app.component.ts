@@ -10,6 +10,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { filter, Subscription } from 'rxjs';
+import { Meta } from '@angular/platform-browser';
 
 var lastScrollTop = 0;
 var delta = 5;
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
   @ViewChild(NavbarComponent, { static: false }) navbar!: NavbarComponent;
 
   constructor(
+    private meta: Meta,
     private renderer: Renderer2,
     private router: Router,
     private element: ElementRef,
@@ -67,6 +69,24 @@ export class AppComponent implements OnInit {
     lastScrollTop = st;
   }
   ngOnInit() {
+    this.meta.addTags([
+      {
+        name: 'keywords',
+        content:
+          'GPT, プロンプト, テンプレ, 無料, Webライター, マーケター, 文章作成, 要約',
+      },
+      {
+        name: 'description',
+        content:
+          'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
+      },
+      {
+        property: 'og:description',
+        content:
+          'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
+      },
+    ]);
+
     var navbar: HTMLElement =
       this.element.nativeElement.children[0].children[0];
 

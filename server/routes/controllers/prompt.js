@@ -267,7 +267,7 @@ exports.getOwnerPrompts = async function (req, res) {
   try {
     const result = await Prompt.aggregate([
       { $match: { user: user._id } },
-      { $sort: { createdAt: -1 } },
+      { $sort: { updatedAt: -1 } },
       {
         $facet: {
           metadata: [{ $count: "total" }, { $addFields: { page: page } }],

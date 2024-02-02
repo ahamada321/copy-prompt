@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const promptSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
-  updatedAt: Date,
+  updatedAt: { type: Date, default: Date.now },
   isShared: { type: Boolean, default: false },
 
   name: {

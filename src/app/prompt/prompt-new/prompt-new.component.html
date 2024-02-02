@@ -5,8 +5,8 @@
     [ngStyle]="{
       'background-image':
         'url(' +
-        (selectedItems && selectedItems.length > 0
-          ? './assets/img/thumbnail/' + selectedItems[0].id + '.jpg'
+        (selectedCategory && selectedCategory.length > 0
+          ? './assets/img/thumbnail/' + selectedCategory[0].id + '.jpg'
           : './assets/img/image_placeholder.jpg') +
         ')'
     }"
@@ -77,28 +77,6 @@
             </div>
 
             <div class="form-group">
-              <h6>出力例 <span class="icon-danger">*</span></h6>
-              <quill-editor
-                [(ngModel)]="newPrompt.example"
-                name="tutorial"
-                maxlength="5000"
-                placeholder="例）Hi, what can I help you?"
-                [required]="true"
-              ></quill-editor>
-            </div>
-
-            <div class="form-group">
-              <h6>利用手順 <span class="icon-danger">*</span></h6>
-              <quill-editor
-                [(ngModel)]="newPrompt.tutorial"
-                name="tutorial"
-                maxlength="5000"
-                placeholder="例）プロンプトをChatGPTにコピペして送信ボタンを押した後の返答から英会話を始めることができます。"
-                [required]="true"
-              ></quill-editor>
-            </div>
-
-            <div class="form-group">
               <h6>プロンプト<span class="icon-danger">*</span></h6>
               <textarea
                 [(ngModel)]="newPrompt.prompt"
@@ -112,13 +90,42 @@
             </div>
 
             <div class="form-group">
+              <h6>出力例 <span class="icon-danger">*</span></h6>
+              <quill-editor
+                [(ngModel)]="newPrompt.example"
+                name="tutorial"
+                maxlength="5000"
+                placeholder="例）Hi, how can I help you?"
+                [required]="true"
+              ></quill-editor>
+            </div>
+
+            <div class="form-group">
+              <h6>利用手順 <span class="icon-danger">*</span></h6>
+              <select
+                class="custom-select"
+                [(ngModel)]="newPrompt.usage"
+                name="usage"
+                required
+              >
+                <option [value]="undefined" disabled>利用手順を選択</option>
+                <option
+                  *ngFor="let dropdownUsageList of dropdownUsageLists"
+                  [value]="dropdownUsageList"
+                >
+                  {{ dropdownUsageList }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
               <h6>カテゴリ <span class="icon-danger">*</span></h6>
               <angular2-multiselect
-                [data]="dropdownList"
-                [(ngModel)]="selectedItems"
-                name="selectedItems"
+                [data]="dropdownCategoryList"
+                [(ngModel)]="selectedCategory"
+                name="selectedCategory"
                 [settings]="dropdownSettings"
-                (onSelect)="onItemSelect($event)"
+                (onSelect)="onCategorySelect($event)"
               >
               </angular2-multiselect>
             </div>
@@ -135,8 +142,8 @@
                     !(
                       promptForm.form.valid &&
                       !isClicked &&
-                      selectedItems &&
-                      selectedItems.length > 0
+                      selectedCategory &&
+                      selectedCategory.length > 0
                     )
                   "
                   (click)="createPrompt()"

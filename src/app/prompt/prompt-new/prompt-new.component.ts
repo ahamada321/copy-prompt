@@ -19,7 +19,13 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   focus2!: boolean;
   errors: any[] = [];
 
-  dropdownList = [
+  dropdownUsageLists = [
+    'プロンプトをChatGPTにコピペして送信',
+    'プロンプトをChatGPTにコピペ → テキストを好みに書き換えて送信',
+    'プロンプトをChatGPTにコピペして送信 → 質問に答える',
+  ];
+
+  dropdownCategoryList = [
     { id: 1, itemName: '時短' },
     { id: 2, itemName: '語学' },
     { id: 3, itemName: '占い' },
@@ -37,7 +43,16 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     { id: 15, itemName: '生活・エンタメ' },
     { id: 16, itemName: 'その他' },
   ];
-  selectedItems!: { id: number; itemName: string }[];
+  selectedCategory!: { id: number; itemName: string }[];
+  dropdownUsageList = [
+    { id: 1, itemName: 'プロンプトをChatGPTにコピペ' },
+    {
+      id: 2,
+      itemName: 'プロンプトをChatGPTにコピペ → テキストを好みに書き換える',
+    },
+    { id: 3, itemName: 'プロンプトをChatGPTにコピペ → 質問に答える' },
+  ];
+  selectedUsage!: { id: number; itemName: string };
   dropdownSettings = {
     singleSelection: false,
     text: '選択できます',
@@ -76,17 +91,17 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     body.classList.remove('add-product');
   }
 
-  onItemSelect(item: any) {
+  onCategorySelect(item: any) {
     // Have to limit upto 1 items.
-    if (this.selectedItems.length > 1) {
-      this.selectedItems.pop();
+    if (this.selectedCategory.length > 1) {
+      this.selectedCategory.pop();
     }
   }
 
   createUnpublishedPrompt() {
     this.isClicked = true;
     this.newPrompt.isShared = false;
-    this.newPrompt.categories = this.selectedItems;
+    this.newPrompt.categories = this.selectedCategory;
 
     this.promptService.createPrompt(this.newPrompt).subscribe(
       (prompt: Prompt) => {
@@ -103,7 +118,7 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   createPrompt() {
     this.isClicked = true;
     this.newPrompt.isShared = true;
-    this.newPrompt.categories = this.selectedItems;
+    this.newPrompt.categories = this.selectedCategory;
 
     // if (!this.isImage) {
     //   this.errors.push({

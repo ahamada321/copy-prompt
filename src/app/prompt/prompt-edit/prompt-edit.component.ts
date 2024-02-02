@@ -19,7 +19,13 @@ export class PromptEditComponent implements OnInit {
   focus2!: boolean;
   errors: any[] = [];
 
-  dropdownList = [
+  dropdownUsageLists = [
+    'プロンプトをChatGPTにコピペして送信',
+    'プロンプトをChatGPTにコピペ → テキストを好みに書き換えて送信',
+    'プロンプトをChatGPTにコピペして送信 → 質問に答える',
+  ];
+
+  dropdownCategoryList = [
     { id: 1, itemName: '時短' },
     { id: 2, itemName: '語学' },
     { id: 3, itemName: '占い' },
@@ -37,7 +43,7 @@ export class PromptEditComponent implements OnInit {
     { id: 15, itemName: '生活・エンタメ' },
     { id: 16, itemName: 'その他' },
   ];
-  selectedItems!: { id: number; itemName: string }[];
+  selectedCategory!: { id: number; itemName: string }[];
   dropdownSettings = {
     singleSelection: false,
     text: '選択できます',
@@ -80,10 +86,10 @@ export class PromptEditComponent implements OnInit {
     body.classList.remove('add-product');
   }
 
-  onItemSelect(item: any) {
+  onCategorySelect(item: any) {
     // Have to limit upto 1 items.
-    if (this.selectedItems.length > 1) {
-      this.selectedItems.pop();
+    if (this.selectedCategory.length > 1) {
+      this.selectedCategory.pop();
     }
   }
 
@@ -91,7 +97,7 @@ export class PromptEditComponent implements OnInit {
     this.promptService.getPromptById(promptId).subscribe(
       (foundPrompt: Prompt) => {
         this.foundPrompt = foundPrompt;
-        this.selectedItems = this.foundPrompt.categories;
+        this.selectedCategory = this.foundPrompt.categories;
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
@@ -103,7 +109,7 @@ export class PromptEditComponent implements OnInit {
   unpublishPrompt() {
     this.isClicked = true;
     this.foundPrompt.isShared = false;
-    this.foundPrompt.categories = this.selectedItems;
+    this.foundPrompt.categories = this.selectedCategory;
 
     this.promptService
       .updatePrompt(this.foundPrompt._id, this.foundPrompt)
@@ -122,7 +128,7 @@ export class PromptEditComponent implements OnInit {
   updatePrompt() {
     this.isClicked = true;
     this.foundPrompt.isShared = true;
-    this.foundPrompt.categories = this.selectedItems;
+    this.foundPrompt.categories = this.selectedCategory;
 
     this.promptService
       .updatePrompt(this.foundPrompt._id, this.foundPrompt)

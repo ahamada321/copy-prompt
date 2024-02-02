@@ -12,8 +12,8 @@ export class Prompt {
   name!: string;
   categories!: { id: number; itemName: string }[];
   description!: string;
+  usage!: string;
   example!: string;
-  tutorial!: string;
   prompt!: string;
   image?: any;
   rating?: number;

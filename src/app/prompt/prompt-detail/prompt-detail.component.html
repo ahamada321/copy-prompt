@@ -84,15 +84,23 @@
           </div>
         </div>
       </div>
-      <div class="row" *ngIf="prompt.tutorial">
+      <div class="row" *ngIf="prompt.example">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="section-description text-center">
+            <h2 class="title">出力例</h2>
+            <div class="ql-editor">
+              <div
+                [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.example)"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="prompt.usage">
         <div class="col-md-10 ml-auto mr-auto">
           <div class="section-description text-center">
             <h2 class="title">利用手順</h2>
-            <div class="ql-editor">
-              <div
-                [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.tutorial)"
-              ></div>
-            </div>
+            <p class="title">{{ prompt.usage }}</p>
           </div>
         </div>
       </div>
@@ -130,7 +138,7 @@
               <form
                 class="media-body"
                 #postForm="ngForm"
-                (ngSubmit)="postComment(postForm.value.commentString)"
+                (ngSubmit)="postComment(postForm)"
               >
                 <textarea
                   class="form-control"

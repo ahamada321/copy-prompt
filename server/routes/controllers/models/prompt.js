@@ -11,10 +11,10 @@ const promptSchema = new Schema({
     max: [30, "Too long, max is 30 characters."],
     required: "プロンプト名の入力は必須です",
   },
-  selectedCategory: String, // Will be deleted in future.
   categories: [{ id: Number, itemName: String }],
   description: String,
-  tutorial: String,
+  usage: String,
+  example: String,
   prompt: String,
   image: String,
   rating: Number,

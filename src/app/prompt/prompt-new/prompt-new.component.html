@@ -77,6 +77,17 @@
             </div>
 
             <div class="form-group">
+              <h6>出力例 <span class="icon-danger">*</span></h6>
+              <quill-editor
+                [(ngModel)]="newPrompt.example"
+                name="tutorial"
+                maxlength="5000"
+                placeholder="例）Hi, what can I help you?"
+                [required]="true"
+              ></quill-editor>
+            </div>
+
+            <div class="form-group">
               <h6>利用手順 <span class="icon-danger">*</span></h6>
               <quill-editor
                 [(ngModel)]="newPrompt.tutorial"

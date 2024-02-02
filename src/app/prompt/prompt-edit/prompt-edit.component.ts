@@ -46,7 +46,7 @@ export class PromptEditComponent implements OnInit {
   selectedCategory!: { id: number; itemName: string }[];
   dropdownSettings = {
     singleSelection: false,
-    text: '選択できます',
+    text: 'カテゴリを選択してください',
     selectAllText: 'すべて選択',
     unSelectAllText: 'すべて選択を解除',
     enableSearchFilter: true,

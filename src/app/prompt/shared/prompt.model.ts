@@ -1,4 +1,4 @@
-import { User } from "src/app/user/shared/user.model";
+import { User } from 'src/app/user/shared/user.model';
 
 export class Prompt {
   _id!: string;
@@ -12,6 +12,7 @@ export class Prompt {
   name!: string;
   categories!: { id: number; itemName: string }[];
   description!: string;
+  tutorial!: string;
   prompt!: string;
   image?: any;
   rating?: number;

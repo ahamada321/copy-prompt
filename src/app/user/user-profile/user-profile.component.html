@@ -66,14 +66,10 @@
       </div>
       <div *ngIf="userData.prompts.length > 0">
         <div class="row">
-          <div
-            *ngFor="let prompt of userData.prompts; let i = index"
-            class="col-6 col-md-4"
-          >
-            <a [routerLink]="['/prompt', prompt._id]">
+          <div *ngFor="let prompt of userData.prompts" class="col-6 col-md-4">
+            <a *ngIf="prompt.isShared" [routerLink]="['/prompt', prompt._id]">
               <div
                 class="card"
-                *ngIf="prompt.isShared"
                 data-background="image"
                 [ngStyle]="{
                   'background-image':

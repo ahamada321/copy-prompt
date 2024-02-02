@@ -24,7 +24,7 @@ export class UserMypageMypromptComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getOwnerPrompts();
+    this.getMyPrompts();
   }
 
   ngOnDestroy() {
@@ -72,8 +72,8 @@ export class UserMypageMypromptComponent implements OnInit, OnDestroy {
     );
   }
 
-  getOwnerPrompts() {
-    this.promptService.getOwnerPrompts(this.pageIndex, this.pageSize).subscribe(
+  getMyPrompts() {
+    this.promptService.getMyPrompts(this.pageIndex, this.pageSize).subscribe(
       (result) => {
         if (result[0].foundPrompts.length > 0) {
           this.prompts = result[0].foundPrompts;
@@ -88,6 +88,6 @@ export class UserMypageMypromptComponent implements OnInit, OnDestroy {
 
   pageChange() {
     this.prompts = [];
-    this.getOwnerPrompts();
+    this.getMyPrompts();
   }
 }

@@ -249,7 +249,7 @@ exports.getPrompts = async function (req, res) {
   }
 };
 
-exports.getOwnerPrompts = async function (req, res) {
+exports.getMyPrompts = async function (req, res) {
   const user = res.locals.user;
   const { page, limit } = req.query;
 

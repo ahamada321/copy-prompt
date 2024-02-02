@@ -8,7 +8,7 @@ const PromptCtrl = require("./controllers/prompt");
 //   res.json({ secret: true });
 // });
 
-router.get("/manage", UserCtrl.authMiddleware, PromptCtrl.getOwnerPrompts);
+router.get("/manage", UserCtrl.authMiddleware, PromptCtrl.getMyPrompts);
 
 router.get("/latest", PromptCtrl.getLatestPrompts);
 

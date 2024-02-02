@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { DomSanitizer, Meta } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -109,14 +110,18 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     );
   }
 
-  postComment(commentString: string) {
+  postComment(postForm: NgForm) {
     this.isClicked = true;
     this.commentService
-      .postComment({ comment: commentString, promptId: this.prompt })
+      .postComment({
+        comment: postForm.value.commentString,
+        promptId: this.prompt,
+      })
       .subscribe(
         (newComment) => {
           this.comments.unshift(newComment);
           this.isClicked = false;
+          postForm.resetForm();
         },
         (err) => {
           this.isClicked = false;

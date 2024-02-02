@@ -20,8 +20,8 @@ export class PromptEditComponent implements OnInit {
   errors: any[] = [];
 
   dropdownUsageLists = [
-    'プロンプトをChatGPTにコピペして送信',
-    'プロンプトをChatGPTにコピペ → テキストを好みに書き換えて送信',
+    'プロンプトをChatGPTにコピペして好みに書き換えてから送信',
+    'プロンプトをChatGPTにコピペして送信 → 自由に質問',
     'プロンプトをChatGPTにコピペして送信 → 質問に答える',
   ];
 

@@ -71,9 +71,9 @@
   <div class="section section-nude">
     <div class="container">
       <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-          <div class="section-description text-center">
-            <h2 class="title">プロンプトの説明</h2>
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="section-description">
+            <h2 class="title text-center">プロンプトの説明</h2>
             <div class="ql-editor">
               <div
                 [innerHTML]="
@@ -85,9 +85,9 @@
         </div>
       </div>
       <div class="row" *ngIf="prompt.example">
-        <div class="col-md-10 ml-auto mr-auto">
-          <div class="section-description text-center">
-            <h2 class="title">出力例</h2>
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="section-description">
+            <h2 class="title text-center">出力例</h2>
             <div class="ql-editor">
               <div
                 [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.example)"
@@ -97,9 +97,9 @@
         </div>
       </div>
       <div class="row" *ngIf="prompt.usage">
-        <div class="col-md-10 ml-auto mr-auto">
-          <div class="section-description text-center">
-            <h2 class="title">利用手順</h2>
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="section-description">
+            <h2 class="title text-center">利用手順</h2>
             <p class="title">{{ prompt.usage }}</p>
           </div>
         </div>
@@ -111,7 +111,6 @@
   <div class="section section-dark text-center">
     <div class="container">
       <h2 class="title">プロンプト</h2>
-      <!-- <h4 class="blur ban_select">プロンプトコード</h4> -->
       <app-code-snippet [prompt]="prompt"></app-code-snippet>
     </div>
   </div>

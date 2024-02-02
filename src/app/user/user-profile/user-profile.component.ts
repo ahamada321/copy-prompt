@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PromptService } from 'src/app/prompt/shared/prompt.service';
-import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,9 +20,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private userService: UserService,
-    private promptService: PromptService
+    private meta: Meta
   ) {}
 
   ngOnInit() {
@@ -36,6 +34,7 @@ export class UserProfileComponent implements OnInit {
       this.getUserById(params['userId']);
     });
   }
+
   ngOnDestroy() {
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
@@ -50,12 +49,37 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserById(userId).subscribe(
       (foundUser) => {
         this.userData = foundUser;
+        this.updateMeta();
       },
       (errorResponse) => {
         console.error(errorResponse);
         this.errors = errorResponse.error.errors;
       }
     );
+  }
+
+  updateMeta() {
+    if (this.userData.description) {
+      this.meta.updateTag({
+        name: 'description',
+        content: this.userData.description,
+      });
+      this.meta.updateTag({
+        property: 'og:description',
+        content: this.userData.description,
+      });
+    } else {
+      this.meta.updateTag({
+        name: 'description',
+        content:
+          'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
+      });
+      this.meta.updateTag({
+        property: 'og:description',
+        content:
+          'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
+      });
+    }
   }
 
   // pageChange() {

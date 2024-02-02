@@ -17,6 +17,10 @@ const userSchema = new Schema({
   email: {
     type: String,
     max: [60, "Too long, max is 60 characters."],
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      "メールアドレスを正しく入力してください",
+    ],
     required: "Email is required",
   },
   password: {

@@ -138,15 +138,25 @@ exports.getUsers = function (req, res) {
 
 exports.getUserById = async function (req, res) {
   const reqUserId = req.params.id;
-  const user = res.locals.user;
+  const token = req.headers.authorization;
 
   try {
-    const foundUser = await User.findOne({ _id: reqUserId }).populate(
-      "prompts"
-    );
-    if (foundUser.id !== (user && user.id)) {
-      foundUser.password = null;
+    if (token) {
+      const tokenUser = parseToken(token);
+      if (reqUserId === tokenUser.userId) {
+        const foundUser = await User.findOne({ _id: reqUserId }).populate(
+          "prompts"
+        );
+        return res.json(foundUser);
+      }
     }
+
+    const foundUser = await User.findOne({ _id: reqUserId })
+      .select("-email -password")
+      .populate({
+        path: "prompts",
+        match: { isShared: true },
+      });
     return res.json(foundUser);
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });

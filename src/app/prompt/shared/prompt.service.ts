@@ -51,7 +51,7 @@ export class PromptService {
     return this.http.patch('/api/v1/prompts/' + promptId, promptData);
   }
 
-  public getOwnerPrompts(pageIndex: number, pageSize: number): Observable<any> {
+  public getMyPrompts(pageIndex: number, pageSize: number): Observable<any> {
     return this.http.get(
       `/api/v1/prompts/manage?page=${pageIndex}&limit=${pageSize}`
     );

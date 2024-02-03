@@ -14,34 +14,34 @@
     </div>
   </div>
 </div>
-<div class="main">
-  <div class="section section-nude text-center">
+<div class="section section-nude text-center">
+  <div class="container">
     <h3 class="latest">新着プロンプト テンプレート</h3>
     <app-prompt-list-latest></app-prompt-list-latest>
     <h3>人気ランキング</h3>
     <app-prompt-list-ranking></app-prompt-list-ranking>
   </div>
+</div>
 
-  <!--     *********    CALL TO ACTION    *********      -->
-  <ng-container *ngIf="!auth.isAuthenticated()">
-    <div class="separator"></div>
-    <div class="subscribe-line">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-9 col-sm-8">
-            <h3>プロンプト登録しませんか？</h3>
-            <h5>自分専用のプロンプトノートが作れます</h5>
-          </div>
-          <div class="col-md-3 col-sm-4">
-            <br />
-            <a
-              [routerLink]="['/register']"
-              class="btn btn-round btn-lg btn-block btn-primary"
-              >プロンプトノートを作る</a
-            >
-          </div>
+<!--     *********    CALL TO ACTION    *********      -->
+<ng-container *ngIf="!auth.isAuthenticated()">
+  <div class="separator"></div>
+  <div class="subscribe-line">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 col-sm-8">
+          <h3>プロンプト登録しませんか？</h3>
+          <h5>自分専用のプロンプトノートが作れます</h5>
+        </div>
+        <div class="col-md-3 col-sm-4">
+          <br />
+          <a
+            [routerLink]="['/register']"
+            class="btn btn-round btn-lg btn-block btn-primary"
+            >プロンプトノートを作る</a
+          >
         </div>
       </div>
     </div>
-  </ng-container>
-</div>
+  </div>
+</ng-container>

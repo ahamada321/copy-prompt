@@ -12,46 +12,44 @@
       </div>
     </div>
   </div>
-  <div class="main">
-    <div class="section section-nude text-center">
-      <div class="container">
-        <div class="project-pills">
-          <ul
-            ngbNav
-            #nav="ngbNav"
-            [(activeId)]="activeTab"
-            type="pills"
-            class="nav nav-pills nav-pills-primary justify-content-center"
-          >
-            <li [ngbNavItem]="1">
-              <a ngbNavLink>お気に入りプロンプト</a>
-              <ng-template ngbNavContent>
-                <div class="tab-pane" id="home" role="tabpanel">
-                  <h3>お気に入りプロンプト</h3>
-                  <div class="space-top"></div>
-                  <app-user-mypage-bookmark></app-user-mypage-bookmark>
-                </div>
-              </ng-template>
-            </li>
-            <li [ngbNavItem]="2">
-              <a ngbNavLink>過去にコピーしたプロンプト</a>
-              <ng-template ngbNavContent>
-                <h3>過去にコピーしたプロンプト</h3>
+  <div class="section section-nude text-center">
+    <div class="container">
+      <div class="project-pills">
+        <ul
+          ngbNav
+          #nav="ngbNav"
+          [(activeId)]="activeTab"
+          type="pills"
+          class="nav nav-pills nav-pills-primary justify-content-center"
+        >
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>お気に入りプロンプト</a>
+            <ng-template ngbNavContent>
+              <div class="tab-pane" id="home" role="tabpanel">
+                <h3>お気に入りプロンプト</h3>
                 <div class="space-top"></div>
-                <app-user-mypage-history></app-user-mypage-history>
-              </ng-template>
-            </li>
-            <li [ngbNavItem]="3">
-              <a ngbNavLink>登録済プロンプト</a>
-              <ng-template ngbNavContent>
-                <h3>登録済プロンプト</h3>
-                <div class="space-top"></div>
-                <app-user-mypage-myprompt></app-user-mypage-myprompt>
-              </ng-template>
-            </li>
-          </ul>
-          <div [ngbNavOutlet]="nav" class="mt-2"></div>
-        </div>
+                <app-user-mypage-bookmark></app-user-mypage-bookmark>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>過去にコピーしたプロンプト</a>
+            <ng-template ngbNavContent>
+              <h3>過去にコピーしたプロンプト</h3>
+              <div class="space-top"></div>
+              <app-user-mypage-history></app-user-mypage-history>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>登録済プロンプト</a>
+            <ng-template ngbNavContent>
+              <h3>登録済プロンプト</h3>
+              <div class="space-top"></div>
+              <app-user-mypage-myprompt></app-user-mypage-myprompt>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
       </div>
     </div>
   </div>

@@ -1,43 +1,42 @@
-<a [routerLink]="['/prompt', prompt._id]">
-  <div
-    class="card"
-    data-background="image"
-    [ngStyle]="{
-      'background-image':
-        'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
-    }"
-  >
-    <div class="card-body">
-      <h6 class="card-category">
-        <i class="fa fa-newspaper-o"></i> {{ prompt.categories[0].itemName }}
-      </h6>
-      <h5 class="card-title">{{ prompt.name }}</h5>
-      <h5 class="card-title"><small>プロンプト</small></h5>
-      <div class="card-footer">
-        <div class="author">
-          <img
-            class="avatar img-raised"
-            [src]="
-              prompt.user.image
-                ? prompt.user.image
-                : prompt.user.prompts.length < 1
-                ? './assets/icons/1.png'
-                : prompt.user.prompts.length < 2
-                ? './assets/icons/2.png'
-                : prompt.user.prompts.length < 5
-                ? './assets/icons/3.png'
-                : prompt.user.prompts.length < 10
-                ? './assets/icons/4.png'
-                : './assets/icons/5.png'
-            "
-          />
-          <span>{{ prompt.user.name }}</span>
-        </div>
-        <br />
-        <div class="stats" *ngIf="prompt.isBookmarkedFrom">
-          <i class="fa fa-heart" aria-hidden="true"></i>
-          {{ prompt.isBookmarkedFrom.length }}
-        </div>
+<a
+  [routerLink]="['/prompt', prompt._id]"
+  class="card"
+  data-background="image"
+  [ngStyle]="{
+    'background-image':
+      'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
+  }"
+>
+  <div class="card-body">
+    <h6 class="card-category">
+      <i class="fa fa-newspaper-o"></i> {{ prompt.categories[0].itemName }}
+    </h6>
+    <h5 class="card-title">{{ prompt.name }}</h5>
+    <h5 class="card-title"><small>プロンプト</small></h5>
+    <div class="card-footer">
+      <div class="author">
+        <img
+          class="avatar img-raised"
+          [src]="
+            prompt.user.image
+              ? prompt.user.image
+              : prompt.user.prompts.length < 1
+              ? './assets/icons/1.png'
+              : prompt.user.prompts.length < 2
+              ? './assets/icons/2.png'
+              : prompt.user.prompts.length < 5
+              ? './assets/icons/3.png'
+              : prompt.user.prompts.length < 10
+              ? './assets/icons/4.png'
+              : './assets/icons/5.png'
+          "
+        />
+        <span>{{ prompt.user.name }}</span>
+      </div>
+      <br />
+      <div class="stats" *ngIf="prompt.isBookmarkedFrom">
+        <i class="fa fa-heart" aria-hidden="true"></i>
+        {{ prompt.isBookmarkedFrom.length }}
       </div>
     </div>
   </div>

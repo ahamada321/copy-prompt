@@ -150,7 +150,13 @@ exports.getUserById = async function (req, res) {
         return res.json(foundUser);
       }
     }
+  } catch (err) {
+    if (err.name !== "TokenExpiredError") {
+      return res.status(422).send({ errors: normalizeErrors(err.errors) });
+    }
+  }
 
+  try {
     const foundUser = await User.findOne({ _id: reqUserId })
       .select("-email -password")
       .populate({

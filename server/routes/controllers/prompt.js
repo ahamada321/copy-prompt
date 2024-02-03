@@ -44,7 +44,7 @@ exports.getLatestPrompts = async function (req, res) {
   try {
     const result = await Prompt.aggregate([
       { $match: { isShared: true } },
-      { $sort: { _id: -1 } }, // Sorting by latest.
+      { $sort: { updatedAt: -1 } }, // Sorting by latest.
       {
         $lookup: {
           from: "users", // 結合するコレクション

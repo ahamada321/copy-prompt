@@ -23,6 +23,9 @@
   </div>
 </div>
 
+<!--     *********    Contact Button    *********      -->
+<app-contact-button *ngIf="auth.isAuthenticated()"></app-contact-button>
+
 <!--     *********    CALL TO ACTION    *********      -->
 <ng-container *ngIf="!auth.isAuthenticated()">
   <div class="separator"></div>

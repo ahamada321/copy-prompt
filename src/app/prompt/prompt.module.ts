@@ -30,6 +30,7 @@ import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { ListCardModule } from '../shared/list-card/list-card.module';
 import { PromptService } from './shared/prompt.service';
 import { CommentService } from './shared/comment.service';
+import { ContactButtonComponent } from '../shared/contact-button/contact-button.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,7 @@ const routes: Routes = [
     PromptDetailCommentComponent,
     PromptNewComponent,
     PromptEditComponent,
+    ContactButtonComponent,
   ],
   imports: [
     CommonModule,

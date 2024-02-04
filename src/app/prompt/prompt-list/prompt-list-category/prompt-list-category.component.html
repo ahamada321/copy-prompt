@@ -1,88 +1,108 @@
 <div class="row">
   <div class="col-md-12">
-    <button
+    <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: '要約' }]"
     >
       要約
-    </button>
-    <button
+    </a>
+    <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: '語学' }]"
     >
       語学
-    </button>
-    <button
+    </a>
+    <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-    >
-      占い
-    </button>
-    <button
-      type="button"
-      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-    >
-      コミュニケーション
-    </button>
-    <button
-      type="button"
-      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-    >
-      コーチング・コンサルタント
-    </button>
-    <button
-      type="button"
-      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-    >
-      プログラミング
-    </button>
-    <button
-      type="button"
-      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-    >
-      金融
-    </button>
-    <button
-      type="button"
-      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: '文章作成・ブログ関連' }]"
     >
       文章作成・ブログ関連
-    </button>
-    <button
+    </a>
+    <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-    >
-      アイデア・企画
-    </button>
-    <button
-      type="button"
-      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-    >
-      マーケティング・データ分析・統計
-    </button>
-    <button
-      type="button"
-      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: '資料作成' }]"
     >
       資料作成
-    </button>
-    <button
+    </a>
+    <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="[
+        '/prompt/search',
+        { keywords: 'コーチング・コンサルタント' }
+      ]"
+    >
+      コーチング・コンサルタント
+    </a>
+    <a
+      type="button"
+      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: 'プログラミング' }]"
+    >
+      プログラミング
+    </a>
+    <a
+      type="button"
+      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: '金融' }]"
+    >
+      金融
+    </a>
+    <a
+      type="button"
+      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: 'アイデア・企画' }]"
+    >
+      アイデア・企画
+    </a>
+    <a
+      type="button"
+      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="[
+        '/prompt/search',
+        { keywords: 'マーケティング・データ分析・統計' }
+      ]"
+    >
+      マーケティング・データ分析・統計
+    </a>
+    <a
+      type="button"
+      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: 'ロールプレイ' }]"
     >
       ロールプレイ
-    </button>
-    <button
+    </a>
+    <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: '法律・規約関連' }]"
     >
       法律・規約関連
-    </button>
-    <button
+    </a>
+    <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: '生活・エンタメ' }]"
     >
       生活・エンタメ
-    </button>
+    </a>
+    <a
+      type="button"
+      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: '占い' }]"
+    >
+      占い
+    </a>
+    <a
+      type="button"
+      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [routerLink]="['/prompt/search', { keywords: 'その他' }]"
+    >
+      その他
+    </a>
   </div>
 </div>

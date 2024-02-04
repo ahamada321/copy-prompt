@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -7,7 +7,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./contact-button.component.scss'],
 })
 export class ContactButtonComponent implements OnInit {
-  constructor(public location: Location) {}
+  constructor() {}
 
   ngOnInit() {}
 }

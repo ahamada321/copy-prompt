@@ -17,7 +17,7 @@ router.get("/history", UserCtrl.authMiddleware, UserCtrl.getHistories);
 
 router.get("/:id", UserCtrl.getUserById);
 
-router.get("", UserCtrl.getUsers);
+// router.get("", UserCtrl.getUsers);
 
 router.patch("/:id", UserCtrl.authMiddleware, UserCtrl.updateUser);
 

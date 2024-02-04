@@ -28,7 +28,6 @@
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@popperjs/core": "^2.11.8",
     "@sendgrid/mail": "^8.1.0",
-    "@sweetalert2/ngx-sweetalert2": "^12.2.0",
     "angular2-multiselect-dropdown": "^5.0.4",
     "bcrypt": "^5.1.1",
     "bootstrap": "^4.6.2",

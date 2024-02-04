@@ -4,9 +4,7 @@ const Prompt = require("./models/prompt");
 const { normalizeErrors } = require("./helpers/mongoose");
 
 exports.postComment = async function (req, res) {
-  const { comment, promptId } = req.body;
-  const user = res.locals.user;
-  const commentData = new Comment({ comment, promptId, user });
+  const commentData = new Comment(req.body);
 
   try {
     const newComment = await Comment.create(commentData);

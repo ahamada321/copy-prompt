@@ -116,6 +116,7 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
       .postComment({
         comment: postForm.value.commentString,
         promptId: this.prompt,
+        user: this.auth.getUserId(),
       })
       .subscribe(
         (newComment) => {

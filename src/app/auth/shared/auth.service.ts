@@ -10,7 +10,7 @@ const jwt = new JwtHelperService();
 class DecodedToken {
   userId: string = '';
   name: string = '';
-  userRole: string = '';
+  image: string = '';
   exp: number = 0;
 }
 
@@ -66,6 +66,10 @@ export class MyOriginAuthService {
 
   public getname(): string {
     return this.decodedToken.name;
+  }
+
+  public getUserImage(): string {
+    return this.decodedToken.image;
   }
 
   // public getUserRole(): string {

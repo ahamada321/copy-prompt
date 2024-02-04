@@ -17,7 +17,7 @@
       }"
     >
       <div class="card-body">
-        <h6 class="card-category">
+        <h6 class="card-category" *ngIf="prompt.categories[0]">
           <i class="fa fa-newspaper-o"></i>
           {{ prompt.categories[0].itemName }}
         </h6>

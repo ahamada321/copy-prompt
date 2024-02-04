@@ -1,5 +1,5 @@
-import { User } from "src/app/user/shared/user.model";
-import { Prompt } from "./prompt.model";
+import { User } from 'src/app/user/shared/user.model';
+import { Prompt } from './prompt.model';
 
 export class Comment {
   _id?: string;

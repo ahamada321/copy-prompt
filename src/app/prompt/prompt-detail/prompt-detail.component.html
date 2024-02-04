@@ -130,7 +130,11 @@
                   <img
                     class="media-object"
                     alt="64x64"
-                    src="assets/img/placeholder.png"
+                    [src]="
+                      auth.getUserImage()
+                        ? auth.getUserImage()
+                        : './assets/icons/1.png'
+                    "
                   />
                 </div>
               </div>
@@ -166,7 +170,19 @@
                   <img
                     class="media-object"
                     alt="64x64"
-                    src="assets/img/placeholder.png"
+                    [src]="
+                      comment.user!.image
+                        ? comment.user!.image
+                        : comment.user!.prompts.length < 1
+                        ? './assets/icons/1.png'
+                        : comment.user!.prompts.length < 2
+                        ? './assets/icons/2.png'
+                        : comment.user!.prompts.length < 5
+                        ? './assets/icons/3.png'
+                        : comment.user!.prompts.length < 10
+                        ? './assets/icons/4.png'
+                        : './assets/icons/5.png'
+                    "
                   />
                 </div>
               </div>
@@ -181,12 +197,12 @@
                   {{ comment.comment }}
                 </p>
                 <div class="media-footer">
-                  <a
-                    href="javascript:void(0)"
+                  <button
+                    (click)="commentString = '>> ' + comment.user!.name + '\n'"
                     class="btn btn-primary btn-link pull-right"
                   >
-                    <i class="fa fa-reply"></i>返信する</a
-                  >
+                    <i class="fa fa-reply"></i>返信する
+                  </button>
                   <a href="javascript:void(0)" class="btn btn-link pull-right">
                     <i class="fa fa-flag"></i>報告する</a
                   >

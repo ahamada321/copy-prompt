@@ -18,3 +18,19 @@ body {
   background-color: white;
   height: 230px;
 }
+
+// Placeholder color
+.form-control {
+  &::-moz-placeholder {
+    color: #b4b4b4;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: #b4b4b4;
+  }
+
+  &::-webkit-input-placeholder {
+    color: #b4b4b4;
+  }
+}

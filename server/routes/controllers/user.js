@@ -214,6 +214,7 @@ exports.auth = async function (req, res) {
       {
         userId: foundUser.id,
         name: foundUser.name,
+        image: foundUser.image,
       },
       config.SECRET,
       { expiresIn: "12h" }
@@ -345,6 +346,7 @@ exports.updateUser = async function (req, res) {
         {
           userId: user.id,
           name: userData.name,
+          image: foundUser.image,
         },
         config.SECRET,
         { expiresIn: "12h" }
@@ -370,6 +372,7 @@ exports.updateUser = async function (req, res) {
         {
           userId: user.id,
           name: foundUser.name,
+          image: foundUser.image,
         },
         config.SECRET,
         { expiresIn: "12h" }

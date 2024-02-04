@@ -1,8 +1,5 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { Location } from '@angular/common';
-import { MyOriginAuthService } from '../../auth/shared/auth.service';
-import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -12,20 +9,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class BottomNavComponent implements OnInit {
   @Input() titlee!: string;
 
-  constructor(
-    public auth: MyOriginAuthService,
-    public location: Location,
-    private modalService: NgbModal
-  ) {}
+  constructor(public location: Location) {}
 
   ngOnInit() {}
 
   onClick() {
     const locationPath = this.location.prepareExternalUrl(this.location.path());
     this.titlee = locationPath.split('/')[1];
-  }
-
-  modalLoginOpen() {
-    this.modalService.open(LoginPopupComponent, { backdrop: 'static' });
   }
 }

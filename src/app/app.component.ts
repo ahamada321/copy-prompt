@@ -11,6 +11,7 @@ import { Location, PopStateEvent } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { filter, Subscription } from 'rxjs';
 import { Meta } from '@angular/platform-browser';
+import { MyOriginAuthService } from './auth/shared/auth.service';
 
 var lastScrollTop = 0;
 var delta = 5;
@@ -34,7 +35,8 @@ export class AppComponent implements OnInit {
     private renderer: Renderer2,
     private router: Router,
     private element: ElementRef,
-    public location: Location
+    public location: Location,
+    public auth: MyOriginAuthService
   ) {}
 
   @HostListener('window:scroll', ['$event'])

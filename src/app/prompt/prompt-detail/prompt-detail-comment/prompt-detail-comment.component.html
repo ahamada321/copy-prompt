@@ -1,0 +1,117 @@
+<!--     *********     Comments      *********      -->
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <h2 class="title text-center">コメント({{ comments.length }})</h2>
+        <div class="media-area">
+          <div class="media media-post" *ngIf="auth.isAuthenticated()">
+            <div class="pull-left author">
+              <div class="avatar">
+                <img
+                  class="media-object"
+                  alt="64x64"
+                  [src]="
+                    foundUser.image
+                      ? foundUser.image
+                      : foundUser.prompts.length < 1
+                      ? './assets/icons/1.png'
+                      : foundUser.prompts.length < 2
+                      ? './assets/icons/2.png'
+                      : foundUser.prompts.length < 5
+                      ? './assets/icons/3.png'
+                      : foundUser.prompts.length < 10
+                      ? './assets/icons/4.png'
+                      : './assets/icons/5.png'
+                  "
+                />
+              </div>
+            </div>
+            <form
+              class="media-body"
+              #postForm="ngForm"
+              (ngSubmit)="postComment(postForm)"
+            >
+              <textarea
+                class="form-control"
+                placeholder="ここからコメントできます..."
+                rows="4"
+                [ngModel]="commentString"
+                name="commentString"
+                required
+              ></textarea>
+              <div class="media-footer">
+                <button
+                  [disabled]="!postForm.valid || isClicked"
+                  type="submit"
+                  class="btn btn-primary pull-right"
+                >
+                  コメントする
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- end media -->
+          <div class="media" *ngFor="let comment of comments">
+            <div class="pull-left">
+              <div class="avatar">
+                <img
+                  class="media-object"
+                  alt="64x64"
+                  [src]="
+                    comment.user!.image
+                      ? comment.user!.image
+                      : comment.user!.prompts.length < 1
+                      ? './assets/icons/1.png'
+                      : comment.user!.prompts.length < 2
+                      ? './assets/icons/2.png'
+                      : comment.user!.prompts.length < 5
+                      ? './assets/icons/3.png'
+                      : comment.user!.prompts.length < 10
+                      ? './assets/icons/4.png'
+                      : './assets/icons/5.png'
+                  "
+                />
+              </div>
+            </div>
+            <div class="media-body">
+              <h5 class="media-heading">{{ comment.user!.name }}</h5>
+              <div class="pull-right">
+                <h6 class="text-muted">
+                  {{ comment.createdAt | date : "yyyy/MM/dd HH:mm" }}
+                </h6>
+              </div>
+              <p style="white-space: pre-line">
+                {{ comment.comment }}
+              </p>
+              <div class="media-footer">
+                <button
+                  (click)="commentString = '>> ' + comment.user!.name + '\n'"
+                  class="btn btn-primary btn-link pull-right"
+                >
+                  <i class="fa fa-reply"></i>返信する
+                </button>
+                <a href="javascript:void(0)" class="btn btn-link pull-right">
+                  <i class="fa fa-flag"></i>報告する</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- end media -->
+
+          <!-- <br />
+            <div
+              class="pagination-area pagination-primary justify-content-center"
+            >
+              <ngb-pagination
+                [collectionSize]="50"
+                [(page)]="page"
+                aria-label="Default pagination"
+              ></ngb-pagination>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { DomSanitizer, Meta } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 
 import { PromptService } from '../shared/prompt.service';
-import { CommentService } from '../shared/comment.service';
 import { UserService } from 'src/app/user/shared/user.service';
 import { Prompt } from '../shared/prompt.model';
 import { Comment } from '../shared/comment.model';
@@ -22,11 +20,8 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   prompt!: Prompt;
   isBookmarked: boolean = false;
   comments!: Comment[];
-  commentString: string = '';
 
   tags!: HTMLMetaElement[];
-
-  page = 1;
 
   constructor(
     public auth: MyOriginAuthService,
@@ -34,7 +29,6 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     public router: Router,
     public sanitizer: DomSanitizer,
     private promptService: PromptService,
-    private commentService: CommentService,
     private userService: UserService,
     private modalService: NgbModal,
     private meta: Meta
@@ -109,35 +103,6 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-  postComment(postForm: NgForm) {
-    this.isClicked = true;
-    this.commentService
-      .postComment({
-        comment: postForm.value.commentString,
-        promptId: this.prompt,
-        user: this.auth.getUserId(),
-      })
-      .subscribe(
-        (newComment) => {
-          this.comments.unshift(newComment);
-          this.isClicked = false;
-          postForm.resetForm();
-        },
-        (err) => {
-          this.isClicked = false;
-        }
-      );
-  }
-
-  // getReviews(promptId: string) {
-  //   this.reviewService.getPromptReviews(promptId).subscribe(
-  //     (reviews: Review[]) => {
-  //       this.reviews = reviews;
-  //     },
-  //     () => {}
-  //   );
-  // }
 
   isMine() {
     return this.prompt.user._id === this.auth.getUserId();

@@ -3,6 +3,7 @@ import { Prompt } from '../shared/prompt.model';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-prompt-list',
@@ -16,24 +17,19 @@ export class PromptListComponent implements OnInit, OnDestroy {
   pageCollectionSize: number = 1;
 
   constructor(
-    public auth: MyOriginAuthService,
+    private meta: Meta,
     private router: Router,
-    private meta: Meta
+    private navbarService: NavbarService,
+    public auth: MyOriginAuthService
   ) {}
 
   ngOnInit() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
-
     this.updateMeta();
+    this.navbarService.setNavbar();
   }
 
   ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
+    this.navbarService.resetNavbar();
   }
 
   updateMeta() {

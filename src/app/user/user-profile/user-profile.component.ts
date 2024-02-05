@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
 import { Meta } from '@angular/platform-browser';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
   userData!: User;
   userId!: string;
 
@@ -20,13 +21,13 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private navbarService: NavbarService,
     private userService: UserService,
     private meta: Meta
   ) {}
 
   ngOnInit() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
+    this.navbarService.setNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('settings-page');
 
@@ -36,11 +37,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
+    this.navbarService.resetNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.remove('settings-page');
   }

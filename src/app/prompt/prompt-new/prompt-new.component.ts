@@ -5,6 +5,7 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Router } from '@angular/router';
 import { Prompt } from '../shared/prompt.model';
 import Swal from 'sweetalert2';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-prompt-new',
@@ -34,7 +35,7 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     { id: 6, itemName: 'コーチング・コンサルタント' },
     { id: 7, itemName: 'プログラミング' },
     { id: 8, itemName: '文章作成・ブログ関連' },
-    // { id: 9, itemName: '要約' },
+    // { id: 9, itemName: '' },
     { id: 10, itemName: 'アイデア・企画' },
     { id: 11, itemName: 'マーケティング・データ分析・統計' },
     { id: 12, itemName: '資料作成' },
@@ -69,25 +70,21 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   };
 
   constructor(
-    private promptService: PromptService,
     private router: Router,
+    private navbarService: NavbarService,
+    private promptService: PromptService,
     public auth: MyOriginAuthService
   ) {}
 
   ngOnInit() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
-    let body = document.getElementsByTagName('body')[0];
+    this.navbarService.setNavbar();
+    const body = document.getElementsByTagName('body')[0];
     body.classList.add('add-product');
   }
 
   ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
-    let body = document.getElementsByTagName('body')[0];
+    this.navbarService.resetNavbar();
+    const body = document.getElementsByTagName('body')[0];
     body.classList.remove('add-product');
   }
 

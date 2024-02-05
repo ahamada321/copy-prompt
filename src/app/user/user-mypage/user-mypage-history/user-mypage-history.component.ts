@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { UserService } from '../../shared/user.service';
@@ -8,7 +8,7 @@ import { UserService } from '../../shared/user.service';
   templateUrl: './user-mypage-history.component.html',
   styleUrls: ['./user-mypage-history.component.scss'],
 })
-export class UserMypageHistoryComponent implements OnInit, OnDestroy {
+export class UserMypageHistoryComponent implements OnInit {
   histories: Prompt[] = [];
   errors: any[] = [];
 
@@ -16,13 +16,6 @@ export class UserMypageHistoryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getHistories();
-  }
-
-  ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
   }
 
   private getHistories() {

@@ -12,7 +12,6 @@ export class PromptListLatestComponent implements OnInit {
   prompts!: Prompt[];
   pageIndex: number = 1;
   pageSize: number = 5; // Displaying contents per page.
-  pageCollectionSize: number = 1;
 
   constructor(
     private promptService: PromptService,
@@ -29,18 +28,10 @@ export class PromptListLatestComponent implements OnInit {
       .subscribe(
         (result) => {
           this.prompts = result[0].foundPrompts;
-          if (this.prompts.length > 0) {
-            this.pageCollectionSize = result[0].metadata[0].total;
-          }
         },
         (err) => {
           console.error(err);
         }
       );
-  }
-
-  pageChange() {
-    this.prompts = [];
-    this.getLatestPrompts();
   }
 }

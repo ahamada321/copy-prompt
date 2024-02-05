@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-terms',
@@ -7,20 +8,14 @@ import { Meta } from '@angular/platform-browser';
   styleUrls: ['./terms.component.scss'],
 })
 export class TermsComponent implements OnInit, OnDestroy {
-  constructor(private meta: Meta) {}
+  constructor(private meta: Meta, private navbarService: NavbarService) {}
 
   ngOnInit() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
-
     this.updateMeta();
+    this.navbarService.setNavbar();
   }
   ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
+    this.navbarService.resetNavbar();
   }
 
   updateMeta() {

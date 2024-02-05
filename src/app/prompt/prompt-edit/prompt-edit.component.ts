@@ -26,7 +26,7 @@ export class PromptEditComponent implements OnInit {
   ];
 
   dropdownCategoryList = [
-    { id: 1, itemName: '時短' },
+    // { id: 1, itemName: '時短' },
     { id: 2, itemName: '語学' },
     { id: 3, itemName: '占い' },
     { id: 4, itemName: '金融' },

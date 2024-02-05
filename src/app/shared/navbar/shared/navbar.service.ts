@@ -16,6 +16,7 @@ export class NavbarService {
     navbar.classList.remove('navbar-transparent');
     if (navbar.classList.contains('nav-up')) {
       navbar.classList.remove('nav-up');
+      navbar.classList.add('nav-down');
     }
   }
 }

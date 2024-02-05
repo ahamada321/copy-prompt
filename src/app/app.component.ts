@@ -165,7 +165,7 @@ export class AppComponent implements OnInit {
   // }
   isMobile() {
     let innerWidth = window.innerWidth;
-    if (innerWidth < 560) {
+    if (innerWidth < 530) {
       return true;
     } else {
       return false;

@@ -34,7 +34,7 @@ export class PromptEditComponent implements OnInit {
     { id: 6, itemName: 'コーチング・コンサルタント' },
     { id: 7, itemName: 'プログラミング' },
     { id: 8, itemName: '文章作成・ブログ関連' },
-    // { id: 9, itemName: '要約' },
+    // { id: 9, itemName: '' },
     { id: 10, itemName: 'アイデア・企画' },
     { id: 11, itemName: 'マーケティング・データ分析・統計' },
     { id: 12, itemName: '資料作成' },

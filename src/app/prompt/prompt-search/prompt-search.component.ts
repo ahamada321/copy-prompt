@@ -4,6 +4,7 @@ import { PromptService } from '../shared/prompt.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-prompt-search',
@@ -23,14 +24,18 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     public auth: MyOriginAuthService,
     private router: Router,
     private route: ActivatedRoute,
+    private navbarService: NavbarService,
     private meta: Meta
   ) {}
 
   ngOnInit() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
     this.updateMeta();
     this.getPrompts();
+    this.navbarService.setNavbar();
+  }
+
+  ngOnDestroy() {
+    this.navbarService.resetNavbar();
   }
 
   updateMeta() {
@@ -44,14 +49,6 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
       content:
         'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
     });
-  }
-
-  ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
   }
 
   filterByName(keywords: string) {

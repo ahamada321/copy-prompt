@@ -5,6 +5,7 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Prompt } from '../shared/prompt.model';
 import Swal from 'sweetalert2';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-prompt-edit',
@@ -62,27 +63,23 @@ export class PromptEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private navbarService: NavbarService,
     private promptService: PromptService,
     public auth: MyOriginAuthService
   ) {}
 
   ngOnInit() {
+    this.navbarService.setNavbar();
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);
     });
 
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
-    let body = document.getElementsByTagName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
     body.classList.add('add-product');
   }
   ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
-    let body = document.getElementsByTagName('body')[0];
+    this.navbarService.resetNavbar();
+    const body = document.getElementsByTagName('body')[0];
     body.classList.remove('add-product');
   }
 

@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
 import Swal from 'sweetalert2';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-user-settings',
   templateUrl: './user-settings.component.html',
   styleUrls: ['./user-settings.component.scss'],
 })
-export class UserSettingsComponent implements OnInit {
+export class UserSettingsComponent implements OnInit, OnDestroy {
   userData!: User;
   focus1 = false;
 
@@ -21,23 +22,19 @@ export class UserSettingsComponent implements OnInit {
   constructor(
     private auth: MyOriginAuthService,
     private router: Router,
+    private navbarService: NavbarService,
     private userService: UserService
   ) {}
 
   ngOnInit() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
+    this.navbarService.setNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('settings-page');
     this.getUser();
   }
 
   ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
+    this.navbarService.resetNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.remove('settings-page');
   }

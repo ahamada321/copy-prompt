@@ -9,6 +9,7 @@ import { PromptService } from '../shared/prompt.service';
 import { UserService } from 'src/app/user/shared/user.service';
 import { Prompt } from '../shared/prompt.model';
 import { Comment } from '../shared/comment.model';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-prompt-detail',
@@ -24,31 +25,26 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   tags!: HTMLMetaElement[];
 
   constructor(
-    public auth: MyOriginAuthService,
+    private meta: Meta,
     private route: ActivatedRoute,
     public router: Router,
+    public auth: MyOriginAuthService,
     public sanitizer: DomSanitizer,
+    private navbarService: NavbarService,
     private promptService: PromptService,
     private userService: UserService,
-    private modalService: NgbModal,
-    private meta: Meta
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
-
+    this.navbarService.setNavbar();
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);
     });
   }
 
   ngOnDestroy() {
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
+    this.navbarService.resetNavbar();
   }
 
   getPrompt(promptId: string) {

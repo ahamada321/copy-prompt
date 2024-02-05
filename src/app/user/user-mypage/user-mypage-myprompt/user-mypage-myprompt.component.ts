@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PromptService } from 'src/app/prompt/shared/prompt.service';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
-import { HttpErrorResponse } from '@angular/common/http';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-mypage-myprompt',
@@ -27,44 +25,6 @@ export class UserMypageMypromptComponent implements OnInit {
     this.getMyPrompts();
   }
 
-  onDelete(promptId: any) {
-    Swal.fire({
-      icon: 'warning',
-      title: 'この操作は取り消せません',
-      text: 'このプロンプトを削除します',
-      confirmButtonColor: '#f5593d',
-      cancelButtonColor: '#9A9A9A',
-      confirmButtonText: '削除',
-      cancelButtonText: 'キャンセル',
-      showCancelButton: true,
-    }).then((result) => {
-      if (!result.dismiss) {
-        this.deletePrompt(promptId);
-      }
-    });
-  }
-
-  deletePrompt(promptId: string) {
-    this.promptService.deletePrompt(promptId).subscribe(
-      (status) => {
-        const index = this.prompts.findIndex((x) => x._id === promptId);
-        this.prompts.splice(index, 1);
-        Swal.fire({
-          title: '削除しました',
-          customClass: {
-            confirmButton: 'btn btn-danger btn-lg',
-          },
-          buttonsStyling: false,
-        });
-      },
-      (err) => {
-        console.error(err);
-        // Expecting to show error if try to dalete prompt which has active bookings
-        // this.toastr.error(errorResponse.error.errors[0].detail, 'Failed!')
-      }
-    );
-  }
-
   getMyPrompts() {
     this.promptService.getMyPrompts(this.pageIndex, this.pageSize).subscribe(
       (result) => {
@@ -79,8 +39,8 @@ export class UserMypageMypromptComponent implements OnInit {
     );
   }
 
-  pageChange() {
-    this.prompts = [];
-    this.getMyPrompts();
-  }
+  // pageChange() {
+  //   this.prompts = [];
+  //   this.getMyPrompts();
+  // }
 }

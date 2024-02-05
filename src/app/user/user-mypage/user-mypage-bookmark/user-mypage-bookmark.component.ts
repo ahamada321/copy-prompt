@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { UserService } from '../../shared/user.service';
 
@@ -10,7 +9,6 @@ import { UserService } from '../../shared/user.service';
 })
 export class UserMypageBookmarkComponent implements OnInit {
   bookmarks: Prompt[] = [];
-  errors: any[] = [];
 
   constructor(private userService: UserService) {}
 
@@ -23,9 +21,8 @@ export class UserMypageBookmarkComponent implements OnInit {
       (foundBookmarks: Prompt[]) => {
         this.bookmarks = foundBookmarks;
       },
-      (errorResponse: HttpErrorResponse) => {
+      (errorResponse) => {
         console.error(errorResponse);
-        this.errors = errorResponse.error.errors;
       }
     );
   }

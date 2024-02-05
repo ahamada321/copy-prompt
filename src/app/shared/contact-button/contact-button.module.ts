@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ContactButtonComponent } from './contact-button.component';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [],
   declarations: [ContactButtonComponent],
   exports: [ContactButtonComponent],
 })

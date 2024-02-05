@@ -1,5 +1,4 @@
-import { Component, OnInit, ElementRef, Input } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -9,12 +8,7 @@ import { Location } from '@angular/common';
 export class BottomNavComponent implements OnInit {
   @Input() titlee!: string;
 
-  constructor(public location: Location) {}
+  constructor() {}
 
   ngOnInit() {}
-
-  onClick() {
-    const locationPath = this.location.prepareExternalUrl(this.location.path());
-    this.titlee = locationPath.split('/')[1];
-  }
 }

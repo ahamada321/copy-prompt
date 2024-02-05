@@ -7,6 +7,7 @@ import { User } from '../../user/shared/user.model';
 import Swal from 'sweetalert2';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { Meta } from '@angular/platform-browser';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-register',
@@ -30,29 +31,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private auth: MyOriginAuthService,
     private modalService: NgbModal,
     private router: Router,
-    private meta: Meta
+    private meta: Meta,
+    private navbarService: NavbarService
   ) {}
 
   ngOnInit() {
+    this.updateMeta();
+    this.navbarService.setNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('full-screen');
     body.classList.add('register-page');
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
-
-    // this.seeFBLoginState();
-    this.updateMeta();
   }
 
   ngOnDestroy() {
+    this.navbarService.resetNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.remove('full-screen');
     body.classList.remove('register-page');
-    let navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
-    if (navbar.classList.contains('nav-up')) {
-      navbar.classList.remove('nav-up');
-    }
   }
 
   updateMeta() {

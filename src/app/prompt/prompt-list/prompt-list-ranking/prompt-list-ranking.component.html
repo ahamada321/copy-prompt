@@ -1,8 +1,11 @@
+<h3>人気ランキング</h3>
 <div class="row">
   <div *ngFor="let prompt of prompts" class="col-10 col-sm-5 col-md-5 col-xl-5">
+    <br />
     <app-list-card [prompt]="prompt"></app-list-card>
   </div>
   <div class="col-md-3 col-xl-2 ml-auto mr-auto">
+    <br />
     <a [routerLink]="['/prompt/search', { condition: 'ranking' }]">
       <div class="card" data-color="orange">
         <div class="card-body">

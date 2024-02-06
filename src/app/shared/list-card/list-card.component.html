@@ -35,7 +35,7 @@
         <span>{{ prompt.user.name }}</span>
       </div>
       <br />
-      <div class="stats" *ngIf="prompt.comments">
+      <div class="stats" *ngIf="prompt.comments && prompt.comments.length > 0">
         <i class="fa fa-commenting-o"></i>&nbsp; {{ prompt.comments.length }}
       </div>
       <!--

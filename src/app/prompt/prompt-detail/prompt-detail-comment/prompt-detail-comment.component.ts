@@ -22,8 +22,6 @@ export class PromptDetailCommentComponent implements OnInit {
   commentString: string = '';
   foundUser!: User;
 
-  tags!: HTMLMetaElement[];
-
   page = 1;
 
   constructor(
@@ -58,6 +56,11 @@ export class PromptDetailCommentComponent implements OnInit {
 
   postComment(postForm: NgForm) {
     this.isClicked = true;
+    if (!this.userId) {
+      this.userId = this.auth.getUserId();
+      this.getUserById(this.userId);
+    }
+
     this.commentService
       .postComment({
         comment: postForm.value.commentString,

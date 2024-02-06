@@ -10,7 +10,6 @@ const jwt = new JwtHelperService();
 class DecodedToken {
   userId: string = '';
   name: string = '';
-  image: string = '';
   exp: number = 0;
 }
 

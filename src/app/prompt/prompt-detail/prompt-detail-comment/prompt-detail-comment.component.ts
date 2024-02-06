@@ -37,13 +37,15 @@ export class PromptDetailCommentComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.auth.getUserId();
-    this.getUserById(this.userId);
+    if (this.userId) {
+      this.getUserById(this.userId);
+    }
     this.route.params.subscribe((params) => {
       this.promptId = params['promptId'];
     });
   }
 
-  getUserById(userId: User) {
+  private getUserById(userId: User) {
     this.userService.getUserById(userId).subscribe(
       (foundUser) => {
         this.foundUser = foundUser;

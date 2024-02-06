@@ -11,7 +11,7 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 export class PromptListLatestComponent implements OnInit {
   prompts!: Prompt[];
   pageIndex: number = 1;
-  pageSize: number = 5; // Displaying contents per page.
+  pageSize: number = 4; // Displaying contents per page.
 
   constructor(
     private promptService: PromptService,

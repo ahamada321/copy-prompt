@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PromptService } from '../shared/prompt.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
@@ -12,7 +18,7 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   templateUrl: './prompt-edit.component.html',
   styleUrls: ['./prompt-edit.component.scss'],
 })
-export class PromptEditComponent implements OnInit {
+export class PromptEditComponent implements OnInit, OnDestroy {
   foundPrompt!: Prompt;
   isTouched: boolean = false;
   isClicked: boolean = false;

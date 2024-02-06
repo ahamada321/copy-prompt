@@ -1,7 +1,7 @@
 import {
   Component,
-  OnInit,
   OnDestroy,
+  OnInit,
   Renderer2,
   ElementRef,
 } from '@angular/core';

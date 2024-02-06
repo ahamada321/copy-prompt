@@ -34,7 +34,11 @@
         />
         <span>{{ prompt.user.name }}</span>
       </div>
-      <!-- <br />
+      <br />
+      <div class="stats" *ngIf="prompt.comments">
+        <i class="fa fa-commenting-o"></i>&nbsp; {{ prompt.comments.length }}
+      </div>
+      <!--
       <div class="stats" *ngIf="prompt.isBookmarkedFrom">
         <i class="fa fa-heart" aria-hidden="true"></i>
         {{ prompt.isBookmarkedFrom.length }}

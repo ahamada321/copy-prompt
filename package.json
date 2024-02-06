@@ -26,6 +26,7 @@
     "@auth0/angular-jwt": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@sendgrid/mail": "^8.1.0",
+    "angular-google-tag-manager": "1.7",
     "angular2-multiselect-dropdown": "^5.0.4",
     "bcrypt": "^5.1.1",
     "bootstrap": "^4.6.2",

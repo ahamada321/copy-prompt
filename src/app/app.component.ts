@@ -12,6 +12,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { filter, Subscription } from 'rxjs';
 import { Meta } from '@angular/platform-browser';
 import { MyOriginAuthService } from './auth/shared/auth.service';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 var lastScrollTop = 0;
 var delta = 5;
@@ -36,8 +37,11 @@ export class AppComponent implements OnInit {
     private router: Router,
     private element: ElementRef,
     public location: Location,
-    public auth: MyOriginAuthService
-  ) {}
+    public auth: MyOriginAuthService,
+    private gtmService: GoogleTagManagerService
+  ) {
+    this.gtmService.addGtmToDom();
+  }
 
   @HostListener('window:scroll', ['$event'])
   hasScrolled() {

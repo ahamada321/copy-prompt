@@ -13,7 +13,6 @@ import { RegisterSentComponent } from './register/register-sent/register-sent.co
 import { MyOriginAuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth.guard';
 import { TokenInterceptor } from './shared/token.interceptor';
-import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { TermsTextModule } from '../statics/terms/helpers/terms-text/terms-text.module';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
 
@@ -53,7 +52,6 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    JwBootstrapSwitchNg2Module,
     TermsTextModule,
   ],
 })

@@ -25,7 +25,6 @@
     "@angular/router": "^15.2.0",
     "@auth0/angular-jwt": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
-    "@popperjs/core": "^2.11.8",
     "@sendgrid/mail": "^8.1.0",
     "angular2-multiselect-dropdown": "^5.0.4",
     "bcrypt": "^5.1.1",

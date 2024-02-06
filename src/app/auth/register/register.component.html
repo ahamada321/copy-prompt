@@ -102,26 +102,23 @@
                 required
               />
 
-              <ul class="notifications">
-                <li class="notification-item">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [(ngModel)]="isTermsAgreed"
+                    name="isTermsAgreed"
+                  />
+                  <span class="form-check-sign"></span>
                   <a
                     (click)="termsOpen(Notice)"
                     target="_blank"
                     class="link-danger clickable"
                     ><strong>利用規約</strong></a
                   >に同意しますか？
-                  <bSwitch
-                    [(ngModel)]="isTermsAgreed"
-                    name="isTermsAgreed"
-                    [switch-on-color]="'primary'"
-                    [switch-off-color]="'primary'"
-                    switch-on-text="<i class='nc-icon nc-check-2'></i>"
-                    switch-off-text="<i class='nc-icon nc-simple-remove'></i>"
-                  >
-                    Toggle is off >
-                  </bSwitch>
-                </li>
-              </ul>
+                </label>
+              </div>
 
               <button
                 [disabled]="!registerForm.valid || !isTermsAgreed || isClicked"

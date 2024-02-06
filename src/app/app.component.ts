@@ -2,15 +2,13 @@ import {
   Component,
   OnInit,
   Renderer2,
-  ElementRef,
   ViewChild,
   HostListener,
 } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { filter, Subscription } from 'rxjs';
 import { Meta } from '@angular/platform-browser';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 import { MyOriginAuthService } from './auth/shared/auth.service';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
@@ -25,17 +23,14 @@ var navbarHeight = 0;
 })
 export class AppComponent implements OnInit {
   titlee!: string; // Added by Hamada
-  private _router!: Subscription;
   private lastPoppedUrl?: string;
   private yScrollStack: number[] = [];
-  url!: string;
   @ViewChild(NavbarComponent, { static: false }) navbar!: NavbarComponent;
 
   constructor(
     private meta: Meta,
     private renderer: Renderer2,
     private router: Router,
-    private element: ElementRef,
     public location: Location,
     public auth: MyOriginAuthService,
     private gtmService: GoogleTagManagerService
@@ -49,7 +44,7 @@ export class AppComponent implements OnInit {
     // Make sure they scroll more than delta
     if (Math.abs(lastScrollTop - st) <= delta) return;
 
-    var navbar = document.getElementsByTagName('nav')[0];
+    let navbar = document.getElementsByTagName('nav')[0];
 
     // If they scrolled down and are past the navbar, add class .nav-up.
     // This is necessary so you never see what is "behind" the navbar.
@@ -128,17 +123,18 @@ export class AppComponent implements OnInit {
       }
     });
 
-    var ua = window.navigator.userAgent;
-    var trident = ua.indexOf('Trident/');
-    if (trident > 0) {
-      // IE 11 => return version number
-      var rv = ua.indexOf('rv:');
-      var version = parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
-    }
-    if (version!) {
-      var body = document.getElementsByTagName('body')[0];
-      body.classList.add('ie-background');
-    }
+    // var ua = window.navigator.userAgent;
+    // var trident = ua.indexOf('Trident/');
+    // if (trident > 0) {
+    //   // IE 11 => return version number
+    //   var rv = ua.indexOf('rv:');
+    //   var version = parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+    // }
+    // if (version!) {
+    //   var body = document.getElementsByTagName('body')[0];
+    //   body.classList.add('ie-background');
+    // }
+
     this.hasScrolled();
   }
 

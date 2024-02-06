@@ -31,11 +31,10 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateMeta();
     this.getPrompts();
-    this.navbarService.setNavbar();
   }
 
   ngOnDestroy() {
-    this.navbarService.resetNavbar();
+    this.navbarService.resetNavbarPosition();
   }
 
   updateMeta() {

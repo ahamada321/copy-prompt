@@ -69,7 +69,6 @@ export class PromptEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.navbarService.setNavbar();
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);
     });
@@ -78,7 +77,7 @@ export class PromptEditComponent implements OnInit, OnDestroy {
     body.classList.add('add-product');
   }
   ngOnDestroy() {
-    this.navbarService.resetNavbar();
+    this.navbarService.resetNavbarPosition();
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove('add-product');
   }

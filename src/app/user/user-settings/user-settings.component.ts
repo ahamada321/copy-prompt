@@ -27,14 +27,13 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.navbarService.setNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('settings-page');
     this.getUser();
   }
 
   ngOnDestroy() {
-    this.navbarService.resetNavbar();
+    this.navbarService.resetNavbarPosition();
     let body = document.getElementsByTagName('body')[0];
     body.classList.remove('settings-page');
   }

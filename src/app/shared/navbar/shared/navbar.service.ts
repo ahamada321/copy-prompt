@@ -17,4 +17,12 @@ export class NavbarService {
       navbar.classList.add('nav-down');
     }
   }
+
+  resetNavbarPosition() {
+    let navbar = document.getElementsByTagName('nav')[0];
+    if (navbar.classList.contains('nav-up')) {
+      navbar.classList.remove('nav-up');
+      navbar.classList.add('nav-down');
+    }
+  }
 }

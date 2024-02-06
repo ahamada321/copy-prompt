@@ -59,21 +59,18 @@ export class AppComponent implements OnInit {
         navbar.classList.remove('nav-down');
         navbar.classList.add('nav-up');
       }
-      // $('.navbar.nav-down').removeClass('nav-down').addClass('nav-up');
     } else {
       // Scroll Up
-      //  $(window).height()
       if (st + window.innerHeight < document.body.scrollHeight) {
-        // $('.navbar.nav-up').removeClass('nav-up').addClass('nav-down');
         if (navbar.classList.contains('nav-up')) {
           navbar.classList.remove('nav-up');
           navbar.classList.add('nav-down');
         }
       }
     }
-
     lastScrollTop = st;
   }
+
   ngOnInit() {
     this.meta.addTags([
       {
@@ -93,8 +90,8 @@ export class AppComponent implements OnInit {
       },
     ]);
 
-    var navbar: HTMLElement =
-      this.element.nativeElement.children[0].children[0];
+    let navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
 
     this.location.subscribe((ev: PopStateEvent) => {
       this.lastPoppedUrl = ev.url;
@@ -104,46 +101,32 @@ export class AppComponent implements OnInit {
         if (event.url != this.lastPoppedUrl)
           this.yScrollStack.push(window.scrollY);
       } else if (event instanceof NavigationEnd) {
+        this.navbar.sidebarClose();
+
+        // Below code is using at Bottom Nav bar.
+        const locationPath = this.location.prepareExternalUrl(
+          this.location.path()
+        );
+        this.titlee = locationPath.slice(1);
+        // Bottom Nab bar control end.
+
+        this.renderer.listen('window', 'scroll', (event) => {
+          const number = window.scrollY;
+          if (number > 150 || window.pageYOffset > 150) {
+            // add logic
+            navbar.classList.remove('navbar-transparent');
+          } else {
+            // remove logic
+            navbar.classList.add('navbar-transparent');
+          }
+        });
+
         if (event.url == this.lastPoppedUrl) {
           this.lastPoppedUrl = undefined;
           window.scrollTo(0, this.yScrollStack.pop()!);
         } else window.scrollTo(0, 0);
       }
     });
-
-    this._router = this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event) => {
-        this.navbar.sidebarClose();
-
-        // Below code is using at Bottom Nav bar.
-        if (event instanceof NavigationEnd) {
-          const locationPath = this.location.prepareExternalUrl(
-            this.location.path()
-          );
-          this.titlee = locationPath.slice(1);
-        }
-        // Bottom Nab bar control end.
-
-        this.renderer.listen('window', 'scroll', (event) => {
-          const number = window.scrollY;
-          var _locationSections = this.location.path();
-          _locationSections = _locationSections.split('#')[0];
-
-          var _locationExamples = this.location.path();
-          _locationExamples = _locationExamples.split('/')[2];
-          if (number > 150 || window.pageYOffset > 150) {
-            // add logic
-            navbar.classList.remove('navbar-transparent');
-          } else if (
-            _locationExamples !== 'contactus' &&
-            _locationExamples !== 'register'
-          ) {
-            // remove logic
-            navbar.classList.add('navbar-transparent');
-          }
-        });
-      });
 
     var ua = window.navigator.userAgent;
     var trident = ua.indexOf('Trident/');
@@ -158,6 +141,7 @@ export class AppComponent implements OnInit {
     }
     this.hasScrolled();
   }
+
   // removeFooter() {
   //   var titlee = this.location.prepareExternalUrl(this.location.path());
   //   titlee = titlee.slice(1);
@@ -167,6 +151,7 @@ export class AppComponent implements OnInit {
   //     return true;
   //   }
   // }
+
   isMobile() {
     let innerWidth = window.innerWidth;
     if (innerWidth < 530) {

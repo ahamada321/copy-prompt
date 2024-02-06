@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PromptService } from '../shared/prompt.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
@@ -71,21 +65,10 @@ export class PromptEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private navbarService: NavbarService,
     private promptService: PromptService,
-    public auth: MyOriginAuthService,
-    private renderer: Renderer2,
-    private elementRef: ElementRef
+    public auth: MyOriginAuthService
   ) {}
 
   ngOnInit() {
-    const link = this.renderer.createElement('link');
-    this.renderer.setAttribute(link, 'rel', 'stylesheet');
-    this.renderer.setAttribute(
-      link,
-      'href',
-      '//cdn.quilljs.com/1.3.6/quill.snow.css'
-    );
-    this.renderer.appendChild(this.elementRef.nativeElement, link);
-
     this.navbarService.setNavbar();
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);

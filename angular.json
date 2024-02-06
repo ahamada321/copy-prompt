@@ -34,7 +34,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/quill/dist/quill.min.js",
               "node_modules/rellax/rellax.min.js",
               "node_modules/sweetalert2/dist/sweetalert2.all.min.js"
             ]
@@ -101,7 +100,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/quill/dist/quill.min.js",
               "node_modules/rellax/rellax.min.js",
               "node_modules/sweetalert2/dist/sweetalert2.all.min.js"
             ]

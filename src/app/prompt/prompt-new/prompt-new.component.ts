@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  ElementRef,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PromptService } from '../shared/prompt.service';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
@@ -79,21 +73,10 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     private router: Router,
     private navbarService: NavbarService,
     private promptService: PromptService,
-    public auth: MyOriginAuthService,
-    private renderer: Renderer2,
-    private elementRef: ElementRef
+    public auth: MyOriginAuthService
   ) {}
 
   ngOnInit() {
-    const link = this.renderer.createElement('link');
-    this.renderer.setAttribute(link, 'rel', 'stylesheet');
-    this.renderer.setAttribute(
-      link,
-      'href',
-      '//cdn.quilljs.com/1.3.6/quill.snow.css'
-    );
-    this.renderer.appendChild(this.elementRef.nativeElement, link);
-
     this.navbarService.setNavbar();
     const body = document.getElementsByTagName('body')[0];
     body.classList.add('add-product');

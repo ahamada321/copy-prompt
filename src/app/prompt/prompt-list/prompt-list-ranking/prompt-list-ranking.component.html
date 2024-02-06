@@ -6,7 +6,10 @@
   </div>
   <div class="col-md-3 col-xl-2 ml-auto mr-auto">
     <br />
-    <a [routerLink]="['/prompt/search', { condition: 'ranking' }]">
+    <a
+      aria-label="人気ランキング"
+      [routerLink]="['/prompt/search', { condition: 'ranking' }]"
+    >
       <div class="card" data-color="orange">
         <div class="card-body">
           <div class="card-icon">

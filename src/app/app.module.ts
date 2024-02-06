@@ -3,7 +3,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { QuillConfigModule, QuillModule } from 'ngx-quill';
-import hljs from 'highlight.js';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -19,7 +18,6 @@ import { BottomNavComponent } from './shared/bottom-nav/bottom-nav.component';
     QuillModule.forRoot(),
     QuillConfigModule.forRoot({
       modules: {
-        syntax: { highlight: (text: string) => hljs.highlightAuto(text).value },
         toolbar: [
           [{ header: [3, 4, 5, false] }],
           [{ color: [] }, { background: [] }],

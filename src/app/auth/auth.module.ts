@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { LoginResetpasswordComponent } from './login-popup/login-resetpassword/login-resetpassword.component';
 import { LoginResetpasswordSentComponent } from './login-popup/login-resetpassword/login-resetpassword-sent/login-resetpassword-sent.component';
-import { LoginNewPasswordComponent } from './login-popup/login-newpassword/login-newpassword.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterVerificationComponent } from './register/register-verification/register-verification.component';
 import { RegisterSentComponent } from './register/register-sent/register-sent.component';
@@ -35,7 +34,6 @@ const routes: Routes = [
     LoginPopupComponent,
     LoginResetpasswordComponent,
     LoginResetpasswordSentComponent,
-    LoginNewPasswordComponent,
     RegisterComponent,
     RegisterSentComponent,
     RegisterVerificationComponent,

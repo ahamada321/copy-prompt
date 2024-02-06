@@ -22,12 +22,11 @@ export class UserSettingsPasswordComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.navbarService.setNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('settings-page');
   }
   ngOnDestroy() {
-    this.navbarService.resetNavbar();
+    this.navbarService.resetNavbarPosition();
     let body = document.getElementsByTagName('body')[0];
     body.classList.remove('settings-page');
   }

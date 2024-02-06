@@ -37,14 +37,13 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.navbarService.setNavbar();
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);
     });
   }
 
   ngOnDestroy() {
-    this.navbarService.resetNavbar();
+    this.navbarService.resetNavbarPosition();
   }
 
   getPrompt(promptId: string) {

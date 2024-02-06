@@ -1,10 +1,13 @@
-<div class="section" *ngIf="comments && foundUser">
+<div class="section" *ngIf="comments">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <h2 class="title text-center">コメント({{ comments.length }})</h2>
         <div class="media-area">
-          <div class="media media-post" *ngIf="auth.isAuthenticated()">
+          <div
+            class="media media-post"
+            *ngIf="auth.isAuthenticated() && foundUser"
+          >
             <div class="pull-left author">
               <div class="avatar">
                 <img
@@ -91,9 +94,9 @@
                 >
                   <i class="fa fa-reply"></i>返信する
                 </button>
-                <a href="javascript:void(0)" class="btn btn-link pull-right">
+                <!-- <a href="javascript:void(0)" class="btn btn-link pull-right">
                   <i class="fa fa-flag"></i>報告する</a
-                >
+                > -->
               </div>
             </div>
           </div>

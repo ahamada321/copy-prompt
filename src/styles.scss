@@ -14,8 +14,12 @@ body {
 }
 
 // Quill editor
-.ql-container {
-  background-color: white;
+quill-editor {
+  width: 100%;
+  height: 230px !important;
+  .ql-container {
+    background-color: white;
+  }
 }
 
 // Placeholder color

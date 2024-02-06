@@ -1,16 +1,14 @@
-<div class="section" *ngIf="comments">
+<div class="section section-nude" *ngIf="comments">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <h2 class="title text-center">コメント({{ comments.length }})</h2>
         <div class="media-area">
-          <div
-            class="media media-post"
-            *ngIf="auth.isAuthenticated() && foundUser"
-          >
+          <div *ngIf="auth.isAuthenticated()" class="media media-post">
             <div class="pull-left author">
               <div class="avatar">
                 <img
+                  *ngIf="foundUser"
                   class="media-object"
                   alt="64x64"
                   [src]="
@@ -53,6 +51,10 @@
               </div>
             </form>
           </div>
+          <h3 *ngIf="!auth.isAuthenticated()" class="description text-center">
+            <small>ログイン後にコメントできます</small>
+            <hr />
+          </h3>
 
           <!-- end media -->
           <div class="media" *ngFor="let comment of comments">

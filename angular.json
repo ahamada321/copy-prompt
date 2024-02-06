@@ -33,18 +33,15 @@
               "src/assets/demo/demo.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/rellax/rellax.min.js",
-              "node_modules/sweetalert2/dist/sweetalert2.all.min.js"
-            ]
+            "scripts": ["node_modules/rellax/rellax.min.js"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -99,10 +96,7 @@
               "src/assets/demo/demo.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/rellax/rellax.min.js",
-              "node_modules/sweetalert2/dist/sweetalert2.all.min.js"
-            ]
+            "scripts": ["node_modules/rellax/rellax.min.js"]
           }
         }
       }

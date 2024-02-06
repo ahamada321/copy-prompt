@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import * as moment from 'moment';
 
 const jwt = new JwtHelperService();
 
@@ -52,7 +51,8 @@ export class MyOriginAuthService {
   }
 
   public isAuthenticated(): boolean {
-    return moment().isBefore(moment.unix(this.decodedToken.exp));
+    const now = new Date().getTime() / 1000; // 現在のUNIXタイムスタンプを取得
+    return now < this.decodedToken.exp;
   }
 
   public getAuthToken(): string {

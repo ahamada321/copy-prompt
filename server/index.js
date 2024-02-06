@@ -23,9 +23,9 @@ mongoose
   .catch((err) => console.error(err));
 
 const app = express();
+app.use(compression()); // compress middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(compression()); // compress middleware
 
 app.use("/api/v1/prompts", promptRoutes);
 app.use("/api/v1/users", userRoutes);

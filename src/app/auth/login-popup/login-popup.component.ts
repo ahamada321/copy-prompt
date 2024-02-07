@@ -44,11 +44,11 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     });
   }
 
-  isInvalidForm(fieldname: any): boolean {
+  isInvalidForm(fieldName: any): boolean {
     return (
-      this.loginForm.controls[fieldname].invalid &&
-      (this.loginForm.controls[fieldname].dirty ||
-        this.loginForm.controls[fieldname].touched)
+      this.loginForm.controls[fieldName].invalid &&
+      (this.loginForm.controls[fieldName].dirty ||
+        this.loginForm.controls[fieldName].touched)
     );
   }
 

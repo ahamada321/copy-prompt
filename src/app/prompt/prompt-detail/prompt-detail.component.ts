@@ -22,8 +22,6 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   isBookmarked: boolean = false;
   comments!: Comment[];
 
-  tags!: HTMLMetaElement[];
-
   constructor(
     private meta: Meta,
     private route: ActivatedRoute,

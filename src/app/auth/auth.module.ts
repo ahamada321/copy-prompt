@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginResetpasswordComponent } from './login-popup/login-resetpassword/login-resetpassword.component';
 import { LoginResetpasswordSentComponent } from './login-popup/login-resetpassword/login-resetpassword-sent/login-resetpassword-sent.component';
@@ -48,10 +48,10 @@ const routes: Routes = [
     },
   ],
   imports: [
+    CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    CommonModule,
     TermsTextModule,
   ],
 })

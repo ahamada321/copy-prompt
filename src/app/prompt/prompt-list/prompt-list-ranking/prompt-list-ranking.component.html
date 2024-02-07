@@ -8,7 +8,8 @@
     <br />
     <a
       aria-label="人気ランキング"
-      [routerLink]="['/prompt/search', { condition: 'ranking' }]"
+      [routerLink]="['/prompt/search']"
+      [queryParams]="{ condition: 'ranking', page: 1 }"
     >
       <div class="card" data-color="orange">
         <div class="card-body">

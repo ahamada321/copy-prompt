@@ -34,7 +34,6 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateMeta();
 
-    // Always watching changes after ngOnInit.
     this.routeSubscription = this.route.queryParams.subscribe((params) => {
       this.condition = params['condition'];
       this.keywords = params['keywords'];
@@ -42,12 +41,11 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
         this.pageIndex = params['page'];
       }
     });
-
+    this.routeSubscription.unsubscribe(); // Need to stop watching.
     this.getPrompts();
   }
 
   ngOnDestroy() {
-    this.routeSubscription.unsubscribe();
     this.navbarService.resetNavbarPosition();
   }
 

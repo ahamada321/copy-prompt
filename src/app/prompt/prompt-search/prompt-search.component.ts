@@ -14,10 +14,11 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 export class PromptSearchComponent implements OnInit, OnDestroy {
   keywords!: string;
   condition!: string;
-  prompts: Prompt[] = [];
-  pageIndex: number = 1;
+  pageIndex!: number;
+  pageCollectionSize!: number;
   pageSize: number = 30; // Displaying contents per page.
-  pageCollectionSize: number = 1;
+  prompts: Prompt[] = [];
+  isNgbInitialCall: boolean = true;
 
   constructor(
     private promptService: PromptService,
@@ -30,6 +31,16 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updateMeta();
+
+    // Always watching changes after ngOnInit.
+    this.route.queryParams.subscribe((params) => {
+      this.condition = params['condition'];
+      this.keywords = params['keywords'];
+      if (params['page'] && params['page'] !== undefined) {
+        this.pageIndex = params['page'];
+      }
+    });
+
     this.getPrompts();
   }
 
@@ -51,41 +62,56 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   filterByName(keywords: string) {
-    this.router.navigate(['/prompt/search', { keywords: keywords }]);
-    this.getPrompts();
-  }
-
-  pageChange() {
+    this.router.navigate(['/prompt/search'], {
+      queryParams: { keywords: keywords ? keywords : '', page: 1 },
+    });
+    this.keywords = keywords;
+    this.condition = '';
+    this.pageIndex = 1;
     this.prompts = [];
     this.getPrompts();
   }
 
-  getPrompts() {
-    this.route.params.subscribe((params) => {
-      this.condition = params['condition'];
-      this.keywords = params['keywords'];
+  pageChange() {
+    if (this.isNgbInitialCall) {
+      this.isNgbInitialCall = false;
+      return;
+    }
+    this.isNgbInitialCall = true; // Avoiding NgbPagination multiple calling bug.
 
-      if (this.condition === 'latest') {
-        this.getLatestPrompts();
-        return;
-      } else if (this.condition === 'ranking') {
-        this.getPromptRanking();
-      } else {
-        this.promptService
-          .getPrompts(this.keywords, this.pageIndex, this.pageSize)
-          .subscribe(
-            (result) => {
-              this.prompts = result[0].foundPrompts;
-              if (this.prompts.length > 0) {
-                this.pageCollectionSize = result[0].metadata[0].total;
-              }
-            },
-            (err) => {
-              console.error(err);
-            }
-          );
-      }
-    });
+    this.prompts = [];
+    this.getPrompts();
+  }
+
+  private getPrompts() {
+    if (this.keywords) {
+      this.getPromptsByKeywords(this.keywords);
+    } else if (this.condition === 'latest') {
+      this.getLatestPrompts();
+    } else if (this.condition === 'ranking') {
+      this.getPromptRanking();
+    }
+  }
+
+  private getPromptsByKeywords(keywords: string) {
+    this.promptService
+      .getPrompts(keywords, this.pageIndex, this.pageSize)
+      .subscribe(
+        (result) => {
+          if (result[0].foundPrompts.length > 0) {
+            this.pageCollectionSize = result[0].metadata[0].total;
+            this.isNgbInitialCall = true; // Avoiding NgbPagination multiple calling bug.
+
+            this.router.navigate(['/prompt/search'], {
+              queryParams: { keywords: this.keywords, page: this.pageIndex },
+            });
+            this.prompts = result[0].foundPrompts;
+          }
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
   }
 
   private getLatestPrompts() {
@@ -93,9 +119,14 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
       .getLatestPrompts(this.pageIndex, this.pageSize)
       .subscribe(
         (result) => {
-          this.prompts = result[0].foundPrompts;
-          if (this.prompts.length > 0) {
-            this.pageCollectionSize = result[0].metadata[0].total;
+          if (result[0].foundPrompts.length > 0) {
+            if (!this.pageCollectionSize) {
+              this.pageCollectionSize = result[0].metadata[0].total;
+            }
+            this.router.navigate(['/prompt/search'], {
+              queryParams: { condition: 'latest', page: this.pageIndex },
+            });
+            this.prompts = result[0].foundPrompts;
           }
         },
         (err) => {
@@ -109,9 +140,14 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
       .getPromptRanking(this.pageIndex, this.pageSize)
       .subscribe(
         (result) => {
-          this.prompts = result[0].foundPrompts;
-          if (this.prompts.length > 0) {
-            this.pageCollectionSize = result[0].metadata[0].total;
+          if (result[0].foundPrompts.length > 0) {
+            if (!this.pageCollectionSize) {
+              this.pageCollectionSize = result[0].metadata[0].total;
+            }
+            this.router.navigate(['/prompt/search'], {
+              queryParams: { condition: 'ranking', page: this.pageIndex },
+            });
+            this.prompts = result[0].foundPrompts;
           }
         },
         (err) => {

@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MyOriginAuthService } from '../shared/auth.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MyOriginAuthService } from '../shared/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 import { User } from '../../user/shared/user.model';
 import Swal from 'sweetalert2';
-import { LoginPopupComponent } from '../login-popup/login-popup.component';
-import { Meta } from '@angular/platform-browser';
-import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-register',
@@ -18,20 +18,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
   isTermsAgreed: boolean = false;
   isClicked: boolean = false;
 
-  focus: any;
-  focus1: any;
-  focus2: any;
-  focus3: any;
+  focusName!: boolean;
+  focusEmail!: boolean;
+  focusPassword!: boolean;
+  focusConfirmation!: boolean;
 
   formData: User = new User();
 
   errors: any[] = [];
 
   constructor(
+    private meta: Meta,
+    private router: Router,
     private auth: MyOriginAuthService,
     private modalService: NgbModal,
-    private router: Router,
-    private meta: Meta,
     private navbarService: NavbarService
   ) {}
 

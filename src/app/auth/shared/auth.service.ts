@@ -24,18 +24,18 @@ export class MyOriginAuthService {
     }
   }
 
-  public logout() {
-    localStorage.removeItem('app-auth');
-    localStorage.removeItem('app-meta');
-    this.decodedToken = new DecodedToken();
-  }
-
   private saveToken(token: any): string {
     this.decodedToken = jwt.decodeToken(token);
     localStorage.setItem('app-auth', token);
     localStorage.setItem('app-meta', JSON.stringify(this.decodedToken));
 
     return token;
+  }
+
+  public logout() {
+    localStorage.removeItem('app-auth');
+    localStorage.removeItem('app-meta');
+    this.decodedToken = new DecodedToken();
   }
 
   public login(userData: any): Observable<any> {
@@ -65,10 +65,6 @@ export class MyOriginAuthService {
 
   public getname(): string {
     return this.decodedToken.name;
-  }
-
-  public getUserImage(): string {
-    return this.decodedToken.image;
   }
 
   // public getUserRole(): string {

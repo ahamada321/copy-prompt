@@ -62,8 +62,8 @@
                 type="text"
                 [ngModel]="formData.name"
                 name="name"
-                (focus)="focus = true"
-                (blur)="focus = false"
+                (focus)="focusName = true"
+                (blur)="focusName = false"
                 required
               />
 
@@ -73,8 +73,8 @@
                 type="email"
                 [ngModel]="formData.email"
                 name="email"
-                (focus)="focus1 = true"
-                (blur)="focus1 = false"
+                (focus)="focusEmail = true"
+                (blur)="focusEmail = false"
                 required
               />
 
@@ -85,8 +85,8 @@
                 [ngModel]="formData.password"
                 name="password"
                 autocomplete="new-password"
-                (focus)="focus2 = true"
-                (blur)="focus2 = false"
+                (focus)="focusPassword = true"
+                (blur)="focusPassword = false"
                 required
               />
 
@@ -97,8 +97,8 @@
                 [ngModel]="formData.passwordConfirmation"
                 name="passwordConfirmation"
                 autocomplete="off"
-                (focus)="focus3 = true"
-                (blur)="focus3 = false"
+                (focus)="focusConfirmation = true"
+                (blur)="focusConfirmation = false"
                 required
               />
 

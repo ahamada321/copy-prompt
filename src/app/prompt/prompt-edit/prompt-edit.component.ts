@@ -16,8 +16,6 @@ export class PromptEditComponent implements OnInit, OnDestroy {
   foundPrompt!: Prompt;
   isTouched: boolean = false;
   isClicked: boolean = false;
-  focus!: boolean;
-  focus2!: boolean;
   errors: any[] = [];
 
   dropdownUsageLists = [
@@ -44,7 +42,6 @@ export class PromptEditComponent implements OnInit, OnDestroy {
     { id: 15, itemName: '生活・エンタメ' },
     { id: 16, itemName: 'その他' },
   ];
-  selectedCategory!: { id: number; itemName: string }[];
   dropdownSettings = {
     singleSelection: false,
     text: 'カテゴリを選択してください',
@@ -72,10 +69,10 @@ export class PromptEditComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);
     });
-
     const body = document.getElementsByTagName('body')[0];
     body.classList.add('add-product');
   }
+
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
     const body = document.getElementsByTagName('body')[0];
@@ -84,8 +81,8 @@ export class PromptEditComponent implements OnInit, OnDestroy {
 
   onCategorySelect(item: any) {
     // Have to limit upto 1 items.
-    if (this.selectedCategory.length > 1) {
-      this.selectedCategory.pop();
+    if (this.foundPrompt.categories.length > 1) {
+      this.foundPrompt.categories.pop();
     }
   }
 
@@ -93,7 +90,6 @@ export class PromptEditComponent implements OnInit, OnDestroy {
     this.promptService.getPromptById(promptId).subscribe(
       (foundPrompt: Prompt) => {
         this.foundPrompt = foundPrompt;
-        this.selectedCategory = this.foundPrompt.categories;
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
@@ -105,7 +101,6 @@ export class PromptEditComponent implements OnInit, OnDestroy {
   unpublishPrompt() {
     this.isClicked = true;
     this.foundPrompt.isShared = false;
-    this.foundPrompt.categories = this.selectedCategory;
 
     this.promptService
       .updatePrompt(this.foundPrompt._id, this.foundPrompt)
@@ -124,7 +119,6 @@ export class PromptEditComponent implements OnInit, OnDestroy {
   updatePrompt() {
     this.isClicked = true;
     this.foundPrompt.isShared = true;
-    this.foundPrompt.categories = this.selectedCategory;
 
     this.promptService
       .updatePrompt(this.foundPrompt._id, this.foundPrompt)

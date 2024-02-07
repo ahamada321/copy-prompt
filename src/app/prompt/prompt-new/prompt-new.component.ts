@@ -44,7 +44,6 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     { id: 15, itemName: '生活・エンタメ' },
     { id: 16, itemName: 'その他' },
   ];
-  selectedCategory!: { id: number; itemName: string }[];
   dropdownUsageList = [
     { id: 1, itemName: 'プロンプトをChatGPTにコピペ' },
     {
@@ -89,15 +88,14 @@ export class PromptNewComponent implements OnInit, OnDestroy {
 
   onCategorySelect(item: any) {
     // Have to limit upto 1 items.
-    if (this.selectedCategory.length > 1) {
-      this.selectedCategory.pop();
+    if (this.newPrompt.categories.length > 1) {
+      this.newPrompt.categories.pop();
     }
   }
 
   createUnpublishedPrompt() {
     this.isClicked = true;
     this.newPrompt.isShared = false;
-    this.newPrompt.categories = this.selectedCategory;
 
     this.promptService.createPrompt(this.newPrompt).subscribe(
       (prompt: Prompt) => {
@@ -114,7 +112,6 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   createPrompt() {
     this.isClicked = true;
     this.newPrompt.isShared = true;
-    this.newPrompt.categories = this.selectedCategory;
 
     // if (!this.isImage) {
     //   this.errors.push({

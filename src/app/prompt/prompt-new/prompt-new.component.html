@@ -5,8 +5,8 @@
     [ngStyle]="{
       'background-image':
         'url(' +
-        (selectedCategory && selectedCategory.length > 0
-          ? './assets/img/thumbnail/' + selectedCategory[0].id + '.jpg'
+        (newPrompt.categories && newPrompt.categories.length > 0
+          ? './assets/img/thumbnail/' + newPrompt.categories[0].id + '.jpg'
           : './assets/img/image_placeholder.jpg') +
         ')'
     }"
@@ -122,8 +122,8 @@
               <h6>カテゴリ <span class="icon-danger">*</span></h6>
               <angular2-multiselect
                 [data]="dropdownCategoryList"
-                [(ngModel)]="selectedCategory"
-                name="selectedCategory"
+                [(ngModel)]="newPrompt.categories"
+                name="categories"
                 [settings]="dropdownSettings"
                 (onSelect)="onCategorySelect($event)"
               >
@@ -142,8 +142,8 @@
                     !(
                       promptForm.form.valid &&
                       !isClicked &&
-                      selectedCategory &&
-                      selectedCategory.length > 0
+                      newPrompt.categories &&
+                      newPrompt.categories.length > 0
                     )
                   "
                   (click)="createPrompt()"

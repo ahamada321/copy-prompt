@@ -5,6 +5,7 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-prompt-search',
@@ -19,6 +20,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   pageSize: number = 30; // Displaying contents per page.
   prompts: Prompt[] = [];
   isNgbInitialCall: boolean = true;
+  private routeSubscription!: Subscription;
 
   constructor(
     private promptService: PromptService,
@@ -33,10 +35,10 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     this.updateMeta();
 
     // Always watching changes after ngOnInit.
-    this.route.queryParams.subscribe((params) => {
+    this.routeSubscription = this.route.queryParams.subscribe((params) => {
       this.condition = params['condition'];
       this.keywords = params['keywords'];
-      if (params['page'] && params['page'] !== undefined) {
+      if (params['page']) {
         this.pageIndex = params['page'];
       }
     });
@@ -45,6 +47,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.routeSubscription.unsubscribe();
     this.navbarService.resetNavbarPosition();
   }
 
@@ -62,12 +65,12 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   filterByName(keywords: string) {
-    this.router.navigate(['/prompt/search'], {
-      queryParams: { keywords: keywords ? keywords : '', page: 1 },
-    });
     this.keywords = keywords;
     this.condition = '';
     this.pageIndex = 1;
+    this.router.navigate(['/prompt/search'], {
+      queryParams: { keywords: keywords ? keywords : '', page: this.pageIndex },
+    });
     this.prompts = [];
     this.getPrompts();
   }

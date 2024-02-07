@@ -42,6 +42,10 @@ if (process.env.NODE_ENV === "production") {
       const httpsUrl = "https://" + req.headers.host + req.url;
       return res.redirect(301, httpsUrl);
     }
+    if (req.url === "/ads.txt") {
+      // /ads.txt へのリクエストの場合はリダイレクトしない
+      return next();
+    }
     if (!req.headers.host.startsWith("www.")) {
       const wwwUrl = "https://www." + req.headers.host + req.url;
       return res.redirect(301, wwwUrl);

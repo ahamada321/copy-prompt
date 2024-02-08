@@ -19,7 +19,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   pageCollectionSize!: number;
   pageSize: number = 30; // Displaying contents per page.
   prompts: Prompt[] = [];
-  isNgbInitialCall: boolean = true;
+  isNgbInitialCall: boolean = true; // Avoiding NgbPagination Initial calling bug.
   private routeSubscription!: Subscription;
 
   constructor(
@@ -74,11 +74,11 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   pageChange() {
+    // Avoiding multiple pageChange() calling bug.
     if (this.isNgbInitialCall) {
       this.isNgbInitialCall = false;
       return;
     }
-    this.isNgbInitialCall = true; // Avoiding NgbPagination multiple calling bug.
 
     this.prompts = [];
     this.getPrompts();
@@ -101,7 +101,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
         (result) => {
           if (result[0].foundPrompts.length > 0) {
             this.pageCollectionSize = result[0].metadata[0].total;
-            this.isNgbInitialCall = true; // Avoiding NgbPagination multiple calling bug.
+            this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
 
             this.router.navigate(['/prompt/search'], {
               queryParams: { keywords: this.keywords, page: this.pageIndex },

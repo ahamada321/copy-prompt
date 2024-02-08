@@ -78,7 +78,6 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
       this.isNgbInitialCall = false;
       return;
     }
-    this.isNgbInitialCall = true; // Avoiding NgbPagination multiple calling bug.
 
     this.prompts = [];
     this.getPrompts();

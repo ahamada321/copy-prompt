@@ -17,6 +17,7 @@ const routes: Routes = [
 
   // { path: '', redirectTo: 'prompt', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
+  { path: '**', redirectTo: '', pathMatch: 'full' }, // Should show 404 page in the future
 ];
 
 @NgModule({

@@ -55,7 +55,7 @@ export class UserSettingsPasswordComponent implements OnInit {
       },
       buttonsStyling: false,
     }).then(() => {
-      this.router.navigate(['/prompt', { registered: 'success' }]);
+      this.router.navigate(['/', { registered: 'success' }]);
     });
   }
 }

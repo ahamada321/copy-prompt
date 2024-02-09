@@ -1,25 +1,40 @@
-<div class="card card-raised card-form-horizontal no-transition">
-  <form
-    class="card-body row"
-    #searchForm="ngForm"
-    (ngSubmit)="searchBy(searchForm.value.searchWords)"
-  >
-    <div class="col-md-8">
-      <div class="form-group">
-        <input
-          [(ngModel)]="searchWords"
-          name="searchWords"
-          type="text"
-          placeholder="例）英語 文法 トレーニング"
-          class="form-control"
-        />
+<div
+  class="page-header page-header-small"
+  style="background-image: url('./assets/img/bg/tressure-map.jpg')"
+>
+  <div class="filter"></div>
+  <div class="content-center">
+    <div class="container">
+      <div class="space-50"></div>
+      <h1 class="title">コピペで使える便利なテンプレート集</h1>
+      <h2 class="description">\ Chat GPTプロンプトを検索！ /</h2>
+      <!--     *********    Searchbar    *********     -->
+      <div class="card card-raised card-form-horizontal no-transition">
+        <form
+          class="card-body row"
+          #searchForm="ngForm"
+          (ngSubmit)="searchBy(searchForm.value.searchWords)"
+        >
+          <div class="col-md-8">
+            <div class="form-group">
+              <input
+                [(ngModel)]="searchWords"
+                name="searchWords"
+                type="text"
+                placeholder="例）英語 文法 トレーニング"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="nc-icon nc-zoom-split"></i>&nbsp; プロンプト検索
+            </button>
+            <div class="separator-10"></div>
+          </div>
+        </form>
       </div>
+      <!-- End Searchbar -->
     </div>
-    <div class="col-md-4">
-      <button type="submit" class="btn btn-primary btn-block">
-        <i class="nc-icon nc-zoom-split"></i>&nbsp; プロンプト検索
-      </button>
-      <div class="separator-10"></div>
-    </div>
-  </form>
+  </div>
 </div>

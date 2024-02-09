@@ -157,12 +157,6 @@ exports.getPrompts = async function (req, res) {
       const result = await Prompt.aggregate([
         { $match: { isShared: true } },
         {
-          $addFields: {
-            arraySize: { $size: { $ifNull: ["$isBookmarkedFrom", []] } },
-          },
-        },
-        { $sort: { arraySize: -1 } },
-        {
           $lookup: {
             from: "users", // 結合するコレクション
             localField: "user", // rentalsコレクションのフィールド

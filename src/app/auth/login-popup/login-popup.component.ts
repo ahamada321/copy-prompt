@@ -33,7 +33,6 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
-    //   body.classList.remove('full-screen');
     body.classList.remove('login-popup');
   }
 

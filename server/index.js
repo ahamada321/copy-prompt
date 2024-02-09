@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === "production") {
       return res.redirect(301, httpsUrl);
     }
     if (req.url === "/ads.txt") {
-      // /ads.txt へのリクエストの場合はリダイレクトしない
+      // /ads.txt へのリクエストの場合はwww.へリダイレクトしない
       return next();
     }
     if (!req.headers.host.startsWith("www.")) {

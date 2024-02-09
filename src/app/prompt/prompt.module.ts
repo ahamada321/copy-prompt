@@ -34,11 +34,12 @@ import { PromptService } from './shared/prompt.service';
 import { CommentService } from './shared/comment.service';
 
 const routes: Routes = [
+  { path: '', component: PromptListComponent },
   {
     path: 'prompt',
     component: PromptComponent,
     children: [
-      { path: '', component: PromptListComponent },
+      // { path: '', component: PromptListComponent },
       { path: 'search', component: PromptSearchComponent },
       { path: 'new', component: PromptNewComponent, canActivate: [AuthGuard] },
       {

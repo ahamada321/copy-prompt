@@ -85,7 +85,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   private getPrompts() {
-    if (this.keywords) {
+    if (!this.condition) {
       this.getPromptsByKeywords(this.keywords);
     } else if (this.condition === 'latest') {
       this.getLatestPrompts();

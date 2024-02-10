@@ -25,15 +25,17 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    var body = document.getElementsByTagName('body')[0];
+    let body = document.getElementsByTagName('body')[0];
     body.classList.add('login-popup');
 
     this.initForm();
   }
 
   ngOnDestroy() {
-    var body = document.getElementsByTagName('body')[0];
+    let body = document.getElementsByTagName('body')[0];
     body.classList.remove('login-popup');
+    let navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
   }
 
   initForm() {

@@ -5,7 +5,7 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
-import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-prompt-search',
@@ -19,8 +19,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   pageCollectionSize!: number;
   pageSize: number = 30; // Displaying contents per page.
   prompts: Prompt[] = [];
-  isNgbInitialCall: boolean = true; // Avoiding NgbPagination Initial calling bug.
-  private routeSubscription!: Subscription;
+  isNgbInitialCall!: boolean; // Avoiding NgbPagination Initial calling bug.
 
   constructor(
     private promptService: PromptService,
@@ -34,14 +33,17 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateMeta();
 
-    this.routeSubscription = this.route.queryParams.subscribe((params) => {
-      this.condition = params['condition'];
-      this.keywords = params['keywords'];
+    this.route.queryParams.pipe(take(1)).subscribe((params) => {
+      if (params['condition']) {
+        this.condition = params['condition'];
+      }
+      if (params['keywords']) {
+        this.keywords = params['keywords'];
+      }
       if (params['page']) {
         this.pageIndex = params['page'];
       }
     });
-    this.routeSubscription.unsubscribe(); // Need to stop watching.
     this.getPrompts();
   }
 
@@ -66,9 +68,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     this.keywords = keywords;
     this.condition = '';
     this.pageIndex = 1;
-    this.router.navigate(['/prompt'], {
-      queryParams: { keywords: keywords ? keywords : '', page: this.pageIndex },
-    });
+
     this.prompts = [];
     this.getPrompts();
   }
@@ -88,22 +88,25 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     if (this.condition === 'ranking') {
       this.getPromptRanking();
     } else {
-      this.getPromptsByKeywords(this.keywords);
+      this.getPromptsByKeywords();
     }
   }
 
-  private getPromptsByKeywords(keywords: string) {
+  private getPromptsByKeywords() {
+    this.keywords = this.keywords ? this.keywords : '';
+    this.router.navigate(['/prompt'], {
+      queryParams: { keywords: this.keywords, page: this.pageIndex },
+    });
+
     this.promptService
-      .getPrompts(keywords, this.pageIndex, this.pageSize)
+      .getPrompts(this.keywords, this.pageIndex, this.pageSize)
       .subscribe(
         (result) => {
           if (result[0].foundPrompts.length > 0) {
-            this.pageCollectionSize = result[0].metadata[0].total;
-            this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
-
-            this.router.navigate(['/prompt'], {
-              queryParams: { keywords: this.keywords, page: this.pageIndex },
-            });
+            if (!this.pageCollectionSize) {
+              this.pageCollectionSize = result[0].metadata[0].total;
+              this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
+            }
             this.prompts = result[0].foundPrompts;
           }
         },
@@ -114,6 +117,10 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   private getPromptRanking() {
+    this.router.navigate(['/prompt'], {
+      queryParams: { condition: 'ranking', page: this.pageIndex },
+    });
+
     this.promptService
       .getPromptRanking(this.pageIndex, this.pageSize)
       .subscribe(
@@ -121,10 +128,8 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
           if (result[0].foundPrompts.length > 0) {
             if (!this.pageCollectionSize) {
               this.pageCollectionSize = result[0].metadata[0].total;
+              this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
             }
-            this.router.navigate(['/prompt'], {
-              queryParams: { condition: 'ranking', page: this.pageIndex },
-            });
             this.prompts = result[0].foundPrompts;
           }
         },

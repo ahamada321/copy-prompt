@@ -100,7 +100,7 @@ exports.getPrompts = async function (req, res) {
   }
 
   try {
-    if (!keywords || keywords === "undefined") {
+    if (!keywords) {
       const result = await Prompt.aggregate([
         { $match: { isShared: true } },
         { $sort: { updatedAt: -1 } }, // Sorting by latest.

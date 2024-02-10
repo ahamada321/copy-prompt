@@ -7,12 +7,12 @@ exports.getPromptById = async function (req, res) {
 
   try {
     const foundPrompt = await Prompt.findById(promptId)
+      .populate("user", "-email -password")
       .populate({
         path: "comments",
         populate: { path: "user", select: "-email -password" },
         options: { sort: { createdAt: -1 } },
-      })
-      .populate("user", "-email -password");
+      });
 
     return res.json(foundPrompt);
   } catch (err) {

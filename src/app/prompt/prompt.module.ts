@@ -39,8 +39,7 @@ const routes: Routes = [
     path: 'prompt',
     component: PromptComponent,
     children: [
-      // { path: '', component: PromptListComponent },
-      { path: 'search', component: PromptSearchComponent },
+      { path: '', component: PromptSearchComponent },
       { path: 'new', component: PromptNewComponent, canActivate: [AuthGuard] },
       {
         path: 'edit/:promptId',

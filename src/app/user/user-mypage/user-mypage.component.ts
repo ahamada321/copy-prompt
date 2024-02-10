@@ -12,7 +12,9 @@ export class UserMypageComponent implements OnInit, OnDestroy {
 
   constructor(private navbarService: NavbarService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.navbarService.setNavbar();
+  }
 
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();

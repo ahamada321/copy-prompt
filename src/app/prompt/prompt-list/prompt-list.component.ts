@@ -25,6 +25,7 @@ export class PromptListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updateMeta();
+    this.navbarService.setNavbar();
   }
 
   ngOnDestroy() {

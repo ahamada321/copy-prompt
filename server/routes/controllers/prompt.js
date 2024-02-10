@@ -27,59 +27,6 @@ exports.getPromptById = async function (req, res) {
   }
 };
 
-exports.getLatestPrompts = async function (req, res) {
-  const { page, limit } = req.query;
-
-  if (!page || !limit) {
-    return res.status(422).send({
-      errors: [
-        {
-          title: "Data missing!",
-          detail: "ページリミット情報が取得できませんでした。",
-        },
-      ],
-    });
-  }
-
-  try {
-    const result = await Prompt.aggregate([
-      { $match: { isShared: true } },
-      { $sort: { updatedAt: -1 } }, // Sorting by latest.
-      {
-        $lookup: {
-          from: "users", // 結合するコレクション
-          localField: "user", // rentalsコレクションのフィールド
-          foreignField: "_id", // usersコレクションのフィールド
-          as: "user", // 結果を格納するフィールド名
-          pipeline: [
-            {
-              $project: {
-                email: 0,
-                password: 0, // パスワードフィールドを除外
-              },
-            },
-          ],
-        },
-      },
-      {
-        $unwind: "$user",
-      },
-      {
-        $facet: {
-          metadata: [{ $count: "total" }, { $addFields: { page: page } }],
-          foundPrompts: [
-            { $skip: (page - 1) * limit },
-            { $limit: Number(limit) },
-          ],
-        },
-      },
-    ]);
-    return res.json(result);
-  } catch (err) {
-    return res.status(422).send({ errors: normalizeErrors(err.errors) });
-  }
-};
-
 exports.getPromptRanking = async function (req, res) {
   const { page, limit } = req.query;
 
@@ -153,9 +100,10 @@ exports.getPrompts = async function (req, res) {
   }
 
   try {
-    if (!keywords) {
+    if (!keywords || keywords === "undefined") {
       const result = await Prompt.aggregate([
         { $match: { isShared: true } },
+        { $sort: { updatedAt: -1 } }, // Sorting by latest.
         {
           $lookup: {
             from: "users", // 結合するコレクション

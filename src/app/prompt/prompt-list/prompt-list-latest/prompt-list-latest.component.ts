@@ -23,15 +23,13 @@ export class PromptListLatestComponent implements OnInit {
   }
 
   getLatestPrompts() {
-    this.promptService
-      .getLatestPrompts(this.pageIndex, this.pageSize)
-      .subscribe(
-        (result) => {
-          this.prompts = result[0].foundPrompts;
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
+    this.promptService.getPrompts('', this.pageIndex, this.pageSize).subscribe(
+      (result) => {
+        this.prompts = result[0].foundPrompts;
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 }

@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 export class PromptSearchComponent implements OnInit, OnDestroy {
   keywords!: string;
   condition!: string;
-  pageIndex!: number;
+  pageIndex: number = 1;
   pageCollectionSize!: number;
   pageSize: number = 30; // Displaying contents per page.
   prompts: Prompt[] = [];
@@ -66,7 +66,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     this.keywords = keywords;
     this.condition = '';
     this.pageIndex = 1;
-    this.router.navigate(['/prompt/search'], {
+    this.router.navigate(['/prompt'], {
       queryParams: { keywords: keywords ? keywords : '', page: this.pageIndex },
     });
     this.prompts = [];
@@ -85,12 +85,10 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   private getPrompts() {
-    if (!this.condition) {
-      this.getPromptsByKeywords(this.keywords);
-    } else if (this.condition === 'latest') {
-      this.getLatestPrompts();
-    } else if (this.condition === 'ranking') {
+    if (this.condition === 'ranking') {
       this.getPromptRanking();
+    } else {
+      this.getPromptsByKeywords(this.keywords);
     }
   }
 
@@ -103,29 +101,8 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
             this.pageCollectionSize = result[0].metadata[0].total;
             this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
 
-            this.router.navigate(['/prompt/search'], {
+            this.router.navigate(['/prompt'], {
               queryParams: { keywords: this.keywords, page: this.pageIndex },
-            });
-            this.prompts = result[0].foundPrompts;
-          }
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-  }
-
-  private getLatestPrompts() {
-    this.promptService
-      .getLatestPrompts(this.pageIndex, this.pageSize)
-      .subscribe(
-        (result) => {
-          if (result[0].foundPrompts.length > 0) {
-            if (!this.pageCollectionSize) {
-              this.pageCollectionSize = result[0].metadata[0].total;
-            }
-            this.router.navigate(['/prompt/search'], {
-              queryParams: { condition: 'latest', page: this.pageIndex },
             });
             this.prompts = result[0].foundPrompts;
           }
@@ -145,7 +122,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
             if (!this.pageCollectionSize) {
               this.pageCollectionSize = result[0].metadata[0].total;
             }
-            this.router.navigate(['/prompt/search'], {
+            this.router.navigate(['/prompt'], {
               queryParams: { condition: 'ranking', page: this.pageIndex },
             });
             this.prompts = result[0].foundPrompts;

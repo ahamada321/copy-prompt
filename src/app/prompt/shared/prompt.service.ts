@@ -11,15 +11,6 @@ export class PromptService {
     return this.http.get('/api/v1/prompts/' + promptId);
   }
 
-  public getLatestPrompts(
-    pageIndex: number,
-    pageSize: number
-  ): Observable<any> {
-    return this.http.get(
-      `/api/v1/prompts/latest?page=${pageIndex}&limit=${pageSize}`
-    );
-  }
-
   public getPromptRanking(
     pageIndex: number,
     pageSize: number

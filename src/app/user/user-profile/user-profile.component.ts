@@ -13,10 +13,6 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 export class UserProfileComponent implements OnInit, OnDestroy {
   userData!: User;
   userId!: string;
-
-  pageIndex: number = 1;
-  pageSize: number = 40; // Displaying contents per page.
-  pageCollectionSize: number = 1;
   errors: any[] = [];
 
   constructor(
@@ -77,9 +73,4 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-  // pageChange() {
-  //   // this.prompts = [];
-  //   // this.getUserPrompts();
-  // }
 }

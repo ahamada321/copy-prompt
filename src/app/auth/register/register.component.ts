@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   focusName!: boolean;
   focusEmail!: boolean;
   focusPassword!: boolean;
-  focusConfirmation!: boolean;
 
   formData: User = new User();
 

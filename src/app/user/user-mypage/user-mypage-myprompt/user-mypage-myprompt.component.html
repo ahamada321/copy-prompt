@@ -1,76 +1,76 @@
-<p>\ プロンプトを登録しよう /</p>
-<a
-  class="btn btn-lg btn-primary btn-rotate btn-round"
-  [routerLink]="['/prompt/new']"
->
-  <i class="nc-icon nc-diamond"></i>&nbsp; 追加する
-</a>
-<div class="space-top"></div>
-<div *ngIf="prompts && prompts.length > 0" class="row">
-  <div *ngFor="let prompt of prompts" class="col-6 col-sm-4">
-    <div
-      *ngIf="!prompt.isShared"
-      class="card unpublished"
-      data-background="image"
-      [ngStyle]="{
-        'background-image': 'url(assets/img/image_placeholder.jpg'
-      }"
-    >
-      <div class="card-body">
-        <h6 class="card-category" *ngIf="prompt.categories[0]">
-          <i class="fa fa-newspaper-o"></i>
-          {{ prompt.categories[0].itemName }}
-        </h6>
-        <h5 class="card-title">{{ prompt.name }}</h5>
-        <h5 class="card-title"><small>プロンプト</small></h5>
-        <div class="space-top"></div>
-        <a
-          class="btn btn-outline-neutral btn-round"
-          routerLink="/prompt/edit/{{ prompt._id }}"
-        >
-          <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; 編集して公開する
-        </a>
-      </div>
-    </div>
+<div *ngIf="prompts">
+  <p>\ プロンプトを登録しよう /</p>
+  <button
+    *ngIf="prompts.length >= 30"
+    class="btn btn-lg btn-primary btn-rotate btn-round"
+    [disabled]="true"
+  >
+    <i class="nc-icon nc-diamond"></i>&nbsp; 上限に達しました
+  </button>
+  <a
+    *ngIf="prompts.length < 30"
+    class="btn btn-lg btn-primary btn-rotate btn-round"
+    [routerLink]="['/prompt/new']"
+  >
+    <i class="nc-icon nc-diamond"></i>&nbsp; 追加する
+  </a>
 
-    <div
-      *ngIf="prompt.isShared"
-      class="card"
-      data-background="image"
-      [ngStyle]="{
-        'background-image':
-          'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
-      }"
-    >
-      <a routerLink="/prompt/{{ prompt._id }}">
+  <div class="space-top"></div>
+  <div class="row">
+    <div *ngFor="let prompt of prompts" class="col-6 col-sm-4">
+      <div
+        *ngIf="!prompt.isShared"
+        class="card unpublished"
+        data-background="image"
+        [ngStyle]="{
+          'background-image': 'url(assets/img/image_placeholder.jpg'
+        }"
+      >
         <div class="card-body">
-          <h6 class="card-category">
+          <h6 class="card-category" *ngIf="prompt.categories[0]">
             <i class="fa fa-newspaper-o"></i>
             {{ prompt.categories[0].itemName }}
           </h6>
           <h5 class="card-title">{{ prompt.name }}</h5>
           <h5 class="card-title"><small>プロンプト</small></h5>
-          <br />
+          <div class="space-top"></div>
           <a
             class="btn btn-outline-neutral btn-round"
             routerLink="/prompt/edit/{{ prompt._id }}"
           >
-            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; 編集する
+            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
+            編集して公開する
           </a>
         </div>
-      </a>
+      </div>
+
+      <div
+        *ngIf="prompt.isShared"
+        class="card"
+        data-background="image"
+        [ngStyle]="{
+          'background-image':
+            'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
+        }"
+      >
+        <a routerLink="/prompt/{{ prompt._id }}">
+          <div class="card-body">
+            <h6 class="card-category">
+              <i class="fa fa-newspaper-o"></i>
+              {{ prompt.categories[0].itemName }}
+            </h6>
+            <h5 class="card-title">{{ prompt.name }}</h5>
+            <h5 class="card-title"><small>プロンプト</small></h5>
+            <br />
+            <a
+              class="btn btn-outline-neutral btn-round"
+              routerLink="/prompt/edit/{{ prompt._id }}"
+            >
+              <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; 編集する
+            </a>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </div>
-<!-- <div class="space-top"></div>
-<div class="pagination-area pagination-primary justify-content-center">
-  <ngb-pagination
-    [collectionSize]="pageCollectionSize"
-    [(page)]="pageIndex"
-    [pageSize]="pageSize"
-    [maxSize]="5"
-    [boundaryLinks]="true"
-    aria-label="Default pagination"
-    (pageChange)="pageChange()"
-  ></ngb-pagination>
-</div> -->

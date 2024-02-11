@@ -14,6 +14,7 @@ export class TermsComponent implements OnInit, OnDestroy {
     this.updateMeta();
     this.navbarService.setNavbar();
   }
+
   ngOnDestroy() {
     this.navbarService.resetNavbar();
   }

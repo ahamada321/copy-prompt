@@ -13,12 +13,9 @@ export class FaqComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateMeta();
     this.navbarService.setNavbar();
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.add('blog-post');
   }
+
   ngOnDestroy() {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.remove('blog-post');
     this.navbarService.resetNavbar();
   }
 

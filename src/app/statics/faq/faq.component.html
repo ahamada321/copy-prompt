@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div
-    class="page-header page-header-xs settings-background"
+    class="page-header page-header-xs"
     style="background-image: url('./assets/img/bg/tressure-map.jpg')"
   >
     <div class="filter"></div>
@@ -15,135 +15,227 @@
   <div class="section section-nude">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 ml-auto mr-auto text-center title">
-          <h2>A place for storytelling</h2>
-          <h3 class="title-uppercase">
-            <small>Written by designers for designers</small>
-          </h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-          <div class="text-center">
-            <span class="label label-warning main-tag">Trending</span>
-            <a href="javascrip: void(0);"
-              ><h3 class="title">Make Somebody Nervous Before You Die</h3></a
-            >
-            <h6 class="title-uppercase">October 10, 2016</h6>
-          </div>
-        </div>
         <div class="col-md-8 ml-auto mr-auto">
-          <a>
-            <div
-              class="card"
-              data-radius="none"
-              style="
-                background-image: url('./assets/img/image_placeholder.jpg');
-              "
-            ></div>
-            <p class="image-thumb text-center">Photo by Cam Adams</p>
-          </a>
-          <div class="article-content">
-            <h4>Follow unconventional beliefs</h4>
-            <p>
-              You won’t find many concepts that are very useful or important if
-              you insist on having a worldview that’s void of controversy,
-              invulnerable to criticism, and incapable of making others feel
-              confused.
-            </p>
-
-            <p>
-              Interesting ideas are a reward for not being afraid to have
-              unconventional beliefs. You can’t grow if you’re never willing to
-              turn your back on the status quo. You can’t expand if you’re never
-              willing to take an unorthodox stand. You can’t have a beautiful
-              mind if you’re never willing to leave the crowd behind.
-            </p>
-            <blockquote class="blockquote">
-              <p>
-                "Don’t settle: Don’t finish crappy books. If you don’t like the
-                menu, leave the restaurant. If you’re not on the right path, get
-                off it."
-              </p>
-              <footer>
-                - Chris Brogan in <cite title="Source Title">Trust Agents</cite>
-              </footer>
-            </blockquote>
-            <p>
-              It’s easier to fear rejection than it is to open our minds to
-              something new, but doing what’s easy doesn’t always equal doing
-              what’s authentic, enriching, and meaningful.
-            </p>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="javascrip: void(0);">
-                  <div
-                    class="card"
-                    data-radius="none"
-                    style="
-                      background-image: url('./assets/img/image_placeholder.jpg');
-                    "
-                  ></div>
-                  <!-- end card -->
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="javascrip: void(0);">
-                  <div
-                    class="card"
-                    data-radius="none"
-                    style="
-                      background-image: url('./assets/img/image_placeholder.jpg');
-                    "
-                  ></div>
-                </a>
-              </div>
-            </div>
-            <p></p>
-            <h4>Ideas Worth Mentioning</h4>
-            <p>
-              The stories, ideas and lessons are enough to fill a year’s worth
-              of articles, but for now I wanted to share the ideas straight from
-              the people creating the disruption. Below are my most impactful
-              takeaways from the last few days:
-            </p>
-            <p>
-              <strong>No one belongs here more than me.</strong> When in doubt
-              of your surroundings, this is the mantra.
-            </p>
-            <p>
-              <strong>The ultimate currency is being uncool.</strong> Be
-              vulnerably you and watch how you connect.
-            </p>
-            <p>
-              <strong>The opposite of scarcity is enough.</strong> Be confident
-              that if you’re doing work that matters to you, you are enough.
-              There is no comparison.
-            </p>
-            <p>
-              <strong>Unused creativity is not benign</strong> – it turns into
-              grief. Do something with it.
-            </p>
-            <p>
-              <strong>Get in the arena</strong>, show up, do your thing and
-              don’t be afraid to get your ass kicked a little bit.
-            </p>
-            <p>
-              Who you are will always trump who you think people want you to be.
-            </p>
-            <p>
-              <strong>You can’t control if someone loves you back.</strong> Love
-              them anyway.
-            </p>
-
-            <h4><strong>Conclusions</strong></h4>
-            <p>
-              If all of your convictions can be expressed in a sound bite on
-              mainstream television without provoking the slightest bit of anger
-              or annoyance in anyone whatsoever, I think it’s safe to say that
-              your outlook on life offers you very few opportunities for the
-              remarkable.
-            </p>
+          <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+            <ngb-panel id="config-panel-one">
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTとは何ですか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTは、人工知能（AI）の一種です。会話ができるプログラムです。例えば、質問をすると、適切な返答を考えて返します。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTはどうやって話しますか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTは、大量の文章を学習します。そのデータから言葉の意味や文のつながりを理解し、適切な応答を考えます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTは何に使えますか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTはさまざまな場面で活躍します。例えば、質問に答えることや、おしゃべりを楽しむことができます。また、学習の補助としても役立ちます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTはどうやって学びますか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTは大量のデータを利用して学習します。たくさんの文章を読み込み、言葉や文の構造を理解しようとします。そして、その知識を使って、私たちとの会話を改善していきます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    GPTのプロンプトとは何ですか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトとは、GPT（Generative Pre-trained
+                Transformer）というモデルに与えられる文章や指示のことです。これは、GPTが文章を生成する際の出発点や指針となります。例えば、質問をする際には、質問内容がプロンプトになります。プロンプトは、GPTが応答を生成する際に参考にされ、出力される文章の内容や形式に影響を与えます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTのプロンプトで有名なのは？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTのプロンプトとして有名なものの1つは、「質問をどうぞ。」です。このプロンプトを使用すると、ChatGPTはユーザーからの質問に応答するようにプログラムされています。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTの危険性は？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTの危険性は、偽情報の生成、バイアスや偏見の反映、悪意の悪用、プライバシーの問題などです。これらの危険性を踏まえて、ChatGPTの利用には注意が必要です。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTのプロンプトで学習させない方法はありますか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                はい、チャットGPTのプロンプトで学習を制限する方法はフィルタリング、ランダム化、ノイズの追加などがあります。
+                これらの方法は、ChatGPTが特定のプロンプトに過度に依存しないようにするための手段です。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTを活用するためのプロンプトとは何ですか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTを活用するためのプロンプトは、ChatGPTに与えられる初期のテキストや指示であり、ChatGPTが生成するテキストの内容や形式を指定し、会話や文書のコンテキストを提供します。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTを作った国はどこですか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTを開発したのは、アメリカ合衆国の企業であるOpenAIです。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTでのプロンプトの役割は？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトは、チャットGPTに対話や文章生成のコンテキストを提供します。これにより、ChatGPTは会話や文章の続きを生成する際に、適切な文脈を把握しやすくなります。また、プロンプトはChatGPTが生成するテキストの内容や形式を制御し、特定の目的に応じた応答を生成するように指示する役割もあります。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTを活用するためのプロンプトとは何ですか？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTを活用するためのプロンプトは、ChatGPTに与えられる初期のテキストや指示のことです。これは、ChatGPTが生成するテキストの内容や形式を指定し、会話や文書のコンテキストを提供します。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTでプロンプトを設定する重要性は？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトはチャットGPTが生成するテキストを制御し、特定の目的や文脈に沿った応答を生成するのを支援する重要な手段です。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTのプロンプトでできることは？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトは、チャットGPTが生成するテキストの内容や形式を制御する手段として非常に柔軟であり、質問への回答、会話の開始、文書生成、翻訳や要約、タスクの実行などさまざまな用途に活用することができます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    あつまれ！GPTプロンプト（あつプロ）とは何ですか
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                「あつまれ！GPTプロンプト」とは、ChatGPTを活用するための特別なプロンプト（指示）をまとめたサイトです。例えば、「あつまれ！GPTプロンプト」の中のプロンプトテンプレートを使ってChatGPTに対して、「あなたの好きな映画は何ですか？理由も教えてください！」などの質問を投げかけることができます。するとChatGPTはその質問に基づいて、自身の好きな映画や理由についての応答を生成することが期待されます。このように、「あつまれ！GPTプロンプト」は、ChatGPTとの対話を促進し、特定のトピックに関する情報を収集するための手段として活用されます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTのプロンプトテンプレートとは何ですか
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTのプロンプトテンプレートは、特定の目的やタスクに沿った形式で設計され、ChatGPTに対して明確な指示を与えるために使用されます。例えば、質問に対する回答を求める場合には、「〜です。〜ます。」という形式の質問文がプロンプトテンプレートとして使用されます。
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+          <div class="space-top"></div>
+          <div class="text-center">
+            <a
+              class="btn btn-lg btn-primary btn-round btn-move-right"
+              [routerLink]="['/']"
+            >
+              <i class="nc-icon nc-minimal-right"></i>&nbsp; プロンプト一覧へ
+            </a>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div
-    class="page-header page-header-xs settings-background"
+    class="page-header page-header-xs"
     style="background-image: url('./assets/img/bg/tressure-map.jpg')"
   >
     <div class="filter"></div>
@@ -14,7 +14,6 @@
   </div>
   <div class="section section-nude">
     <div class="container">
-      <div class="space-top"></div>
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
@@ -231,9 +230,11 @@
           </ngb-accordion>
           <div class="space-top"></div>
           <div class="text-center">
-            <h3>\ プロンプトを見てみる /</h3>
-            <a [routerLink]="['/']" class="btn btn-lg btn-primary btn-round">
-              プロンプト一覧へ
+            <a
+              class="btn btn-lg btn-primary btn-round btn-move-right"
+              [routerLink]="['/']"
+            >
+              <i class="nc-icon nc-minimal-right"></i>&nbsp; プロンプト一覧へ
             </a>
           </div>
         </div>

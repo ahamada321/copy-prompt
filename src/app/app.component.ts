@@ -69,11 +69,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.meta.addTags([
       {
-        name: 'keywords',
-        content:
-          'GPT, プロンプト, テンプレ, 無料, Webライター, マーケター, 文章作成, 要約',
-      },
-      {
         name: 'description',
         content:
           'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',

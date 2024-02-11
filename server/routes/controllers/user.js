@@ -226,13 +226,12 @@ exports.auth = async function (req, res) {
 };
 
 exports.register = async function (req, res) {
-  const { name, email, password, passwordConfirmation } = req.body;
+  const { name, email, password } = req.body;
 
   if (!name) {
     return res.status(422).send({
       errors: [
         {
-          title: "Data missing!",
           detail: "氏名を入力してください",
         },
       ],
@@ -243,31 +242,24 @@ exports.register = async function (req, res) {
     return res.status(422).send({
       errors: [
         {
-          title: "Data missing!",
           detail: "メールアドレスを入力してください",
         },
       ],
     });
   }
 
-  if (password !== passwordConfirmation) {
+  if (password.length < 5) {
     return res.status(422).send({
       errors: [
         {
-          title: "Invalid password!",
-          detail: "パスワードとパスワード確認が異なります",
+          detail: "パスワードは5文字以上で入力してください",
         },
       ],
     });
   }
 
   // Filling user infomation with ../models/user.js format
-  const user = new User({
-    name,
-    email,
-    oldEmail: email,
-    password,
-  });
+  const user = new User(req.body);
 
   try {
     const existingUser = await User.findOne({ email });

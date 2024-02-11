@@ -8,9 +8,11 @@ import { LandingComponent } from './landing/landing.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
+import { FaqComponent } from './faq/faq.component';
 
 const routes: Routes = [
-  { path: 'landing', component: LandingComponent },
+  // { path: 'landing', component: LandingComponent },
+  { path: 'faq', component: FaqComponent },
   { path: 'terms', component: TermsComponent },
   //   { path: 'privacy', component: PrivacyComponent },
   { path: 'tutorial', component: TutorialComponent },
@@ -21,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LandingComponent, TermsComponent, TutorialComponent],
+  declarations: [TermsComponent, TutorialComponent, FaqComponent],
   exports: [],
   providers: [],
   imports: [

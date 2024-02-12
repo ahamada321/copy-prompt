@@ -19,13 +19,13 @@ export class PromptListLatestComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getLatestPrompts();
+    this.getRandomPrompts();
   }
 
-  getLatestPrompts() {
-    this.promptService.getPrompts('', this.pageIndex, this.pageSize).subscribe(
+  getRandomPrompts() {
+    this.promptService.getRandomPrompts().subscribe(
       (result) => {
-        this.prompts = result[0].foundPrompts;
+        this.prompts = result;
       },
       (err) => {
         console.error(err);

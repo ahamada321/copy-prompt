@@ -27,6 +27,37 @@ exports.getPromptById = async function (req, res) {
   }
 };
 
+exports.getRandomPrompts = async function (req, res) {
+  try {
+    const result = await Prompt.aggregate([
+      { $match: { isShared: true } },
+      { $sample: { size: 4 } },
+      {
+        $lookup: {
+          from: "users", // 結合するコレクション
+          localField: "user", // rentalsコレクションのフィールド
+          foreignField: "_id", // usersコレクションのフィールド
+          as: "user", // 結果を格納するフィールド名
+          pipeline: [
+            {
+              $project: {
+                email: 0,
+                password: 0, // パスワードフィールドを除外
+              },
+            },
+          ],
+        },
+      },
+      {
+        $unwind: "$user",
+      },
+    ]);
+    return res.json(result);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
 exports.getPromptRanking = async function (req, res) {
   const { page, limit } = req.query;
 

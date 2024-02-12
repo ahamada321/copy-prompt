@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
-import { Meta } from '@angular/platform-browser';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { MyOriginAuthService } from './auth/shared/auth.service';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
@@ -28,7 +27,6 @@ export class AppComponent implements OnInit {
   @ViewChild(NavbarComponent, { static: false }) navbar!: NavbarComponent;
 
   constructor(
-    private meta: Meta,
     private renderer: Renderer2,
     private router: Router,
     public location: Location,
@@ -67,19 +65,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.meta.addTags([
-      {
-        name: 'description',
-        content:
-          'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
-      },
-      {
-        property: 'og:description',
-        content:
-          'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
-      },
-    ]);
-
     let navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
 

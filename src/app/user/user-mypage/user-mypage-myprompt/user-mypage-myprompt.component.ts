@@ -29,7 +29,6 @@ export class UserMypageMypromptComponent implements OnInit {
     this.promptService.getMyPrompts(this.pageIndex, this.pageSize).subscribe(
       (result) => {
         this.prompts = result[0].foundPrompts;
-        debugger;
       },
       (err) => {
         console.error(err);

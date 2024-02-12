@@ -11,6 +11,10 @@ export class PromptService {
     return this.http.get('/api/v1/prompts/' + promptId);
   }
 
+  public getRandomPrompts(): Observable<any> {
+    return this.http.get('/api/v1/prompts/random');
+  }
+
   public getPromptRanking(
     pageIndex: number,
     pageSize: number

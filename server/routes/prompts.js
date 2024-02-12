@@ -10,6 +10,8 @@ const PromptCtrl = require("./controllers/prompt");
 
 router.get("/manage", UserCtrl.authMiddleware, PromptCtrl.getMyPrompts);
 
+router.get("/random", PromptCtrl.getRandomPrompts);
+
 router.get("/ranking", PromptCtrl.getPromptRanking);
 
 router.get("/:id", PromptCtrl.getPromptById);

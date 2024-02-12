@@ -106,8 +106,21 @@
                       <span>{{ userData.name }}</span>
                     </div>
                     <br />
-                    <div class="stats" *ngIf="prompt.isBookmarkedFrom">
-                      <i class="fa fa-heart" aria-hidden="true"></i>
+                    <div
+                      class="stats"
+                      *ngIf="prompt.comments && prompt.comments.length > 0"
+                    >
+                      <i class="nc-icon nc-chat-33"></i>&nbsp;
+                      {{ prompt.comments.length }}
+                    </div>
+                    <div
+                      class="stats"
+                      *ngIf="
+                        prompt.isBookmarkedFrom &&
+                        prompt.isBookmarkedFrom.length > 0
+                      "
+                    >
+                      <i class="nc-icon nc-favourite-28"></i>&nbsp;
                       {{ prompt.isBookmarkedFrom.length }}
                     </div>
                   </div>

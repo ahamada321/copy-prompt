@@ -13,7 +13,7 @@ export class UserMypageMypromptComponent implements OnInit {
   promptDeleteIndex!: number;
 
   pageIndex: number = 1;
-  pageSize: number = 40; // Displaying contents per page.
+  pageSize: number = 30; // Displaying contents per page.
   pageCollectionSize: number = 1;
 
   constructor(
@@ -28,10 +28,8 @@ export class UserMypageMypromptComponent implements OnInit {
   getMyPrompts() {
     this.promptService.getMyPrompts(this.pageIndex, this.pageSize).subscribe(
       (result) => {
-        if (result[0].foundPrompts.length > 0) {
-          this.prompts = result[0].foundPrompts;
-          this.pageCollectionSize = result[0].metadata[0].total;
-        }
+        this.prompts = result[0].foundPrompts;
+        debugger;
       },
       (err) => {
         console.error(err);

@@ -16,4 +16,13 @@ export class SearchbarComponent implements OnInit {
   searchBy(searchWords?: string) {
     this.event.emit(searchWords);
   }
+
+  isMobile() {
+    let innerWidth = window.innerWidth;
+    if (innerWidth < 530) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

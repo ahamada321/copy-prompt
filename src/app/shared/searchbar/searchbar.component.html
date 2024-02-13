@@ -15,7 +15,7 @@
           #searchForm="ngForm"
           (ngSubmit)="searchBy(searchForm.value.searchWords)"
         >
-          <div class="col-md-8">
+          <div class="col-8">
             <div class="form-group">
               <input
                 [ngModel]="searchWords"
@@ -26,9 +26,10 @@
               />
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block btn-magnify">
-              <i class="nc-icon nc-zoom-split"></i>&nbsp; プロンプト検索
+              <i class="nc-icon nc-zoom-split"></i>&nbsp;
+              {{ isMobile() ? "検索" : "プロンプト検索" }}
             </button>
             <div class="separator-10"></div>
           </div>

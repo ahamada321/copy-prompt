@@ -12,14 +12,15 @@
   &.page-header-small {
     // min-height: 65vh !important;
     // max-height: 700px;
-    min-height: 52vh !important; // Changed by Hamada
+    min-height: 50vh !important; // Changed by Hamada
     max-height: 450px; // Changed by Hamada
   }
   &.page-header-s {
     min-height: 50vh !important; // Added by Hamada
   }
   &.page-header-xs {
-    min-height: 40vh !important;
+    // min-height: 40vh !important;
+    min-height: 32vh !important; // Changed by Hamada
   }
   &.page-header-xxs {
     min-height: 25vh !important; // Added by Hamada

@@ -4,12 +4,15 @@
       class="prettyprint"
     ><code class="blur no-copy">{{ prompt.prompt }}</code></pre>
     <button
-      class="btn btn-primary btn-round btn-lg btn-login"
+      class="btn btn-primary btn-round btn-lg btn-wd btn-login"
       (click)="modalLoginOpen()"
     >
       <i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログインしてコピーする
     </button>
-    <a class="btn btn-primary btn-link btn-lg" [routerLink]="['/register']">
+    <a
+      class="btn btn-primary btn-link btn-lg btn-wd"
+      [routerLink]="['/register']"
+    >
       <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
     </a>
   </div>

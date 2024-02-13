@@ -1,34 +1,46 @@
-<div *ngIf="!auth.isAuthenticated()" class="code-snippet">
-  <pre
-    class="prettyprint"
-  ><code class="blur no-copy">{{ prompt.prompt }}</code></pre>
+<div *ngIf="!auth.isAuthenticated()">
+  <div class="code-snippet">
+    <pre
+      class="prettyprint"
+    ><code class="blur no-copy">{{ prompt.prompt }}</code></pre>
+    <button
+      class="btn btn-primary btn-round btn-lg btn-login"
+      (click)="modalLoginOpen()"
+    >
+      <i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログインしてコピーする
+    </button>
+    <a class="btn btn-primary btn-link btn-lg" [routerLink]="['/register']">
+      <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
+    </a>
+  </div>
   <button
-    class="btn btn-primary btn-round btn-lg btn-wd btn-login"
-    (click)="modalLoginOpen()"
+    type="button"
+    class="btn btn-success btn-lg btn-round text-center"
+    [disabled]="true"
   >
-    <i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログインしてコピーする
+    <i class="fa fa-external-link"></i>&nbsp; ログイン後にGPTで試せます
   </button>
-  <a
-    class="btn btn-primary btn-link btn-lg btn-wd"
-    [routerLink]="['/register']"
-  >
-    <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
-  </a>
 </div>
 
-<div *ngIf="auth.isAuthenticated()" class="code-snippet">
-  <pre class="prettyprint"><code>{{ prompt.prompt }}</code></pre>
-  <button
-    *ngIf="!isCopied"
-    class="btn btn-outline-primary"
-    (click)="copyCode(); isCopied = true"
-    [disabled]="isClicked"
-  >
-    コピーする
-  </button>
-  <button *ngIf="isCopied" class="btn btn-outline-primary" (click)="copyCode()">
-    コピーしました！
-  </button>
+<div *ngIf="auth.isAuthenticated()">
+  <div class="code-snippet">
+    <pre class="prettyprint"><code>{{ prompt.prompt }}</code></pre>
+    <button
+      *ngIf="!isCopied"
+      class="btn btn-outline-primary"
+      (click)="copyCode(); isCopied = true"
+      [disabled]="isClicked"
+    >
+      コピーする
+    </button>
+    <button
+      *ngIf="isCopied"
+      class="btn btn-outline-primary"
+      (click)="copyCode()"
+    >
+      コピーしました！
+    </button>
+  </div>
   <a
     type="button"
     class="btn btn-success btn-lg btn-round text-center"

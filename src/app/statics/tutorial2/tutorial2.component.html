@@ -1,0 +1,373 @@
+<div class="wrapper">
+  <div
+    class="page-header page-header-xs"
+    style="background-image: url('./assets/img/bg/tressure-map.jpg')"
+  >
+    <div class="filter"></div>
+    <div class="content-center">
+      <div class="container">
+        <div class="space-top"></div>
+        <h1 class="title">プロンプトのトリセツ</h1>
+        <h5 class="description">Prompt Manual</h5>
+      </div>
+    </div>
+  </div>
+  <div class="section section-nude">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="title text-center">プロンプトとは</h2>
+          <div class="space-top"></div>
+          <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+            <ngb-panel id="config-panel-one">
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    プロンプトとは
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトは、会話やコンピュータープログラムにおいて、ユーザーに行動を促すテキストやシグナルです。
+                GPTのプロンプトとは、GPT（Generative Pre-trained
+                Transformer）というモデルに与えられる文章や指示のことです。これは、GPTが文章を生成する際の出発点や指針となります。例えば、質問をする際には、質問内容がプロンプトになります。プロンプトは、GPTが応答を生成する際に参考にされ、出力される文章の内容や形式に影響を与えます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTとは
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTは、人工知能（AI）の一種です。会話ができるプログラムです。例えば、質問をすると、適切な返答を考えて返します。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTはどうやって話す？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTは、大量の文章を学習します。そのデータから言葉の意味や文のつながりを理解し、適切な応答を考えます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTを使うのにプロンプトはなぜ重要？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTでのプロンプトは、生成される応答や出力の質と方向性を大きく左右します。適切なプロンプトが与えられることで、ユーザーの意図やコンテキストが正確に反映され、より有益な応答が得られます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTは何に使える？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTはさまざまな場面で活躍します。例えば、質問に答えることや、おしゃべりを楽しむことができます。また、学習の補助としても役立ちます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTはどうやって学ぶ？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                チャットGPTは大量のデータを利用して学習します。たくさんの文章を読み込み、言葉や文の構造を理解しようとします。そして、その知識を使って、私たちとの会話を改善していきます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTとCopilot、Geminiの違いは何？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPT、Copilot、Geminiは、すべてAIチャットボットですが、それぞれ違いがあります。<br />
+                ChatGPT:
+                自然言語処理に特化したモデルであり、会話生成や文章生成などのタスクに使用されます。<br />
+                Copilot:
+                プログラミング補助ツールであり、コードの自動補完や提案を行います。開発者がコードを書く際に効率化や品質向上を図ります。<br />
+                Gemini:
+                Google検索との連携により、より深い情報へのアクセスが可能<br />
+                これらは、それぞれ異なるデータやタスクに特化しており、異なる技術とアプローチを用いています。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTの得意なことは何？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTの得意なことは、自然な会話や文章生成、質問応答などの自然言語処理タスクです。大規模なデータセットから学習することで、幅広いトピックに対応し、高度な言語理解と生成が可能です。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTの不得意なことは何？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTは特定の文脈やドメインに依存しないため、専門知識や深い推論が必要なタスクには不得意です。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTには限界がある？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTの限界は、長期的な記憶や論理的推論の不足、専門知識の欠如、生成品質の問題があります。特定の文脈外や高度な推論には限界があります。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTの信憑性
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTは大規模なデータセットから学習し、一般的なパターンを捉えますが、誤った情報を含む可能性もあります。情報を確認し、信頼性を確保するために他の情報源と照らし合わせることが重要です。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    情報漏洩・セキュリティ
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTは学習に使用されたデータを元に応答を生成しますが、個人情報などの機密データを含む場合、情報漏洩のリスクがあります。機密情報を処理する際は注意が必要です。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    ChatGPTに個人情報・機密情報の送信はしないほうがいいの？
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                はい、個人情報や機密情報の送信は避けるべきです。ChatGPTは一般的な文章生成のために設計されており、個人情報や機密情報の取り扱いには適していません。これらの情報を送信すると、プライバシーやセキュリティに関するリスクが高まります。代わりに、機密情報を扱う場合は、安全な通信手段や適切な暗号化を使用し、信頼できる専門家に相談することが重要です。
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+          <div class="space-top"></div>
+        </div>
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="title text-center">プロンプトの使い方</h2>
+          <div class="space-top"></div>
+          <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+            <ngb-panel id="config-panel-one">
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    1.プロンプトの入力
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTに与えるプロンプトを入力します。これは、会話や文章の始まりとなるテキストです。疑問文や命令文の形式で記述することが一般的ですが、必ずしもそうでなくても構いません。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    2.必要な情報や制約を提供する
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトには必要に応じてコンテキスト（情報や制約）を提供します。これにより、ChatGPTが生成する回答がより適切になります。例えば、会話の背景や関連する情報を簡潔に説明することができます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    3.返信を待つ
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトを送信すると、ChatGPTがその内容に基づいて回答を生成します。この時点で、適切なリアクションが得られることを期待します。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    4.フィードバックを提供する
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTの回答が望むものであるかどうかを評価し、フィードバックを提供します。これにより、ChatGPTがより質の高い回答を生成するための学習が進みます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    5.必要に応じて繰り返す
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                必要に応じて、新しいプロンプトを入力して会話を続けることができます。継続的なコミュニケーションを通じて、より深い対話や洞察を得ることができます。
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+          <div class="space-top"></div>
+          <div class="text-center">
+            <h3>\ みんなのプロンプトを見る /</h3>
+            <a
+              [routerLink]="['/prompt']"
+              class="btn btn-lg btn-primary btn-round"
+            >
+              プロンプト一覧へ
+            </a>
+            <div class="space-top"></div>
+            <a [routerLink]="['/prompt']" class="link-danger">
+              初めての使い方ガイドはこちら
+            </a>
+          </div>
+          <div class="space-top"></div>
+        </div>
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="title text-center">プロンプトの作り方</h2>
+          <div class="space-top"></div>
+          <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+            <ngb-panel id="config-panel-one">
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    1.適切なテーマを選択する
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトを使う際には、明確なテーマや質問を設定します。テーマは、希望する会話の方向性や内容を決定するのに役立ちます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    2.簡潔で具体的な指示を与える
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトは短いテキストで構成されていますので、簡潔かつ具体的な指示を与えることが重要です。ChatGPTが期待するような回答を生成するために、具体的な情報を提供してください。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    3.適切な形式で記述する
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトは通常、疑問文や命令文の形式で記述されます。たとえば、「明日の天気を教えてください」といった具体的な質問や、「短編小説の開始を書いてください」といった指示が含まれます。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    4.関連する文脈を提供する
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                プロンプトに関連する文脈や背景情報を提供することで、ChatGPTがより適切な回答を生成するのに役立ちます。質問や指示だけでなく、状況や背景を簡潔に説明してください。
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+              <ng-template ngbPanelTitle>
+                <h5 class="mb-0 panel-title">
+                  <a class="collapsed">
+                    5.フィードバックを利用する
+                    <i class="nc-icon nc-minimal-down"></i>
+                  </a>
+                </h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                ChatGPTが生成した回答に対して、フィードバックを提供することが重要です。フィードバックを通じて、ChatGPTがより適切な回答を生成するための学習が進みます。
+              </ng-template>
+            </ngb-panel>
+            <div class="space-top"></div>
+          </ngb-accordion>
+          <div class="space-top"></div>
+          <div class="text-center">
+            <a
+              class="btn btn-lg btn-primary btn-round btn-move-right"
+              [routerLink]="['/']"
+            >
+              <i class="nc-icon nc-minimal-right"></i>&nbsp; プロンプト一覧へ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

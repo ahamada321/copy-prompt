@@ -11,12 +11,9 @@ h2 {
 }
 
 .card-form-horizontal .card-body {
-  padding: 10px 15px 0;
+  padding: 10px 15px;
 }
 
-.separator-10 {
-  content: "Separator";
-  display: block;
-  width: 100%;
-  padding: 5px;
+.form-control {
+  height: 41px;
 }

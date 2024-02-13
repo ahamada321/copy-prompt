@@ -9,6 +9,7 @@ import { TutorialComponent } from './tutorial/tutorial.component';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
 import { FaqComponent } from './faq/faq.component';
+import { Tutorial2Component } from './tutorial2/tutorial2.component';
 
 const routes: Routes = [
   // { path: 'landing', component: LandingComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'terms', component: TermsComponent },
   //   { path: 'privacy', component: PrivacyComponent },
   { path: 'tutorial', component: TutorialComponent },
+  { path: 'tutorial2', component: Tutorial2Component },
 
   // { path: '', redirectTo: 'prompt', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
@@ -23,7 +25,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TermsComponent, TutorialComponent, FaqComponent],
+  declarations: [
+    TermsComponent,
+    TutorialComponent,
+    Tutorial2Component,
+    FaqComponent,
+  ],
   exports: [],
   providers: [],
   imports: [

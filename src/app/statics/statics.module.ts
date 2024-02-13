@@ -9,12 +9,14 @@ import { TutorialComponent } from './tutorial/tutorial.component';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
 import { FaqComponent } from './faq/faq.component';
+import { ManualComponent } from './manual/manual.component';
 
 const routes: Routes = [
   // { path: 'landing', component: LandingComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'terms', component: TermsComponent },
   //   { path: 'privacy', component: PrivacyComponent },
+  { path: 'manual', component: ManualComponent },
   { path: 'tutorial', component: TutorialComponent },
 
   // { path: '', redirectTo: 'prompt', pathMatch: 'full' },
@@ -23,7 +25,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TermsComponent, TutorialComponent, FaqComponent],
+  declarations: [
+    TermsComponent,
+    TutorialComponent,
+    ManualComponent,
+    FaqComponent,
+  ],
   exports: [],
   providers: [],
   imports: [

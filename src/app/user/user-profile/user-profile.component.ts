@@ -64,12 +64,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.meta.updateTag({
         name: 'description',
         content:
-          'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
+          'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
       });
       this.meta.updateTag({
         property: 'og:description',
         content:
-          'ChatGPTやBingで使える超高品質なプロンプトのテンプレが無料で手に入るサービスです',
+          'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
       });
     }
   }

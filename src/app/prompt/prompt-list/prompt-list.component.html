@@ -2,6 +2,19 @@
 
 <div class="section section-nude text-center">
   <div class="container">
+    <div class="row">
+      <div class="col-12 mr-auto ml-auto">
+        <p class="cta-description">\ プロンプトって？という方はこちら /</p>
+      </div>
+      <div class="col-8 col-md-5 col-xl-4 mr-auto ml-auto">
+        <a
+          [routerLink]="['/manual']"
+          class="btn btn-round btn-block btn-outline-primary"
+          >プロンプトのトリセツ</a
+        >
+      </div>
+    </div>
+    <div class="space-top"></div>
     <app-prompt-list-latest></app-prompt-list-latest>
     <app-prompt-list-ranking></app-prompt-list-ranking>
     <app-prompt-list-category></app-prompt-list-category>

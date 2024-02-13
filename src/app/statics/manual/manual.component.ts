@@ -3,11 +3,11 @@ import { Meta } from '@angular/platform-browser';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
-  selector: 'app-tutorial2',
-  templateUrl: './tutorial2.component.html',
-  styleUrls: ['./tutorial2.component.scss'],
+  selector: 'app-manual',
+  templateUrl: './manual.component.html',
+  styleUrls: ['./manual.component.scss'],
 })
-export class Tutorial2Component implements OnInit, OnDestroy {
+export class ManualComponent implements OnInit, OnDestroy {
   constructor(private meta: Meta, private navbarService: NavbarService) {}
 
   ngOnInit() {

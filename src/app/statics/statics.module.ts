@@ -9,15 +9,15 @@ import { TutorialComponent } from './tutorial/tutorial.component';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
 import { FaqComponent } from './faq/faq.component';
-import { Tutorial2Component } from './tutorial2/tutorial2.component';
+import { ManualComponent } from './manual/manual.component';
 
 const routes: Routes = [
   // { path: 'landing', component: LandingComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'terms', component: TermsComponent },
   //   { path: 'privacy', component: PrivacyComponent },
+  { path: 'manual', component: ManualComponent },
   { path: 'tutorial', component: TutorialComponent },
-  { path: 'tutorial2', component: Tutorial2Component },
 
   // { path: '', redirectTo: 'prompt', pathMatch: 'full' },
   // { path: '**', component: Page404Component }
@@ -28,7 +28,7 @@ const routes: Routes = [
   declarations: [
     TermsComponent,
     TutorialComponent,
-    Tutorial2Component,
+    ManualComponent,
     FaqComponent,
   ],
   exports: [],

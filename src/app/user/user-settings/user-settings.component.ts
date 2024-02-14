@@ -83,7 +83,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       },
       buttonsStyling: false,
     }).then(() => {
-      this.router.navigate(['/', { registered: 'success' }]);
+      this.router.navigate(['/user', this.auth.getUserId()]);
     });
   }
 }

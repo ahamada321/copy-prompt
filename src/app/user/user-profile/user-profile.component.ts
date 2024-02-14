@@ -16,10 +16,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   errors: any[] = [];
 
   constructor(
+    private meta: Meta,
     private route: ActivatedRoute,
     private navbarService: NavbarService,
-    private userService: UserService,
-    private meta: Meta
+    private userService: UserService
   ) {}
 
   ngOnInit() {

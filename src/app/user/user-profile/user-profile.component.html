@@ -65,6 +65,7 @@
         </div>
       </div>
       <div *ngIf="userData.prompts.length > 0">
+        <div class="space-top"></div>
         <div class="row">
           <div *ngFor="let prompt of userData.prompts" class="col-6 col-md-4">
             <a [routerLink]="['/prompt', prompt._id]">

@@ -67,68 +67,70 @@
       <div *ngIf="userData.prompts.length > 0">
         <div class="space-top"></div>
         <div class="row">
-          <div *ngFor="let prompt of userData.prompts" class="col-6 col-md-4">
-            <a [routerLink]="['/prompt', prompt._id]">
-              <div
-                class="card"
-                data-background="image"
-                [ngStyle]="{
-                  'background-image':
-                    'url(assets/img/thumbnail/' +
-                    prompt.categories[0].id +
-                    '.jpg)'
-                }"
-              >
-                <div class="card-body">
-                  <h6 class="card-category">
-                    <i class="fa fa-newspaper-o"></i>
-                    {{ prompt.categories[0].itemName }}
-                  </h6>
-                  <h5 class="card-title">{{ prompt.name }}</h5>
-                  <h5 class="card-title"><small>プロンプト</small></h5>
-                  <div class="card-footer">
-                    <div class="author">
-                      <img
-                        class="avatar img-raised"
-                        [src]="
-                          userData.image
-                            ? userData.image
-                            : userData.prompts.length < 1
-                            ? './assets/icons/1.png'
-                            : userData.prompts.length < 2
-                            ? './assets/icons/2.png'
-                            : userData.prompts.length < 5
-                            ? './assets/icons/3.png'
-                            : userData.prompts.length < 10
-                            ? './assets/icons/4.png'
-                            : './assets/icons/5.png'
+          <ng-container *ngFor="let prompt of userData.prompts">
+            <div *ngIf="prompt.isShared" class="col-6 col-md-4">
+              <a [routerLink]="['/prompt', prompt._id]">
+                <div
+                  class="card"
+                  data-background="image"
+                  [ngStyle]="{
+                    'background-image':
+                      'url(assets/img/thumbnail/' +
+                      prompt.categories[0].id +
+                      '.jpg)'
+                  }"
+                >
+                  <div class="card-body">
+                    <h6 class="card-category">
+                      <i class="fa fa-newspaper-o"></i>
+                      {{ prompt.categories[0].itemName }}
+                    </h6>
+                    <h5 class="card-title">{{ prompt.name }}</h5>
+                    <h5 class="card-title"><small>プロンプト</small></h5>
+                    <div class="card-footer">
+                      <div class="author">
+                        <img
+                          class="avatar img-raised"
+                          [src]="
+                            userData.image
+                              ? userData.image
+                              : userData.prompts.length < 1
+                              ? './assets/icons/1.png'
+                              : userData.prompts.length < 2
+                              ? './assets/icons/2.png'
+                              : userData.prompts.length < 5
+                              ? './assets/icons/3.png'
+                              : userData.prompts.length < 10
+                              ? './assets/icons/4.png'
+                              : './assets/icons/5.png'
+                          "
+                        />
+                        <span>{{ userData.name }}</span>
+                      </div>
+                      <br />
+                      <div
+                        class="stats"
+                        *ngIf="prompt.comments && prompt.comments.length > 0"
+                      >
+                        <i class="nc-icon nc-chat-33"></i>&nbsp;
+                        {{ prompt.comments.length }}
+                      </div>
+                      <div
+                        class="stats"
+                        *ngIf="
+                          prompt.isBookmarkedFrom &&
+                          prompt.isBookmarkedFrom.length > 0
                         "
-                      />
-                      <span>{{ userData.name }}</span>
-                    </div>
-                    <br />
-                    <div
-                      class="stats"
-                      *ngIf="prompt.comments && prompt.comments.length > 0"
-                    >
-                      <i class="nc-icon nc-chat-33"></i>&nbsp;
-                      {{ prompt.comments.length }}
-                    </div>
-                    <div
-                      class="stats"
-                      *ngIf="
-                        prompt.isBookmarkedFrom &&
-                        prompt.isBookmarkedFrom.length > 0
-                      "
-                    >
-                      <i class="nc-icon nc-favourite-28"></i>&nbsp;
-                      {{ prompt.isBookmarkedFrom.length }}
+                      >
+                        <i class="nc-icon nc-favourite-28"></i>&nbsp;
+                        {{ prompt.isBookmarkedFrom.length }}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </a>
-          </div>
+              </a>
+            </div>
+          </ng-container>
         </div>
       </div>
       <div class="space-50"></div>

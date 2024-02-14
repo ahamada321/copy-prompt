@@ -1,6 +1,6 @@
 <div
   class="page-header page-header-small"
-  style="background-image: url('./assets/img/bg/tressure-map.jpg')"
+  style="background-image: url('./assets/img/bg/tressure-map.jpg');"
 >
   <div class="filter"></div>
   <div class="content-center">
@@ -9,30 +9,35 @@
       <h1 class="title">コピペで使える便利なテンプレート集</h1>
       <h2 class="description">\ Chat GPTプロンプトを検索！ /</h2>
       <!--     *********    Searchbar    *********     -->
-      <div class="card card-raised card-form-horizontal no-transition">
-        <form
-          class="card-body row"
-          #searchForm="ngForm"
-          (ngSubmit)="searchBy(searchForm.value.searchWords)"
-        >
-          <div class="col-8">
-            <div class="form-group">
-              <input
-                [ngModel]="searchWords"
-                name="searchWords"
-                type="text"
-                placeholder="例）英語 文法 トレーニング"
-                class="form-control"
-              />
+      <div class="searchbar-container">
+        <div class="card card-raised card-form-horizontal no-transition">
+          <form
+            class="card-body row"
+            #searchForm="ngForm"
+            (ngSubmit)="searchBy(searchForm.value.searchWords)"
+          >
+            <div class="col-8">
+              <div class="form-group">
+                <input
+                  [ngModel]="searchWords"
+                  name="searchWords"
+                  type="text"
+                  placeholder="例）英語 文法 トレーニング"
+                  class="form-control"
+                />
+              </div>
             </div>
-          </div>
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block btn-magnify">
-              <i class="nc-icon nc-zoom-split"></i>&nbsp;
-              {{ isMobile() ? "検索" : "プロンプト検索" }}
-            </button>
-          </div>
-        </form>
+            <div class="col-4">
+              <button
+                type="submit"
+                class="btn btn-primary btn-block btn-magnify"
+              >
+                <i class="nc-icon nc-zoom-split"></i>&nbsp; {{ isMobile() ?
+                "検索" : "プロンプト検索" }}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
       <!-- End Searchbar -->
     </div>

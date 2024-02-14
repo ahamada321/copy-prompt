@@ -14,16 +14,16 @@
   </div>
   <div class="section section-nude">
     <div class="container">
+      <div class="text-center">
+        <a
+          class="btn btn-primary btn-round btn-move-right"
+          [routerLink]="['/tutorial']"
+        >
+          <i class="nc-icon nc-minimal-right"></i>&nbsp;
+          プロンプトの使い方や登録方法はこちら
+        </a>
+      </div>
       <div class="row">
-        <div class="col-md-8 text-center ml-auto mr-auto">
-          <a
-            class="btn btn-primary btn-round btn-move-right"
-            [routerLink]="['/tutorial']"
-          >
-            <i class="nc-icon nc-minimal-right"></i>&nbsp;
-            プロンプトの使い方や登録方法はこちら
-          </a>
-        </div>
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="title text-center">プロンプトとは？</h2>
           <br />
@@ -169,19 +169,15 @@
             </ngb-panel>
           </ngb-accordion>
         </div>
-
-        <div class="col-md-8 ml-auto mr-auto">
-          <div class="space-50"></div>
-          <div class="text-center">
-            <a
-              class="btn btn-lg btn-primary btn-round btn-move-right"
-              [routerLink]="['/tutorial']"
-            >
-              <i class="nc-icon nc-minimal-right"></i>&nbsp;
-              プロンプトの使い方や登録方法はこちら
-            </a>
-          </div>
-        </div>
+      </div>
+      <div class="space-50"></div>
+      <div class="text-center">
+        <a
+          class="btn btn-lg btn-primary btn-round btn-move-right"
+          [routerLink]="['/']"
+        >
+          <i class="nc-icon nc-minimal-right"></i>&nbsp; トップへ戻る
+        </a>
       </div>
     </div>
   </div>

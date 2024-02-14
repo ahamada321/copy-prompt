@@ -40,7 +40,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 ml-auto mr-auto text-center">
-          <p>
+          <p style="white-space: pre-line">
             {{ userData.description }}
           </p>
         </div>
@@ -129,6 +129,15 @@
             </a>
           </div>
         </div>
+      </div>
+      <div class="space-50"></div>
+      <div class="text-center">
+        <a
+          class="btn btn-lg btn-primary btn-round btn-move-right"
+          [routerLink]="['/']"
+        >
+          <i class="nc-icon nc-minimal-right"></i>&nbsp; プロンプト一覧へ
+        </a>
       </div>
     </div>
   </div>

@@ -8,10 +8,6 @@
   </div>
 </div>
 
-<!--     *********    Contact Button    *********      -->
-<app-contact-button *ngIf="auth.isAuthenticated()"></app-contact-button>
-<app-guide-button *ngIf="!auth.isAuthenticated()"></app-guide-button>
-
 <!--     *********    CALL TO ACTION    *********      -->
 <ng-container *ngIf="!auth.isAuthenticated()">
   <div class="separator"></div>
@@ -34,3 +30,7 @@
     </div>
   </div>
 </ng-container>
+
+<!--     *********    Corner Button    *********      -->
+<app-guide-button *ngIf="!auth.isAuthenticated()"></app-guide-button>
+<app-contact-button *ngIf="auth.isAuthenticated()"></app-contact-button>

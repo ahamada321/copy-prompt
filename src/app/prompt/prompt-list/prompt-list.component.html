@@ -9,7 +9,8 @@
 </div>
 
 <!--     *********    Contact Button    *********      -->
-<app-contact-button></app-contact-button>
+<app-contact-button *ngIf="auth.isAuthenticated()"></app-contact-button>
+<app-guide-button *ngIf="!auth.isAuthenticated()"></app-guide-button>
 
 <!--     *********    CALL TO ACTION    *********      -->
 <ng-container *ngIf="!auth.isAuthenticated()">

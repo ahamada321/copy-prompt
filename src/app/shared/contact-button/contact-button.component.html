@@ -1,5 +1,4 @@
 <a
-  *ngIf="auth.isAuthenticated()"
   href="https://forms.gle/WYCT3b5VTkqWEE4Y6"
   target="_blank"
   type="button"
@@ -7,12 +6,4 @@
 >
   <i class="nc-icon x2 nc-email-85"></i><br />
   ご意見箱
-</a>
-<a
-  *ngIf="!auth.isAuthenticated()"
-  class="btn btn-primary btn-round fixed-button btn-guide"
-  [routerLink]="['/manual']"
->
-  <img class="" src="./assets/icons/2.png" />
-  ガイド
 </a>

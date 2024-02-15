@@ -1,12 +1,18 @@
 .fixed-button {
   position: fixed;
   right: 3px;
-  bottom: 60px;
+  bottom: 3px;
   z-index: 3;
 }
 @media (min-width: 530px) {
   .fixed-button {
     right: 20px;
     bottom: 20px;
+  }
+}
+.btn-guide {
+  img {
+    width: 50px;
+    display: block;
   }
 }

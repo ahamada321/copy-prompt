@@ -2,8 +2,8 @@
   background-color: $header-background;
   background-position: center center;
   background-size: cover;
-  min-height: 100vh;
-  max-height: 999px;
+  // min-height: 100vh;
+  // max-height: 999px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -12,14 +12,17 @@
   &.page-header-small {
     // min-height: 65vh !important;
     // max-height: 700px;
-    min-height: 50vh !important; // Changed by Hamada
+    min-height: 50vh; // Changed by Hamada
+    max-height: 420px !important; // Changed by Hamada
   }
   &.page-header-xs {
     // min-height: 40vh !important;
-    min-height: 32vh !important; // Changed by Hamada
+    min-height: 32vh; // Changed by Hamada
+    max-height: 300px !important; // Added by Hamada
   }
   &.page-header-xxs {
-    min-height: 25vh !important; // Added by Hamada
+    min-height: 25vh; // Added by Hamada
+    max-height: 200px !important; // Added by Hamada
   }
 
   .page-header-image {

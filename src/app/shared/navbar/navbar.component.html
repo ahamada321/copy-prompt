@@ -41,6 +41,11 @@
         </ng-container>
         <ng-container *ngIf="auth.isAuthenticated()">
           <li class="nav-item clickable">
+            <a class="nav-link" [routerLink]="['/']"
+              ><i class="nc-icon x2 nc-zoom-split"></i>&nbsp; 探しに行く</a
+            >
+          </li>
+          <li class="nav-item clickable">
             <a class="nav-link" [routerLink]="['/user']"
               ><i class="nc-icon x2 nc-book-bookmark"></i>&nbsp; マイページ</a
             >

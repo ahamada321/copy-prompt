@@ -41,15 +41,24 @@
             </ng-template>
           </li>
           <li [ngbNavItem]="3">
-            <a ngbNavLink>登録済プロンプト</a>
+            <a ngbNavLink>自作プロンプト</a>
             <ng-template ngbNavContent>
-              <h3>登録済プロンプト</h3>
+              <h3>自作プロンプト</h3>
               <div class="space-top"></div>
               <app-user-mypage-myprompt></app-user-mypage-myprompt>
             </ng-template>
           </li>
         </ul>
         <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+      <div class="space-top"></div>
+      <div class="text-center">
+        <a
+          class="btn btn-lg btn-primary btn-round btn-move-right"
+          [routerLink]="['/']"
+        >
+          <i class="nc-icon nc-minimal-right"></i>&nbsp; トップへ戻る
+        </a>
       </div>
     </div>
   </div>

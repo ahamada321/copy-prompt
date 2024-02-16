@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
@@ -14,8 +14,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   userData!: User;
   userId!: string;
   errors: any[] = [];
+  previousTitle!: string;
 
   constructor(
+    private titleService: Title,
     private meta: Meta,
     private route: ActivatedRoute,
     private navbarService: NavbarService,
@@ -32,6 +34,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.titleService.setTitle(this.previousTitle);
     this.navbarService.resetNavbarPosition();
     let body = document.getElementsByTagName('body')[0];
     body.classList.remove('settings-page');
@@ -51,6 +54,11 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   updateMeta() {
+    this.previousTitle = this.titleService.getTitle();
+    this.titleService.setTitle(
+      this.userData.name + ' | あつまれ！GPTプロンプト'
+    );
+
     if (this.userData.description) {
       this.meta.updateTag({
         name: 'description',

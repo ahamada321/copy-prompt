@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
-import { DomSanitizer, Meta } from '@angular/platform-browser';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 
@@ -21,8 +21,10 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   prompt!: Prompt;
   isBookmarked: boolean = false;
   comments!: Comment[];
+  previousTitle!: string;
 
   constructor(
+    private titleService: Title,
     private meta: Meta,
     private route: ActivatedRoute,
     public router: Router,
@@ -42,13 +44,14 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
+    this.titleService.setTitle(this.previousTitle);
   }
 
   getPrompt(promptId: string) {
     this.promptService.getPromptById(promptId).subscribe((prompt: Prompt) => {
       this.prompt = prompt;
       this.comments = prompt.comments as Comment[];
-      this.updateMeta();
+      this.updateTitleAndMeta();
 
       const userId = this.auth.getUserId();
       const index = prompt.isBookmarkedFrom.findIndex((x) => x === userId);
@@ -58,7 +61,10 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateMeta() {
+  updateTitleAndMeta() {
+    this.previousTitle = this.titleService.getTitle();
+    this.titleService.setTitle(this.prompt.name + ' | あつまれ！GPTプロンプト');
+
     this.meta.updateTag({
       name: 'description',
       content: this.prompt.description,

@@ -24,4 +24,8 @@
       ></ngb-pagination>
     </div>
   </div>
+
+  <div class="container" *ngIf="!prompts || prompts.length === 0">
+    <h3>プロンプトが見つかりませんでした。</h3>
+  </div>
 </div>

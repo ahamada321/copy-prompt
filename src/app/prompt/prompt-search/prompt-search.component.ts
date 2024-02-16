@@ -18,7 +18,8 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   pageIndex: number = 1;
   pageCollectionSize!: number;
   pageSize: number = 30; // Displaying contents per page.
-  prompts: Prompt[] = [];
+  prompts!: Prompt[];
+  isPrompts: boolean = false;
   isNgbInitialCall!: boolean; // Avoiding NgbPagination Initial calling bug.
 
   constructor(
@@ -108,10 +109,15 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
               this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
             }
             this.prompts = result[0].foundPrompts;
+            this.isPrompts = true;
+          } else {
+            this.prompts = [];
+            this.isPrompts = false;
           }
         },
-        (err) => {
-          console.error(err);
+        (errorResponse) => {
+          this.isPrompts = false;
+          console.error(errorResponse);
         }
       );
   }
@@ -131,9 +137,11 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
               this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
             }
             this.prompts = result[0].foundPrompts;
+            this.isPrompts = true;
           }
         },
         (err) => {
+          this.isPrompts = false;
           console.error(err);
         }
       );

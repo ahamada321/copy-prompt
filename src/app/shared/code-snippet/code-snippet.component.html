@@ -12,6 +12,7 @@
     <a
       class="btn btn-primary btn-link btn-lg btn-wd"
       [routerLink]="['/register']"
+      [queryParams]="{ promptId: prompt._id }"
     >
       <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
     </a>

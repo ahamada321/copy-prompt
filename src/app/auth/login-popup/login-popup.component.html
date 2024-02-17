@@ -1,10 +1,6 @@
 <!-- <ng-template #Login let-c="close" let-d="dismiss"> -->
 <div class="modal-header modal-register no-border-header text-center">
-  <button
-    type="button"
-    class="close"
-    (click)="activeModal.close('Close click')"
-  >
+  <button type="button" class="close" (click)="closePopup()">
     <span aria-hidden="true">&times;</span>
   </button>
   <!-- <h6 class="text-muted">Welcome</h6> -->
@@ -69,6 +65,7 @@
   >
   <a
     [routerLink]="['/register']"
+    [queryParams]="{ promptId }"
     (click)="activeModal.close('Close click')"
     class="btn btn-link btn-primary"
     >無料会員登録はこちら</a

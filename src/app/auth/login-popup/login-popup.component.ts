@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-popup',
@@ -15,11 +16,13 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   isClicked: boolean = false;
   loginForm!: FormGroup;
   errors: any[] = [];
+  promptId!: string;
 
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private auth: MyOriginAuthService,
+    private route: ActivatedRoute,
     private router: Router,
     private location: Location
   ) {}
@@ -27,8 +30,19 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   ngOnInit() {
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('login-popup');
-
     this.initForm();
+
+    const titlee = this.location.prepareExternalUrl(this.location.path());
+    if (
+      titlee.split('/')[1] === 'prompt' &&
+      titlee.split('/')[2] !== undefined
+    ) {
+      this.promptId = titlee.split('/')[2];
+    } else {
+      this.route.queryParams.pipe(take(1)).subscribe((params) => {
+        this.promptId = params['promptId'];
+      });
+    }
   }
 
   ngOnDestroy() {
@@ -51,12 +65,11 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     );
   }
 
-  isPromptDetail() {
+  closePopup() {
+    this.activeModal.close('Close click');
     const titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee.split('/')[2] !== undefined) {
-      return true;
-    } else {
-      return false;
+    if (titlee.split('/')[1] === 'register') {
+      this.router.navigate(['/']);
     }
   }
 
@@ -65,9 +78,11 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     this.auth.login(this.loginForm.value).subscribe(
       (token) => {
         this.activeModal.close('Close click');
-        if (!this.isPromptDetail()) {
-          this.router.navigate(['/user']);
+        if (this.promptId) {
+          this.router.navigate(['/prompt', this.promptId]);
+          return;
         }
+        this.router.navigate(['/user']);
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);

@@ -80,7 +80,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   modalLoginOpen() {
-    this.router.navigate(['/']);
     this.modalService.open(LoginPopupComponent, { backdrop: 'static' });
   }
 

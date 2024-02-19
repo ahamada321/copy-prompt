@@ -19,7 +19,7 @@
   </div>
   <button
     type="button"
-    class="btn btn-success btn-lg btn-round text-center"
+    class="btn btn-success btn-round text-center"
     [disabled]="true"
   >
     <i class="fa fa-external-link"></i>&nbsp; ログイン後にGPTで試せます
@@ -31,35 +31,38 @@
     <pre class="prettyprint"><code>{{ prompt.prompt }}</code></pre>
     <button
       *ngIf="!isCopied"
-      class="btn btn-outline-primary"
+      type="button"
+      class="btn btn-primary btn-round btn-wd text-center"
       (click)="copyCode(); isCopied = true"
-      [disabled]="isClicked"
     >
-      コピーする
+      <i class="nc-icon nc-single-copy-04"></i>&nbsp; STEP1
+      プロンプトをコピーする
     </button>
     <button
       *ngIf="isCopied"
-      class="btn btn-outline-primary"
+      class="btn btn-outline-primary btn-round text-center"
       (click)="copyCode()"
     >
-      コピーしました！
+      <i class="nc-icon nc-single-copy-04"></i>&nbsp; コピーしました！
     </button>
   </div>
+  <br />
+
   <button
     *ngIf="!isCopied"
     type="button"
-    class="btn btn-success btn-lg btn-round text-center"
+    class="btn btn-success btn-round btn-wd text-center"
     [disabled]="true"
   >
-    <i class="fa fa-external-link"></i>&nbsp; 先にコピーしてください
+    <i class="nc-icon nc-send"></i>&nbsp; 先にコピーしてください
   </button>
   <a
     *ngIf="isCopied"
     type="button"
-    class="btn btn-success btn-lg btn-round text-center"
+    class="btn btn-success btn-round btn-wd text-center"
     href="https://chat.openai.com/"
     target="_blank"
   >
-    <i class="fa fa-external-link"></i>&nbsp; チャットGPTで試す
+    <i class="nc-icon nc-send"></i>&nbsp; チャットGPTでペースト ＆ 送信する
   </a>
 </div>

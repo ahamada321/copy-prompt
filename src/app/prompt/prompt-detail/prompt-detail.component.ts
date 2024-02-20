@@ -112,12 +112,8 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     return this.prompt.user._id === this.auth.getUserId();
   }
 
-  toggleFullText() {
-    this.isFullTextShown = !this.isFullTextShown;
-  }
-
   isLongText() {
-    const element = document.querySelector('.text');
+    const element = document.getElementById('text');
     if (!element) {
       return false;
     }

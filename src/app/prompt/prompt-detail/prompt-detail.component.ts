@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
@@ -22,6 +22,8 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   isBookmarked: boolean = false;
   comments!: Comment[];
   previousTitle!: string;
+  isFullTextShown: boolean = false;
+  isLongTextString: boolean = false;
 
   constructor(
     private titleService: Title,
@@ -30,6 +32,7 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     public router: Router,
     public auth: MyOriginAuthService,
     public sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef,
     private navbarService: NavbarService,
     private promptService: PromptService,
     private userService: UserService,
@@ -58,6 +61,8 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
       if (index !== -1) {
         this.isBookmarked = true;
       }
+      this.cdr.detectChanges(); // DOMの更新を待機
+      this.isLongTextString = this.isLongText();
     });
   }
 
@@ -105,6 +110,25 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
 
   isMine() {
     return this.prompt.user._id === this.auth.getUserId();
+  }
+
+  toggleFullText() {
+    this.isFullTextShown = !this.isFullTextShown;
+  }
+
+  isLongText() {
+    const element = document.querySelector('.text');
+    if (!element) {
+      return false;
+    }
+    const lineHeight = parseInt(
+      window.getComputedStyle(element).lineHeight,
+      10
+    );
+    const textHeight = element.clientHeight;
+    const maxLines = Math.floor(textHeight / lineHeight);
+    const maxLinesAllowed = 15; // Linked with .gradient-text (scss)
+    return maxLines > maxLinesAllowed;
   }
 
   modalLoginOpen() {

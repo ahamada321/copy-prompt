@@ -7,21 +7,22 @@ h1 {
   }
 }
 
-.video-responsive {
-  overflow: hidden;
-  padding-bottom: 66.66%;
+.gradient-text {
   position: relative;
-  height: 0;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  iframe {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-  }
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 15; /* 表示する行数 */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  background: linear-gradient(to bottom, #333, #fffcf5);
+  background-clip: text; /* テキストに背景グラデーションをクリッピング */
+  color: transparent; /* テキストを透明にする */
+}
+
+.full-text {
+  -webkit-line-clamp: unset; /* ボタンを押すと行数の制限を解除 */
+  background: initial; /* グラデーションを解除 */
+  color: #333; /* テキストの色を指定 */
 }
 
 .header-avatar {

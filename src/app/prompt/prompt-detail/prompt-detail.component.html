@@ -99,11 +99,11 @@
               ></div>
               <div class="text-center">
                 <button
-                  *ngIf="isLongTextString"
+                  *ngIf="isLongTextString && !isFullTextShown"
                   class="btn btn-primary btn-link btn-lg"
                   (click)="toggleFullText()"
                 >
-                  {{ isFullTextShown ? "閉じる" : "もっと見る" }}
+                  もっと見る
                 </button>
               </div>
             </div>

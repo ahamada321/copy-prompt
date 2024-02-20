@@ -101,12 +101,10 @@
           </div>
         </div>
       </div>
-      <div class="row" *ngIf="prompt.usage">
-        <div class="col-md-8 ml-auto mr-auto">
-          <h2 class="title text-center">利用手順</h2>
-          <br />
-          <p>{{ prompt.usage }}</p>
-        </div>
+      <div *ngIf="prompt.usage" class="text-center">
+        <h2>利用手順</h2>
+        <br />
+        <p>{{ prompt.usage }}</p>
       </div>
     </div>
   </div>

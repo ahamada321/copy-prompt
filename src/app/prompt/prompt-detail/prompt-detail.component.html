@@ -70,51 +70,42 @@
   <!--     *********     Detail info     *********      -->
   <div class="section section-nude">
     <div class="container">
+      <h2 class="title text-center">プロンプトの説明</h2>
+      <br />
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
-          <div class="section-description">
-            <h2 class="title text-center">プロンプトの説明</h2>
-            <div class="ql-editor">
-              <div
-                [innerHTML]="
-                  sanitizer.bypassSecurityTrustHtml(prompt.description)
-                "
-              ></div>
-            </div>
-          </div>
+          <div
+            [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.description)"
+          ></div>
         </div>
       </div>
       <div class="row" *ngIf="prompt.example">
         <div class="col-md-8 ml-auto mr-auto">
-          <div class="section-description">
-            <h2 class="title text-center">出力例</h2>
-            <div id="text" class="ql-editor">
-              <div
-                [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.example)"
-                [ngClass]="{
-                  'gradient-text': isLongTextString,
-                  'full-text': isFullTextShown
-                }"
-              ></div>
-            </div>
-            <div class="text-center">
-              <button
-                *ngIf="isLongTextString && !isFullTextShown"
-                class="btn btn-primary btn-link btn-lg"
-                (click)="isFullTextShown = true"
-              >
-                もっと見る
-              </button>
-            </div>
+          <h2 class="title text-center">出力例</h2>
+          <div
+            id="text"
+            [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.example)"
+            [ngClass]="{
+              'gradient-text': isLongTextString,
+              'full-text': isFullTextShown
+            }"
+          ></div>
+          <div class="text-center">
+            <button
+              *ngIf="isLongTextString && !isFullTextShown"
+              class="btn btn-primary btn-link btn-lg"
+              (click)="isFullTextShown = true"
+            >
+              もっと見る
+            </button>
           </div>
         </div>
       </div>
       <div class="row" *ngIf="prompt.usage">
         <div class="col-md-8 ml-auto mr-auto">
-          <div class="section-description">
-            <h2 class="title text-center">利用手順</h2>
-            <p class="title">{{ prompt.usage }}</p>
-          </div>
+          <h2 class="title text-center">利用手順</h2>
+          <br />
+          <p>{{ prompt.usage }}</p>
         </div>
       </div>
     </div>

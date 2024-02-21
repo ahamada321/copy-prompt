@@ -1,4 +1,17 @@
-<div class="row">
+<div class="info" *ngIf="histories.length === 0">
+  <div class="icon">
+    <i class="nc-icon nc-single-copy-04"></i>
+  </div>
+  <div class="description">
+    <h3 class="info-title">まだコピーされてません</h3>
+    <p>
+      過去にコピーしたプロンプト履歴を<br />
+      このページで確認することができます
+    </p>
+  </div>
+</div>
+<div class="row" *ngIf="histories.length > 0">
+  <div class="space-top"></div>
   <div *ngFor="let history of histories; let i = index" class="col-6 col-sm-4">
     <app-list-card [prompt]="history"> </app-list-card>
   </div>

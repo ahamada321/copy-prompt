@@ -27,7 +27,6 @@
             <ng-template ngbNavContent>
               <div class="tab-pane" id="home" role="tabpanel">
                 <h3>お気に入りしたプロンプト</h3>
-                <div class="space-top"></div>
                 <app-user-mypage-bookmark></app-user-mypage-bookmark>
               </div>
             </ng-template>
@@ -36,7 +35,6 @@
             <a ngbNavLink>過去にコピーしたプロンプト</a>
             <ng-template ngbNavContent>
               <h3>過去にコピーしたプロンプト</h3>
-              <div class="space-top"></div>
               <app-user-mypage-history></app-user-mypage-history>
             </ng-template>
           </li>
@@ -51,7 +49,7 @@
         </ul>
         <div [ngbNavOutlet]="nav" class="mt-2"></div>
       </div>
-      <div class="space-50"></div>
+      <div class="space-top"></div>
       <p>\ ログイン後はプロンプトが見れるよ /</p>
       <a
         class="btn btn-lg btn-primary btn-round btn-move-right"

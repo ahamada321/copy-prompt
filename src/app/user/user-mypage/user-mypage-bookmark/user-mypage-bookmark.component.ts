@@ -8,7 +8,7 @@ import { UserService } from '../../shared/user.service';
   styleUrls: ['./user-mypage-bookmark.component.scss'],
 })
 export class UserMypageBookmarkComponent implements OnInit {
-  bookmarks: Prompt[] = [];
+  bookmarks!: Prompt[];
 
   constructor(private userService: UserService) {}
 

@@ -8,7 +8,7 @@ import { UserService } from '../../shared/user.service';
   styleUrls: ['./user-mypage-history.component.scss'],
 })
 export class UserMypageHistoryComponent implements OnInit {
-  histories: Prompt[] = [];
+  histories!: Prompt[];
 
   constructor(private userService: UserService) {}
 

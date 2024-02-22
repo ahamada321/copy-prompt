@@ -133,7 +133,10 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     const URL =
       'https://twitter.com/intent/tweet?url=https://www.copy-prompt.com';
     const PATH = this.location.path();
-    window.open(URL + PATH + '&text=' + prompt.name + 'プロンプト', '_blank');
+    window.open(
+      URL + PATH + '&text=' + '%0A' + this.prompt.name + 'プロンプト',
+      '_blank'
+    );
   }
 
   modalLoginOpen() {

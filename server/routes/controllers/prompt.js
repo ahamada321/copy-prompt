@@ -1,4 +1,5 @@
 const Prompt = require("./models/prompt");
+const SearchHistory = require("./models/searchhistory");
 const User = require("./models/user");
 const { normalizeErrors } = require("./helpers/mongoose");
 
@@ -167,9 +168,13 @@ exports.getPrompts = async function (req, res) {
       return res.json(result);
     }
 
-    const regexPatterns = keywords
-      .split(/\s+/)
-      .map((word) => new RegExp(word, "i"));
+    const queries = keywords.split(/\s+/);
+    const regexPatterns = queries.map((word) => new RegExp(word, "i"));
+
+    for (const query of queries) {
+      await SearchHistory.create({ query });
+    }
+
     const result = await Prompt.aggregate([
       {
         $match: {

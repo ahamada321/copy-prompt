@@ -10,6 +10,7 @@ import { UserService } from 'src/app/user/shared/user.service';
 import { Prompt } from '../shared/prompt.model';
 import { Comment } from '../shared/comment.model';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-prompt-detail',
@@ -36,7 +37,8 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     private navbarService: NavbarService,
     private promptService: PromptService,
     private userService: UserService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -125,6 +127,13 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     const maxLines = Math.floor(textHeight / lineHeight);
     const maxLinesAllowed = 15; // Linked with .gradient-text (scss)
     return maxLines > maxLinesAllowed;
+  }
+
+  shareTwitter() {
+    const URL =
+      'https://twitter.com/intent/tweet?url=https://www.copy-prompt.com';
+    const PATH = this.location.path();
+    window.open(URL + PATH + '&text=' + prompt.name + 'プロンプト', '_blank');
   }
 
   modalLoginOpen() {

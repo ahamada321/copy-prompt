@@ -5,6 +5,7 @@ export class User {
   _id?: Schema.Types.ObjectId;
   isVerified?: boolean;
   isBanned?: boolean;
+  lastLogin?: number;
 
   name!: string;
   email!: string;

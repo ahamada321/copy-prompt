@@ -8,7 +8,12 @@
 </a>
 
 <div class="detail-popup" *ngIf="isDetail()">
-  <img class="btn-guide-2" alt="ガイドボタン" src="./assets/icons/2.png" />
+  <img
+    src="./assets/icons/2.png"
+    class="btn-guide-2"
+    alt="ガイドボタン"
+    draggable="false"
+  />
   <div id="popoverContent" class="popover-content">
     ChatGPTにこのプロンプト(指令文)を<br />コピー＆ペーストしてね
   </div>

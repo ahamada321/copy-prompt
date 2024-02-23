@@ -14,10 +14,15 @@ body {
 // Quill editor
 quill-editor {
   width: 100%;
-}
-.ql-container {
-  background-color: white;
-  height: 230px;
+  .ql-container {
+    background-color: white;
+    height: 230px;
+  }
+
+  // Placeholder color
+  .ql-blank::before {
+    color: #b4b4b4 !important;
+  }
 }
 
 // Placeholder color

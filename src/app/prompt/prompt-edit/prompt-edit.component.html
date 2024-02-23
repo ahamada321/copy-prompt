@@ -82,7 +82,7 @@
                 [(ngModel)]="foundPrompt.prompt"
                 name="prompt"
                 class="form-control textarea-limited"
-                placeholder="作ったプロンプトはここに記述してください"
+                placeholder="作ったプロンプトはこちらに入力してください"
                 rows="10"
                 maxlength="3000"
                 required
@@ -95,7 +95,7 @@
                 [(ngModel)]="foundPrompt.example"
                 name="tutorial"
                 maxlength="5000"
-                placeholder="例）Hi, how can I help you?"
+                placeholder="プロンプトを送信した際の、ChatGPTからの回答例をこちらに入力してください。"
                 [required]="true"
               ></quill-editor>
             </div>

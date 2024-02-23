@@ -7,8 +7,8 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   styleUrls: ['./user-mypage.component.scss'],
 })
 export class UserMypageComponent implements OnInit, OnDestroy {
-  // activeTab = 1;
-  activeTab = 3; // Tmp
+  activeTab = 1;
+  // activeTab = 3; // Tmp
 
   constructor(private navbarService: NavbarService) {}
 

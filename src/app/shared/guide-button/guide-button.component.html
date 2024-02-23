@@ -7,15 +7,9 @@
   ガイド
 </a>
 
-<a
-  *ngIf="isDetail()"
-  #popoverTrigger="ngbPopover"
-  type="button"
-  class="fixed-button btn-guide-2"
-  placement="left"
-  triggers="manual"
-  [autoClose]="false"
-  ngbPopover="ChatGPTにこのプロンプト（指令文）をコピー＆ペーストしてね"
->
-  <img alt="ガイドボタン" src="./assets/icons/2.png" />
-</a>
+<div class="detail-popup" *ngIf="isDetail()">
+  <img class="btn-guide-2" alt="ガイドボタン" src="./assets/icons/2.png" />
+  <div id="popoverContent" class="popover-content">
+    ChatGPTにこのプロンプト(指令文)を<br />コピー＆ペーストしてね
+  </div>
+</div>

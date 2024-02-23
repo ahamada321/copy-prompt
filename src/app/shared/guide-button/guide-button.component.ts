@@ -1,7 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { Component } from '@angular/core';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
@@ -10,14 +8,7 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
   styleUrls: ['./guide-button.component.scss'],
 })
 export class GuideButtonComponent {
-  @ViewChild('popoverTrigger') popover!: NgbPopover;
   constructor(public auth: MyOriginAuthService, public location: Location) {}
-
-  ngAfterViewInit() {
-    if (this.isDetail()) {
-      this.popover.open();
-    }
-  }
 
   isTop() {
     const titlee = this.location.prepareExternalUrl(this.location.path());

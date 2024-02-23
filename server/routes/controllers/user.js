@@ -209,7 +209,15 @@ exports.auth = async function (req, res) {
         ],
       });
     }
-    await User.updateOne({ _id: foundUser._id }, { lastLogin: new Date() });
+
+    if (!foundUser.loginCount) {
+      foundUser.loginCount = 0; //tmp
+    }
+
+    await User.updateOne(
+      { _id: foundUser._id },
+      { lastLogin: new Date(), loginCount: foundUser.loginCount++ }
+    );
     const token = jwt.sign(
       {
         userId: foundUser.id,

@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   lastLogin: Date,
+  loginCount: { type: Number, default: 0 },
   isVerified: { type: Boolean, default: true },
   isReported: [{ type: Schema.Types.ObjectId, ref: "Report" }],
 

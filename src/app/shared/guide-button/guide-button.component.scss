@@ -18,35 +18,37 @@
 }
 
 .detail-popup {
-  position: relative;
-  z-index: 2;
-}
+  img {
+    position: fixed;
+    pointer-events: none;
+    width: 75px;
+    right: 18px;
+    bottom: 5px;
+    z-index: 2;
+  }
 
-.btn-guide-2 {
-  position: fixed;
-  width: 75px;
-  right: 18px;
-  bottom: 5px;
-}
-.popover-content {
-  position: fixed;
-  text-align: center;
-  width: 273px;
-  right: 106px;
-  bottom: 14px;
-  display: block;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-}
-.popover-content::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -11%;
-  margin-top: -16px; /* 三角形部分が縁にかぶらないように微調整 */
-  border-width: 16px; /* 三角形部分のサイズより大きな縁を指定 */
-  border-style: solid;
-  border-color: transparent transparent transparent #fff; /* 三角形部分の縁の色を指定 */
-  z-index: 1;
+  .popover-content {
+    position: fixed;
+    text-align: center;
+    width: 270px;
+    right: 105px;
+    bottom: 14px;
+    display: block;
+    background-color: #fff;
+    padding: 10px 8px;
+    border-radius: 8px;
+    z-index: 2;
+  }
+
+  .popover-content::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -11%;
+    margin-top: -16px; /* 三角形部分が縁にかぶらないように微調整 */
+    border-width: 16px; /* 三角形部分のサイズより大きな縁を指定 */
+    border-style: solid;
+    border-color: transparent transparent transparent #fff; /* 三角形部分の縁の色を指定 */
+    z-index: 1;
+  }
 }

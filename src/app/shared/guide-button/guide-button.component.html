@@ -1,7 +1,21 @@
 <a
+  *ngIf="isTop()"
   [routerLink]="['/manual']"
   class="btn btn-primary btn-round fixed-button btn-guide"
 >
   <img alt="ガイドボタン" src="./assets/icons/2.png" />
   ガイド
+</a>
+
+<a
+  *ngIf="isDetail()"
+  #popoverTrigger="ngbPopover"
+  type="button"
+  class="fixed-button btn-guide-2"
+  placement="left"
+  triggers="manual"
+  [autoClose]="false"
+  ngbPopover="ChatGPTにこのプロンプト（指令文）をコピー＆ペーストしてね"
+>
+  <img alt="ガイドボタン" src="./assets/icons/2.png" />
 </a>

@@ -10,9 +10,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./login-resetpassword.component.scss'],
 })
 export class LoginResetpasswordComponent implements OnInit, OnDestroy {
-  footer: Date = new Date();
-  focus!: any;
+  focus!: boolean;
   loginForm!: FormGroup;
+  isClicked!: boolean;
   errors: any[] = [];
 
   constructor(
@@ -61,7 +61,8 @@ export class LoginResetpasswordComponent implements OnInit, OnDestroy {
     );
   }
 
-  sendResetEmail() {
+  sendPasswordResetLink() {
+    this.isClicked = true;
     this.auth.sendPasswordResetLink(this.loginForm.value).subscribe(
       (token) => {
         this.router.navigate(['/login/reset/sent']);
@@ -69,6 +70,7 @@ export class LoginResetpasswordComponent implements OnInit, OnDestroy {
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
         this.errors = errorResponse.error.errors;
+        this.isClicked = false;
       }
     );
   }

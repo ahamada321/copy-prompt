@@ -7,6 +7,8 @@ router.post("/auth", UserCtrl.auth);
 
 router.post("/register", UserCtrl.register);
 
+router.post("/reset", UserCtrl.reset);
+
 router.get("/bookmark/:id", UserCtrl.authMiddleware, UserCtrl.addBookmark);
 
 router.get("/history/:id", UserCtrl.authMiddleware, UserCtrl.addHistory);

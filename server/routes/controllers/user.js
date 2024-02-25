@@ -288,6 +288,46 @@ exports.register = async function (req, res) {
   }
 };
 
+exports.reset = async function (req, res) {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(422).send({
+      errors: [
+        {
+          title: "Data missing!",
+          detail: "Emailを入力してください",
+        },
+      ],
+    });
+  }
+
+  try {
+    const foundUser = await User.findOne({ email }).select("-password");
+    if (!foundUser) {
+      return res.status(422).send({
+        errors: [
+          { title: "Invalid user!", detail: "先にユーザー登録してください" },
+        ],
+      });
+    }
+    if (foundUser.isBanned) {
+      return res.status(422).send({
+        errors: [
+          {
+            title: "Not active user!",
+            detail: "アカウントが無効です。サポートからお問い合わせください",
+          },
+        ],
+      });
+    }
+
+    return res.json(foundUser);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
 // Not completely works!
 exports.deleteUser = async function (req, res) {
   const reqUserId = req.params.id;

@@ -1,0 +1,35 @@
+<h3>新着コメント</h3>
+<div class="page-carousel">
+  <ngb-carousel>
+    <ng-template ngbSlide *ngFor="let comment of comments; index as i">
+      <div class="card card-testimonial card-plain">
+        <div class="card-avatar">
+          <img
+            class="img"
+            [src]="
+              comment.user!.image
+                ? comment.user!.image
+                : comment.user!.prompts.length < 1
+                ? './assets/icons/1.png'
+                : comment.user!.prompts.length < 5
+                ? './assets/icons/2.png'
+                : comment.user!.prompts.length < 12
+                ? './assets/icons/3.png'
+                : comment.user!.prompts.length < 20
+                ? './assets/icons/4.png'
+                : './assets/icons/5.png'
+            "
+          />
+        </div>
+        <div class="card-body">
+          <h4 class="card-description">
+            {{ comment.comment }}
+          </h4>
+          <div class="card-footer">
+            <h5 class="card-title">{{ comment.user!.name }}</h5>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>

@@ -3,6 +3,36 @@ const User = require("./models/user");
 const Prompt = require("./models/prompt");
 const { normalizeErrors } = require("./helpers/mongoose");
 
+exports.getRandomComments = async function (req, res) {
+  try {
+    const result = await Comment.aggregate([
+      { $sample: { size: 4 } },
+      {
+        $lookup: {
+          from: "users", // 結合するコレクション
+          localField: "user", // rentalsコレクションのフィールド
+          foreignField: "_id", // usersコレクションのフィールド
+          as: "user", // 結果を格納するフィールド名
+          pipeline: [
+            {
+              $project: {
+                email: 0,
+                password: 0, // パスワードフィールドを除外
+              },
+            },
+          ],
+        },
+      },
+      {
+        $unwind: "$user",
+      },
+    ]);
+    return res.json(result);
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
 exports.postComment = async function (req, res) {
   const commentData = new Comment(req.body);
 

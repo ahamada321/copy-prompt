@@ -1,0 +1,23 @@
+<h3>新着コメント</h3>
+<div class="page-carousel">
+  <ngb-carousel>
+    <ng-template ngbSlide *ngFor="let comment of comments; index as i">
+      <div class="space-top"></div>
+      <a [routerLink]="['/prompt/', comment.prompt!._id]">
+        <div class="card">
+          <div class="card-body">
+            <div class="author">
+              <span>{{ comment.prompt!.name }}<br />プロンプト</span>
+            </div>
+            <span class="category-social pull-right">
+              <i class="fa fa-quote-right"></i>
+            </span>
+            <div class="clearfix"></div>
+            <p class="card-description">"{{ comment.comment }}"</p>
+          </div>
+        </div>
+      </a>
+      <div class="space-top"></div>
+    </ng-template>
+  </ngb-carousel>
+</div>

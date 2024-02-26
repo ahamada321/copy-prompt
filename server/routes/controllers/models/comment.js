@@ -6,7 +6,7 @@ const commentSchema = new Schema({
   comment: { type: String, required: "コメントは必須です" },
   // updatedAt: Date,
   // isReported: [{ type: Schema.Types.ObjectId, ref: "Report" }],
-  promptId: {
+  prompt: {
     type: Schema.Types.ObjectId,
     ref: "Prompt",
     required: "プロンプト情報は必須です",

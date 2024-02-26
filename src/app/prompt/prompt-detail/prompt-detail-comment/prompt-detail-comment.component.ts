@@ -64,7 +64,7 @@ export class PromptDetailCommentComponent implements OnInit {
     this.commentService
       .postComment({
         comment: postForm.value.commentString,
-        promptId: this.promptId,
+        prompt: this.promptId,
         user: this.userId,
       })
       .subscribe(

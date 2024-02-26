@@ -4,7 +4,7 @@
     <ng-template ngbSlide *ngFor="let comment of comments">
       <div class="space-top"></div>
       <a [routerLink]="['/prompt/', comment.prompt!._id]">
-        <div class="card">
+        <div class="card no-transition">
           <div class="card-body">
             <div class="author">
               <span>{{ comment.prompt!.name }}<br />プロンプト</span>

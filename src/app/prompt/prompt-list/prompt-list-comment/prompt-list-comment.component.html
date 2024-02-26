@@ -1,7 +1,7 @@
 <h3>新着コメント</h3>
 <div class="page-carousel">
   <ngb-carousel>
-    <ng-template ngbSlide *ngFor="let comment of comments; index as i">
+    <ng-template ngbSlide *ngFor="let comment of comments">
       <div class="space-top"></div>
       <a [routerLink]="['/prompt/', comment.prompt!._id]">
         <div class="card">

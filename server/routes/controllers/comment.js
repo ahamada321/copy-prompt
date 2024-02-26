@@ -9,22 +9,21 @@ exports.getRandomComments = async function (req, res) {
       { $sample: { size: 4 } },
       {
         $lookup: {
-          from: "users", // 結合するコレクション
-          localField: "user", // rentalsコレクションのフィールド
+          from: "prompts", // 結合するコレクション
+          localField: "prompt", // rentalsコレクションのフィールド
           foreignField: "_id", // usersコレクションのフィールド
-          as: "user", // 結果を格納するフィールド名
+          as: "prompt", // 結果を格納するフィールド名
           pipeline: [
             {
               $project: {
-                email: 0,
-                password: 0, // パスワードフィールドを除外
+                name: 1,
               },
             },
           ],
         },
       },
       {
-        $unwind: "$user",
+        $unwind: "$prompt",
       },
     ]);
     return res.json(result);
@@ -39,7 +38,7 @@ exports.postComment = async function (req, res) {
   try {
     const newComment = await Comment.create(commentData);
     await Prompt.updateOne(
-      { _id: newComment.promptId },
+      { _id: newComment.prompt },
       { $push: { comments: newComment } }
     );
     return res.json(newComment);

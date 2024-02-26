@@ -1,9 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  NgbCarousel,
-  NgbSlideEvent,
-  NgbSlideEventSource,
-} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { CommentService } from '../../shared/comment.service';
 import { Comment } from '../../shared/comment.model';
@@ -15,16 +10,6 @@ import { Comment } from '../../shared/comment.model';
 })
 export class PromptListCommentComponent implements OnInit {
   comments!: Comment[];
-
-  images = [62, 83, 466, 965, 982, 1043, 738].map(
-    (n) => `https://picsum.photos/id/${n}/900/500`
-  );
-
-  paused = false;
-  unpauseOnArrow = false;
-  pauseOnIndicator = false;
-
-  @ViewChild('carousel') carousel!: NgbCarousel;
 
   constructor(
     private commentService: CommentService,

@@ -6,6 +6,6 @@ export class Comment {
   createdAt?: string;
   comment?: string;
   // isReported?: any[];
-  promptId?: Prompt;
+  prompt?: Prompt;
   user?: User;
 }

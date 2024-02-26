@@ -2,7 +2,6 @@
 <div class="page-carousel">
   <ngb-carousel>
     <ng-template ngbSlide *ngFor="let comment of comments">
-      <div class="space-top"></div>
       <a [routerLink]="['/prompt/', comment.prompt!._id]">
         <div class="card no-transition">
           <div class="card-body">
@@ -17,7 +16,6 @@
           </div>
         </div>
       </a>
-      <div class="space-top"></div>
     </ng-template>
   </ngb-carousel>
 </div>

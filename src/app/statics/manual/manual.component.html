@@ -12,19 +12,36 @@
       </div>
     </div>
   </div>
-  <div class="section section-nude">
-    <div class="container">
-      <div class="text-center">
-        <a
-          class="btn btn-primary btn-round btn-move-right"
-          [routerLink]="['/tutorial']"
-        >
-          <i class="nc-icon nc-minimal-right"></i>&nbsp;
-          プロンプトの使い方や登録方法はこちら
-        </a>
-      </div>
+  <div class="section section-nude section-icons">
+    <div class="text-center">
+      <a
+        class="btn btn-primary btn-round btn-move-right"
+        [routerLink]="['/tutorial']"
+      >
+        <i class="nc-icon nc-minimal-right"></i>&nbsp;
+        プロンプトの使い方や登録方法はこちら
+      </a>
+      <div class="space-top"></div>
+    </div>
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
+        <div class="col-md-2">
+          <div class="icons-nucleo">
+            <i class="second-left-icon nc-icon nc-diamond animated"></i>
+            <i
+              class="third-left-icon nc-icon nc-lock-circle-open add-animation"
+            ></i>
+            <i class="fourth-left-icon nc-icon nc-tap-01 add-animation"></i>
+            <i class="fifth-left-icon nc-icon nc-zoom-split add-animation"></i>
+            <i
+              class="seventh-left-icon nc-icon nc-favourite-28 add-animation"
+            ></i>
+            <i class="eighth-left-icon nc-icon nc-settings add-animation"></i>
+            <i class="ninth-left-icon nc-icon nc-bulb-63 add-animation"></i>
+            <i class="tenth-left-icon nc-icon nc-istanbul add-animation"></i>
+          </div>
+        </div>
+        <div class="col-md-8">
           <h2 class="title text-center">プロンプトとは？</h2>
           <br />
           <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
@@ -195,16 +212,30 @@
               </ng-template>
             </ngb-panel>
           </ngb-accordion>
+          <div class="space-50"></div>
+          <div class="text-center">
+            <a
+              class="btn btn-lg btn-primary btn-round btn-move-right"
+              [routerLink]="['/']"
+            >
+              <i class="nc-icon nc-minimal-right"></i>&nbsp; トップへ戻る
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="space-50"></div>
-      <div class="text-center">
-        <a
-          class="btn btn-lg btn-primary btn-round btn-move-right"
-          [routerLink]="['/']"
-        >
-          <i class="nc-icon nc-minimal-right"></i>&nbsp; トップへ戻る
-        </a>
+        <div class="col-md-2">
+          <div class="icons-nucleo">
+            <i class="second-right-icon nc-icon nc-palette animated"></i>
+            <i class="third-right-icon nc-icon nc-bell-55 add-animation"></i>
+            <i class="fourth-right-icon nc-icon nc-tv-2 add-animation"></i>
+            <i class="fifth-right-icon nc-icon nc-map-big add-animation"></i>
+            <i
+              class="seventh-right-icon nc-icon nc-simple-add add-animation"
+            ></i>
+            <i class="eighth-right-icon nc-icon nc-trophy add-animation"></i>
+            <i class="ninth-right-icon nc-icon nc-hat-3 add-animation"></i>
+            <i class="tenth-right-icon nc-icon nc-key-25 add-animation"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>

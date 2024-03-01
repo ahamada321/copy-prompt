@@ -3,6 +3,10 @@ const Prompt = require("./models/prompt");
 const { normalizeErrors } = require("./helpers/mongoose");
 const jwt = require("jsonwebtoken");
 const config = require("../../config");
+const MailerLite = require("@mailerlite/mailerlite-nodejs").default;
+const mailerlite = new MailerLite({
+  api_key: config.ML_API_KEY,
+});
 
 exports.getBookmarks = async function (req, res) {
   const user = res.locals.user;
@@ -192,7 +196,7 @@ exports.auth = async function (req, res) {
         ],
       });
     }
-    if (foundUser.isBanned) {
+    if (!foundUser.isVerified) {
       return res.status(422).send({
         errors: [
           {
@@ -282,6 +286,12 @@ exports.register = async function (req, res) {
       });
     }
     const newUser = await User.create(user);
+    const newSubscriber = await mailerlite.subscribers.createOrUpdate({
+      email,
+      fields: { name },
+      groups: ["114047662393657295"],
+      status: "active",
+    });
     return res.json(newUser);
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });

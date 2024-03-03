@@ -16,6 +16,7 @@ export class PromptListCommentComponent implements OnInit {
     items: 1,
     margin: 50,
     loop: true,
+    center: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,

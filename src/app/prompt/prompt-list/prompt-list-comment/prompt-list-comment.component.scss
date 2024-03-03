@@ -5,3 +5,42 @@ h3 {
 .card {
   min-height: 202px; // For top page Ranking and Latest prompt card height.
 }
+
+.chat-tanuki {
+  max-width: 460px;
+  display: flex;
+  margin: 0 0 12px;
+  align-items: center;
+  img {
+    display: inline-block;
+    pointer-events: none;
+    width: 75px;
+    height: 75px;
+    z-index: 2;
+  }
+
+  .chat-tanuki-content {
+    flex: 1;
+    min-width: 264px;
+    position: relative;
+    margin: 0 0 0 12px;
+    text-align: left;
+    background-color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 2;
+    color: #333;
+  }
+
+  .chat-tanuki-content::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    margin-top: -16px; /* 三角形部分が縁にかぶらないように微調整 */
+    border-width: 16px; /* 三角形部分のサイズより大きな縁を指定 */
+    border-style: solid;
+    border-color: transparent #fff transparent transparent; /* 三角形部分の縁の色を指定 */
+    z-index: 1;
+  }
+}

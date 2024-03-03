@@ -1,6 +1,7 @@
 <h3>新着コメント</h3>
 <br />
 <owl-carousel-o
+  *ngIf="comments"
   [options]="customOptions"
   (dragging)="isDragging = $event.dragging"
 >

@@ -11,21 +11,20 @@
         [owlRouterLink]="['/prompt/', comment.prompt!._id]"
         [stopLink]="isDragging"
       >
-        <div class="card no-transition">
-          <div class="card-body">
-            <div class="author">
-              <span>{{ comment.prompt!.name }}<br />プロンプト</span>
-            </div>
-            <span class="category-social pull-right">
-              <i class="fa fa-quote-right"></i>
-            </span>
-            <div class="clearfix"></div>
-
-            <p class="card-description">"{{ comment.comment }}"</p>
+        <div class="justify-content-center">
+          <div class="chat-tanuki">
+            <img src="./assets/icons/2.png" draggable="false" />
+            <b class="chat-tanuki-content">
+              {{ comment.comment }}
+            </b>
           </div>
         </div>
+        <p class="text-muted text-center">
+          <small
+            >"{{ comment.prompt!.name }}プロンプト" にコメントしました</small
+          >
+        </p>
       </a>
-      <br />
     </ng-template>
   </ng-container>
 </owl-carousel-o>

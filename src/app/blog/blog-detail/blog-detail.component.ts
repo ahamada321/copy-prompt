@@ -1,19 +1,27 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
+import { PromptService } from 'src/app/prompt/shared/prompt.service';
 
 @Component({
   selector: 'app-blog-detail',
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss'],
 })
-export class BlogDetailComponent implements OnInit, OnDestroy {
-  prompt = new Prompt();
+export class BlogDetailComponent implements OnInit {
+  prompt!: Prompt;
 
-  constructor() {}
+  constructor(private promptService: PromptService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getPrompt('65b45e422f06012bff45bfba'); // Prod
+    // this.getPrompt('65b458188516101cf32a45a7'); // Dev
+  }
 
-  ngOnDestroy() {}
+  getPrompt(promptId: string) {
+    this.promptService.getPromptById(promptId).subscribe((prompt: Prompt) => {
+      this.prompt = prompt;
+    });
+  }
 
   updateTitleAndMeta() {
     // this.previousTitle = this.titleService.getTitle();

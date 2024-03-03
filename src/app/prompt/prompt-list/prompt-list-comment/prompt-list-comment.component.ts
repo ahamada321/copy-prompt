@@ -14,11 +14,13 @@ export class PromptListCommentComponent implements OnInit {
   isDragging!: boolean;
   customOptions: OwlOptions = {
     items: 1,
+    margin: 50,
     loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
     autoplay: true,
+    autoplayHoverPause: true,
     dotsEach: true,
     navSpeed: 700,
     // navText: [

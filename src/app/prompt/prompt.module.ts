@@ -9,6 +9,7 @@ import { AuthGuard } from '../auth/shared/auth.guard';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 // import { TagInputModule } from 'ngx-chips';
 // import { BarRatingModule } from "ngx-bar-rating";
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { PromptComponent } from './prompt.component';
 import { PromptListComponent } from './prompt-list/prompt-list.component';
@@ -80,9 +81,10 @@ const routes: Routes = [
     // ImageUploadQrCodeModule,
     JwBootstrapSwitchNg2Module,
     // TagInputModule,
+    CarouselModule,
+    QuillModule,
     ImageUploadModule,
     // ImageUploadMyverModule,
-    QuillModule,
     CodeSnippetModule,
     SearchbarModule,
     ListCardModule,

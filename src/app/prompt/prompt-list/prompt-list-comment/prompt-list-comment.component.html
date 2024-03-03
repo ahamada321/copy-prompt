@@ -1,8 +1,15 @@
 <h3>新着コメント</h3>
-<div class="page-carousel">
-  <ngb-carousel>
-    <ng-template ngbSlide *ngFor="let comment of comments">
-      <a [routerLink]="['/prompt/', comment.prompt!._id]">
+<br />
+<owl-carousel-o
+  [options]="customOptions"
+  (dragging)="isDragging = $event.dragging"
+>
+  <ng-container *ngFor="let comment of comments">
+    <ng-template carouselSlide>
+      <a
+        [owlRouterLink]="['/prompt/', comment.prompt!._id]"
+        [stopLink]="isDragging"
+      >
         <div class="card no-transition">
           <div class="card-body">
             <div class="author">
@@ -12,11 +19,12 @@
               <i class="fa fa-quote-right"></i>
             </span>
             <div class="clearfix"></div>
+
             <p class="card-description">"{{ comment.comment }}"</p>
           </div>
         </div>
       </a>
-      <div class="space-top"></div>
+      <br />
     </ng-template>
-  </ngb-carousel>
-</div>
+  </ng-container>
+</owl-carousel-o>

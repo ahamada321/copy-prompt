@@ -12,6 +12,7 @@ import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 
 import { PromptComponent } from './prompt.component';
 import { PromptListComponent } from './prompt-list/prompt-list.component';
+import { PromptListExampleComponent } from './prompt-list/prompt-list-example/prompt-list-example.component';
 import { PromptListCategoryComponent } from './prompt-list/prompt-list-category/prompt-list-category.component';
 import { PromptListLatestComponent } from './prompt-list/prompt-list-latest/prompt-list-latest.component';
 import { PromptListRankingComponent } from './prompt-list/prompt-list-ranking/prompt-list-ranking.component';
@@ -57,6 +58,7 @@ const routes: Routes = [
   declarations: [
     PromptComponent,
     PromptListComponent,
+    PromptListExampleComponent,
     PromptListCategoryComponent,
     PromptListCommentComponent,
     PromptListLatestComponent,

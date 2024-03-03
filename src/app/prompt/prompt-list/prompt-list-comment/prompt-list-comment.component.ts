@@ -21,14 +21,8 @@ export class PromptListCommentComponent implements OnInit {
     touchDrag: true,
     pullDrag: false,
     autoplay: true,
-    autoplayHoverPause: true,
     dotsEach: true,
     navSpeed: 700,
-    // navText: [
-    //   '<i class="fa fa-chevron-left"></i>',
-    //   '<i class="fa fa-chevron-right"></i>',
-    // ],
-    // nav: true,
   };
 
   constructor(

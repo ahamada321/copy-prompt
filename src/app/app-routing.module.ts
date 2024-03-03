@@ -4,6 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { PromptModule } from './prompt/prompt.module';
 import { UserModule } from './user/user.module';
 import { StaticModule } from './statics/statics.module';
+import { BlogModule } from './blog/blog.module';
 
 const routes: Routes = [];
 
@@ -12,6 +13,7 @@ const routes: Routes = [];
     RouterModule.forRoot(routes),
     AuthModule,
     PromptModule,
+    BlogModule,
     UserModule,
     StaticModule,
   ],

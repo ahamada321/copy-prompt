@@ -7,6 +7,7 @@ import { BlogChatComponent } from './blog-chat/blog-chat.component';
 import { ListCardModule } from '../shared/list-card/list-card.module';
 import { BlogDetail2Component } from './blog-detail2/blog-detail2.component';
 import { BlogDetail3Component } from './blog-detail3/blog-detail3.component';
+import { BlogDetail4Component } from './blog-detail4/blog-detail4.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'english', component: BlogDetailComponent },
       { path: 'self-compassion', component: BlogDetail2Component },
       { path: 'mail-communication', component: BlogDetail3Component },
+      { path: 'how-to-use-prompt', component: BlogDetail4Component },
     ],
   },
 ];
@@ -26,6 +28,7 @@ const routes: Routes = [
     BlogDetailComponent,
     BlogDetail2Component,
     BlogDetail3Component,
+    BlogDetail4Component,
     BlogChatComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), ListCardModule],

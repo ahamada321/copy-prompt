@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PromptService } from '../shared/prompt.service';
-import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Router } from '@angular/router';
 import { Prompt } from '../shared/prompt.model';
 import Swal from 'sweetalert2';
@@ -71,8 +70,7 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private navbarService: NavbarService,
-    private promptService: PromptService,
-    public auth: MyOriginAuthService
+    private promptService: PromptService
   ) {}
 
   ngOnInit() {

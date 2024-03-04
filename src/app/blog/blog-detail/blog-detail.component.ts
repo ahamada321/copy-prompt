@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { PromptService } from 'src/app/prompt/shared/prompt.service';
 
@@ -10,7 +11,10 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
 export class BlogDetailComponent implements OnInit {
   prompt!: Prompt;
 
-  constructor(private promptService: PromptService) {}
+  constructor(
+    public auth: MyOriginAuthService,
+    private promptService: PromptService
+  ) {}
 
   ngOnInit() {
     this.getPrompt('65b45e422f06012bff45bfba'); // Prod

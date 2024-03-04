@@ -17,7 +17,8 @@
   }
 }
 
-.detail-popup {
+.detail-popup,
+.detail-popup-auth {
   img {
     position: fixed;
     pointer-events: none;
@@ -50,5 +51,16 @@
     border-style: solid;
     border-color: transparent transparent transparent #fff; /* 三角形部分の縁の色を指定 */
     z-index: 1;
+  }
+}
+@media (max-width: 530px) {
+  .detail-popup-auth {
+    img {
+      bottom: 68px;
+    }
+
+    .popover-content {
+      bottom: 68px;
+    }
   }
 }

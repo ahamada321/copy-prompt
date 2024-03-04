@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BlogChatComponent implements OnInit {
   @Input() message!: string;
-  @Input() position!: string;
+  @Input() character: number = 2;
 
   constructor() {}
 

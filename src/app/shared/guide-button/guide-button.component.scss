@@ -1,13 +1,13 @@
 .fixed-button {
   position: fixed;
-  right: 3px;
-  bottom: 6px;
+  right: 20px;
+  bottom: 20px;
   z-index: 3;
 }
-@media (min-width: 530px) {
+@media (max-width: 530px) {
   .fixed-button {
-    right: 20px;
-    bottom: 20px;
+    right: 3px;
+    bottom: 6px;
   }
 }
 .btn-guide {
@@ -57,10 +57,12 @@
 @media (max-width: 530px) {
   .detail-popup-auth {
     img {
+      right: 8px;
       bottom: 52px;
     }
 
     .popover-content {
+      right: 95px;
       bottom: 58px;
     }
   }

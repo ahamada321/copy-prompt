@@ -7,10 +7,14 @@
   ガイド
 </a>
 
-<div class="detail-popup" *ngIf="isDetail()">
-  <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
-  <div class="popover-content">
-    <p>ChatGPTにこのプロンプト(指令文)をコピー＆ペーストしてね</p>
+<div *ngIf="isDetail()">
+  <div
+    [ngClass]="auth.isAuthenticated() ? 'detail-popup-auth' : 'detail-popup'"
+  >
+    <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
+    <div class="popover-content">
+      <p>ChatGPTにこのプロンプト(指令文)をコピー＆ペーストしてね</p>
+    </div>
   </div>
 </div>
 <!-- <div class="detail-popup" *ngIf="isDetail()">

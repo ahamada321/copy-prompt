@@ -13,8 +13,8 @@ export class BlogDetail3Component implements OnInit {
   constructor(private promptService: PromptService) {}
 
   ngOnInit() {
-    // this.getPrompt('65b4eec6eb357896bbc94c3b'); // Prod
-    this.getPrompt('65b458188516101cf32a45a7'); // Dev
+    this.getPrompt('65e546cae72b7e84013b3bbb'); // Prod
+    // this.getPrompt('65b458188516101cf32a45a7'); // Dev
   }
 
   getPrompt(promptId: string) {

@@ -31,6 +31,7 @@
   .popover-content {
     position: fixed;
     text-align: center;
+    font-size: 14px;
     width: 270px;
     right: 105px;
     bottom: 14px;
@@ -56,11 +57,11 @@
 @media (max-width: 530px) {
   .detail-popup-auth {
     img {
-      bottom: 51px;
+      bottom: 52px;
     }
 
     .popover-content {
-      bottom: 60px;
+      bottom: 58px;
     }
   }
 }

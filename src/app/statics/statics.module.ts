@@ -10,6 +10,7 @@ import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
 import { FaqComponent } from './faq/faq.component';
 import { ManualComponent } from './manual/manual.component';
+import { Page404Component } from './page404/page404.component';
 
 const routes: Routes = [
   // { path: 'landing', component: LandingComponent },
@@ -20,8 +21,8 @@ const routes: Routes = [
   { path: 'tutorial', component: TutorialComponent },
 
   // { path: '', redirectTo: 'prompt', pathMatch: 'full' },
-  // { path: '**', component: Page404Component }
-  { path: '**', redirectTo: '', pathMatch: 'full' }, // Should show 404 page in the future
+  { path: '**', component: Page404Component },
+  // { path: '**', redirectTo: '', pathMatch: 'full' }, // Should show 404 page in the future
 ];
 
 @NgModule({
@@ -30,6 +31,7 @@ const routes: Routes = [
     TutorialComponent,
     ManualComponent,
     FaqComponent,
+    Page404Component,
   ],
   exports: [],
   providers: [],

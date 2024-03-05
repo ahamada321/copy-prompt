@@ -55,6 +55,15 @@
   }
 }
 @media (max-width: 530px) {
+  .detail-popup {
+    img {
+      right: 8px;
+    }
+
+    .popover-content {
+      right: 95px;
+    }
+  }
   .detail-popup-auth {
     img {
       right: 8px;

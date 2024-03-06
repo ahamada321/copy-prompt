@@ -16,26 +16,32 @@
 </div>
 
 <!--     *********    CALL TO ACTION    *********      -->
-<ng-container *ngIf="!auth.isAuthenticated()">
-  <div class="subscribe-line">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-7 col-lg-8">
-          <h3>プロンプトを登録しませんか？</h3>
-          <p class="cta-description">自分専用のプロンプトノートが作れます</p>
-        </div>
-        <div class="col-md-5 col-lg-4">
-          <br />
-          <a
-            [routerLink]="['/register']"
-            class="btn btn-round btn-lg btn-block btn-primary"
-            >無料会員登録する</a
-          >
-        </div>
+<div class="subscribe-line">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-lg-8">
+        <h3>プロンプトを登録しませんか？</h3>
+        <p class="cta-description">自分専用のプロンプトノートが作れます</p>
+      </div>
+      <div class="col-md-5 col-lg-4">
+        <br />
+        <a
+          *ngIf="!auth.isAuthenticated()"
+          [routerLink]="['/register']"
+          class="btn btn-round btn-lg btn-block btn-primary"
+          >無料会員登録する</a
+        >
+        <a
+          *ngIf="auth.isAuthenticated()"
+          [routerLink]="['/user']"
+          fragment="new"
+          class="btn btn-round btn-lg btn-block btn-primary"
+          >自作したプロンプトを登録する</a
+        >
       </div>
     </div>
   </div>
-</ng-container>
+</div>
 
 <!--     *********    Corner Button    *********      -->
 <app-guide-button *ngIf="!auth.isAuthenticated()"></app-guide-button>

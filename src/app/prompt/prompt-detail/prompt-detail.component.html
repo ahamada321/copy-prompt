@@ -10,32 +10,34 @@
     <div class="content-center">
       <div class="container">
         <!-- <div class="space-top"></div> -->
+
         <h1 class="title">
+          <a
+            class="btn btn-link btn-neutral author"
+            [routerLink]="['/user', prompt.user._id]"
+          >
+            <img
+              class="avatar header-avatar"
+              [src]="
+                prompt.user.image
+                  ? prompt.user.image
+                  : prompt.user.prompts.length < 1
+                  ? './assets/icons/1.png'
+                  : prompt.user.prompts.length < 5
+                  ? './assets/icons/2.png'
+                  : prompt.user.prompts.length < 12
+                  ? './assets/icons/3.png'
+                  : prompt.user.prompts.length < 20
+                  ? './assets/icons/4.png'
+                  : './assets/icons/5.png'
+              "
+            />
+            {{ prompt.user.name }} が作った
+          </a>
+          <br />
           {{ prompt.name }}<br />
           <small>プロンプト</small><br />
         </h1>
-        <a
-          class="btn btn-link btn-lg btn-neutral"
-          [routerLink]="['/user', prompt.user._id]"
-        >
-          <img
-            class="avatar header-avatar"
-            [src]="
-              prompt.user.image
-                ? prompt.user.image
-                : prompt.user.prompts.length < 1
-                ? './assets/icons/1.png'
-                : prompt.user.prompts.length < 5
-                ? './assets/icons/2.png'
-                : prompt.user.prompts.length < 12
-                ? './assets/icons/3.png'
-                : prompt.user.prompts.length < 20
-                ? './assets/icons/4.png'
-                : './assets/icons/5.png'
-            "
-          />
-          {{ prompt.user.name }}
-        </a>
       </div>
       <div *ngIf="auth.isAuthenticated()" class="text-center">
         <div *ngIf="!isMine()">

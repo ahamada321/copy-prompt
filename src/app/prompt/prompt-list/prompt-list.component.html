@@ -29,14 +29,14 @@
           *ngIf="!auth.isAuthenticated()"
           [routerLink]="['/register']"
           class="btn btn-round btn-lg btn-block btn-primary"
-          >無料会員登録する</a
+          >まずは無料会員登録する</a
         >
         <a
           *ngIf="auth.isAuthenticated()"
           [routerLink]="['/user']"
           fragment="new"
           class="btn btn-round btn-lg btn-block btn-primary"
-          >自作したプロンプトを登録する</a
+          >自作プロンプトを登録する</a
         >
       </div>
     </div>

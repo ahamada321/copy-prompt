@@ -39,7 +39,7 @@
           <small>プロンプト</small><br />
         </h1>
       </div>
-      <div *ngIf="auth.isAuthenticated()" class="text-center">
+      <div *ngIf="auth.isAuthenticated()">
         <div *ngIf="!isMine()">
           <button
             *ngIf="!isBookmarked"

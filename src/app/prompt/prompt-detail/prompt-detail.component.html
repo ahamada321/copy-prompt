@@ -80,7 +80,7 @@
       </div>
       <div class="row" *ngIf="prompt.example">
         <div class="col-md-8 ml-auto mr-auto">
-          <h2 class="title text-center">出力例</h2>
+          <h2 class="title text-center">ChatGPTからの返答例</h2>
           <div
             id="text"
             [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.example)"
@@ -101,7 +101,7 @@
         </div>
       </div>
       <div *ngIf="prompt.usage" class="text-center">
-        <h2 class="title">利用手順</h2>
+        <h2 class="title">ChatGPTへの送信手順</h2>
         <p>{{ prompt.usage }}</p>
       </div>
     </div>

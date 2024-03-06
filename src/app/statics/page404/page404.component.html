@@ -1,43 +1,154 @@
 <div
-  class="background-img"
+  class="page-header"
   style="background-image: url('./assets/img/bg/tressure-map.jpg')"
 >
   <div class="filter"></div>
-  <div class="container">
-    <div class="row">
-      <h1 class="title">
-        &nbsp;404 <br />
-        <p class="error-msg">
-          We're sorry, but something went wrong. We are working an fixing this.
-          <br />
-          Please refresh the page in a couple of seconds.
-        </p>
-      </h1>
-    </div>
-    <div class="container-cards space-top">
-      <div class="row">
-        <h5 class="discover-pages text-center">
-          Meanwhie, you can check our social pages...
-        </h5>
+  <div class="content-center">
+    <div class="container">
+      <h1 class="title">404</h1>
+      <p><strong>Page not found.</strong></p>
+      <p>ページが見つかりませんでした。</p>
+      <div class="discover-pages">
+        <!-- カテゴリ -->
+        <h2>カテゴリから探す</h2>
+        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: '語学', page: 1 }"
+            >
+              語学
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: 'メール・文章作成・要約', page: 1 }"
+            >
+              メール・文章作成・要約
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: '資料作成', page: 1 }"
+            >
+              資料作成
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: 'コーチング・メンタリング', page: 1 }"
+            >
+              コーチング・メンタリング
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: 'プログラミング', page: 1 }"
+            >
+              プログラミング
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: 'アイデア・企画', page: 1 }"
+            >
+              アイデア・企画
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{
+                keywords: 'マーケティング・SEO対策・戦略',
+                page: 1
+              }"
+            >
+              マーケティング・SEO対策・戦略
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: 'ロールプレイ', page: 1 }"
+            >
+              ロールプレイ
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: '占い', page: 1 }"
+            >
+              占い
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/prompt']"
+              [queryParams]="{ keywords: 'その他', page: 1 }"
+            >
+              その他
+            </a>
+          </div>
+        </div>
+
+        <div class="space-top"></div>
+        <!-- 活用事例 -->
+        <h2>活用事例を見る</h2>
+        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/blog/english']"
+            >
+              英会話の練習をしたい時に
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/blog/self-compassion']"
+            >
+              自分について深く知りたい時に
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/blog/mail-communication']"
+            >
+              仕事のミスを減らしたい時に
+            </a>
+            <a
+              type="button"
+              class="btn btn-sm btn-neutral btn-round mr-2 mb-2"
+              [routerLink]="['/blog/how-to-use-prompt']"
+            >
+              ChatGPTを使いこなせてないと感じたら
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="offset-md-5 social-buttons">
+    </div>
+
+    <div class="space-top"></div>
+    <div class="container-cards">
+      <h2>公式Twitter</h2>
+      <br />
+      <div class="social-buttons">
         <a
-          class="btn btn-just-icon btn-lg btn-facebook"
-          href="https://www.facebook.com/CreativeTim"
-          target="_blank"
-          ><i class="fa fa-facebook" aria-hidden="true"></i
-        ></a>
-        <a
-          class="btn btn-just-icon btn-lg btn-twitter"
-          href="https://twitter.com/CreativeTim"
+          class="btn btn-just-icon btn-lg btn-outline-neutral"
+          href="https://twitter.com/copy_prompt"
           target="_blank"
           ><i class="fa fa-twitter" aria-hidden="true"></i
-        ></a>
-        <a
-          class="btn btn-just-icon btn-lg btn-linkedin"
-          href="https://www.instagram.com/creativetimofficial/"
-          target="_blank"
-          ><i class="fa fa-linkedin" aria-hidden="true"></i
         ></a>
       </div>
     </div>

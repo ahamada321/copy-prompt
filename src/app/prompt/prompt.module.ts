@@ -36,6 +36,7 @@ import { PromptService } from './shared/prompt.service';
 import { CommentService } from './shared/comment.service';
 import { GuideButtonModule } from '../shared/guide-button/guide-button.module';
 import { PromptListCommentComponent } from './prompt-list/prompt-list-comment/prompt-list-comment.component';
+import { PromptDetailOthersComponent } from './prompt-detail/prompt-detail-others/prompt-detail-others.component';
 
 const routes: Routes = [
   { path: '', component: PromptListComponent },
@@ -67,6 +68,7 @@ const routes: Routes = [
     PromptSearchComponent,
     PromptDetailComponent,
     PromptDetailCommentComponent,
+    PromptDetailOthersComponent,
     PromptNewComponent,
     PromptEditComponent,
   ],

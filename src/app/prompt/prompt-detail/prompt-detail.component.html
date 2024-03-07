@@ -133,6 +133,9 @@
   <!--     *********     Recommends      *********      -->
   <div class="section section-nude">
     <div class="container">
+      <app-prompt-detail-others
+        [userId]="prompt.user._id"
+      ></app-prompt-detail-others>
       <app-prompt-list-latest></app-prompt-list-latest>
     </div>
   </div>

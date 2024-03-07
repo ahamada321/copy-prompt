@@ -1,8 +1,8 @@
-import { Schema } from 'mongoose';
+import { ObjectId } from 'mongoose';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 
 export class User {
-  _id?: Schema.Types.ObjectId;
+  _id?: ObjectId;
   isVerified?: boolean;
   isBanned?: boolean;
   lastLogin?: number;

@@ -1,0 +1,84 @@
+<div *ngIf="foundUser">
+  <h3>この人が作った他のプロンプト</h3>
+  <div class="row">
+    <ng-container *ngFor="let prompt of foundUser.prompts">
+      <div *ngIf="prompt.isShared" class="col-10 col-sm-5 col-md-5 col-xl-5">
+        <br />
+        <a [routerLink]="['/prompt', prompt._id]">
+          <div
+            class="card"
+            data-background="image"
+            [ngStyle]="{
+              'background-image':
+                'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
+            }"
+          >
+            <div class="card-body">
+              <h6 class="card-category">
+                <i class="fa fa-newspaper-o"></i>
+                {{ prompt.categories[0].itemName }}
+              </h6>
+              <h5 class="card-title">{{ prompt.name }}</h5>
+              <h5 class="card-title"><small>プロンプト</small></h5>
+              <div class="card-footer">
+                <div class="author">
+                  <img
+                    class="avatar img-raised"
+                    [src]="
+                      foundUser.image
+                        ? foundUser.image
+                        : foundUser.prompts.length < 1
+                        ? './assets/icons/1.png'
+                        : foundUser.prompts.length < 5
+                        ? './assets/icons/2.png'
+                        : foundUser.prompts.length < 12
+                        ? './assets/icons/3.png'
+                        : foundUser.prompts.length < 20
+                        ? './assets/icons/4.png'
+                        : './assets/icons/5.png'
+                    "
+                  />
+                  <span>{{ foundUser.name }}</span>
+                </div>
+                <br />
+                <div
+                  class="stats"
+                  *ngIf="prompt.comments && prompt.comments.length > 0"
+                >
+                  <i class="nc-icon nc-chat-33"></i>&nbsp;
+                  {{ prompt.comments.length }}
+                </div>
+                <div
+                  class="stats"
+                  *ngIf="
+                    prompt.isBookmarkedFrom &&
+                    prompt.isBookmarkedFrom.length > 0
+                  "
+                >
+                  <i class="nc-icon nc-favourite-28"></i>&nbsp;
+                  {{ prompt.isBookmarkedFrom.length }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </ng-container>
+    <div class="col-md-3 col-xl-2 ml-auto mr-auto">
+      <br />
+      <a
+        aria-label="他のプロンプト"
+        [routerLink]="['/user', userId]"
+        [queryParams]="{ keywords: '', page: 1 }"
+      >
+        <div class="card" data-color="orange">
+          <div class="card-body">
+            <div class="card-icon">
+              <i class="fa fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

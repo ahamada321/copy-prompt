@@ -260,6 +260,18 @@ exports.register = async function (req, res) {
     });
   }
 
+  const parts = email.split("@");
+  const domainName = parts[1];
+  if (domainName == "secretmail.net") {
+    return res.status(422).send({
+      errors: [
+        {
+          detail: "このメールアドレスは登録できません",
+        },
+      ],
+    });
+  }
+
   if (password.length < 5) {
     return res.status(422).send({
       errors: [

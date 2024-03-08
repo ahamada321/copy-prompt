@@ -53,19 +53,24 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   }
 
   getPrompt(promptId: string) {
-    this.promptService.getPromptById(promptId).subscribe((prompt: Prompt) => {
-      this.prompt = prompt;
-      this.comments = prompt.comments as Comment[];
-      this.updateTitleAndMeta();
+    this.promptService.getPromptById(promptId).subscribe(
+      (prompt: Prompt) => {
+        this.prompt = prompt;
+        this.comments = prompt.comments as Comment[];
+        this.updateTitleAndMeta();
 
-      const userId = this.auth.getUserId();
-      const index = prompt.isBookmarkedFrom.findIndex((x) => x === userId);
-      if (index !== -1) {
-        this.isBookmarked = true;
+        const userId = this.auth.getUserId();
+        const index = prompt.isBookmarkedFrom.findIndex((x) => x === userId);
+        if (index !== -1) {
+          this.isBookmarked = true;
+        }
+        this.cdr.detectChanges(); // DOMの更新を待機
+        this.isLongTextString = this.isLongText();
+      },
+      (err) => {
+        this.router.navigate(['/404']);
       }
-      this.cdr.detectChanges(); // DOMの更新を待機
-      this.isLongTextString = this.isLongText();
-    });
+    );
   }
 
   updateTitleAndMeta() {

@@ -72,12 +72,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.meta.updateTag({
         name: 'description',
         content:
-          'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+          'あつまれ！GPTプロンプトなら多彩なChatGPTプロンプトを手に入れることができます。有用なプロンプトを使って仕事を早く終わらせちゃおう。',
       });
       this.meta.updateTag({
         property: 'og:description',
         content:
-          'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+          'あつまれ！GPTプロンプトなら多彩なChatGPTプロンプトを手に入れることができます。有用なプロンプトを使って仕事を早く終わらせちゃおう。',
       });
     }
   }

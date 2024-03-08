@@ -36,12 +36,12 @@ export class PromptListComponent implements OnInit, OnDestroy {
     this.meta.updateTag({
       name: 'description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'プロンプトテンプレをコピペするだけで、今まで使いこなせなかったChatGPTが超有能に生まれ変わる！',
     });
     this.meta.updateTag({
       property: 'og:description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'プロンプトテンプレをコピペするだけで、今まで使いこなせなかったChatGPTが超有能に生まれ変わる！',
     });
   }
 

@@ -4,17 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LandingComponent } from './landing/landing.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
-import { FaqComponent } from './faq/faq.component';
 import { ManualComponent } from './manual/manual.component';
 import { Page404Component } from './page404/page404.component';
 
 const routes: Routes = [
   // { path: 'landing', component: LandingComponent },
-  { path: 'faq', component: FaqComponent },
   { path: 'terms', component: TermsComponent },
   //   { path: 'privacy', component: PrivacyComponent },
   { path: 'manual', component: ManualComponent },
@@ -30,7 +27,6 @@ const routes: Routes = [
     TermsComponent,
     TutorialComponent,
     ManualComponent,
-    FaqComponent,
     Page404Component,
   ],
   exports: [],

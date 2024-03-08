@@ -52,12 +52,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.meta.updateTag({
       name: 'description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'あつまれ！GPTプロンプトに登録すると、ChatGPTで使える多種多様なプロンプトが手に入るよ。今すぐ有能プロンプトをGetして楽しよう',
     });
     this.meta.updateTag({
       property: 'og:description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'あつまれ！GPTプロンプトに登録すると、ChatGPTで使える多種多様なプロンプトが手に入るよ。今すぐ有能プロンプトをGetして楽しよう',
     });
   }
 

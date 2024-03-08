@@ -23,12 +23,12 @@ export class TermsComponent implements OnInit, OnDestroy {
     this.meta.updateTag({
       name: 'description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'チャットGPTの可能性を最大限に引き出すプロンプト(指令文)テンプレで使っているChatGPTを活用しよう！',
     });
     this.meta.updateTag({
       property: 'og:description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'チャットGPTの可能性を最大限に引き出すプロンプト(指令文)テンプレで使っているChatGPTを活用しよう！',
     });
   }
 }

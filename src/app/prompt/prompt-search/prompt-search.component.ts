@@ -56,12 +56,12 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     this.meta.updateTag({
       name: 'description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'ChatGPTが優秀な助手になるかはあなた次第！あつまれ！GPTプロンプトでは有能になるChatGPTのプロンプトテンプレートが盛りだくさん',
     });
     this.meta.updateTag({
       property: 'og:description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'ChatGPTが優秀な助手になるかはあなた次第！あつまれ！GPTプロンプトでは有能になるChatGPTのプロンプトテンプレートが盛りだくさん',
     });
   }
 

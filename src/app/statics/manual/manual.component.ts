@@ -42,12 +42,12 @@ export class ManualComponent implements OnInit, OnDestroy {
     this.meta.updateTag({
       name: 'description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'ChatGPTってこうやって使うんだ！がわかるチャットGPTのプロンプト(指示文)テンプレートサイト',
     });
     this.meta.updateTag({
       property: 'og:description',
       content:
-        'こんなに楽できる！コピペだけでチャットGPTを最大限に活用できるテンプレが豊富なプロンプト共有サイト',
+        'ChatGPTってこうやって使うんだ！がわかるチャットGPTのプロンプト(指示文)テンプレートサイト',
     });
   }
 }

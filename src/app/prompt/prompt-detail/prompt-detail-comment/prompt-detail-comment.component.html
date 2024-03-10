@@ -59,28 +59,32 @@
           <!-- end media -->
           <div class="media" *ngFor="let comment of comments">
             <div class="pull-left">
-              <div class="avatar">
-                <img
-                  class="media-object"
-                  alt="64x64"
-                  [src]="
-                    comment.user!.image
-                      ? comment.user!.image
-                      : comment.user!.prompts.length < 1
-                      ? './assets/icons/1.png'
-                      : comment.user!.prompts.length < 5
-                      ? './assets/icons/2.png'
-                      : comment.user!.prompts.length < 12
-                      ? './assets/icons/3.png'
-                      : comment.user!.prompts.length < 20
-                      ? './assets/icons/4.png'
-                      : './assets/icons/5.png'
-                  "
-                />
-              </div>
+              <a [routerLink]="['/user', comment.user!._id]">
+                <div class="avatar">
+                  <img
+                    class="media-object"
+                    alt="64x64"
+                    [src]="
+                      comment.user!.image
+                        ? comment.user!.image
+                        : comment.user!.prompts.length < 1
+                        ? './assets/icons/1.png'
+                        : comment.user!.prompts.length < 5
+                        ? './assets/icons/2.png'
+                        : comment.user!.prompts.length < 12
+                        ? './assets/icons/3.png'
+                        : comment.user!.prompts.length < 20
+                        ? './assets/icons/4.png'
+                        : './assets/icons/5.png'
+                    "
+                  />
+                </div>
+              </a>
             </div>
             <div class="media-body">
-              <h5 class="media-heading">{{ comment.user!.name }}</h5>
+              <a [routerLink]="['/user', comment.user!._id]">
+                <h5 class="media-heading">{{ comment.user!.name }}</h5>
+              </a>
               <div class="pull-right">
                 <h6 class="text-muted">
                   {{ comment.createdAt | date : "yyyy/MM/dd HH:mm" }}

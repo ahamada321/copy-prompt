@@ -139,7 +139,12 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
       'https://twitter.com/intent/tweet?url=https://www.copy-prompt.com';
     const PATH = this.location.path();
     window.open(
-      URL + PATH + '&text=' + '%0A' + this.prompt.name + 'プロンプト',
+      URL +
+        PATH +
+        '&text=%0A' +
+        this.prompt.name +
+        'プロンプト' +
+        '&hashtags=あつプロ',
       '_blank'
     );
   }

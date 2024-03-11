@@ -59,8 +59,8 @@
           <!-- end media -->
           <div class="media" *ngFor="let comment of comments">
             <div class="pull-left">
-              <a [routerLink]="['/user', comment.user!._id]">
-                <div class="avatar">
+              <div class="avatar">
+                <a [routerLink]="['/user', comment.user!._id]">
                   <img
                     class="media-object"
                     alt="64x64"
@@ -78,8 +78,8 @@
                         : './assets/icons/5.png'
                     "
                   />
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
             <div class="media-body">
               <a [routerLink]="['/user', comment.user!._id]">

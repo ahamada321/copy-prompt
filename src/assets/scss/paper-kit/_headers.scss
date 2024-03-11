@@ -2,12 +2,11 @@
   background-color: $header-background;
   background-position: center center;
   background-size: cover;
-  // min-height: 100vh;
   // max-height: 999px;
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   z-index: 1;
 
   &.page-header-small {

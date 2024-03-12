@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { UserService } from 'src/app/user/shared/user.service';
 import { User } from 'src/app/user/shared/user.model';
-import { ObjectId } from 'mongoose';
 
 @Component({
   selector: 'app-prompt-detail-others',
@@ -11,8 +10,8 @@ import { ObjectId } from 'mongoose';
   styleUrls: ['./prompt-detail-others.component.scss'],
 })
 export class PromptDetailOthersComponent implements OnInit {
-  @Input() userId?: ObjectId;
-  foundUser?: User;
+  @Input() user!: User;
+  foundUser!: User;
   page = 1;
 
   constructor(
@@ -22,7 +21,7 @@ export class PromptDetailOthersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getUserById(this.userId);
+    this.getUserById(this.user._id);
   }
 
   private getUserById(userId: any) {

@@ -49,15 +49,22 @@ exports.postComment = async function (req, res) {
 
 exports.editComment = async function (req, res) {
   const commentData = req.body;
-  const commentId = req.params.id;
-  const user = res.locals.user;
+  const user = res.locals.user; // This is logined user infomation.
 
   try {
-    const foundComment = await Comment.findById(promptId).populate("user");
-    // await Prompt.updateOne(
-    //   { _id: commentData.prompt },
-    //   { $push: { comments: newComment } }
-    // );
+    const foundComment = await Comment.findById(commentData._id);
+    if (foundComment.user.toString() !== user.id) {
+      return res.status(422).send({
+        errors: {
+          title: "Invalid user!",
+          detail: "サポートにお問い合わせしてください",
+        },
+      });
+    }
+    await Comment.updateOne(
+      { _id: commentData._id },
+      { $set: { comment: commentData.comment } }
+    );
     return res.json({ status: "edited" });
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });

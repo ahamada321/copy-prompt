@@ -15,6 +15,10 @@ export class CommentService {
     return this.http.post('/api/v1/comments', commentData);
   }
 
+  public editComment(commentData: Comment): Observable<any> {
+    return this.http.patch('/api/v1/comments', commentData);
+  }
+
   public editPrompt(commentId: string, commentData: Comment): Observable<any> {
     return this.http.patch('/api/v1/comments/' + commentId, commentData);
   }

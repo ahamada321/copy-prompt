@@ -60,7 +60,6 @@
     color: $white-color;
   }
 }
-[class*="features-"],
 [class*="team-"],
 [class*="projects-"],
 [class*="pricing-"],
@@ -91,7 +90,7 @@
 
 // Sections
 @import "sections/headers";
-@import "sections/features";
+// @import "sections/features"; Deleted by Hamada.
 @import "sections/blogs";
 @import "sections/teams";
 @import "sections/projects";

@@ -12,7 +12,6 @@ import { User } from 'src/app/user/shared/user.model';
 export class PromptDetailOthersComponent implements OnInit {
   @Input() user!: User;
   foundUser!: User;
-  page = 1;
 
   constructor(
     public auth: MyOriginAuthService,

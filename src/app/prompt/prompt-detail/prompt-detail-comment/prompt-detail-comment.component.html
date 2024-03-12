@@ -1,131 +1,129 @@
-<div class="section section-nude" *ngIf="comments">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 ml-auto mr-auto">
-        <h2 class="title text-center">コメント({{ comments.length }})</h2>
-        <div class="media-area">
-          <div *ngIf="auth.isAuthenticated()">
-            <h3 class="description text-center">
-              <small>投稿から20分以内であれば自分の投稿を修正できます</small>
-            </h3>
-            <div class="media media-post">
-              <div class="pull-left author">
-                <div class="avatar">
-                  <img
-                    *ngIf="foundUser"
-                    class="media-object"
-                    alt="64x64"
-                    [src]="
-                      foundUser.image
-                        ? foundUser.image
-                        : foundUser.prompts.length < 1
-                        ? './assets/icons/1.png'
-                        : foundUser.prompts.length < 5
-                        ? './assets/icons/2.png'
-                        : foundUser.prompts.length < 12
-                        ? './assets/icons/3.png'
-                        : foundUser.prompts.length < 20
-                        ? './assets/icons/4.png'
-                        : './assets/icons/5.png'
-                    "
-                  />
-                </div>
-              </div>
-              <form
-                class="media-body"
-                #postForm="ngForm"
-                (ngSubmit)="postComment(postForm)"
-              >
-                <textarea
-                  class="form-control"
-                  placeholder="ここからコメントできます..."
-                  rows="4"
-                  [ngModel]="commentString"
-                  name="commentString"
-                  required
-                ></textarea>
-                <div class="media-footer">
-                  <button
-                    [disabled]="!postForm.valid || isClicked"
-                    type="submit"
-                    class="btn btn-primary pull-right"
-                  >
-                    {{ editingId ? "修正する" : "コメントする" }}
-                  </button>
-                </div>
-              </form>
+<div *ngIf="comments" class="row">
+  <div class="col-md-8 ml-auto mr-auto">
+    <h2 class="title text-center">コメント({{ comments.length }})</h2>
+    <div class="media-area">
+      <h3 *ngIf="!auth.isAuthenticated()" class="description text-center">
+        <small>ログイン後にコメントできます</small>
+      </h3>
+      <div *ngIf="auth.isAuthenticated()">
+        <h3 class="description text-center">
+          <small>投稿から20分以内であれば自分の投稿を修正できます</small>
+        </h3>
+        <div class="media media-post">
+          <div class="pull-left author">
+            <div class="avatar">
+              <img
+                *ngIf="foundUser"
+                class="media-object"
+                alt="64x64"
+                [src]="
+                  foundUser.image
+                    ? foundUser.image
+                    : foundUser.prompts.length < 1
+                    ? './assets/icons/1.png'
+                    : foundUser.prompts.length < 5
+                    ? './assets/icons/2.png'
+                    : foundUser.prompts.length < 12
+                    ? './assets/icons/3.png'
+                    : foundUser.prompts.length < 20
+                    ? './assets/icons/4.png'
+                    : './assets/icons/5.png'
+                "
+              />
             </div>
           </div>
-          <h3 *ngIf="!auth.isAuthenticated()" class="description text-center">
-            <small>ログイン後にコメントできます</small>
-          </h3>
-          <hr />
-
-          <!-- end media -->
-          <div class="media" *ngFor="let comment of comments">
-            <div class="pull-left">
-              <div class="avatar">
-                <a [routerLink]="['/user', comment.user!._id]">
-                  <img
-                    class="media-object"
-                    alt="64x64"
-                    [src]="
-                      comment.user!.image
-                        ? comment.user!.image
-                        : comment.user!.prompts.length < 1
-                        ? './assets/icons/1.png'
-                        : comment.user!.prompts.length < 5
-                        ? './assets/icons/2.png'
-                        : comment.user!.prompts.length < 12
-                        ? './assets/icons/3.png'
-                        : comment.user!.prompts.length < 20
-                        ? './assets/icons/4.png'
-                        : './assets/icons/5.png'
-                    "
-                  />
-                </a>
-              </div>
+          <form
+            class="media-body"
+            #postForm="ngForm"
+            (ngSubmit)="postComment(postForm)"
+          >
+            <textarea
+              class="form-control"
+              placeholder="ここからコメントできます..."
+              rows="4"
+              [ngModel]="commentString"
+              name="commentString"
+              required
+            ></textarea>
+            <div class="media-footer">
+              <button
+                [disabled]="!postForm.valid || isClicked"
+                type="submit"
+                class="btn btn-primary pull-right"
+              >
+                {{ editingId ? "修正する" : "コメントする" }}
+              </button>
             </div>
-            <div class="media-body">
-              <a [routerLink]="['/user', comment.user!._id]">
-                <h5 class="media-heading">{{ comment.user!.name }}</h5>
-              </a>
-              <div class="pull-right">
-                <h6 class="text-muted">
-                  {{ comment.createdAt | date : "yyyy/MM/dd HH:mm" }}
-                </h6>
-              </div>
-              <p style="white-space: pre-line">
-                {{ comment.comment }}
-              </p>
-              <div class="media-footer">
-                <button
-                  (click)="
-                    commentString = '>> ' + comment.user!.name + '\n';
-                    editingId = ''
-                  "
-                  class="btn btn-primary btn-link pull-right"
-                >
-                  <i class="fa fa-reply"></i>返信する
-                </button>
-                <button
-                  *ngIf="isEditable(comment)"
-                  class="btn btn-link pull-right"
-                  (click)="
-                    commentString = comment.comment!; editingId = comment._id!
-                  "
-                >
-                  <i class="fa fa-pencil"></i>編集する
-                </button>
-                <!-- <a href="javascript:void(0)" class="btn btn-link pull-right">
+          </form>
+        </div>
+      </div>
+      <hr />
+
+      <!-- end media -->
+      <div class="media" *ngFor="let comment of comments">
+        <div class="pull-left">
+          <div class="avatar">
+            <a [routerLink]="['/user', comment.user!._id]">
+              <img
+                class="media-object"
+                alt="64x64"
+                [src]="
+                  comment.user!.image
+                    ? comment.user!.image
+                    : comment.user!.prompts.length < 1
+                    ? './assets/icons/1.png'
+                    : comment.user!.prompts.length < 5
+                    ? './assets/icons/2.png'
+                    : comment.user!.prompts.length < 12
+                    ? './assets/icons/3.png'
+                    : comment.user!.prompts.length < 20
+                    ? './assets/icons/4.png'
+                    : './assets/icons/5.png'
+                "
+              />
+            </a>
+          </div>
+        </div>
+        <div class="media-body">
+          <a [routerLink]="['/user', comment.user!._id]">
+            <h5 class="media-heading">{{ comment.user!.name }}</h5>
+          </a>
+          <div class="pull-right">
+            <h6 class="text-muted">
+              {{ comment.createdAt | date : "yyyy/MM/dd HH:mm" }}
+            </h6>
+          </div>
+          <p style="white-space: pre-line">
+            {{ comment.comment }}
+          </p>
+          <div class="media-footer">
+            <button
+              (click)="
+                commentString = '>> ' + comment.user!.name + '\n';
+                editingId = ''
+              "
+              class="btn btn-primary btn-link pull-right"
+            >
+              <i class="fa fa-reply"></i>返信する
+            </button>
+            <button
+              *ngIf="isEditable(comment)"
+              class="btn btn-link pull-right"
+              (click)="
+                commentString = comment.comment!; editingId = comment._id!
+              "
+            >
+              <i class="fa fa-pencil"></i>編集する
+            </button>
+            <!-- <a href="javascript:void(0)" class="btn btn-link pull-right">
                   <i class="fa fa-flag"></i>報告する</a
                 > -->
-              </div>
-            </div>
           </div>
-          <!-- end media -->
+        </div>
+      </div>
+      <!-- end media -->
 
-          <!-- <br />
+      <!-- <br />
             <div
               class="pagination-area pagination-primary justify-content-center"
             >
@@ -135,8 +133,6 @@
                 aria-label="Default pagination"
               ></ngb-pagination>
             </div> -->
-        </div>
-      </div>
     </div>
   </div>
 </div>

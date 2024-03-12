@@ -15,7 +15,6 @@ const routes: Routes = [
   //   { path: 'privacy', component: PrivacyComponent },
   { path: 'manual', component: ManualComponent },
   { path: 'tutorial', component: TutorialComponent },
-  // { path: '', redirectTo: 'prompt', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];
 

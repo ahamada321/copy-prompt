@@ -3,7 +3,7 @@ import { Prompt } from './prompt.model';
 
 export class Comment {
   _id?: string;
-  createdAt?: string;
+  createdAt?: Date;
   comment?: string;
   // isReported?: any[];
   prompt?: Prompt;

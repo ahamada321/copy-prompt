@@ -14,10 +14,14 @@
     // color: #B33C12; Disabled by Hamada
     text-align: center;
   }
-  // & .btn {
-  //   margin-top: 30px; Disabled by Hamada
-  // }
+  & .btn {
+    margin-top: 20px; // Changed by Hamada
+  }
   & .forgot {
     text-align: center;
   }
+
+  input {
+    margin-bottom: 8px;
+  } // Added from _examples.scss by Hamada
 }

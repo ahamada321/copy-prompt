@@ -105,7 +105,12 @@
       <div *ngIf="prompt.usage" class="text-center">
         <h2 class="title">ChatGPTへの送信手順</h2>
         <p>{{ prompt.usage }}</p>
-        <a class="btn btn-success btn-link btn-lg"> ChatGPTの使い方はこちら </a>
+        <a
+          class="btn btn-success btn-link btn-lg"
+          [routerLink]="['/blog/how-to-use-chatgpt']"
+        >
+          はじめてのChatGPTの使い方はこちら
+        </a>
       </div>
     </div>
   </div>

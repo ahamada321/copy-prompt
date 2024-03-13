@@ -41,7 +41,7 @@
               "src/assets/demo/demo.css",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/rellax/rellax.min.js"]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -112,7 +112,7 @@
               "src/assets/demo/demo.css",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/rellax/rellax.min.js"]
+            "scripts": []
           }
         }
       }

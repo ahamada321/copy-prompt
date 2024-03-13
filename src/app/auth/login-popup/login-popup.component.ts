@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { take } from 'rxjs/operators';
   templateUrl: './login-popup.component.html',
   styleUrls: ['./login-popup.component.scss'],
 })
-export class LoginPopupComponent implements OnInit, OnDestroy {
+export class LoginPopupComponent implements OnInit {
   isClicked: boolean = false;
   loginForm!: FormGroup;
   errors: any[] = [];
@@ -28,10 +28,7 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.add('login-popup');
     this.initForm();
-
     const titlee = this.location.prepareExternalUrl(this.location.path());
     if (
       titlee.split('/')[1] === 'prompt' &&
@@ -43,11 +40,6 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
         this.promptId = params['promptId'];
       });
     }
-  }
-
-  ngOnDestroy() {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.remove('login-popup');
   }
 
   initForm() {

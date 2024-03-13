@@ -37,14 +37,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateMeta();
     let body = document.getElementsByTagName('body')[0];
-    body.classList.add('full-screen');
     body.classList.add('register-page');
   }
 
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
     let body = document.getElementsByTagName('body')[0];
-    body.classList.remove('full-screen');
     body.classList.remove('register-page');
   }
 

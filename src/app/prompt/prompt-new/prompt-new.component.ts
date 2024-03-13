@@ -141,7 +141,7 @@ export class PromptNewComponent implements OnInit, OnDestroy {
       },
       buttonsStyling: false,
     }).then(() => {
-      this.router.navigate(['/user']);
+      this.router.navigate(['/user'], { fragment: 'new' });
     });
   }
 

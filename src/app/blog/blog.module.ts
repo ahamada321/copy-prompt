@@ -8,6 +8,7 @@ import { ListCardModule } from '../shared/list-card/list-card.module';
 import { BlogDetail2Component } from './blog-detail2/blog-detail2.component';
 import { BlogDetail3Component } from './blog-detail3/blog-detail3.component';
 import { BlogDetail4Component } from './blog-detail4/blog-detail4.component';
+import { BlogDetail5Component } from './blog-detail5/blog-detail5.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'self-compassion', component: BlogDetail2Component },
       { path: 'mail-communication', component: BlogDetail3Component },
       { path: 'how-to-use-prompt', component: BlogDetail4Component },
+      { path: 'how-to-use-chatgpt', component: BlogDetail5Component },
     ],
   },
 ];
@@ -29,6 +31,7 @@ const routes: Routes = [
     BlogDetail2Component,
     BlogDetail3Component,
     BlogDetail4Component,
+    BlogDetail5Component,
     BlogChatComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), ListCardModule],

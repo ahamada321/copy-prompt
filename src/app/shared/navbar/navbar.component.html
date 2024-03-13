@@ -27,7 +27,13 @@
         <ng-container *ngIf="!auth.isAuthenticated()">
           <li class="nav-item clickable">
             <a class="nav-link" [routerLink]="['/tutorial']"
-              >初めての使い方ガイド</a
+              ><i class="nc-icon x2 nc-alert-circle-i"></i>&nbsp;
+              初めての使い方ガイド</a
+            >
+          </li>
+          <li class="nav-item clickable">
+            <a class="nav-link" [routerLink]="['/register']"
+              ><i class="nc-icon x2 nc-single-02"></i>&nbsp; 新規会員登録する</a
             >
           </li>
           <li class="nav-item">

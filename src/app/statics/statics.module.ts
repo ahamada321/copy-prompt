@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TutorialComponent } from './tutorial/tutorial.component';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
 import { ManualComponent } from './manual/manual.component';
@@ -14,17 +13,11 @@ const routes: Routes = [
   { path: 'terms', component: TermsComponent },
   //   { path: 'privacy', component: PrivacyComponent },
   { path: 'manual', component: ManualComponent },
-  { path: 'tutorial', component: TutorialComponent },
   { path: '**', component: Page404Component },
 ];
 
 @NgModule({
-  declarations: [
-    TermsComponent,
-    TutorialComponent,
-    ManualComponent,
-    Page404Component,
-  ],
+  declarations: [TermsComponent, ManualComponent, Page404Component],
   exports: [],
   providers: [],
   imports: [

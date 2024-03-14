@@ -8,7 +8,7 @@
     <div class="filter"></div>
     <div class="content-center">
       <div class="container">
-        <h1 class="title">あつまれ！GPTプロンプトの使い方</h1>
+        <h1 class="title">初めての使い方ガイド</h1>
       </div>
     </div>
   </div>
@@ -120,10 +120,13 @@
           <div class="card-big-shadow">
             <div class="card card-just-text no-transition" data-radius="none">
               <div class="card-body">
-                <h5 class="card-category">例文</h5>
+                <h5 class="card-category">誤字脱字がある例文</h5>
 
                 <h5 class="card-description">
-                  恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきますので、
+                  恐れ入りますが、また明日に
+                  <span class="text-primary">なりまして</span>
+                  お電話のお時間をご連絡
+                  <span class="text-primary">せていただきますので</span>
                   引き続きどうぞよろしくお願い致します。
                 </h5>
               </div>
@@ -164,17 +167,20 @@
               <div class="card-body">
                 <h5 class="card-category">修正前</h5>
 
-                <h5 class="card-description">
-                  恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきますので
-                  引き続きどうぞよろしくお願い致します。
-                </h5>
+                <p class="card-description">
+                  恐れ入りますが、また明日に
+                  <span class="text-primary">なりまして</span>
+                  お電話のお時間をご連絡
+                  <span class="text-primary">せていただきますので</span
+                  >引き続きどうぞよろしくお願い致します。
+                </p>
                 <h5 class="card-category">↓</h5>
 
                 <h5 class="card-category">修正後</h5>
 
-                <h5 class="card-description">
+                <p class="card-description">
                   恐れ入りますが、明日に改めてお電話のご連絡のお時間をお知らせいたしますので、引き続きどうぞよろしくお願いいたします。
-                </h5>
+                </p>
               </div>
             </div>
           </div>
@@ -184,17 +190,17 @@
           <div class="space-top"></div>
           <app-blog-chat
             [character]="2"
-            [message]="'一瞬で変なところがなくなってびっくりだぽん！'"
+            [message]="'一瞬で変なところがなくなってびっくり！'"
           ></app-blog-chat>
           <app-blog-chat
             [character]="4"
             [message]="
-              'コレコレこうゆうのを待ってた！いつもメールに30分かかってる後輩狼に教えてあげよう！'
+              'こうゆうのを待ってた！いつもメール作成に30分以上かかってる後輩に教えてあげよう！'
             "
           ></app-blog-chat>
           <app-blog-chat
-            [character]="5"
-            [message]="'無料でこんなに便利なシロモノ、使わない手はないぜ'"
+            [character]="3"
+            [message]="'無料でこんなに便利なサイトを使わない手はない...!'"
           ></app-blog-chat>
         </div>
       </div>

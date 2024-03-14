@@ -75,7 +75,9 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
 
   updateTitleAndMeta() {
     this.previousTitle = this.titleService.getTitle();
-    this.titleService.setTitle(this.prompt.name + ' | あつまれ！GPTプロンプト');
+    this.titleService.setTitle(
+      this.prompt.name + 'プロンプト | あつまれ！GPTプロンプト'
+    );
 
     this.meta.updateTag({
       name: 'description',

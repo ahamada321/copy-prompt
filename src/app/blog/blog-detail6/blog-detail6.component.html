@@ -1,0 +1,181 @@
+<div class="wrapper">
+  <div
+    class="page-header page-header-xs"
+    [ngStyle]="{
+      'background-image': 'url(assets/img/bg/tressure-map.jpg)'
+    }"
+  >
+    <div class="filter"></div>
+    <div class="content-center">
+      <div class="container">
+        <h1 class="title">あつまれ！GPTプロンプトの使い方</h1>
+      </div>
+    </div>
+  </div>
+
+  <!--     *********     Detail info     *********      -->
+  <div class="section section-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <app-blog-chat
+            [character]="2"
+            [message]="
+              'あつまれ！GPTプロンプトの使い方がわからない人のためのガイダンスだよ'
+            "
+          ></app-blog-chat>
+          <app-blog-chat
+            [character]="3"
+            [message]="'手順通りに進めてあつまれ！GPTを使ってみよう'"
+          ></app-blog-chat>
+        </div>
+
+        <div class="space-top"></div>
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2>
+            <small>ステップ 1</small><br />
+            好きなプロンプトを選ぶ
+          </h2>
+          <p>
+            <a [routerLink]="['/']" class="text-primary">トップページ</a
+            >で好きなプロンプトカードを選んでクリックしてみましょう。
+          </p>
+          <div class="card card-plain">
+            <div class="card-img-top">
+              <a [routerLink]="['/']">
+                <img class="img" src="./assets/img/tutorial/step1.jpg" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 ml-auto mr-auto">
+          <app-blog-chat
+            [character]="2"
+            [message]="
+              '今回は例として【誤字脱字を直してくれるプロンプト】を選んだよ'
+            "
+          ></app-blog-chat>
+          <app-blog-chat
+            [character]="3"
+            [message]="'選んだプロンプトをどうやって使うのかな？'"
+          ></app-blog-chat>
+        </div>
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2>
+            <small>ステップ 2</small><br />
+            プロンプトをコピーする
+          </h2>
+          <p>
+            プロンプト（指令文）エリアにある「STEP1
+            プロンプトをコピーする」ボタンを押します。
+          </p>
+          <div class="card card-plain">
+            <div class="card-img-top">
+              <img class="img" src="./assets/img/tutorial/step2.jpg" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2>
+            <small>ステップ 3</small><br />
+            ChatGPTでペーストする
+          </h2>
+          <p>
+            すぐ下にある「STEP2 ChatGPTでペーストする」ボタンを押します。<br />
+            <a class="text-success" [routerLink]="['/blog/how-to-use-chatgpt']">
+              はじめてChatGPTを使う方はこちら</a
+            >
+          </p>
+          <div class="card card-plain">
+            <div class="card-img-top">
+              <img class="img" src="./assets/img/tutorial/step3.jpg" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2>
+            <small>ステップ 4</small><br />
+            「ChatGPTへの送信手順」通りに操作をして送信
+          </h2>
+          <p>
+            今回のプロンプトの送信手順は「ChatGPTにコピペして好みに書き換えてから送信」でした。
+          </p>
+          <div class="card card-plain">
+            <div class="card-img-top">
+              <img class="img" src="./assets/img/tutorial/step4-1.jpg" />
+            </div>
+          </div>
+          <p>今回は例として以下の例文の誤字脱字をチェックしてみましょう。</p>
+          <div class="card-big-shadow">
+            <div class="card card-just-text no-transition" data-radius="none">
+              <div class="card-body">
+                <h5 class="card-category">例文</h5>
+
+                <h5 class="card-description">
+                  恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきますので
+                  引き続きどうぞよろしくお願い致します。
+                </h5>
+              </div>
+            </div>
+            <!-- end card -->
+          </div>
+          <app-blog-chat
+            [character]="2"
+            [message]="
+              'ちょっとした違和感はあるけれど、修正するのが難しいなぁ...'
+            "
+          ></app-blog-chat>
+          <p>ChatGPTにペーストして書き換えて送信します。</p>
+          <div class="card card-plain no-transition">
+            <div class="card-img-top">
+              <img class="img" src="./assets/img/tutorial/step4-2.jpg" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2>
+            <small>ステップ 5</small><br />
+            ChatGPTから返答がくる
+          </h2>
+          <p>送信してから１秒足らずで以下の返答がきました。</p>
+          <div class="card">
+            <div class="card-body text-center">
+              <p>
+                恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきますので
+                引き続きどうぞよろしくお願い致します。
+              </p>
+              <p>↓</p>
+              <p>
+                恐れ入りますが、明日に改めてお電話のご連絡のお時間をお知らせいたしますので、引き続きどうぞよろしくお願いいたします。
+              </p>
+            </div>
+          </div>
+          <p>いかがでしたでしょうか。</p>
+          <div class="space-top"></div>
+          <app-blog-chat
+            [character]="2"
+            [message]="'一瞬で変なところがなくなってびっくりだぽん！'"
+          ></app-blog-chat>
+          <app-blog-chat
+            [character]="4"
+            [message]="
+              'コレコレこうゆうのを待ってた！いつもメールに30分かかってる後輩狼に教えてあげよう！'
+            "
+          ></app-blog-chat>
+          <app-blog-chat
+            [character]="5"
+            [message]="'無料でこんなに便利なシロモノ、使わない手はないぜ'"
+          ></app-blog-chat>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="!auth.isAuthenticated()">
+        <div class="space-50"></div>
+        <p>\ 今すぐ無料会員登録してプロンプトをGet! /</p>
+        <a [routerLink]="['/register']" class="btn btn-round btn-wd btn-primary"
+          >無料会員登録する</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

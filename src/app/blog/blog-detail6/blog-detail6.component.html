@@ -21,12 +21,12 @@
           <app-blog-chat
             [character]="2"
             [message]="
-              'あつまれ！GPTプロンプトの使い方がわからない人のためのガイダンスだよ'
+              'あつまれ！GPTプロンプトを初めて使う人向けのガイダンスだよ'
             "
           ></app-blog-chat>
           <app-blog-chat
             [character]="3"
-            [message]="'手順通りに進めてあつまれ！GPTを使ってみよう'"
+            [message]="'手順通りに進めてあつまれ！GPTを体感しよう'"
           ></app-blog-chat>
         </div>
 
@@ -37,8 +37,9 @@
             好きなプロンプトを選ぶ
           </h2>
           <p>
+            まずは
             <a [routerLink]="['/']" class="text-primary">トップページ</a
-            >で好きなプロンプトカードを選んでクリックしてみましょう。
+            >から好きなプロンプトカードを選んでクリックしてみましょう。
           </p>
           <div class="card card-plain">
             <div class="card-img-top">
@@ -57,7 +58,7 @@
           ></app-blog-chat>
           <app-blog-chat
             [character]="3"
-            [message]="'選んだプロンプトをどうやって使うのかな？'"
+            [message]="'選んだプロンプトはどうやって使うのかな？'"
           ></app-blog-chat>
         </div>
         <div class="col-md-8 ml-auto mr-auto">
@@ -67,7 +68,7 @@
           </h2>
           <p>
             プロンプト（指令文）エリアにある「STEP1
-            プロンプトをコピーする」ボタンを押します。
+            プロンプトをコピーする」ボタンを押すことでプロンプトがコピーできます。
           </p>
           <div class="card card-plain">
             <div class="card-img-top">
@@ -78,13 +79,19 @@
         <div class="col-md-8 ml-auto mr-auto">
           <h2>
             <small>ステップ 3</small><br />
-            ChatGPTでペーストする
+            ChatGPTにペーストする
           </h2>
           <p>
-            すぐ下にある「STEP2 ChatGPTでペーストする」ボタンを押します。<br />
-            <a class="text-success" [routerLink]="['/blog/how-to-use-chatgpt']">
-              はじめてChatGPTを使う方はこちら</a
-            >
+            プロンプトがコピーできたので、すぐ下にある「STEP2
+            ChatGPTでペーストする」ボタンを押してChatGPTのページへ移動します。
+          </p>
+          <br />
+          <p>もしChatGPTを使った経験がない場合は、</p>
+          <a class="text-success" [routerLink]="['/blog/how-to-use-chatgpt']">
+            <h5>"はじめてChatGPTを使う方はこちら"</h5></a
+          >
+          <p>
+            からChatGPTの使い方を学ぶことができますのでぜひ読んでみましょう。
           </p>
           <div class="card card-plain">
             <div class="card-img-top">
@@ -98,39 +105,53 @@
             「ChatGPTへの送信手順」通りに操作をして送信
           </h2>
           <p>
-            今回のプロンプトの送信手順は「ChatGPTにコピペして好みに書き換えてから送信」でした。
+            プロンプトの使い方は「ChatGPTへの送信手順」のところに書いてあります。<br />
+            今回の説明に使うプロンプトだと「ChatGPTにコピペして好みに書き換えてから送信」と書かれています。
           </p>
           <div class="card card-plain">
             <div class="card-img-top">
               <img class="img" src="./assets/img/tutorial/step4-1.jpg" />
             </div>
           </div>
-          <p>今回は例として以下の例文の誤字脱字をチェックしてみましょう。</p>
+          <p>
+            今回は【誤字脱字を直してくれるプロンプト】なので、<br />
+            例として以下の例文の誤字脱字をチェックしてみましょう。
+          </p>
           <div class="card-big-shadow">
             <div class="card card-just-text no-transition" data-radius="none">
               <div class="card-body">
                 <h5 class="card-category">例文</h5>
 
                 <h5 class="card-description">
-                  恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきますので
+                  恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきますので、
                   引き続きどうぞよろしくお願い致します。
                 </h5>
               </div>
             </div>
-            <!-- end card -->
           </div>
           <app-blog-chat
             [character]="2"
             [message]="
-              'ちょっとした違和感はあるけれど、修正するのが難しいなぁ...'
+              'なんとなく違和感があるけどどこを修正したら良いんだろう...'
             "
           ></app-blog-chat>
-          <p>ChatGPTにペーストして書き換えて送信します。</p>
+          <app-blog-chat
+            [character]="3"
+            [message]="
+              '大事なメールに限って送信してから誤記に気づいたりするんだよな...'
+            "
+          ></app-blog-chat>
+
+          <p>せっかくなので早速試してみましょう。</p>
+          <p>
+            プロンプトのコピーは既にできているので、移動したChatGPTのメッセージボックスにペーストし、今回の例文に下の部分を書き換えます。
+          </p>
           <div class="card card-plain no-transition">
             <div class="card-img-top">
               <img class="img" src="./assets/img/tutorial/step4-2.jpg" />
             </div>
           </div>
+          <p>あとは送信ボタンを押すだけです。</p>
         </div>
         <div class="col-md-8 ml-auto mr-auto">
           <h2>
@@ -138,19 +159,28 @@
             ChatGPTから返答がくる
           </h2>
           <p>送信してから１秒足らずで以下の返答がきました。</p>
-          <div class="card">
-            <div class="card-body text-center">
-              <p>
-                恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきますので
-                引き続きどうぞよろしくお願い致します。
-              </p>
-              <p>↓</p>
-              <p>
-                恐れ入りますが、明日に改めてお電話のご連絡のお時間をお知らせいたしますので、引き続きどうぞよろしくお願いいたします。
-              </p>
+          <div class="card-big-shadow">
+            <div class="card card-just-text no-transition" data-radius="none">
+              <div class="card-body">
+                <h5 class="card-category">修正前</h5>
+
+                <h5 class="card-description">
+                  恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきますので
+                  引き続きどうぞよろしくお願い致します。
+                </h5>
+                <h5 class="card-category">↓</h5>
+
+                <h5 class="card-category">修正後</h5>
+
+                <h5 class="card-description">
+                  恐れ入りますが、明日に改めてお電話のご連絡のお時間をお知らせいたしますので、引き続きどうぞよろしくお願いいたします。
+                </h5>
+              </div>
             </div>
           </div>
+
           <p>いかがでしたでしょうか。</p>
+          <p>一気に洗練された文章になりました。</p>
           <div class="space-top"></div>
           <app-blog-chat
             [character]="2"

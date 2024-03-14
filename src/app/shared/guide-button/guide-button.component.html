@@ -1,25 +1,31 @@
-<a
-  *ngIf="isTop()"
-  [routerLink]="['/manual']"
-  class="btn btn-primary btn-round fixed-button btn-guide"
->
-  <img alt="ガイドボタン" src="./assets/icons/2.png" />
-  Q & A
-</a>
-
-<div *ngIf="isDetail()">
-  <div
-    [ngClass]="auth.isAuthenticated() ? 'detail-popup-auth' : 'detail-popup'"
+<div *ngIf="isTop()">
+  <a
+    *ngIf="!auth.isAuthenticated()"
+    [routerLink]="['/manual']"
+    [ngClass]="auth.isAuthenticated() ? 'top-popup-auth' : 'top-popup'"
   >
     <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
-    <div class="popover-content">
-      ChatGPTにこのプロンプト(指令文)を<br />コピー＆ペーストしてね
-    </div>
-  </div>
+    <div class="popover-content">Q & A は<br />タヌキをクリック</div>
+  </a>
+  <a
+    *ngIf="auth.isAuthenticated()"
+    href="https://forms.gle/WYCT3b5VTkqWEE4Y6"
+    target="_blank"
+    type="button"
+    class="btn btn-sm btn-round btn-success feedback-button"
+  >
+    <i class="nc-icon x2 nc-email-85"></i><br />
+    ご意見箱
+  </a>
 </div>
-<!-- <div class="detail-popup" *ngIf="isDetail()">
-  <img src="./assets/icons/2-ouch.png" alt="ガイドボタン" draggable="false" />
+
+<a
+  *ngIf="isDetail()"
+  [routerLink]="['/blog/tutorial']"
+  [ngClass]="auth.isAuthenticated() ? 'detail-popup-auth' : 'detail-popup'"
+>
+  <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
   <div class="popover-content">
-    <p>いたッ</p>
+    ChatGPTにこのプロンプト(指令文)を<br />コピー＆ペーストしてね
   </div>
-</div> -->
+</a>

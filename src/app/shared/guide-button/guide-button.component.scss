@@ -1,33 +1,48 @@
-.fixed-button {
+.feedback-button {
   position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 3;
 }
-@media (max-width: 530px) {
-  .fixed-button {
-    right: 3px;
-    bottom: 6px;
-  }
+
+img {
+  position: fixed;
+  width: 75px;
+  right: 18px;
+  bottom: 5px;
+  z-index: 2;
 }
-.btn-guide {
-  img {
-    width: 50px;
+
+.top-popup {
+  .popover-content {
+    position: fixed;
+    text-align: center;
+    font-size: 14px;
+    width: 140px;
+    right: 105px;
+    bottom: 14px;
     display: block;
+    background-color: #fff;
+    padding: 10px 8px;
+    border-radius: 8px;
+    z-index: 2;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -20%;
+      margin-top: -16px; /* 三角形部分が縁にかぶらないように微調整 */
+      border-width: 16px; /* 三角形部分のサイズより大きな縁を指定 */
+      border-style: solid;
+      border-color: transparent transparent transparent #fff; /* 三角形部分の縁の色を指定 */
+      z-index: 1;
+    }
   }
 }
 
 .detail-popup,
 .detail-popup-auth {
-  img {
-    position: fixed;
-    pointer-events: none;
-    width: 75px;
-    right: 18px;
-    bottom: 5px;
-    z-index: 2;
-  }
-
   .popover-content {
     position: fixed;
     text-align: center;
@@ -40,21 +55,28 @@
     padding: 10px 8px;
     border-radius: 8px;
     z-index: 2;
-  }
 
-  .popover-content::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -11%;
-    margin-top: -16px; /* 三角形部分が縁にかぶらないように微調整 */
-    border-width: 16px; /* 三角形部分のサイズより大きな縁を指定 */
-    border-style: solid;
-    border-color: transparent transparent transparent #fff; /* 三角形部分の縁の色を指定 */
-    z-index: 1;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -11%;
+      margin-top: -16px; /* 三角形部分が縁にかぶらないように微調整 */
+      border-width: 16px; /* 三角形部分のサイズより大きな縁を指定 */
+      border-style: solid;
+      border-color: transparent transparent transparent #fff; /* 三角形部分の縁の色を指定 */
+      z-index: 1;
+    }
   }
 }
+
 @media (max-width: 530px) {
+  .feedback-button {
+    right: 3px;
+    bottom: 60px;
+  }
+
+  .top-popup,
   .detail-popup {
     img {
       right: 8px;
@@ -64,6 +86,8 @@
       right: 95px;
     }
   }
+
+  .top-popup-auth,
   .detail-popup-auth {
     img {
       right: 8px;

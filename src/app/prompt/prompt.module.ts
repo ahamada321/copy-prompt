@@ -31,7 +31,6 @@ import { SearchbarModule } from '../shared/searchbar/searchbar.module';
 import { QuillModule } from 'ngx-quill';
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { ListCardModule } from '../shared/list-card/list-card.module';
-import { ContactButtonModule } from '../shared/contact-button/contact-button.module';
 import { PromptService } from './shared/prompt.service';
 import { CommentService } from './shared/comment.service';
 import { GuideButtonModule } from '../shared/guide-button/guide-button.module';
@@ -90,7 +89,6 @@ const routes: Routes = [
     CodeSnippetModule,
     SearchbarModule,
     ListCardModule,
-    ContactButtonModule,
     GuideButtonModule,
   ],
   providers: [PromptService, CommentService],

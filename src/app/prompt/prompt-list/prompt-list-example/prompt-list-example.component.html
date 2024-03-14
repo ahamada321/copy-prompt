@@ -1,34 +1,43 @@
 <h3>活用事例を見る</h3>
 <br />
-<div class="row">
-  <div class="col-md-12">
+<owl-carousel-o
+  [options]="customOptions"
+  (dragging)="isDragging = $event.dragging"
+>
+  <ng-template carouselSlide>
     <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-      [routerLink]="['/blog/english']"
-    >
-      英会話の練習をしたい時に
+      [owlRouterLink]="['/blog/english']"
+      [stopLink]="isDragging"
+      >英会話の練習をしたい時に
     </a>
+  </ng-template>
+  <ng-template carouselSlide>
     <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-      [routerLink]="['/blog/self-compassion']"
-    >
-      自分について深く知りたい時に
+      [owlRouterLink]="['/blog/self-compassion']"
+      [stopLink]="isDragging"
+      >自分について深く知りたい時に
     </a>
+  </ng-template>
+  <ng-template carouselSlide>
     <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-      [routerLink]="['/blog/mail-communication']"
-    >
-      文章の誤字脱字を減らしたい時に
+      [owlRouterLink]="['/blog/mail-communication']"
+      [stopLink]="isDragging"
+      >文章の誤字脱字を減らしたい時に
     </a>
+  </ng-template>
+  <ng-template carouselSlide>
     <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-      [routerLink]="['/blog/how-to-use-prompt']"
-    >
-      ChatGPTを使いこなせてないと感じたら
+      [owlRouterLink]="['/blog/how-to-use-prompt']"
+      [stopLink]="isDragging"
+      >ChatGPTを使いこなせてないと感じたら
     </a>
-  </div>
-</div>
+  </ng-template>
+</owl-carousel-o>

@@ -9,7 +9,6 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 })
 export class BlogDetail5Component implements OnInit {
   title: string = '初めてのChatGPTの使い方';
-  previousTitle!: string;
 
   constructor(
     private titleService: Title,
@@ -22,7 +21,6 @@ export class BlogDetail5Component implements OnInit {
   }
 
   updateTitleAndMeta() {
-    this.previousTitle = this.titleService.getTitle();
     this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
 
     this.meta.updateTag({

@@ -11,7 +11,6 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
 })
 export class BlogDetail3Component implements OnInit {
   title: string = '文章の誤字脱字を減らしたい時に';
-  previousTitle!: string;
   prompt!: Prompt;
 
   constructor(
@@ -33,7 +32,6 @@ export class BlogDetail3Component implements OnInit {
   }
 
   updateTitleAndMeta() {
-    this.previousTitle = this.titleService.getTitle();
     this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
 
     this.meta.updateTag({

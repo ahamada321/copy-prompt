@@ -11,7 +11,6 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
 })
 export class BlogDetail2Component implements OnInit {
   title: string = '自分について深く知りたい時に';
-  previousTitle!: string;
   prompt!: Prompt;
 
   constructor(
@@ -33,7 +32,6 @@ export class BlogDetail2Component implements OnInit {
   }
 
   updateTitleAndMeta() {
-    this.previousTitle = this.titleService.getTitle();
     this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
 
     this.meta.updateTag({

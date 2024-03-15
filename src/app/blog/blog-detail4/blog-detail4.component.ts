@@ -11,7 +11,6 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
 })
 export class BlogDetail4Component implements OnInit {
   title: string = 'ChatGPTを使いこなせてないと感じたら';
-  previousTitle!: string;
   prompt!: Prompt;
 
   constructor(
@@ -33,7 +32,6 @@ export class BlogDetail4Component implements OnInit {
   }
 
   updateTitleAndMeta() {
-    this.previousTitle = this.titleService.getTitle();
     this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
 
     this.meta.updateTag({

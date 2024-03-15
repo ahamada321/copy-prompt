@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Prompt } from '../shared/prompt.model';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Router } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class PromptListComponent implements OnInit, OnDestroy {
   pageCollectionSize: number = 1;
 
   constructor(
+    private titleService: Title,
     private meta: Meta,
     private router: Router,
     private navbarService: NavbarService,
@@ -24,7 +25,7 @@ export class PromptListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.updateMeta();
+    this.updateTitleAndMeta();
     this.navbarService.setNavbar();
   }
 
@@ -32,7 +33,11 @@ export class PromptListComponent implements OnInit, OnDestroy {
     this.navbarService.resetNavbarPosition();
   }
 
-  updateMeta() {
+  updateTitleAndMeta() {
+    this.titleService.setTitle(
+      'チャットGPTで時短！コピペで使える便利なテンプレート集 | あつまれ！GPTプロンプト'
+    );
+
     this.meta.updateTag({
       name: 'description',
       content:

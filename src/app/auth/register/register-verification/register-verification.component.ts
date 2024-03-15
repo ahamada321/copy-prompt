@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyOriginAuthService } from '../../shared/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
@@ -16,7 +15,6 @@ export class RegisterVerificationComponent implements OnInit {
 
   constructor(
     private auth: MyOriginAuthService,
-    private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute
   ) {}

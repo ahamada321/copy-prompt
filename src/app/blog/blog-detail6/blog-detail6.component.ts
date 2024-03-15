@@ -9,7 +9,6 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 })
 export class BlogDetail6Component implements OnInit {
   title: string = '初めての使い方ガイド';
-  previousTitle!: string;
 
   constructor(
     private titleService: Title,
@@ -22,7 +21,6 @@ export class BlogDetail6Component implements OnInit {
   }
 
   updateTitleAndMeta() {
-    this.previousTitle = this.titleService.getTitle();
     this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
 
     this.meta.updateTag({

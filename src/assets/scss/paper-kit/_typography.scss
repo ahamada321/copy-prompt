@@ -35,7 +35,8 @@ h3,
 .h3,
 h4,
 .h4 {
-  margin: $margin-large-vertical 0 0;
+  // margin: $margin-large-vertical 0 0;
+  margin: $margin-large-vertical 0 8px; // Changed by Hamada.
 }
 h1,
 .h1 {
@@ -71,7 +72,8 @@ h6,
 p {
   font-size: $font-paragraph;
   line-height: $line-height-general;
-  margin-bottom: 5px;
+  // margin-bottom: 5px;
+  margin-bottom: 8px; // Changed by Hamada.
 }
 
 h1 small,

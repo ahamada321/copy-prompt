@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
@@ -8,7 +8,14 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   styleUrls: ['./faq.component.scss'],
 })
 export class FaqComponent implements OnInit, OnDestroy {
-  constructor(private meta: Meta, private navbarService: NavbarService) {}
+  title: string = 'プロンプトのトリセツ';
+  previousTitle!: string;
+
+  constructor(
+    private titleService: Title,
+    private meta: Meta,
+    private navbarService: NavbarService
+  ) {}
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
     const componentPosition = document.getElementsByClassName('add-animation');
@@ -26,19 +33,23 @@ export class FaqComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.updateMeta();
+    this.updateTitleAndMeta();
     this.navbarService.setNavbar();
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('presentation-page');
   }
 
   ngOnDestroy() {
+    this.titleService.setTitle(this.previousTitle);
     this.navbarService.resetNavbar();
     var body = document.getElementsByTagName('body')[0];
     body.classList.remove('presentation-page');
   }
 
-  updateMeta() {
+  updateTitleAndMeta() {
+    this.previousTitle = this.titleService.getTitle();
+    this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
+
     this.meta.updateTag({
       name: 'description',
       content:

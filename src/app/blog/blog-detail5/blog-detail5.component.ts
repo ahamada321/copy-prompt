@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
@@ -7,20 +8,32 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
   styleUrls: ['./blog-detail5.component.scss'],
 })
 export class BlogDetail5Component implements OnInit {
-  constructor(public auth: MyOriginAuthService) {}
+  title: string = '初めてのChatGPTの使い方';
+  previousTitle!: string;
 
-  ngOnInit() {}
+  constructor(
+    private titleService: Title,
+    private meta: Meta,
+    public auth: MyOriginAuthService
+  ) {}
+
+  ngOnInit() {
+    this.updateTitleAndMeta();
+  }
 
   updateTitleAndMeta() {
-    // this.previousTitle = this.titleService.getTitle();
-    // this.titleService.setTitle(this.prompt.name + ' | あつまれ！GPTプロンプト');
-    // this.meta.updateTag({
-    //   name: 'description',
-    //   content: this.prompt.description,
-    // });
-    // this.meta.updateTag({
-    //   property: 'og:description',
-    //   content: this.prompt.description,
-    // });
+    this.previousTitle = this.titleService.getTitle();
+    this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
+
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'ChatGPTを使ってみたいけど、使い方がわからない。そうお困りの方はこのページを見れば使い方がわかります！チャットGPTを使いこなすなら',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'ChatGPTを使ってみたいけど、使い方がわからない。そうお困りの方はこのページを見れば使い方がわかります！チャットGPTを使いこなすなら',
+    });
   }
 }

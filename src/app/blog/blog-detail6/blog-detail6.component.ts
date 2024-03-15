@@ -9,6 +9,8 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 })
 export class BlogDetail6Component implements OnInit {
   title: string = '初めての使い方ガイド';
+  description: string =
+    'ChatGPTでプロンプトを使うと高品質な回答が来るって聞いたけど、プロンプトってどうやって使うの？チャットGPTを使いこなしたい！という方はこちら';
 
   constructor(
     private titleService: Title,
@@ -25,13 +27,11 @@ export class BlogDetail6Component implements OnInit {
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        'ChatGPTでプロンプトを使うと高品質な回答が来るって聞いたけど、プロンプトってどうやって使うの？チャットGPTを使いこなしたい！という方はこちら',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        'ChatGPTでプロンプトを使うと高品質な回答が来るって聞いたけど、プロンプトってどうやって使うの？チャットGPTを使いこなしたい！という方はこちら',
+      content: this.description,
     });
   }
 }

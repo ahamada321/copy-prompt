@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
 import { FaqComponent } from './faq/faq.component';
@@ -24,8 +23,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
     TermsTextModule,
   ],
 })

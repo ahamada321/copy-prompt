@@ -9,6 +9,8 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 })
 export class BlogDetail5Component implements OnInit {
   title: string = '初めてのChatGPTの使い方';
+  description: string =
+    'ChatGPTを使ってみたいけど、使い方がわからない。そうお困りの方はこのページを見れば使い方がわかります！チャットGPTを使いこなすなら';
 
   constructor(
     private titleService: Title,
@@ -25,13 +27,11 @@ export class BlogDetail5Component implements OnInit {
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        'ChatGPTを使ってみたいけど、使い方がわからない。そうお困りの方はこのページを見れば使い方がわかります！チャットGPTを使いこなすなら',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        'ChatGPTを使ってみたいけど、使い方がわからない。そうお困りの方はこのページを見れば使い方がわかります！チャットGPTを使いこなすなら',
+      content: this.description,
     });
   }
 }

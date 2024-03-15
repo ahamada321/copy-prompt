@@ -8,6 +8,9 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   styleUrls: ['./terms.component.scss'],
 })
 export class TermsComponent implements OnInit, OnDestroy {
+  description: string =
+    'チャットGPTの可能性を最大限に引き出すプロンプト(指令文)テンプレで使っているChatGPTを活用しよう！';
+
   constructor(private meta: Meta, private navbarService: NavbarService) {}
 
   ngOnInit() {
@@ -22,13 +25,11 @@ export class TermsComponent implements OnInit, OnDestroy {
   updateMeta() {
     this.meta.updateTag({
       name: 'description',
-      content:
-        'チャットGPTの可能性を最大限に引き出すプロンプト(指令文)テンプレで使っているChatGPTを活用しよう！',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        'チャットGPTの可能性を最大限に引き出すプロンプト(指令文)テンプレで使っているChatGPTを活用しよう！',
+      content: this.description,
     });
   }
 }

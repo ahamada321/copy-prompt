@@ -11,6 +11,8 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
+  description: string =
+    'あつまれ！GPTプロンプトなら多彩なChatGPTプロンプトを手に入れることができます。有用なプロンプトを使って仕事を早く終わらせちゃおう。';
   userData!: User;
   userId!: string;
   errors: any[] = [];
@@ -71,13 +73,11 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     } else {
       this.meta.updateTag({
         name: 'description',
-        content:
-          'あつまれ！GPTプロンプトなら多彩なChatGPTプロンプトを手に入れることができます。有用なプロンプトを使って仕事を早く終わらせちゃおう。',
+        content: this.description,
       });
       this.meta.updateTag({
         property: 'og:description',
-        content:
-          'あつまれ！GPTプロンプトなら多彩なChatGPTプロンプトを手に入れることができます。有用なプロンプトを使って仕事を早く終わらせちゃおう。',
+        content: this.description,
       });
     }
   }

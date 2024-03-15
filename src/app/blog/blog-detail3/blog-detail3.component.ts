@@ -11,6 +11,8 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
 })
 export class BlogDetail3Component implements OnInit {
   title: string = '文章の誤字脱字を減らしたい時に';
+  description: string =
+    'メール文章の誤字脱字を手軽に直したい。そんな時に一瞬で正しい文章に直してくれる、そんな便利な方法が知りたい人はこちら';
   prompt!: Prompt;
 
   constructor(
@@ -36,13 +38,11 @@ export class BlogDetail3Component implements OnInit {
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        'メール文章の誤字脱字を手軽に直したい。そんな時に一瞬で正しい文章に直してくれる、そんな便利な方法が知りたい人はこちら',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        'メール文章の誤字脱字を手軽に直したい。そんな時に一瞬で正しい文章に直してくれる、そんな便利な方法が知りたい人はこちら',
+      content: this.description,
     });
   }
 }

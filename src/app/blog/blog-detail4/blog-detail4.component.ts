@@ -11,6 +11,8 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
 })
 export class BlogDetail4Component implements OnInit {
   title: string = 'ChatGPTを使いこなせてないと感じたら';
+  description: string =
+    'ChatGPTを試したけど、結局よくわからなかった。でも、それでChatGPTを使わなくなるのはかなりもったいない！生成AIの本領を発揮する方法を知りたい人はこちら';
   prompt!: Prompt;
 
   constructor(
@@ -36,13 +38,11 @@ export class BlogDetail4Component implements OnInit {
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        'ChatGPTを試したけど、結局よくわからなかった。でも、それでChatGPTを使わなくなるのはかなりもったいない！生成AIの本領を発揮する方法を知りたい人はこちら',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        'ChatGPTを試したけど、結局よくわからなかった。でも、それでChatGPTを使わなくなるのはかなりもったいない！生成AIの本領を発揮する方法を知りたい人はこちら',
+      content: this.description,
     });
   }
 }

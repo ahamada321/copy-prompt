@@ -11,6 +11,8 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
 })
 export class BlogDetail2Component implements OnInit {
   title: string = '自分について深く知りたい時に';
+  description: string =
+    '毎日がマンネリで退屈...私って何が好きなんだっけ...。自分のことなのに自分がわからない、そんな時に忘れていた自分を呼び起こせる自己分析をしたい方はこちら';
   prompt!: Prompt;
 
   constructor(
@@ -36,13 +38,11 @@ export class BlogDetail2Component implements OnInit {
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        '毎日がマンネリで退屈...私って何が好きなんだっけ...。自分のことなのに自分がわからない、そんな時に忘れていた自分を呼び起こせる自己分析をしたい方はこちら',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        '毎日がマンネリで退屈...私って何が好きなんだっけ...。自分のことなのに自分がわからない、そんな時に忘れていた自分を呼び起こせる自己分析をしたい方はこちら',
+      content: this.description,
     });
   }
 }

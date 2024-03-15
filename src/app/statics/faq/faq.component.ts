@@ -9,6 +9,8 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 })
 export class FaqComponent implements OnInit, OnDestroy {
   title: string = 'プロンプトのトリセツ';
+  description: string =
+    'ChatGPTってこうやって使うんだ！がわかるチャットGPTのプロンプト(指示文)テンプレートサイト';
   previousTitle!: string;
 
   constructor(
@@ -52,13 +54,11 @@ export class FaqComponent implements OnInit, OnDestroy {
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        'ChatGPTってこうやって使うんだ！がわかるチャットGPTのプロンプト(指示文)テンプレートサイト',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        'ChatGPTってこうやって使うんだ！がわかるチャットGPTのプロンプト(指示文)テンプレートサイト',
+      content: this.description,
     });
   }
 }

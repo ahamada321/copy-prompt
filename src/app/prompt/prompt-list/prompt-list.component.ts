@@ -11,6 +11,8 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   styleUrls: ['./prompt-list.component.scss'],
 })
 export class PromptListComponent implements OnInit, OnDestroy {
+  description: string =
+    'プロンプトテンプレをコピペするだけで、今まで使いこなせなかったChatGPTが超有能に生まれ変わる！';
   prompts: Prompt[] = [];
   pageIndex: number = 1;
   pageSize: number = 40; // Displaying contents per page.
@@ -40,13 +42,11 @@ export class PromptListComponent implements OnInit, OnDestroy {
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        'プロンプトテンプレをコピペするだけで、今まで使いこなせなかったChatGPTが超有能に生まれ変わる！',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        'プロンプトテンプレをコピペするだけで、今まで使いこなせなかったChatGPTが超有能に生まれ変わる！',
+      content: this.description,
     });
   }
 

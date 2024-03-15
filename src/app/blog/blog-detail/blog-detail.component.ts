@@ -11,6 +11,8 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
 })
 export class BlogDetailComponent implements OnInit {
   title: string = '英会話の練習をしたい時に';
+  description: string =
+    'ネイティブの人と英会話したいけど、実際に誰かと話す勇気や労力、体力がない。そんな方に勇気も労力もお金もいらない最適な方法があります。詳しく知りたい方はこちら';
   prompt!: Prompt;
 
   constructor(
@@ -36,13 +38,11 @@ export class BlogDetailComponent implements OnInit {
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        'ネイティブの人と英会話したいけど、実際に誰かと話す勇気や労力、体力がない。そんな方に勇気も労力もお金もいらない最適な方法があります。詳しく知りたい方はこちら',
+      content: this.description,
     });
     this.meta.updateTag({
       property: 'og:description',
-      content:
-        'ネイティブの人と英会話したいけど、実際に誰かと話す勇気や労力、体力がない。そんな方に勇気も労力もお金もいらない最適な方法があります。詳しく知りたい方はこちら',
+      content: this.description,
     });
   }
 }

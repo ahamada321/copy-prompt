@@ -9,7 +9,6 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 })
 export class UserMypageComponent implements OnInit, OnDestroy {
   activeTab = 1;
-  // activeTab = 3; // Tmp
 
   constructor(
     private route: ActivatedRoute,

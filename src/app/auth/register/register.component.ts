@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MyOriginAuthService } from '../shared/auth.service';
@@ -15,6 +15,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
+  title: string = '無料会員登録する';
+  previousTitle!: string;
+
   isTermsAgreed: boolean = false;
   isClicked: boolean = false;
 
@@ -27,6 +30,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   errors: any[] = [];
 
   constructor(
+    private titleService: Title,
     private meta: Meta,
     private router: Router,
     private auth: MyOriginAuthService,
@@ -35,19 +39,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.updateMeta();
+    this.updateTitleAndMeta();
     this.navbarService.setNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('register-page');
   }
 
   ngOnDestroy() {
+    this.titleService.setTitle(this.previousTitle);
     this.navbarService.resetNavbarPosition();
     let body = document.getElementsByTagName('body')[0];
     body.classList.remove('register-page');
   }
 
-  updateMeta() {
+  updateTitleAndMeta() {
+    this.previousTitle = this.titleService.getTitle();
+    this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
+
     this.meta.updateTag({
       name: 'description',
       content:

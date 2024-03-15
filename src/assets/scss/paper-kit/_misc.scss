@@ -6,11 +6,13 @@ body {
   font-family: "Montserrat", "Helvetica", Arial, sans-serif;
 }
 a {
-  color: $info-color;
+  // color: $info-color;
+  color: $font-color; // Changed by Hamada.
 
   &:hover,
   &:focus {
-    color: $info-states-color;
+    // color: $info-states-color;
+    color: $default-states-color; // Changed by Hamada.
     text-decoration: none;
   }
 

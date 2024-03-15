@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
@@ -7,13 +8,18 @@ import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
   styleUrls: ['./blog-detail5.component.scss'],
 })
 export class BlogDetail5Component implements OnInit {
-  constructor(public auth: MyOriginAuthService) {}
+  title: string = '初めてのChatGPTの使い方';
+  previousTitle!: string;
 
-  ngOnInit() {}
+  constructor(private titleService: Title, public auth: MyOriginAuthService) {}
+
+  ngOnInit() {
+    this.updateTitleAndMeta();
+  }
 
   updateTitleAndMeta() {
-    // this.previousTitle = this.titleService.getTitle();
-    // this.titleService.setTitle(this.prompt.name + ' | あつまれ！GPTプロンプト');
+    this.previousTitle = this.titleService.getTitle();
+    this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
     // this.meta.updateTag({
     //   name: 'description',
     //   content: this.prompt.description,

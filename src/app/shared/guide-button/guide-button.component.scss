@@ -1,15 +1,8 @@
-.feedback-button {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 3;
-}
-
 img {
   position: fixed;
   width: 75px;
   right: 18px;
-  bottom: 5px;
+  bottom: 0;
   z-index: 2;
 }
 
@@ -21,7 +14,7 @@ img {
     font-size: 14px;
     width: 150px;
     right: 105px;
-    bottom: 14px;
+    bottom: 8px;
     display: block;
     background-color: #fff;
     padding: 10px 8px;
@@ -50,7 +43,7 @@ img {
     font-size: 14px;
     width: 265px;
     right: 105px;
-    bottom: 14px;
+    bottom: 8px;
     display: block;
     background-color: #fff;
     padding: 10px 8px;
@@ -72,11 +65,6 @@ img {
 }
 
 @media (max-width: 530px) {
-  .feedback-button {
-    right: 3px;
-    bottom: 60px;
-  }
-
   .top-popup,
   .detail-popup {
     img {

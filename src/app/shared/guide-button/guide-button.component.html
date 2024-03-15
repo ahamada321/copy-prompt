@@ -2,7 +2,7 @@
   <a
     *ngIf="!auth.isAuthenticated()"
     [routerLink]="['/manual']"
-    [ngClass]="auth.isAuthenticated() ? 'top-popup-auth' : 'top-popup'"
+    class="top-popup"
   >
     <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
     <div class="popover-content">Q & A は<br />タヌキをクリック</div>
@@ -11,11 +11,10 @@
     *ngIf="auth.isAuthenticated()"
     href="https://forms.gle/WYCT3b5VTkqWEE4Y6"
     target="_blank"
-    type="button"
-    class="btn btn-sm btn-round btn-success feedback-button"
+    class="top-popup-auth"
   >
-    <i class="nc-icon x2 nc-email-85"></i><br />
-    ご意見箱
+    <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
+    <div class="popover-content">ご意見 & 改善要望は<br />タヌキをクリック</div>
   </a>
 </div>
 

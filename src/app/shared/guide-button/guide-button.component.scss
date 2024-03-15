@@ -13,12 +13,13 @@ img {
   z-index: 2;
 }
 
-.top-popup {
+.top-popup,
+.top-popup-auth {
   .popover-content {
     position: fixed;
     text-align: center;
     font-size: 14px;
-    width: 140px;
+    width: 150px;
     right: 105px;
     bottom: 14px;
     display: block;

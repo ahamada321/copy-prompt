@@ -4,10 +4,10 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-manual',
-  templateUrl: './manual.component.html',
-  styleUrls: ['./manual.component.scss'],
+  templateUrl: './faq.component.html',
+  styleUrls: ['./faq.component.scss'],
 })
-export class ManualComponent implements OnInit, OnDestroy {
+export class FaqComponent implements OnInit, OnDestroy {
   constructor(private meta: Meta, private navbarService: NavbarService) {}
   @HostListener('window:scroll', ['$event'])
   checkScroll() {

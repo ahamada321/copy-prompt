@@ -6,18 +6,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';
-import { ManualComponent } from './manual/manual.component';
+import { FaqComponent } from './faq/faq.component';
 import { Page404Component } from './page404/page404.component';
 
 const routes: Routes = [
   { path: 'terms', component: TermsComponent },
   //   { path: 'privacy', component: PrivacyComponent },
-  { path: 'manual', component: ManualComponent },
+  { path: 'faq', component: FaqComponent },
   { path: '**', component: Page404Component },
 ];
 
 @NgModule({
-  declarations: [TermsComponent, ManualComponent, Page404Component],
+  declarations: [TermsComponent, FaqComponent, Page404Component],
   exports: [],
   providers: [],
   imports: [

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { PromptService } from 'src/app/prompt/shared/prompt.service';
@@ -9,9 +10,13 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
   styleUrls: ['./blog-detail2.component.scss'],
 })
 export class BlogDetail2Component implements OnInit {
+  title: string = '自分について深く知りたい時に';
+  previousTitle!: string;
   prompt!: Prompt;
 
   constructor(
+    private titleService: Title,
+    private meta: Meta,
     public auth: MyOriginAuthService,
     private promptService: PromptService
   ) {}
@@ -28,15 +33,18 @@ export class BlogDetail2Component implements OnInit {
   }
 
   updateTitleAndMeta() {
-    // this.previousTitle = this.titleService.getTitle();
-    // this.titleService.setTitle(this.prompt.name + ' | あつまれ！GPTプロンプト');
-    // this.meta.updateTag({
-    //   name: 'description',
-    //   content: this.prompt.description,
-    // });
-    // this.meta.updateTag({
-    //   property: 'og:description',
-    //   content: this.prompt.description,
-    // });
+    this.previousTitle = this.titleService.getTitle();
+    this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
+
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        '毎日がマンネリで退屈...私って何が好きなんだっけ...。自分のことなのに自分がわからない、そんな時に忘れていた自分を呼び起こせる自己分析をしたい方はこちら',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        '毎日がマンネリで退屈...私って何が好きなんだっけ...。自分のことなのに自分がわからない、そんな時に忘れていた自分を呼び起こせる自己分析をしたい方はこちら',
+    });
   }
 }

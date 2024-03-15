@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { PromptService } from 'src/app/prompt/shared/prompt.service';
@@ -9,9 +10,13 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
   styleUrls: ['./blog-detail.component.scss'],
 })
 export class BlogDetailComponent implements OnInit {
+  title: string = '英会話の練習をしたい時に';
+  previousTitle!: string;
   prompt!: Prompt;
 
   constructor(
+    private titleService: Title,
+    private meta: Meta,
     public auth: MyOriginAuthService,
     private promptService: PromptService
   ) {}
@@ -28,15 +33,18 @@ export class BlogDetailComponent implements OnInit {
   }
 
   updateTitleAndMeta() {
-    // this.previousTitle = this.titleService.getTitle();
-    // this.titleService.setTitle(this.prompt.name + ' | あつまれ！GPTプロンプト');
-    // this.meta.updateTag({
-    //   name: 'description',
-    //   content: this.prompt.description,
-    // });
-    // this.meta.updateTag({
-    //   property: 'og:description',
-    //   content: this.prompt.description,
-    // });
+    this.previousTitle = this.titleService.getTitle();
+    this.titleService.setTitle(this.title + ' | あつまれ！GPTプロンプト');
+
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'ネイティブの人と英会話したいけど、実際に誰かと話す勇気や労力、体力がない。そんな方に勇気も労力もお金もいらない最適な方法があります。詳しく知りたい方はこちら',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'ネイティブの人と英会話したいけど、実際に誰かと話す勇気や労力、体力がない。そんな方に勇気も労力もお金もいらない最適な方法があります。詳しく知りたい方はこちら',
+    });
   }
 }

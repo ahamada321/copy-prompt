@@ -20,7 +20,8 @@ export class PromptDetailCommentComponent implements OnInit {
   editingId!: string;
   promptId!: Prompt;
   userId!: User;
-  commentString: string = '';
+  commentString: string =
+    'プロンプト使わせていただきました！とても良かったです。';
   foundUser!: User;
 
   page = 1;

@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from '../auth/shared/auth.guard';
-import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { ImageUploadModule } from '../shared/image-upload/image-upload.module';
 // import { ImageUploadMyverModule } from '../shared/image-upload-myver/image-upload-myver.module';
 // import { ReviewModule } from '../shared/review/review.module';
@@ -66,7 +65,6 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    JwBootstrapSwitchNg2Module,
     ImageUploadModule,
     // ImageUploadMyverModule,
     ListCardModule,

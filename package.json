@@ -35,7 +35,6 @@
     "express": "^4.18.2",
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^9.0.2",
-    "jw-bootstrap-switch-ng2": "^2.0.5",
     "mongoose": "^8.1.0",
     "ngx-owl-carousel-o": "^15.0.1",
     "ngx-quill": "^21.0.2",

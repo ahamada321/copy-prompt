@@ -29,6 +29,7 @@ exports.getHistories = async function (req, res) {
     const foundUser = await User.findOne({ _id: user._id }).populate({
       path: "histories",
       populate: { path: "user", select: "-email -password" },
+      options: { sort: { createdAt: -1 } },
     });
     return res.json(foundUser.histories);
   } catch (err) {

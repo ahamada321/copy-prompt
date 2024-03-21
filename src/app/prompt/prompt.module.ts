@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { AuthGuard } from '../auth/shared/auth.guard';
-import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 // import { TagInputModule } from 'ngx-chips';
 // import { BarRatingModule } from "ngx-bar-rating";
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -80,7 +79,6 @@ const routes: Routes = [
     NgbModule,
     // BarRatingModule,
     // ImageUploadQrCodeModule,
-    JwBootstrapSwitchNg2Module,
     // TagInputModule,
     CarouselModule,
     QuillModule,

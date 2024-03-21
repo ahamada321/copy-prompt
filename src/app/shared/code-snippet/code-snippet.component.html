@@ -29,8 +29,7 @@
     <pre class="prettyprint">{{ prompt.prompt }}</pre>
     <button
       *ngIf="!isCopied"
-      type="button"
-      class="btn btn-primary btn-round btn-wd text-center"
+      class="btn btn-primary btn-round btn-wd btn-step1"
       (click)="copyCode(); isCopied = true"
     >
       <i class="nc-icon nc-single-copy-04"></i>&nbsp; STEP1
@@ -38,29 +37,26 @@
     </button>
     <button
       *ngIf="isCopied"
-      class="btn btn-outline-primary btn-round text-center"
+      class="btn btn-outline-primary btn-round btn-step1"
       (click)="copyCode()"
     >
       <i class="nc-icon nc-single-copy-04"></i>&nbsp; STEP1 コピーしました！
     </button>
+    <button
+      *ngIf="!isCopied"
+      class="btn btn-round btn-wd btn-step2"
+      [disabled]="true"
+    >
+      <i class="nc-icon nc-send"></i>&nbsp; STEP2 先にコピーしてください
+    </button>
+    <a
+      *ngIf="isCopied"
+      type="button"
+      class="btn btn-success btn-round btn-wd btn-step2"
+      href="https://chat.openai.com/"
+      target="_blank"
+    >
+      <i class="nc-icon nc-send"></i>&nbsp; STEP2 ChatGPTでペーストする
+    </a>
   </div>
-  <br />
-
-  <button
-    *ngIf="!isCopied"
-    type="button"
-    class="btn btn-success btn-round btn-wd text-center"
-    [disabled]="true"
-  >
-    <i class="nc-icon nc-send"></i>&nbsp; STEP2 先にコピーしてください
-  </button>
-  <a
-    *ngIf="isCopied"
-    type="button"
-    class="btn btn-success btn-round btn-wd text-center"
-    href="https://chat.openai.com/"
-    target="_blank"
-  >
-    <i class="nc-icon nc-send"></i>&nbsp; STEP2 ChatGPTでペーストする
-  </a>
 </div>

@@ -9,9 +9,24 @@
   transform: translate(-50%, -50%);
 }
 
-.btn-link {
+.btn-link,
+.btn-step2 {
   position: absolute;
   top: 72%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-step1 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-step2 {
+  position: absolute;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

@@ -23,18 +23,18 @@
           class="nav nav-pills nav-pills-primary justify-content-center"
         >
           <li [ngbNavItem]="1">
-            <a ngbNavLink>お気に入りしたプロンプト</a>
+            <a ngbNavLink>お気に入りプロンプト</a>
             <ng-template ngbNavContent>
               <div class="tab-pane" id="home" role="tabpanel">
-                <h3>お気に入りしたプロンプト</h3>
+                <h3>お気に入りプロンプト</h3>
                 <app-user-mypage-bookmark></app-user-mypage-bookmark>
               </div>
             </ng-template>
           </li>
           <li [ngbNavItem]="2">
-            <a ngbNavLink>過去にコピーしたプロンプト</a>
+            <a ngbNavLink>過去コピーしたプロンプト</a>
             <ng-template ngbNavContent>
-              <h3>過去にコピーしたプロンプト</h3>
+              <h3>過去コピーしたプロンプト</h3>
               <app-user-mypage-history></app-user-mypage-history>
             </ng-template>
           </li>

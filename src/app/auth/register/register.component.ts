@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MyOriginAuthService } from '../shared/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 import { User } from '../../user/shared/user.model';
+import { take } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,12 +27,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
   focusPassword!: boolean;
 
   formData: User = new User();
-
   errors: any[] = [];
+  promptId!: string;
 
   constructor(
     private titleService: Title,
     private meta: Meta,
+    private route: ActivatedRoute,
     private router: Router,
     private auth: MyOriginAuthService,
     private modalService: NgbModal,
@@ -43,6 +45,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbar();
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('register-page');
+
+    this.route.queryParams.pipe(take(1)).subscribe((params) => {
+      this.promptId = params['promptId'];
+    });
   }
 
   ngOnDestroy() {
@@ -71,12 +77,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   register(registerFormData: any) {
     this.isClicked = true;
     this.auth.register(registerFormData).subscribe(
-      (newUser) => {
-        if (newUser.isVerified) {
-          this.showSwalSuccess();
-        } else {
-          this.router.navigate(['/register/sent']);
-        }
+      (token) => {
+        this.showSwalSuccess();
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
@@ -99,7 +101,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
       },
       buttonsStyling: false,
     }).then(() => {
-      this.modalLoginOpen();
+      if (this.promptId) {
+        this.router.navigate(['/prompt', this.promptId]);
+        return;
+      }
+      this.router.navigate(['/user']);
     });
   }
 

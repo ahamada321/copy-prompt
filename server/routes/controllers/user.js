@@ -305,7 +305,17 @@ exports.register = async function (req, res) {
       groups: ["114047662393657295"],
       status: "active",
     });
-    return res.json(newUser);
+
+    const token = jwt.sign(
+      {
+        userId: newUser.id,
+        name: newUser.name,
+      },
+      config.SECRET,
+      { expiresIn: "12h" }
+    ); // return JWT token
+
+    return res.json(token);
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
   }

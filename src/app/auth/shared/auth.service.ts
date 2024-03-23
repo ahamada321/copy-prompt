@@ -72,7 +72,9 @@ export class MyOriginAuthService {
   // }
 
   public register(userData: any): Observable<any> {
-    return this.http.post('api/v1/users/register', userData);
+    return this.http
+      .post('api/v1/users/register', userData)
+      .pipe(map((token) => this.saveToken(token)));
   }
 
   public sendPasswordResetLink(userData: any): Observable<any> {

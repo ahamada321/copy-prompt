@@ -52,7 +52,12 @@ export class MyOriginAuthService {
 
   public isAuthenticated(): boolean {
     const now = new Date().getTime() / 1000; // 現在のUNIXタイムスタンプを取得
-    return now < this.decodedToken.exp;
+    if (now < this.decodedToken.exp) {
+      return true;
+    } else {
+      this.logout();
+      return false;
+    }
   }
 
   public getAuthToken(): string {

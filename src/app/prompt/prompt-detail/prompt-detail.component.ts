@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  ViewChild,
+  TemplateRef,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
@@ -11,6 +18,7 @@ import { Prompt } from '../shared/prompt.model';
 import { Comment } from '../shared/comment.model';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 import { Location } from '@angular/common';
+import { User } from 'src/app/user/shared/user.model';
 
 @Component({
   selector: 'app-prompt-detail',
@@ -25,6 +33,8 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   previousTitle!: string;
   isFullTextShown: boolean = false;
   isLongTextString: boolean = false;
+  foundUser!: User;
+  @ViewChild('Notice') noticeTemplateRef!: TemplateRef<any>;
 
   constructor(
     private titleService: Title,
@@ -45,7 +55,15 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);
     });
+    const userId = this.auth.getUserId();
+    if (userId) {
+      this.getUserById(userId);
+    }
   }
+
+  // ngAfterViewInit() {
+  //   this.guideOpen();
+  // }
 
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
@@ -69,6 +87,20 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
       },
       (err) => {
         this.router.navigate(['/404']);
+      }
+    );
+  }
+
+  private getUserById(userId: User) {
+    this.userService.getUserById(userId).subscribe(
+      (foundUser) => {
+        this.foundUser = foundUser;
+        if (!foundUser.histories.length) {
+          this.guideOpen();
+        }
+      },
+      (errorResponse) => {
+        console.error(errorResponse);
       }
     );
   }
@@ -153,5 +185,9 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
 
   modalLoginOpen() {
     this.modalService.open(LoginPopupComponent);
+  }
+
+  guideOpen() {
+    this.modalService.open(this.noticeTemplateRef, { backdrop: 'static' });
   }
 }

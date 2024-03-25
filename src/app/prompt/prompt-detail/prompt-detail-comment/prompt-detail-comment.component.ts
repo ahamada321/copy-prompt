@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommentService } from '../../shared/comment.service';
-import { UserService } from 'src/app/user/shared/user.service';
 import { Prompt } from '../../shared/prompt.model';
 import { Comment } from '../../shared/comment.model';
 import { User } from 'src/app/user/shared/user.model';
@@ -16,14 +15,12 @@ import { User } from 'src/app/user/shared/user.model';
 })
 export class PromptDetailCommentComponent implements OnInit {
   @Input() comments!: Comment[];
+  @Input() foundUser!: User;
   isClicked: boolean = false;
   editingId!: string;
   promptId!: Prompt;
-  userId!: User;
   commentString: string =
     'プロンプト使わせていただきました！とても良かったです。';
-  foundUser!: User;
-
   page = 1;
 
   constructor(
@@ -31,44 +28,24 @@ export class PromptDetailCommentComponent implements OnInit {
     private route: ActivatedRoute,
     public router: Router,
     public sanitizer: DomSanitizer,
-    private commentService: CommentService,
-    private userService: UserService
+    private commentService: CommentService
   ) {}
 
   ngOnInit() {
-    this.userId = this.auth.getUserId();
-    if (this.userId) {
-      this.getUserById(this.userId);
-    }
     this.route.params.subscribe((params) => {
       this.promptId = params['promptId'];
     });
   }
 
-  private getUserById(userId: User) {
-    this.userService.getUserById(userId).subscribe(
-      (foundUser) => {
-        this.foundUser = foundUser;
-      },
-      (errorResponse) => {
-        console.error(errorResponse);
-      }
-    );
-  }
-
   postComment(postForm: NgForm) {
     this.isClicked = true;
-    if (!this.userId) {
-      this.userId = this.auth.getUserId();
-      this.getUserById(this.userId);
-    }
 
     if (!this.editingId) {
       this.commentService
         .postComment({
           comment: postForm.value.commentString,
           prompt: this.promptId,
-          user: this.userId,
+          user: this.foundUser,
         })
         .subscribe(
           (newComment) => {

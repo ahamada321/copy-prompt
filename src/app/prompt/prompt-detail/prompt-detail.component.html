@@ -138,6 +138,7 @@
     <div class="container">
       <app-prompt-detail-comment
         [comments]="comments"
+        [foundUser]="foundUser"
       ></app-prompt-detail-comment>
     </div>
   </div>
@@ -150,6 +151,44 @@
     </div>
   </div>
 </div>
-
 <!--     *********    Corner Button    *********      -->
 <app-guide-button></app-guide-button>
+
+<ng-template #Notice let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">タヌキからのお知らせ</h4>
+    <button type="button" class="close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{ foundUser.name }}さん、登録してくれてありがとう！</p>
+    <p>
+      早速<br />
+      <strong>「STEP1 プロンプトをコピーする」</strong>ボタンを押してから<br />
+      <strong>「STEP2 ChatGPTでペーストする」</strong>ボタンを押すことで
+    </p>
+    <p>
+      プロンプトをコピーした状態でChatGPTのページへ移動できるので、移動したらプロンプトをペーストして遊んでみてね！
+    </p>
+    <p>
+      詳しい説明は画面の右下にあるタヌキの顔を押すことでいつでも使い方の説明ページに飛べるよ。
+    </p>
+    <div class="card card-plain text-center">
+      <div class="card-img-top">
+        <a href="https://chat.openai.com/">
+          <img class="img" src="./assets/icons/2.png" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>

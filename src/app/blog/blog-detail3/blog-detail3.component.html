@@ -35,17 +35,46 @@
           </p>
           <div class="space-top"></div>
           <p>
-            ミスを減らしたいと思うのに、自分ではなかなか改善できず歯がゆい思いをしているときは、<span
+            自分が書いた文章の誤字脱字や違和感をチェックしたいときは、<span
               class="text-primary"
               >ChatGPTのプロンプト</span
-            >を使うことで、あなたの作った文章を、ChatGPTが<span
-              class="text-primary"
+            >を使うと、あなたの作った文章を<span class="text-primary"
               >第三者的な視点で添削</span
             >してくれます！
           </p>
           <br />
           <p>
-            手順は簡単！このカードを押してそのプロンプト（指令文）をコピー、利用手順通りにChatGPTに送信するだけです。
+            例えばこの文章。<br />間違いが赤字になっているので目につきますが、自分が書くと見落としてしまいそうですよね。
+          </p>
+          <div class="card-big-shadow">
+            <div class="card card-just-text no-transition" data-radius="none">
+              <div class="card-body">
+                <h5 class="card-category">誤字脱字がある例文</h5>
+
+                <h5 class="card-description">
+                  恐れ入りますが、また明日に
+                  <span class="text-primary">なりまして</span>
+                  お電話のお時間をご連絡
+                  <span class="text-primary">せていただきますので</span>
+                  引き続きどうぞよろしくお願い致します。
+                </h5>
+              </div>
+            </div>
+          </div>
+          <app-blog-chat
+            [character]="2"
+            [message]="
+              'なんとなく違和感があるけどどこを修正したら良いんだろう...'
+            "
+          ></app-blog-chat>
+          <app-blog-chat
+            [character]="3"
+            [message]="
+              '大事なメールに限って送信してから誤記に気づいたりするんだよな...'
+            "
+          ></app-blog-chat>
+          <p>
+            直すとなると案外時間がかかってしまうけれどChatGPTならお手のもの！<br />このカードを押してそのプロンプト（指令文）をコピー、利用手順通りにChatGPTに送信するだけであっという間に誤字脱字を直してくれます。
           </p>
           <div class="row">
             <div class="col-11 col-sm-10 col-md-9 col-xl-7 ml-auto mr-auto">
@@ -54,7 +83,50 @@
             </div>
           </div>
           <br />
-          <p>プロンプトの力を借りて仕事のミスを一気に減らしてみませんか？</p>
+          <p>ChatGPTに送信してから１秒足らずで以下の返答がきました。</p>
+          <div class="card-big-shadow">
+            <div class="card card-just-text no-transition" data-radius="none">
+              <div class="card-body">
+                <h5 class="card-category">修正前</h5>
+
+                <p class="card-description">
+                  恐れ入りますが、また明日に
+                  <span class="text-primary">なりまして</span>
+                  お電話のお時間をご連絡
+                  <span class="text-primary">せていただきますので</span
+                  >引き続きどうぞよろしくお願い致します。
+                </p>
+                <h5 class="card-category">↓</h5>
+
+                <h5 class="card-category">修正後</h5>
+
+                <p class="card-description">
+                  恐れ入りますが、明日に改めてお電話のご連絡のお時間をお知らせいたしますので、引き続きどうぞよろしくお願いいたします。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p>いかがでしたでしょうか。</p>
+          <p>一気に洗練された文章になりました。</p>
+          <div class="space-top"></div>
+          <app-blog-chat
+            [character]="2"
+            [message]="'一瞬で変なところがなくなってびっくり！'"
+          ></app-blog-chat>
+          <app-blog-chat
+            [character]="4"
+            [message]="
+              'こうゆうのを待ってた！いつもメール作成に30分以上かかってる後輩に教えてあげよう！'
+            "
+          ></app-blog-chat>
+          <app-blog-chat
+            [character]="3"
+            [message]="'無料でこんなに便利なプロンプトを使わない手はない...!'"
+          ></app-blog-chat>
+          <p>
+            プロンプトの力を借りて誤字脱字、文章の違和感を一気に減らしてみませんか？
+          </p>
         </div>
       </div>
       <div class="text-center" *ngIf="!auth.isAuthenticated()">

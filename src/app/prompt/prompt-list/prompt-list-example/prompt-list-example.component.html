@@ -8,6 +8,15 @@
     <a
       type="button"
       class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
+      [owlRouterLink]="['/blog/mail-communication']"
+      [stopLink]="isDragging"
+      >文章の誤字脱字を減らしたい時に
+    </a>
+  </ng-template>
+  <ng-template carouselSlide>
+    <a
+      type="button"
+      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
       [owlRouterLink]="['/blog/english']"
       [stopLink]="isDragging"
       >英会話の練習をしたい時に
@@ -22,15 +31,7 @@
       >自分について深く知りたい時に
     </a>
   </ng-template>
-  <ng-template carouselSlide>
-    <a
-      type="button"
-      class="btn btn-sm btn-outline-primary btn-round mr-2 mb-2"
-      [owlRouterLink]="['/blog/mail-communication']"
-      [stopLink]="isDragging"
-      >文章の誤字脱字を減らしたい時に
-    </a>
-  </ng-template>
+
   <ng-template carouselSlide>
     <a
       type="button"

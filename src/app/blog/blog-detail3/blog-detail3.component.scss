@@ -18,3 +18,8 @@ h2.title {
   padding: 15px 10px;
   text-align: center;
 }
+.banner-gif {
+  width: 100%;
+  max-width: 510px;
+  object-fit: contain; /* 縦横比を維持し、要素の中に収まるよう拡大縮小 */
+}

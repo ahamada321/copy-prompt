@@ -80,30 +80,8 @@
           ></div>
         </div>
       </div>
-      <div class="row" *ngIf="prompt.example">
-        <div class="col-md-8 ml-auto mr-auto">
-          <h2 class="title text-center">ChatGPTからの返答例</h2>
-          <div
-            id="text"
-            [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.example)"
-            [ngClass]="{
-              'gradient-text': isLongTextString,
-              'full-text': isFullTextShown
-            }"
-          ></div>
-          <div class="text-center">
-            <button
-              *ngIf="isLongTextString && !isFullTextShown"
-              class="btn btn-primary btn-link btn-lg"
-              (click)="isFullTextShown = true"
-            >
-              もっと見る
-            </button>
-          </div>
-        </div>
-      </div>
       <div *ngIf="prompt.usage" class="text-center">
-        <h2 class="title">ChatGPTへの送信手順</h2>
+        <h2 class="title">ChatGPTでの送信手順</h2>
         <p>{{ prompt.usage }}</p>
         <a
           class="btn btn-success btn-link btn-lg"
@@ -167,7 +145,7 @@
 
 <ng-template #OutputSample let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">ChatGPTからの返答例</h4>
+    <h4 class="modal-title">このプロンプトを使った際の応答例</h4>
     <button class="close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { UserService } from '../../shared/user.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-mypage-history',
@@ -9,8 +10,12 @@ import { UserService } from '../../shared/user.service';
 })
 export class UserMypageHistoryComponent implements OnInit {
   histories!: Prompt[];
+  @ViewChild('Notice') noticeTemplateRef!: TemplateRef<any>;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit() {
     this.getHistories();
@@ -20,10 +25,17 @@ export class UserMypageHistoryComponent implements OnInit {
     this.userService.getHistories().subscribe(
       (foundHistories: Prompt[]) => {
         this.histories = foundHistories;
+        if (this.histories.length === 0) {
+          this.guideOpen();
+        }
       },
       (errorResponse) => {
         console.error(errorResponse);
       }
     );
+  }
+
+  guideOpen() {
+    this.modalService.open(this.noticeTemplateRef, { backdrop: 'static' });
   }
 }

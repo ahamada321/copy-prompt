@@ -121,14 +121,25 @@
       <h2 class="title">プロンプト（指令文）</h2>
       <p class="description">プロンプトをコピーしてChatGPTにペーストしよう</p>
       <app-code-snippet [prompt]="prompt"></app-code-snippet>
-      <div class="space-top"></div>
       <button
-        class="btn btn-twitter btn-round text-center"
+        class="btn btn-twitter btn-round mb-2"
         (click)="shareTwitter()"
         target="_blank"
       >
         <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>&nbsp;
         Twitterでシェアする
+      </button>
+    </div>
+  </div>
+
+  <div class="section section-nude">
+    <div class="container text-center">
+      <button
+        class="btn btn-round mt-2"
+        (click)="isFullTextShown = true"
+        (click)="windowOpen(OutputSample)"
+      >
+        ChatGPTからの返答例を見る
       </button>
     </div>
   </div>
@@ -154,10 +165,47 @@
 <!--     *********    Corner Button    *********      -->
 <app-guide-button></app-guide-button>
 
+<ng-template #OutputSample let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">ChatGPTからの返答例</h4>
+    <button class="close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div
+      id="text"
+      [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.example)"
+      [ngClass]="{
+        'gradient-text': isLongTextString,
+        'full-text': isFullTextShown
+      }"
+    ></div>
+    <div class="text-center">
+      <button
+        *ngIf="isLongTextString && !isFullTextShown"
+        class="btn btn-primary btn-link btn-lg"
+        (click)="isFullTextShown = true"
+      >
+        もっと見る
+      </button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>
+
 <ng-template #Notice let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">タヌキからのお知らせ</h4>
-    <button type="button" class="close" (click)="d('Cross click')">
+    <button class="close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>

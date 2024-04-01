@@ -18,3 +18,43 @@
     </div>
   </div>
 </div>
+
+<ng-template #Notice let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">タヌキからのお知らせ</h4>
+    <button class="close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h4 class="text-center">あつまれ！GPTプロンプトへようこそ</h4>
+    <br />
+    <p>
+      あつまれ！GPTプロンプトではプロンプトのコピー、お気に入り追加、自作プロンプトの登録ができちゃうんだ！
+    </p>
+    <p>
+      今いるマイページは過去に使用したプロンプトを確認したり、自分で作った自作プロンプトを管理できるよ。
+    </p>
+    <p>早速気になるプロンプトをトップページから見つけて使ってみよう。</p>
+    <br />
+    <div class="text-center">
+      <a class="btn btn-primary btn-round btn-move-right" [routerLink]="['/']">
+        <i class="nc-icon nc-minimal-right"></i>&nbsp; トップページへ行く
+      </a>
+    </div>
+    <div class="card card-plain text-center">
+      <div class="card-img-top">
+        <img class="img" src="./assets/icons/2.png" />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>

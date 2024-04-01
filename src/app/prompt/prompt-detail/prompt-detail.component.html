@@ -97,7 +97,13 @@
   <div class="section section-dark text-center">
     <div class="container">
       <h2 class="title">プロンプト（指令文）</h2>
-      <p class="description">プロンプトをコピーしてChatGPTにペーストしよう</p>
+      <p *ngIf="!auth.isAuthenticated()" class="description">
+        ログイン後にプロンプトが使えるようになります
+      </p>
+      <p *ngIf="auth.isAuthenticated()" class="description">
+        コピーボタンを押してからChatGPTにペーストしよう
+      </p>
+
       <app-code-snippet [prompt]="prompt"></app-code-snippet>
       <button
         class="btn btn-twitter btn-round mb-2"

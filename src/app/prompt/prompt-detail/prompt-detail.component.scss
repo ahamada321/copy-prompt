@@ -19,24 +19,6 @@ h2.title {
   font-size: 0.5em;
 }
 
-.gradient-text {
-  position: relative;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 15; /* 表示する行数 */
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  background: linear-gradient(to bottom, #333, #fffcf5);
-  background-clip: text; /* テキストに背景グラデーションをクリッピング */
-  color: transparent; /* テキストを透明にする */
-}
-
-.full-text {
-  -webkit-line-clamp: unset; /* ボタンを押すと行数の制限を解除 */
-  background: initial; /* グラデーションを解除 */
-  color: #333; /* テキストの色を指定 */
-}
-
 .header-avatar {
   width: 40px;
   height: 40px;

@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  ChangeDetectorRef,
   ViewChild,
   TemplateRef,
 } from '@angular/core';
@@ -31,8 +30,6 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
   isBookmarked: boolean = false;
   comments!: Comment[];
   previousTitle!: string;
-  isFullTextShown: boolean = false;
-  isLongTextString: boolean = false;
   foundUser!: User;
   @ViewChild('Notice') noticeTemplateRef!: TemplateRef<any>;
 
@@ -43,7 +40,6 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     public router: Router,
     public auth: MyOriginAuthService,
     public sanitizer: DomSanitizer,
-    private cdr: ChangeDetectorRef,
     private navbarService: NavbarService,
     private promptService: PromptService,
     private userService: UserService,
@@ -82,8 +78,6 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
         if (index !== -1) {
           this.isBookmarked = true;
         }
-        this.cdr.detectChanges(); // DOMの更新を待機
-        this.isLongTextString = this.isLongText();
       },
       (err) => {
         this.router.navigate(['/404']);

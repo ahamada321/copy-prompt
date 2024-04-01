@@ -187,6 +187,10 @@ export class PromptDetailComponent implements OnInit, OnDestroy {
     this.modalService.open(LoginPopupComponent);
   }
 
+  windowOpen(content: any) {
+    this.modalService.open(content, { backdrop: 'static' });
+  }
+
   guideOpen() {
     this.modalService.open(this.noticeTemplateRef, { backdrop: 'static' });
   }

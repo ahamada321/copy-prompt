@@ -400,10 +400,6 @@
     }
   }
 
-  .demo-icons ul li {
-    width: 20%;
-    float: left;
-  }
   .info.info-separator:after {
     display: none;
   }
@@ -945,13 +941,6 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
-  .demo-icons ul li {
-    width: 12.5%;
-    float: left;
-    padding: 32px 0;
-  }
-}
 @media (max-width: 1200px) {
   .presentation-page {
     .presentation-title {

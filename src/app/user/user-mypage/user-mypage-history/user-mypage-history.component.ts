@@ -21,6 +21,10 @@ export class UserMypageHistoryComponent implements OnInit {
     this.getHistories();
   }
 
+  // ngAfterViewInit() {
+  //   this.guideOpen();
+  // }
+
   private getHistories() {
     this.userService.getHistories().subscribe(
       (foundHistories: Prompt[]) => {

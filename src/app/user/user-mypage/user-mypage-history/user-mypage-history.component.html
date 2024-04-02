@@ -21,13 +21,13 @@
 
 <ng-template #Notice let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">タヌキからのお知らせ</h4>
     <button class="close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
+      <i class="fa fa-times" aria-hidden="true"></i>
     </button>
+    <h3 class="modal-title">タヌキからのお知らせ</h3>
   </div>
   <div class="modal-body">
-    <h4 class="text-center">あつまれ！GPTプロンプトへようこそ</h4>
+    <h3 class="modal-title text-center">あつまれ！GPTプロンプトへようこそ</h3>
     <br />
     <p>
       あつまれ！GPTプロンプトではプロンプトのコピー、お気に入り追加、自作プロンプトの登録ができちゃうんだ！

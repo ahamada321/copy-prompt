@@ -1,6 +1,6 @@
 <div class="wrapper" *ngIf="prompt">
   <div
-    class="page-header page-header-small"
+    class="page-header page-header-xs"
     [ngStyle]="{
       'background-image':
         'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
@@ -9,11 +9,10 @@
     <div class="filter"></div>
     <div class="content-center">
       <div class="container">
-        <!-- <div class="space-top"></div> -->
-
+        <div class="space-top"></div>
         <h1 class="title">
           <a
-            class="btn btn-link btn-neutral author"
+            class="btn btn-link btn-neutral author mt-2"
             [routerLink]="['/user', prompt.user._id]"
           >
             <img

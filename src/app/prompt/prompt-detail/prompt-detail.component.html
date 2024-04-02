@@ -39,13 +39,21 @@
           <small>プロンプト</small><br />
         </h1>
       </div>
+      <button
+        *ngIf="!auth.isAuthenticated()"
+        (click)="modalLoginOpen()"
+        [disabled]="isClicked"
+        class="btn btn-primary btn-round mt-2"
+      >
+        <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りへ追加
+      </button>
       <div *ngIf="auth.isAuthenticated()">
         <div *ngIf="!isMine()">
           <button
             *ngIf="!isBookmarked"
             (click)="addBookmark()"
             [disabled]="isClicked"
-            class="btn btn-primary btn-round"
+            class="btn btn-primary btn-round mt-2"
           >
             <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りへ追加
           </button>
@@ -53,14 +61,14 @@
             *ngIf="isBookmarked"
             (click)="deleteBookmark()"
             [disabled]="isClicked"
-            class="btn btn-neutral btn-round"
+            class="btn btn-neutral btn-round mt-2"
           >
             <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りから削除
           </button>
         </div>
         <a
           *ngIf="isMine()"
-          class="btn btn-primary btn-round"
+          class="btn btn-primary btn-round mt-2"
           [routerLink]="['/prompt/edit', prompt._id]"
         >
           <i class="fa fa-pencil"></i>&nbsp; このプロンプトを編集する

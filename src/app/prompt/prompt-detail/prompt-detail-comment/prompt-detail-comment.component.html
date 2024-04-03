@@ -2,16 +2,16 @@
   <div class="col-md-8 ml-auto mr-auto">
     <h2 class="title text-center">コメント({{ comments.length }})</h2>
     <div class="media-area">
-      <h3
+      <p
         *ngIf="!auth.isAuthenticated(); else enableComment"
         class="description text-center"
       >
-        <small>ログイン後にコメントできます</small>
-      </h3>
+        ログイン後にコメントできます
+      </p>
       <ng-template #enableComment>
-        <h3 class="description text-center">
-          <small>投稿から20分以内であれば自分の投稿を修正できます</small>
-        </h3>
+        <p class="description text-center">
+          投稿から20分以内であれば自分の投稿を修正できます
+        </p>
         <div class="media media-post">
           <div class="pull-left author">
             <div class="avatar">

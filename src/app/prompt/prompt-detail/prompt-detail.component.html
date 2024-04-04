@@ -73,6 +73,15 @@
           <i class="fa fa-pencil"></i>&nbsp; このプロンプトを編集する
         </a>
       </div>
+      <br />
+      <button
+        class="btn btn-x btn-round mt-3"
+        (click)="shareTwitter()"
+        target="_blank"
+      >
+        <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>&nbsp;
+        Twitterでシェアする
+      </button>
     </div>
   </div>
 
@@ -87,7 +96,7 @@
           ></div>
         </div>
       </div>
-      <div *ngIf="prompt.usage" class="text-center">
+      <!-- <div *ngIf="prompt.usage" class="text-center">
         <h2 class="title">ChatGPTでの送信手順</h2>
         <p>{{ prompt.usage }}</p>
         <a
@@ -96,36 +105,39 @@
         >
           初めてChatGPTを使う方はこちら
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 
   <!--     *********     Prompt     *********      -->
-  <div class="section section-dark text-center">
+  <div class="section section-nude text-center">
     <div class="container">
-      <h2 class="title">プロンプト（指令文）</h2>
+      <h2 class="title">早速試してみる</h2>
       <p *ngIf="!auth.isAuthenticated()" class="description">
-        ログイン後にプロンプトが使えるようになります
+        ログイン後にプロンプトが試せるようになります
       </p>
       <p *ngIf="auth.isAuthenticated()" class="description">
         コピーボタンを押してからChatGPTにペーストしよう
       </p>
 
       <app-prompt-form [prompt]="prompt"></app-prompt-form>
-      <button
+      <!-- <button
         class="btn btn-twitter btn-round mb-2"
         (click)="shareTwitter()"
         target="_blank"
       >
         <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>&nbsp;
         Twitterでシェアする
-      </button>
+      </button> -->
     </div>
   </div>
 
   <div class="section section-nude">
     <div class="container text-center">
-      <button class="btn btn-round mt-2" (click)="windowOpen(OutputSample)">
+      <button
+        class="btn btn-round btn-outline-default mt-2"
+        (click)="windowOpen(OutputSample)"
+      >
         このプロンプトを使った際のChatGPTからの応答例
       </button>
     </div>

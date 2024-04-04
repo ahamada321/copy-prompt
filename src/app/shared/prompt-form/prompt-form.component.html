@@ -1,11 +1,15 @@
 <div class="row">
   <div class="col-md-8 mr-auto ml-auto">
-    <div class="card no-transition" data-background="color" data-color="green">
+    <div class="card no-transition">
       <div class="card-body">
         <div class="author pull-left">
           <a href="javascript:void(0)">
-            <img src="assets/icons/2.png" alt="..." class="avatar img-raised" />
-            <span>ChatGPT</span>
+            <img
+              src="assets/icons/gpt.svg"
+              alt="..."
+              class="avatar img-raised"
+            />
+            <span>あつプロAI</span>
           </a>
         </div>
         <div class="clearfix"></div>
@@ -17,8 +21,7 @@
       <div class="card-body">
         <div class="author pull-left">
           <a href="javascript:void(0)">
-            <img src="assets/icons/2.png" alt="..." class="avatar img-raised" />
-            <span>○○さん</span>
+            <span>あなた</span>
           </a>
         </div>
         <div class="clearfix"></div>
@@ -32,14 +35,13 @@
       (ngSubmit)="sendMessage(userForm)"
     >
       <div class="form-group">
-        <label>自己紹介</label>
         <textarea
           type="text"
           class="form-control textarea-limited"
-          placeholder="自分の魅力をPRすることができます。"
+          placeholder="ここに入力して送信ボタンを押してね。"
           name="description"
           rows="5"
-          maxlength="2000"
+          maxlength="300"
         ></textarea>
         <h5>
           <!-- <small
@@ -52,6 +54,15 @@
     > -->
         </h5>
       </div>
+      <div class="space-top"></div>
+      <button
+        [disabled]="!(userForm.valid && userForm.dirty && !isClicked)"
+        type="submit"
+        class="btn btn-round btn-wd btn-primary"
+      >
+        送信する
+      </button>
     </form>
   </div>
 </div>
+<div class="space-top"></div>

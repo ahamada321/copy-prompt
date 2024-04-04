@@ -24,4 +24,6 @@ router.patch("/:id", UserCtrl.authMiddleware, PromptCtrl.updatePrompt);
 
 router.delete("/:id", UserCtrl.authMiddleware, PromptCtrl.deletePrompt);
 
+router.post("", UserCtrl.authMiddleware, PromptCtrl.postPrompt);
+
 module.exports = router;

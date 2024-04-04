@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.component';
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
+import { PromptService } from 'src/app/prompt/shared/prompt.service';
 import { UserService } from 'src/app/user/shared/user.service';
 
 @Component({
@@ -12,35 +14,43 @@ import { UserService } from 'src/app/user/shared/user.service';
 })
 export class PromptFormComponent {
   @Input() prompt!: Prompt;
-  isCopied: boolean = false;
+  text: string = '';
   isClicked: boolean = false;
+  isRespond: boolean = false;
+  contents: any[] = [];
 
   constructor(
     public auth: MyOriginAuthService,
     private userService: UserService,
+    private promptService: PromptService,
     private modalService: NgbModal
   ) {}
 
-  copyCode() {
-    // ここでクリップボードにコピーするロジックを実装
-    navigator.clipboard.writeText(this.prompt.prompt);
-    this.addHistory();
+  insertFirstMessageSample() {
+    this.text = this.prompt.firstMessageSample;
   }
 
-  private addHistory() {
+  postPrompt(postForm: NgForm) {
     this.isClicked = true;
-    this.userService.addHistory(this.prompt._id).subscribe(
-      (success) => {
+    this.contents.push({
+      role: 'user',
+      content: postForm.value.postPrompt,
+    });
+    postForm.value.system = this.prompt.system;
+
+    this.promptService.postPrompt(postForm.value).subscribe(
+      (content) => {
+        this.contents.push(content);
         this.isClicked = false;
+        this.isRespond = true;
       },
       (err) => {
-        this.isClicked = false;
         console.error(err);
+        this.isClicked = false;
       }
     );
+    postForm.reset();
   }
-
-  sendMessage(msg: any) {}
 
   modalLoginOpen() {
     this.modalService.open(LoginPopupComponent, { backdrop: 'static' });

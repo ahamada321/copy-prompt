@@ -2,67 +2,114 @@
   <div class="col-md-8 mr-auto ml-auto">
     <div class="card no-transition">
       <div class="card-body">
-        <div class="author pull-left">
-          <a href="javascript:void(0)">
-            <img
-              src="assets/icons/gpt.svg"
-              alt="..."
-              class="avatar img-raised"
-            />
-            <span>あつプロAI</span>
-          </a>
+        <div class="author">
+          <img src="assets/icons/gpt.svg" alt="..." class="avatar img-raised" />
+          <span>あつプロ AI</span>
         </div>
         <div class="clearfix"></div>
-        <h3 class="card-description">生年月日を入力してください</h3>
+        <p class="card-description">
+          {{ prompt.firstGuidance }}
+        </p>
       </div>
     </div>
 
-    <div class="card no-transition">
+    <div class="card no-transition" *ngFor="let content of contents">
       <div class="card-body">
-        <div class="author pull-left">
-          <a href="javascript:void(0)">
-            <span>あなた</span>
-          </a>
+        <div class="author" *ngIf="content.role === 'assistant'; else userRole">
+          <img src="assets/icons/gpt.svg" alt="..." class="avatar img-raised" />
+          <span>あつプロ AI</span>
         </div>
+        <ng-template #userRole>
+          <div class="author">あなた</div>
+        </ng-template>
         <div class="clearfix"></div>
-        <h3 class="card-description">1999年1月1日</h3>
+        <p class="card-description" style="white-space: pre-line">
+          {{ content.content }}
+        </p>
       </div>
     </div>
 
-    <form
-      class="settings-form"
-      #userForm="ngForm"
-      (ngSubmit)="sendMessage(userForm)"
-    >
-      <div class="form-group">
-        <textarea
-          type="text"
-          class="form-control textarea-limited"
-          placeholder="ここに入力して送信ボタンを押してね。"
-          name="description"
-          rows="5"
-          maxlength="300"
-        ></textarea>
-        <h5>
-          <!-- <small
-      ><span id="textarea-limited-message" class="pull-right">
-        <div *ngIf="!userData.description">残文字数 2000</div>
-        <div *ngIf="userData.description">
-          残文字数 {{ 2000 - userData.description.length }}
-        </div>
-      </span></small
-    > -->
-        </h5>
-      </div>
-      <div class="space-top"></div>
+    <div class="text-center">
       <button
-        [disabled]="!(userForm.valid && userForm.dirty && !isClicked)"
-        type="submit"
-        class="btn btn-round btn-wd btn-primary"
+        *ngIf="auth.isAuthenticated() && prompt.firstMessageSample"
+        (click)="insertFirstMessageSample()"
+        class="btn btn-link btn-danger btn-sm mb-1"
       >
-        送信する
+        サンプルを入力
       </button>
-    </form>
+
+      <form
+        *ngIf="!isRespond"
+        class="settings-form"
+        #postForm="ngForm"
+        (ngSubmit)="postPrompt(postForm)"
+      >
+        <div
+          class="form-group"
+          [class.has-danger]="text && text.length === 300"
+        >
+          <textarea
+            [disabled]="!auth.isAuthenticated()"
+            type="text"
+            class="form-control textarea-limited"
+            placeholder="ここに入力して送信ボタンを押してね。"
+            [(ngModel)]="text"
+            name="postPrompt"
+            rows="4"
+            maxlength="300"
+            required
+          ></textarea>
+          <div
+            *ngIf="text && text.length === 300"
+            class="pull-right text-danger"
+          >
+            300文字以上は送信できません
+          </div>
+        </div>
+        <div class="space-top"></div>
+        <div class="text-center">
+          <button
+            *ngIf="auth.isAuthenticated() && !isClicked"
+            [disabled]="!postForm.valid"
+            type="submit"
+            class="btn btn-round btn-wd btn-primary"
+          >
+            送信する
+          </button>
+          <button
+            *ngIf="isClicked"
+            [disabled]="true"
+            class="btn btn-round btn-wd btn-primary"
+          >
+            <span class="loader"></span>
+          </button>
+        </div>
+      </form>
+
+      <button
+        *ngIf="isRespond"
+        class="btn btn-round btn-wd btn-primary"
+        (click)="isRespond = false; contents = []"
+      >
+        もう一度使う
+      </button>
+      <div *ngIf="!auth.isAuthenticated()">
+        <button
+          class="btn btn-round btn-wd btn-primary"
+          (click)="modalLoginOpen()"
+        >
+          <i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログインして利用する
+        </button>
+        <br />
+        <a
+          class="btn btn-primary btn-link btn-lg mt-1"
+          [routerLink]="['/register']"
+          [queryParams]="{ promptId: prompt._id }"
+        >
+          <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 <div class="space-top"></div>

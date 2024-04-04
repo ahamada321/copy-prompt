@@ -19,12 +19,6 @@ export class PromptNewComponent implements OnInit, OnDestroy {
   focus2!: boolean;
   errors: any[] = [];
 
-  dropdownUsageLists = [
-    'プロンプトをChatGPTにコピペして好みに書き換えてから送信',
-    'プロンプトをChatGPTにコピペして送信 → 自由に質問',
-    'プロンプトをChatGPTにコピペして送信 → 質問に答える',
-  ];
-
   dropdownCategoryList = [
     // { id: 1, itemName: '時短' },
     { id: 2, itemName: '語学' },
@@ -43,14 +37,7 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     // { id: 15, itemName: '生活・エンタメ' },
     { id: 16, itemName: 'その他' },
   ];
-  dropdownUsageList = [
-    { id: 1, itemName: 'プロンプトをChatGPTにコピペ' },
-    {
-      id: 2,
-      itemName: 'プロンプトをChatGPTにコピペ → テキストを好みに書き換える',
-    },
-    { id: 3, itemName: 'プロンプトをChatGPTにコピペ → 質問に答える' },
-  ];
+
   selectedUsage!: { id: number; itemName: string };
   dropdownSettings = {
     singleSelection: false,
@@ -111,14 +98,6 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     this.isClicked = true;
     this.newPrompt.isShared = true;
 
-    // if (!this.isImage) {
-    //   this.errors.push({
-    //     detail: 'プロフィール写真の選択と切り抜きを先に押してください',
-    //   });
-    //   this.isClicked = false;
-    //   return;
-    // }
-
     this.promptService.createPrompt(this.newPrompt).subscribe(
       (prompt: Prompt) => {
         this.showSwalSuccess();
@@ -143,10 +122,5 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     }).then(() => {
       this.router.navigate(['/user'], { fragment: 'new' });
     });
-  }
-
-  imageChange(uploadedImage: any) {
-    this.isImage = true;
-    this.newPrompt.image = uploadedImage;
   }
 }

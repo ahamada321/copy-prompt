@@ -15,7 +15,9 @@ export class Prompt {
   usage!: string;
   example!: string;
   prompt!: string;
-  image?: any;
+  system!: string;
+  firstGuidance!: string;
+  firstMessageSample!: string;
   rating?: number;
   comments!: Comment[];
 

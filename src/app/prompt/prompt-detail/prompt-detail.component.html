@@ -1,6 +1,6 @@
 <div class="wrapper" *ngIf="prompt">
   <div
-    class="page-header page-header-small"
+    class="page-header page-header-middle"
     [ngStyle]="{
       'background-image':
         'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
@@ -79,8 +79,7 @@
         (click)="shareTwitter()"
         target="_blank"
       >
-        <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>&nbsp;
-        Twitterでシェアする
+        <b>X</b> で共有
       </button>
     </div>
   </div>
@@ -110,25 +109,13 @@
   </div>
 
   <!--     *********     Prompt     *********      -->
-  <div class="section section-nude text-center">
+  <div class="section section-nude">
     <div class="container">
-      <h2 class="title">早速試してみる</h2>
-      <p *ngIf="!auth.isAuthenticated()" class="description">
-        ログイン後にプロンプトが試せるようになります
-      </p>
-      <p *ngIf="auth.isAuthenticated()" class="description">
-        コピーボタンを押してからChatGPTにペーストしよう
-      </p>
-
+      <div class="text-center">
+        <h2 class="title">早速試してみる</h2>
+      </div>
+      <div class="space-top"></div>
       <app-prompt-form [prompt]="prompt"></app-prompt-form>
-      <!-- <button
-        class="btn btn-twitter btn-round mb-2"
-        (click)="shareTwitter()"
-        target="_blank"
-      >
-        <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>&nbsp;
-        Twitterでシェアする
-      </button> -->
     </div>
   </div>
 

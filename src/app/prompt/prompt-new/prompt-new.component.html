@@ -18,12 +18,6 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
-          <div class="space-top"></div>
-          <app-image-upload-myver
-            (imageUploaded)="imageChange($event)"
-            placement="top"
-            ngbTooltip="プロンプトの画像を設定します"
-          ></app-image-upload-myver>
           <form #promptForm="ngForm">
             <!--<form [formGroup]="myGroup" action="" method="">-->
 
@@ -34,7 +28,7 @@
                   [(ngModel)]="newPrompt.name"
                   name="name"
                   type="text"
-                  placeholder="例）ネイティブと英会話の練習ができる"
+                  placeholder="例：誤字脱字を修正してくれる"
                   class="form-control"
                   maxlength="30"
                   required
@@ -79,8 +73,8 @@
             <div class="form-group">
               <h6>プロンプト<span class="icon-danger">*</span></h6>
               <textarea
-                [(ngModel)]="newPrompt.prompt"
-                name="prompt"
+                [(ngModel)]="newPrompt.system"
+                name="system"
                 class="form-control textarea-limited"
                 placeholder="作ったプロンプトはこちらに入力してください。"
                 rows="10"
@@ -90,7 +84,35 @@
             </div>
 
             <div class="form-group">
-              <h6>出力例 <span class="icon-danger">*</span></h6>
+              <h6>最初の案内メッセージ<span class="icon-danger">*</span></h6>
+              <textarea
+                [(ngModel)]="newPrompt.firstGuidance"
+                name="firstGuidance"
+                class="form-control textarea-limited"
+                placeholder="例：こんにちは。誤字脱字が含まれる可能性のある文章を入力してください。"
+                rows="2"
+                maxlength="3000"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <h6>
+                ユーザーが入力する文章例<span class="icon-danger">*</span>
+              </h6>
+              <textarea
+                [(ngModel)]="newPrompt.firstMessageSample"
+                name="firstMessageSample"
+                class="form-control textarea-limited"
+                placeholder="例：恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきます。"
+                rows="2"
+                maxlength="3000"
+                required
+              ></textarea>
+            </div>
+
+            <!-- <div class="form-group">
+              <h6>出力例文 <span class="icon-danger">*</span></h6>
               <quill-editor
                 [(ngModel)]="newPrompt.example"
                 name="tutorial"
@@ -98,25 +120,7 @@
                 placeholder="プロンプトを送信した際の、ChatGPTからの回答例をこちらに入力してください。"
                 [required]="true"
               ></quill-editor>
-            </div>
-
-            <div class="form-group">
-              <h6>利用手順 <span class="icon-danger">*</span></h6>
-              <select
-                class="custom-select"
-                [(ngModel)]="newPrompt.usage"
-                name="usage"
-                required
-              >
-                <option [value]="undefined" disabled>利用手順を選択</option>
-                <option
-                  *ngFor="let dropdownUsageList of dropdownUsageLists"
-                  [value]="dropdownUsageList"
-                >
-                  {{ dropdownUsageList }}
-                </option>
-              </select>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <h6>カテゴリ <span class="icon-danger">*</span></h6>

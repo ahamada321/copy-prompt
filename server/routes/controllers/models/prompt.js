@@ -13,10 +13,12 @@ const promptSchema = new Schema({
   },
   categories: [{ id: Number, itemName: String }],
   description: String,
-  usage: String,
-  example: String,
-  prompt: String,
-  image: String,
+  usage: String, // Will be removed in future.
+  example: String, // Output sample. Will be removed in future.
+  prompt: String, // Old version. Going to replace to "system"
+  system: String,
+  firstGuidance: String,
+  firstMessageSample: String,
   rating: Number,
 
   isBookmarkedFrom: [

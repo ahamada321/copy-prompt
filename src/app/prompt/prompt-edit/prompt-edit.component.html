@@ -14,14 +14,14 @@
     <div class="filter"></div>
   </div>
 
-  <div class="main">
+  <div class="section section-nude">
     <div class="container">
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto">
           <div class="space-top"></div>
           <form #promptForm="ngForm">
             <div class="form-group">
-              <h6>プロンプト名 <span class="icon-danger">*</span></h6>
+              <label>プロンプト名 <span class="icon-danger">*</span></label>
               <div class="input-group">
                 <input
                   [(ngModel)]="foundPrompt.name"
@@ -49,7 +49,7 @@
             </div>
 
             <div class="form-group">
-              <h6>プロンプトの説明 <span class="icon-danger">*</span></h6>
+              <label>プロンプトの説明 <span class="icon-danger">*</span></label>
               <quill-editor
                 [(ngModel)]="foundPrompt.description"
                 name="description"
@@ -70,20 +70,22 @@
             </div>
 
             <div class="form-group">
-              <h6>プロンプト<span class="icon-danger">*</span></h6>
+              <label>プロンプト<span class="icon-danger">*</span></label>
               <textarea
                 [(ngModel)]="foundPrompt.system"
                 name="system"
                 class="form-control textarea-limited"
                 placeholder="作ったプロンプトはこちらに入力してください"
-                rows="10"
+                rows="6"
                 maxlength="3000"
                 required
               ></textarea>
             </div>
 
             <div class="form-group">
-              <h6>最初の案内メッセージ<span class="icon-danger">*</span></h6>
+              <label
+                >最初の案内メッセージ<span class="icon-danger">*</span></label
+              >
               <textarea
                 [(ngModel)]="foundPrompt.firstGuidance"
                 name="firstGuidance"
@@ -96,9 +98,9 @@
             </div>
 
             <div class="form-group">
-              <h6>
+              <label>
                 ユーザーが入力する文章例<span class="icon-danger">*</span>
-              </h6>
+              </label>
               <textarea
                 [(ngModel)]="foundPrompt.firstMessageSample"
                 name="firstMessageSample"
@@ -111,7 +113,7 @@
             </div>
 
             <div class="form-group">
-              <h6>カテゴリ <span class="icon-danger">*</span></h6>
+              <label>カテゴリ <span class="icon-danger">*</span></label>
               <angular2-multiselect
                 [data]="dropdownCategoryList"
                 [(ngModel)]="foundPrompt.categories"
@@ -140,7 +142,7 @@
                     )
                   "
                   (click)="updatePrompt()"
-                  class="btn btn-primary btn-block btn-round"
+                  class="btn btn-primary btn-block btn-round mb-3"
                 >
                   更新＆公開
                 </button>
@@ -151,7 +153,7 @@
                     !((promptForm.dirty || foundPrompt.isShared) && !isClicked)
                   "
                   (click)="unpublishPrompt()"
-                  class="btn btn-outline-default btn-block btn-round"
+                  class="btn btn-outline-default btn-block btn-round mb-3"
                 >
                   下書き保存
                 </button>
@@ -160,15 +162,14 @@
           </form>
         </div>
       </div>
-      <div class="text-center">
-        <a
-          class="btn btn-primary btn-lg btn-link btn-move-right"
-          [routerLink]="['/user']"
-        >
-          <i class="nc-icon nc-minimal-right"></i>&nbsp; マイページへ戻る
-        </a>
-      </div>
-      <div class="space-top"></div>
+    </div>
+    <div class="text-center">
+      <a
+        class="btn btn-primary btn-lg btn-link btn-move-right mt-4"
+        [routerLink]="['/user']"
+      >
+        <i class="nc-icon nc-minimal-right"></i>&nbsp; マイページへ戻る
+      </a>
     </div>
   </div>
 </div>

@@ -1,15 +1,15 @@
 <div *ngIf="comments" class="row">
-  <div class="col-md-8 ml-auto mr-auto">
-    <h2 class="title text-center">コメント({{ comments.length }})</h2>
+  <div class="col-md-8 ml-auto mr-auto text-center">
+    <h2 class="title">コメント({{ comments.length }})</h2>
     <div class="media-area">
       <p
         *ngIf="!auth.isAuthenticated(); else enableComment"
-        class="description text-center"
+        class="description"
       >
         ログイン後にコメントできます
       </p>
       <ng-template #enableComment>
-        <p class="description text-center">
+        <p class="description">
           投稿から20分以内であれば自分の投稿を修正できます
         </p>
         <div class="media media-post">
@@ -52,7 +52,7 @@
               <button
                 [disabled]="!postForm.valid || isClicked"
                 type="submit"
-                class="btn btn-primary pull-right"
+                class="btn btn-primary btn-round"
               >
                 {{ editingId ? "修正する" : "コメントする" }}
               </button>

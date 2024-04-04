@@ -61,14 +61,10 @@ export class PromptEditComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);
     });
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('add-product');
   }
 
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.remove('add-product');
   }
 
   onCategorySelect(item: any) {

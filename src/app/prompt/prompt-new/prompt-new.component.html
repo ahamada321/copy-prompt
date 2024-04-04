@@ -1,61 +1,61 @@
-<div class="wrapper">
-  <div
-    class="page-header page-header-xxs"
-    data-parallax="true"
-    [ngStyle]="{
-      'background-image':
-        'url(' +
-        (newPrompt.categories && newPrompt.categories.length > 0
-          ? './assets/img/thumbnail/' + newPrompt.categories[0].id + '.jpg'
-          : './assets/img/image_placeholder.jpg') +
-        ')'
-    }"
-  >
-    <div class="filter"></div>
-  </div>
+<div
+  class="page-header page-header-xxs"
+  data-parallax="true"
+  [ngStyle]="{
+    'background-image':
+      'url(' +
+      (newPrompt.categories && newPrompt.categories.length > 0
+        ? './assets/img/thumbnail/' + newPrompt.categories[0].id + '.jpg'
+        : './assets/img/image_placeholder.jpg') +
+      ')'
+  }"
+>
+  <div class="filter"></div>
+</div>
 
-  <div class="main">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 ml-auto mr-auto">
-          <form #promptForm="ngForm">
-            <!--<form [formGroup]="myGroup" action="" method="">-->
+<div class="section section-nude">
+  <div class="container">
+    <div class="space-top"></div>
+    <div class="row">
+      <div class="col-md-6 ml-auto mr-auto">
+        <form #promptForm="ngForm">
+          <!--<form [formGroup]="myGroup" action="" method="">-->
 
-            <div class="form-group">
-              <h6>プロンプト名 <span class="icon-danger">*</span></h6>
-              <div class="input-group">
-                <input
-                  [(ngModel)]="newPrompt.name"
-                  name="name"
-                  type="text"
-                  placeholder="例：誤字脱字を修正してくれる"
-                  class="form-control"
-                  maxlength="30"
-                  required
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text">プロンプト</span>
-                </div>
+          <div class="form-group">
+            <label>プロンプト名 <span class="icon-danger">*</span></label>
+            <div class="input-group">
+              <input
+                [(ngModel)]="newPrompt.name"
+                name="name"
+                type="text"
+                placeholder="例：誤字脱字を修正してくれる"
+                class="form-control"
+                maxlength="30"
+                required
+              />
+              <div class="input-group-append">
+                <span class="input-group-text">プロンプト</span>
               </div>
-              <h5>
-                <small
-                  ><span id="textarea-limited-message" class="pull-right">
-                    <div *ngIf="!newPrompt.name">残文字数 30</div>
-                    <div *ngIf="newPrompt.name">
-                      残文字数 {{ 30 - newPrompt.name.length }}
-                    </div>
-                  </span></small
-                >
-              </h5>
             </div>
+            <h5>
+              <small
+                ><span id="textarea-limited-message" class="pull-right">
+                  <div *ngIf="!newPrompt.name">残文字数 30</div>
+                  <div *ngIf="newPrompt.name">
+                    残文字数 {{ 30 - newPrompt.name.length }}
+                  </div>
+                </span></small
+              >
+            </h5>
+          </div>
 
-            <div class="form-group">
-              <h6>プロンプトの説明 <span class="icon-danger">*</span></h6>
-              <quill-editor
-                [(ngModel)]="newPrompt.description"
-                name="description"
-                maxlength="5000"
-                placeholder="〇〇の〇〇をしてくれるプロンプトです。
+          <div class="form-group">
+            <label>プロンプトの説明 <span class="icon-danger">*</span></label>
+            <quill-editor
+              [(ngModel)]="newPrompt.description"
+              name="description"
+              maxlength="5000"
+              placeholder="〇〇の〇〇をしてくれるプロンプトです。
 
 〇〇していて〇〇されたい方にいいかなと思います。
 
@@ -66,53 +66,55 @@
 #英語 #ビジネスメール #英文法の添削 #英語添削 
 
 #chatGPT3.5"
-                [required]="true"
-              ></quill-editor>
-            </div>
+              [required]="true"
+            ></quill-editor>
+          </div>
 
-            <div class="form-group">
-              <h6>プロンプト<span class="icon-danger">*</span></h6>
-              <textarea
-                [(ngModel)]="newPrompt.system"
-                name="system"
-                class="form-control textarea-limited"
-                placeholder="作ったプロンプトはこちらに入力してください。"
-                rows="10"
-                maxlength="3000"
-                required
-              ></textarea>
-            </div>
+          <div class="form-group">
+            <label>プロンプト<span class="icon-danger">*</span></label>
+            <textarea
+              [(ngModel)]="newPrompt.system"
+              name="system"
+              class="form-control textarea-limited"
+              placeholder="作ったプロンプトはこちらに入力してください。"
+              rows="6"
+              maxlength="3000"
+              required
+            ></textarea>
+          </div>
 
-            <div class="form-group">
-              <h6>最初の案内メッセージ<span class="icon-danger">*</span></h6>
-              <textarea
-                [(ngModel)]="newPrompt.firstGuidance"
-                name="firstGuidance"
-                class="form-control textarea-limited"
-                placeholder="例：こんにちは。誤字脱字が含まれる可能性のある文章を入力してください。"
-                rows="2"
-                maxlength="3000"
-                required
-              ></textarea>
-            </div>
+          <div class="form-group">
+            <label
+              >最初の案内メッセージ<span class="icon-danger">*</span></label
+            >
+            <textarea
+              [(ngModel)]="newPrompt.firstGuidance"
+              name="firstGuidance"
+              class="form-control textarea-limited"
+              placeholder="例：こんにちは。誤字脱字が含まれる可能性のある文章を入力してください。"
+              rows="2"
+              maxlength="3000"
+              required
+            ></textarea>
+          </div>
 
-            <div class="form-group">
-              <h6>
-                ユーザーが入力する文章例<span class="icon-danger">*</span>
-              </h6>
-              <textarea
-                [(ngModel)]="newPrompt.firstMessageSample"
-                name="firstMessageSample"
-                class="form-control textarea-limited"
-                placeholder="例：恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきます。"
-                rows="2"
-                maxlength="3000"
-                required
-              ></textarea>
-            </div>
+          <div class="form-group">
+            <label
+              >ユーザーが入力する文章例<span class="icon-danger">*</span></label
+            >
+            <textarea
+              [(ngModel)]="newPrompt.firstMessageSample"
+              name="firstMessageSample"
+              class="form-control textarea-limited"
+              placeholder="例：恐れ入りますが、また明日になりましてお電話のお時間をご連絡せていただきます。"
+              rows="2"
+              maxlength="3000"
+              required
+            ></textarea>
+          </div>
 
-            <!-- <div class="form-group">
-              <h6>出力例文 <span class="icon-danger">*</span></h6>
+          <!-- <div class="form-group">
+              <label>出力例文 <span class="icon-danger">*</span></label>
               <quill-editor
                 [(ngModel)]="newPrompt.example"
                 name="tutorial"
@@ -122,62 +124,60 @@
               ></quill-editor>
             </div> -->
 
-            <div class="form-group">
-              <h6>カテゴリ <span class="icon-danger">*</span></h6>
-              <angular2-multiselect
-                [data]="dropdownCategoryList"
-                [(ngModel)]="newPrompt.categories"
-                name="categories"
-                [settings]="dropdownSettings"
-                (onSelect)="onCategorySelect($event)"
+          <div class="form-group">
+            <label>カテゴリ <span class="icon-danger">*</span></label>
+            <angular2-multiselect
+              [data]="dropdownCategoryList"
+              [(ngModel)]="newPrompt.categories"
+              name="categories"
+              [settings]="dropdownSettings"
+              (onSelect)="onCategorySelect($event)"
+            >
+            </angular2-multiselect>
+          </div>
+
+          <div class="space-top"></div>
+          <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+            <p *ngFor="let error of errors">{{ error.detail }}</p>
+          </div>
+
+          <div class="row buttons-row">
+            <div class="col-md-6">
+              <button
+                [disabled]="
+                  !(
+                    promptForm.form.valid &&
+                    !isClicked &&
+                    newPrompt.categories &&
+                    newPrompt.categories.length > 0
+                  )
+                "
+                (click)="createPrompt()"
+                class="btn btn-primary btn-block btn-round mb-3"
               >
-              </angular2-multiselect>
+                公開
+              </button>
             </div>
-
-            <div class="space-top"></div>
-            <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
-              <p *ngFor="let error of errors">{{ error.detail }}</p>
+            <div class="col-md-6">
+              <button
+                [disabled]="isClicked"
+                (click)="createUnpublishedPrompt()"
+                class="btn btn-outline-default btn-block btn-round mb-3"
+              >
+                下書き保存
+              </button>
             </div>
-
-            <div class="row buttons-row">
-              <div class="col-md-6">
-                <button
-                  [disabled]="
-                    !(
-                      promptForm.form.valid &&
-                      !isClicked &&
-                      newPrompt.categories &&
-                      newPrompt.categories.length > 0
-                    )
-                  "
-                  (click)="createPrompt()"
-                  class="btn btn-primary btn-block btn-round"
-                >
-                  公開
-                </button>
-              </div>
-              <div class="col-md-6">
-                <button
-                  [disabled]="isClicked"
-                  (click)="createUnpublishedPrompt()"
-                  class="btn btn-outline-default btn-block btn-round"
-                >
-                  下書き保存
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-      <div class="text-center">
-        <a
-          class="btn btn-primary btn-lg btn-link btn-move-right"
-          [routerLink]="['/user']"
-        >
-          <i class="nc-icon nc-minimal-right"></i>&nbsp; マイページへ戻る
-        </a>
-      </div>
-      <div class="space-top"></div>
+    </div>
+    <div class="text-center">
+      <a
+        class="btn btn-primary btn-lg btn-link btn-move-right mt-4"
+        [routerLink]="['/user']"
+      >
+        <i class="nc-icon nc-minimal-right"></i>&nbsp; マイページへ戻る
+      </a>
     </div>
   </div>
 </div>

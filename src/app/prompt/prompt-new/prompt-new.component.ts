@@ -60,15 +60,10 @@ export class PromptNewComponent implements OnInit, OnDestroy {
     private promptService: PromptService
   ) {}
 
-  ngOnInit() {
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('add-product');
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.remove('add-product');
   }
 
   onCategorySelect(item: any) {

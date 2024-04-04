@@ -31,7 +31,12 @@
 
     <div class="text-center">
       <button
-        *ngIf="auth.isAuthenticated() && prompt.firstMessageSample"
+        *ngIf="
+          auth.isAuthenticated() &&
+          prompt.firstMessageSample &&
+          !isRespond &&
+          !isClicked
+        "
         (click)="insertFirstMessageSample()"
         class="btn btn-link btn-danger btn-sm mb-1"
       >
@@ -39,7 +44,7 @@
       </button>
 
       <form
-        *ngIf="!isRespond"
+        *ngIf="!isRespond && !isClicked"
         class="settings-form"
         #postForm="ngForm"
         (ngSubmit)="postPrompt(postForm)"
@@ -76,16 +81,16 @@
           >
             送信する
           </button>
-          <button
-            *ngIf="isClicked"
-            [disabled]="true"
-            class="btn btn-round btn-wd btn-primary"
-          >
-            <span class="loader"></span>
-          </button>
         </div>
       </form>
 
+      <button
+        *ngIf="isClicked"
+        [disabled]="true"
+        class="btn btn-round btn-wd btn-primary"
+      >
+        <span class="loader"></span>
+      </button>
       <button
         *ngIf="isRespond"
         class="btn btn-round btn-wd btn-primary"

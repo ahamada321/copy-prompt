@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-8 mr-auto ml-auto">
+    <div class="card no-transition" data-background="color" data-color="green">
+      <div class="card-body">
+        <div class="author pull-left">
+          <a href="javascript:void(0)">
+            <img src="assets/icons/2.png" alt="..." class="avatar img-raised" />
+            <span>ChatGPT</span>
+          </a>
+        </div>
+        <div class="clearfix"></div>
+        <h3 class="card-description">生年月日を入力してください</h3>
+      </div>
+    </div>
+
+    <div class="card no-transition">
+      <div class="card-body">
+        <div class="author pull-left">
+          <a href="javascript:void(0)">
+            <img src="assets/icons/2.png" alt="..." class="avatar img-raised" />
+            <span>○○さん</span>
+          </a>
+        </div>
+        <div class="clearfix"></div>
+        <h3 class="card-description">1999年1月1日</h3>
+      </div>
+    </div>
+
+    <form
+      class="settings-form"
+      #userForm="ngForm"
+      (ngSubmit)="sendMessage(userForm)"
+    >
+      <div class="form-group">
+        <label>自己紹介</label>
+        <textarea
+          type="text"
+          class="form-control textarea-limited"
+          placeholder="自分の魅力をPRすることができます。"
+          name="description"
+          rows="5"
+          maxlength="2000"
+        ></textarea>
+        <h5>
+          <!-- <small
+      ><span id="textarea-limited-message" class="pull-right">
+        <div *ngIf="!userData.description">残文字数 2000</div>
+        <div *ngIf="userData.description">
+          残文字数 {{ 2000 - userData.description.length }}
+        </div>
+      </span></small
+    > -->
+        </h5>
+      </div>
+    </form>
+  </div>
+</div>

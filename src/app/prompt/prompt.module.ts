@@ -36,6 +36,7 @@ import { GuideButtonModule } from '../shared/guide-button/guide-button.module';
 import { PromptListCommentComponent } from './prompt-list/prompt-list-comment/prompt-list-comment.component';
 import { PromptDetailOthersComponent } from './prompt-detail/prompt-detail-others/prompt-detail-others.component';
 import { PromptFormModule } from '../shared/prompt-form/prompt-form.module';
+import { PromptPlanComponent } from './prompt-plan/prompt-plan.component';
 
 const routes: Routes = [
   { path: '', component: PromptListComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
     component: PromptComponent,
     children: [
       { path: '', component: PromptSearchComponent },
+      { path: 'plan', component: PromptPlanComponent },
       { path: 'new', component: PromptNewComponent, canActivate: [AuthGuard] },
       {
         path: 'edit/:promptId',
@@ -70,6 +72,7 @@ const routes: Routes = [
     PromptDetailOthersComponent,
     PromptNewComponent,
     PromptEditComponent,
+    PromptPlanComponent,
   ],
   imports: [
     CommonModule,

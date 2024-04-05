@@ -32,6 +32,7 @@ export class PromptFormComponent {
 
   postPrompt(postForm: NgForm) {
     this.isClicked = true;
+    this.auth.incrementClick();
     this.contents.push({
       role: 'user',
       content: postForm.value.postPrompt,

@@ -2,14 +2,14 @@
   <p>\ 自作プロンプトも登録して管理しよう /</p>
   <button
     *ngIf="prompts.length >= 30"
-    class="btn btn-lg btn-primary btn-rotate btn-round"
+    class="btn btn-primary btn-rotate btn-round"
     [disabled]="true"
   >
     <i class="nc-icon nc-diamond"></i>&nbsp; 上限に達しました
   </button>
   <a
     *ngIf="prompts.length < 30"
-    class="btn btn-lg btn-outline-primary btn-rotate btn-round"
+    class="btn btn-outline-primary btn-rotate btn-round"
     [routerLink]="['/prompt/new']"
   >
     <i class="nc-icon nc-diamond"></i>&nbsp; 登録する
@@ -27,12 +27,12 @@
         }"
       >
         <div class="card-body">
-          <h6 class="card-category" *ngIf="prompt.categories[0]">
+          <strong class="card-category" *ngIf="prompt.categories[0]">
             <i class="fa fa-newspaper-o"></i>
             {{ prompt.categories[0].itemName }}
-          </h6>
-          <h5 class="card-title">{{ prompt.name }}</h5>
-          <h5 class="card-title"><small>プロンプト</small></h5>
+          </strong>
+          <h3 class="card-title">{{ prompt.name }}</h3>
+          <h4 class="card-title"><small>プロンプト</small></h4>
           <div class="space-top"></div>
           <a
             class="btn btn-outline-neutral btn-round"
@@ -55,13 +55,13 @@
       >
         <a routerLink="/prompt/{{ prompt._id }}">
           <div class="card-body">
-            <h6 class="card-category">
+            <strong class="card-category">
               <i class="fa fa-newspaper-o"></i>
               {{ prompt.categories[0].itemName }}
-            </h6>
-            <h5 class="card-title">{{ prompt.name }}</h5>
-            <h5 class="card-title"><small>プロンプト</small></h5>
-            <br />
+            </strong>
+            <h3 class="card-title">{{ prompt.name }}</h3>
+            <h4 class="card-title"><small>プロンプト</small></h4>
+            <div class="space-top"></div>
             <a
               class="btn btn-outline-neutral btn-round"
               routerLink="/prompt/edit/{{ prompt._id }}"

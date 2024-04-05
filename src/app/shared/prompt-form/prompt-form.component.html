@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-md-8 mr-auto ml-auto">
+    <div class="card no-transition">
+      <div class="card-body">
+        <div class="author">
+          <img src="assets/icons/gpt.svg" alt="..." class="avatar img-raised" />
+          <span>あつプロ AI</span>
+        </div>
+        <div class="clearfix"></div>
+        <p class="card-description">
+          {{ prompt.firstGuidance }}
+        </p>
+      </div>
+    </div>
+
+    <div class="card no-transition" *ngFor="let content of contents">
+      <div class="card-body">
+        <div class="author" *ngIf="content.role === 'assistant'; else userRole">
+          <img src="assets/icons/gpt.svg" alt="..." class="avatar img-raised" />
+          <span>あつプロ AI</span>
+        </div>
+        <ng-template #userRole>
+          <div class="author">あなた</div>
+        </ng-template>
+        <div class="clearfix"></div>
+        <p class="card-description" style="white-space: pre-line">
+          {{ content.content }}
+        </p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button
+        *ngIf="
+          auth.isAuthenticated() &&
+          prompt.firstMessageSample &&
+          !isRespond &&
+          !isClicked
+        "
+        (click)="insertFirstMessageSample()"
+        class="btn btn-link btn-danger btn-sm mb-1"
+      >
+        サンプルを入力
+      </button>
+
+      <form
+        *ngIf="!isRespond && !isClicked"
+        class="settings-form"
+        #postForm="ngForm"
+        (ngSubmit)="postPrompt(postForm)"
+      >
+        <div
+          class="form-group"
+          [class.has-danger]="text && text.length === 300"
+        >
+          <textarea
+            [disabled]="!auth.isAuthenticated()"
+            type="text"
+            class="form-control textarea-limited"
+            placeholder="ここに入力して送信ボタンを押してね。"
+            [(ngModel)]="text"
+            name="postPrompt"
+            rows="4"
+            maxlength="300"
+            required
+          ></textarea>
+          <div
+            *ngIf="text && text.length === 300"
+            class="pull-right text-danger"
+          >
+            300文字以上は送信できません
+          </div>
+        </div>
+        <div class="space-top"></div>
+        <div class="text-center">
+          <div *ngIf="auth.isAuthenticated() && !isClicked">
+            <div *ngIf="!auth.hasExceedMaxClicks(); else exceedMaxClicks">
+              <button
+                [disabled]="!postForm.valid"
+                type="submit"
+                class="btn btn-round btn-wd btn-primary"
+              >
+                送信する（ あと{{ 4 - auth.getClicks() }}回 / 本日 ）
+              </button>
+            </div>
+            <ng-template #exceedMaxClicks>
+              <button
+                [disabled]="true"
+                class="btn btn-round btn-wd btn-primary"
+              >
+                本日の利用上限に達しました
+              </button>
+              <p class="description">12時間後に回復します</p>
+              <a
+                [routerLink]="['/prompt/plan']"
+                class="btn btn-link btn-primary"
+              >
+                1日の利用上限を増やすには？
+              </a>
+            </ng-template>
+          </div>
+        </div>
+      </form>
+
+      <button
+        *ngIf="isClicked"
+        [disabled]="true"
+        class="btn btn-round btn-wd btn-primary"
+      >
+        <span class="loader"></span>
+      </button>
+      <button
+        *ngIf="isRespond"
+        class="btn btn-round btn-wd btn-primary"
+        (click)="isRespond = false; contents = []"
+      >
+        もう一度使う
+      </button>
+      <div *ngIf="!auth.isAuthenticated()">
+        <button
+          class="btn btn-round btn-wd btn-primary"
+          (click)="modalLoginOpen()"
+        >
+          <i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログインして利用する
+        </button>
+        <br />
+        <a
+          class="btn btn-primary btn-link btn-lg mt-1"
+          [routerLink]="['/register']"
+          [queryParams]="{ promptId: prompt._id }"
+        >
+          <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="space-top"></div>

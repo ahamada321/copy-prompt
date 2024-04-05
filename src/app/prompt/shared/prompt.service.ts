@@ -51,4 +51,8 @@ export class PromptService {
       `/api/v1/prompts/manage?page=${pageIndex}&limit=${pageSize}`
     );
   }
+
+  public postPrompt(promptData: Prompt): Observable<any> {
+    return this.http.post('/api/v1/prompts', promptData);
+  }
 }

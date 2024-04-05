@@ -1,6 +1,6 @@
 <div class="wrapper" *ngIf="prompt">
   <div
-    class="page-header page-header-small"
+    class="page-header page-header-middle"
     [ngStyle]="{
       'background-image':
         'url(assets/img/thumbnail/' + prompt.categories[0].id + '.jpg)'
@@ -35,19 +35,21 @@
           </a>
           <br />
           {{ prompt.name }}<br />
-          <small>プロンプト</small><br />
+          <small>プロンプト</small>
         </h1>
       </div>
-      <button
-        *ngIf="!auth.isAuthenticated()"
-        (click)="modalLoginOpen()"
-        [disabled]="isClicked"
-        class="btn btn-primary btn-round mt-2"
-      >
-        <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りへ追加
-      </button>
-      <div *ngIf="auth.isAuthenticated()">
-        <div *ngIf="!isMine()">
+
+      <div *ngIf="!auth.isAuthenticated(); else Authenticated">
+        <button
+          (click)="modalLoginOpen()"
+          [disabled]="isClicked"
+          class="btn btn-primary btn-round mt-2"
+        >
+          <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りへ追加
+        </button>
+      </div>
+      <ng-template #Authenticated>
+        <div *ngIf="!isMine(); else Mine">
           <button
             *ngIf="!isBookmarked"
             (click)="addBookmark()"
@@ -65,14 +67,24 @@
             <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りから削除
           </button>
         </div>
-        <a
-          *ngIf="isMine()"
-          class="btn btn-primary btn-round mt-2"
-          [routerLink]="['/prompt/edit', prompt._id]"
-        >
-          <i class="fa fa-pencil"></i>&nbsp; このプロンプトを編集する
-        </a>
-      </div>
+        <ng-template #Mine>
+          <a
+            class="btn btn-primary btn-round mt-2"
+            [routerLink]="['/prompt/edit', prompt._id]"
+          >
+            <i class="fa fa-pencil"></i>&nbsp; このプロンプトを編集する
+          </a>
+          <br />
+        </ng-template>
+      </ng-template>
+
+      <button
+        class="btn btn-x btn-round mt-3"
+        (click)="shareTwitter()"
+        target="_blank"
+      >
+        <b>X</b> で共有
+      </button>
     </div>
   </div>
 
@@ -87,7 +99,7 @@
           ></div>
         </div>
       </div>
-      <div *ngIf="prompt.usage" class="text-center">
+      <!-- <div *ngIf="prompt.usage" class="text-center">
         <h2 class="title">ChatGPTでの送信手順</h2>
         <p>{{ prompt.usage }}</p>
         <a
@@ -96,36 +108,27 @@
         >
           初めてChatGPTを使う方はこちら
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 
   <!--     *********     Prompt     *********      -->
-  <div class="section section-dark text-center">
+  <div class="section section-nude">
     <div class="container">
-      <h2 class="title">プロンプト（指令文）</h2>
-      <p *ngIf="!auth.isAuthenticated()" class="description">
-        ログイン後にプロンプトが使えるようになります
-      </p>
-      <p *ngIf="auth.isAuthenticated()" class="description">
-        コピーボタンを押してからChatGPTにペーストしよう
-      </p>
-
-      <app-code-snippet [prompt]="prompt"></app-code-snippet>
-      <button
-        class="btn btn-twitter btn-round mb-2"
-        (click)="shareTwitter()"
-        target="_blank"
-      >
-        <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>&nbsp;
-        Twitterでシェアする
-      </button>
+      <div class="text-center">
+        <h2 class="title">早速試してみる</h2>
+      </div>
+      <div class="space-top"></div>
+      <app-prompt-form [prompt]="prompt"></app-prompt-form>
     </div>
   </div>
 
   <div class="section section-nude">
     <div class="container text-center">
-      <button class="btn btn-round mt-2" (click)="windowOpen(OutputSample)">
+      <button
+        class="btn btn-round btn-outline-default mt-2"
+        (click)="windowOpen(OutputSample)"
+      >
         このプロンプトを使った際のChatGPTからの応答例
       </button>
     </div>
@@ -184,7 +187,7 @@
     <h3 class="modal-title">タヌキからのお知らせ</h3>
   </div>
   <div class="modal-body">
-    <p>{{ foundUser.name }}さん、登録してくれてありがとう！</p>
+    <p>{{ auth.getUserName() }}さん、登録してくれてありがとう！</p>
     <p>
       早速<br />
       <strong>「STEP1 プロンプトをコピーする」</strong>ボタンを押してから<br />

@@ -10,11 +10,13 @@ class DecodedToken {
   userId: string = '';
   name: string = '';
   exp: number = 0;
+  clicks: number = 0;
 }
 
 @Injectable()
 export class MyOriginAuthService {
   private decodedToken;
+  private maxClicks: number = 4;
 
   constructor(private http: HttpClient) {
     this.decodedToken =
@@ -68,7 +70,7 @@ export class MyOriginAuthService {
     return this.decodedToken.userId;
   }
 
-  public getname(): string {
+  public getUserName(): string {
     return this.decodedToken.name;
   }
 
@@ -92,5 +94,30 @@ export class MyOriginAuthService {
 
   public userActivation(verifyToken: string): Observable<any> {
     return this.http.get('api/v1/users/register/' + verifyToken);
+  }
+
+  public getClicks(): number {
+    const tmpToken =
+      JSON.parse(localStorage.getItem('app-meta')!) || new DecodedToken();
+
+    if (tmpToken.clicks) {
+      this.decodedToken.clicks = tmpToken.clicks;
+    } else {
+      this.decodedToken.clicks = 0;
+    }
+
+    return this.decodedToken.clicks;
+  }
+
+  public incrementClick(): number {
+    if (this.decodedToken.clicks < this.maxClicks) {
+      this.decodedToken.clicks++;
+      localStorage.setItem('app-meta', JSON.stringify(this.decodedToken));
+    }
+    return this.decodedToken.clicks;
+  }
+
+  public hasExceedMaxClicks(): boolean {
+    return this.decodedToken.clicks >= this.maxClicks;
   }
 }

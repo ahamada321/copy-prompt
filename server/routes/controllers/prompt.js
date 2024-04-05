@@ -2,6 +2,9 @@ const Prompt = require("./models/prompt");
 const SearchHistory = require("./models/searchhistory");
 const User = require("./models/user");
 const { normalizeErrors } = require("./helpers/mongoose");
+const config = require("../../config");
+const { Anthropic } = require("@anthropic-ai/sdk");
+const anthropic = new Anthropic({ apiKey: config.CLAUDE_API_KEY });
 
 exports.getPromptById = async function (req, res) {
   const promptId = req.params.id;
@@ -333,5 +336,21 @@ exports.createPrompt = async function (req, res) {
     return res.json({ status: "created" });
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+exports.postPrompt = async function (req, res) {
+  const content = req.body;
+
+  try {
+    const msg = await anthropic.messages.create({
+      model: "claude-3-haiku-20240307",
+      max_tokens: 234, // (100*2 + 34) 1 token = 3文字
+      system: content.system,
+      messages: [{ role: "user", content: content.postPrompt }],
+    });
+    return res.json({ role: "assistant", content: msg.content[0].text });
+  } catch (err) {
+    return res.status(422).send(err);
   }
 };

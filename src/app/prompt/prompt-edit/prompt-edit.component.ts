@@ -17,12 +17,6 @@ export class PromptEditComponent implements OnInit, OnDestroy {
   isClicked: boolean = false;
   errors: any[] = [];
 
-  dropdownUsageLists = [
-    'プロンプトをChatGPTにコピペして好みに書き換えてから送信',
-    'プロンプトをChatGPTにコピペして送信 → 自由に質問',
-    'プロンプトをChatGPTにコピペして送信 → 質問に答える',
-  ];
-
   dropdownCategoryList = [
     // { id: 1, itemName: '時短' },
     { id: 2, itemName: '語学' },
@@ -67,14 +61,10 @@ export class PromptEditComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.getPrompt(params['promptId']);
     });
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('add-product');
   }
 
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.remove('add-product');
   }
 
   onCategorySelect(item: any) {

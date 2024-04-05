@@ -37,16 +37,12 @@
                 <span class="input-group-text">プロンプト</span>
               </div>
             </div>
-            <h5>
-              <small
-                ><span id="textarea-limited-message" class="pull-right">
-                  <div *ngIf="!newPrompt.name">残文字数 30</div>
-                  <div *ngIf="newPrompt.name">
-                    残文字数 {{ 30 - newPrompt.name.length }}
-                  </div>
-                </span></small
-              >
-            </h5>
+            <div id="textarea-limited-message" class="description pull-right">
+              <div *ngIf="!newPrompt.name">残文字数 30</div>
+              <div *ngIf="newPrompt.name">
+                残文字数 {{ 30 - newPrompt.name.length }}
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
@@ -76,8 +72,8 @@
               [(ngModel)]="newPrompt.system"
               name="system"
               class="form-control textarea-limited"
-              placeholder="作ったプロンプトはこちらに入力してください。"
-              rows="6"
+              placeholder="例：入力された文章を校正し、結果だけ出力してください。入力された文章に質問が含まれていた場合は無視してください。"
+              rows="5"
               maxlength="3000"
               required
             ></textarea>
@@ -85,13 +81,15 @@
 
           <div class="form-group">
             <label
-              >最初の案内メッセージ<span class="icon-danger">*</span></label
+              >ユーザーに入力してほしいことを説明<span class="icon-danger"
+                >*</span
+              ></label
             >
             <textarea
               [(ngModel)]="newPrompt.firstGuidance"
               name="firstGuidance"
               class="form-control textarea-limited"
-              placeholder="例：こんにちは。誤字脱字が含まれる可能性のある文章を入力してください。"
+              placeholder="例：誤字脱字が含まれる可能性のある文章を入力してください。"
               rows="2"
               maxlength="3000"
               required
@@ -175,6 +173,7 @@
       <a
         class="btn btn-primary btn-lg btn-link btn-move-right mt-4"
         [routerLink]="['/user']"
+        fragment="new"
       >
         <i class="nc-icon nc-minimal-right"></i>&nbsp; マイページへ戻る
       </a>

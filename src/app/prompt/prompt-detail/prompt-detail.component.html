@@ -38,16 +38,18 @@
           <small>プロンプト</small>
         </h1>
       </div>
-      <button
-        *ngIf="!auth.isAuthenticated()"
-        (click)="modalLoginOpen()"
-        [disabled]="isClicked"
-        class="btn btn-primary btn-round mt-2"
-      >
-        <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りへ追加
-      </button>
-      <div *ngIf="auth.isAuthenticated()">
-        <div *ngIf="!isMine()">
+
+      <div *ngIf="!auth.isAuthenticated(); else Authenticated">
+        <button
+          (click)="modalLoginOpen()"
+          [disabled]="isClicked"
+          class="btn btn-primary btn-round mt-2"
+        >
+          <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りへ追加
+        </button>
+      </div>
+      <ng-template #Authenticated>
+        <div *ngIf="!isMine(); else Mine">
           <button
             *ngIf="!isBookmarked"
             (click)="addBookmark()"
@@ -65,14 +67,17 @@
             <i class="nc-icon nc-favourite-28"></i>&nbsp; お気に入りから削除
           </button>
         </div>
-        <a
-          *ngIf="isMine()"
-          class="btn btn-primary btn-round mt-2"
-          [routerLink]="['/prompt/edit', prompt._id]"
-        >
-          <i class="fa fa-pencil"></i>&nbsp; このプロンプトを編集する
-        </a>
-      </div>
+        <ng-template #Mine>
+          <a
+            class="btn btn-primary btn-round mt-2"
+            [routerLink]="['/prompt/edit', prompt._id]"
+          >
+            <i class="fa fa-pencil"></i>&nbsp; このプロンプトを編集する
+          </a>
+          <br />
+        </ng-template>
+      </ng-template>
+
       <button
         class="btn btn-x btn-round mt-3"
         (click)="shareTwitter()"

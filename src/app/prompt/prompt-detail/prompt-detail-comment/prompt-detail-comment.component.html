@@ -1,66 +1,68 @@
 <div *ngIf="comments" class="row">
-  <div class="col-md-8 ml-auto mr-auto text-center">
-    <h2 class="title">コメント({{ comments.length }})</h2>
+  <div class="col-md-8 ml-auto mr-auto">
     <div class="media-area">
-      <p
-        *ngIf="!auth.isAuthenticated(); else enableComment"
-        class="description"
-      >
-        ログイン後にコメントできます
-      </p>
-      <ng-template #enableComment>
-        <p class="description">
-          投稿から20分以内であれば自分の投稿を修正できます
+      <div class="text-center">
+        <h2 class="title">コメント({{ comments.length }})</h2>
+        <p
+          *ngIf="!auth.isAuthenticated(); else enableComment"
+          class="description"
+        >
+          ログイン後にコメントできます
         </p>
-        <div class="media media-post">
-          <div class="pull-left author">
-            <div class="avatar">
-              <img
-                *ngIf="foundUser"
-                class="media-object"
-                alt="64x64"
-                [src]="
-                  foundUser.image
-                    ? foundUser.image
-                    : foundUser.prompts.length < 1
-                    ? './assets/icons/1.png'
-                    : foundUser.prompts.length < 5
-                    ? './assets/icons/2.png'
-                    : foundUser.prompts.length < 12
-                    ? './assets/icons/3.png'
-                    : foundUser.prompts.length < 20
-                    ? './assets/icons/4.png'
-                    : './assets/icons/5.png'
-                "
-              />
+        <ng-template #enableComment>
+          <p class="description">
+            投稿から20分以内であれば自分の投稿を修正できます
+          </p>
+          <div class="media media-post">
+            <div class="pull-left author">
+              <div class="avatar">
+                <img
+                  *ngIf="foundUser"
+                  class="media-object"
+                  alt="64x64"
+                  [src]="
+                    foundUser.image
+                      ? foundUser.image
+                      : foundUser.prompts.length < 1
+                      ? './assets/icons/1.png'
+                      : foundUser.prompts.length < 5
+                      ? './assets/icons/2.png'
+                      : foundUser.prompts.length < 12
+                      ? './assets/icons/3.png'
+                      : foundUser.prompts.length < 20
+                      ? './assets/icons/4.png'
+                      : './assets/icons/5.png'
+                  "
+                />
+              </div>
             </div>
+            <form
+              class="media-body"
+              #postForm="ngForm"
+              (ngSubmit)="postComment(postForm)"
+            >
+              <textarea
+                class="form-control"
+                placeholder="ここからコメントできます。プロンプト作者へ質問やお礼のメッセージ等を送ることができます。"
+                rows="4"
+                [ngModel]="commentString"
+                name="commentString"
+                required
+              ></textarea>
+              <div class="media-footer">
+                <button
+                  [disabled]="!postForm.valid || isClicked"
+                  type="submit"
+                  class="btn btn-primary btn-round"
+                >
+                  {{ editingId ? "修正する" : "コメントする" }}
+                </button>
+              </div>
+            </form>
           </div>
-          <form
-            class="media-body"
-            #postForm="ngForm"
-            (ngSubmit)="postComment(postForm)"
-          >
-            <textarea
-              class="form-control"
-              placeholder="ここからコメントできます。プロンプト作者へ質問やお礼のメッセージ等を送ることができます。"
-              rows="4"
-              [ngModel]="commentString"
-              name="commentString"
-              required
-            ></textarea>
-            <div class="media-footer">
-              <button
-                [disabled]="!postForm.valid || isClicked"
-                type="submit"
-                class="btn btn-primary btn-round"
-              >
-                {{ editingId ? "修正する" : "コメントする" }}
-              </button>
-            </div>
-          </form>
-        </div>
-      </ng-template>
-      <hr />
+        </ng-template>
+        <hr />
+      </div>
 
       <!-- end media -->
       <div class="media" *ngFor="let comment of comments">
@@ -87,6 +89,7 @@
             </a>
           </div>
         </div>
+
         <div class="media-body">
           <a [routerLink]="['/user', comment.user!._id]">
             <h5 class="media-heading">{{ comment.user!.name }}</h5>

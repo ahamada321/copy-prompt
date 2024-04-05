@@ -1,6 +1,6 @@
 <div *ngIf="!auth.isAuthenticated()">
   <div class="code-snippet">
-    <pre class="prettyprint blur no-copy">{{ prompt.prompt }}</pre>
+    <pre class="prettyprint blur no-copy">{{ prompt.system }}</pre>
     <button
       class="btn btn-primary btn-round btn-lg btn-wd btn-login"
       (click)="modalLoginOpen()"
@@ -19,7 +19,7 @@
 
 <div *ngIf="auth.isAuthenticated()">
   <div class="code-snippet">
-    <pre class="prettyprint">{{ prompt.prompt }}</pre>
+    <pre class="prettyprint">{{ prompt.system }}</pre>
     <button
       *ngIf="!isCopied"
       class="btn btn-primary btn-round btn-wd btn-step1"

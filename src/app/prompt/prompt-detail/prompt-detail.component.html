@@ -117,9 +117,14 @@
     <div class="container">
       <div class="text-center">
         <h2 class="title">早速試してみる</h2>
+        <p class="description font-small">
+          AIによる自動生成の為、誤りが含まれる場合があります。<br />
+          利用の際はご留意ください。
+        </p>
       </div>
       <div class="space-top"></div>
-      <app-prompt-form [prompt]="prompt"></app-prompt-form>
+      <!-- <app-prompt-form [prompt]="prompt"></app-prompt-form> -->
+      <app-code-snippet [prompt]="prompt"></app-code-snippet>
     </div>
   </div>
 

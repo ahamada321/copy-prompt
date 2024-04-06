@@ -23,7 +23,7 @@ export class CodeSnippetComponent {
 
   copyCode() {
     // ここでクリップボードにコピーするロジックを実装
-    navigator.clipboard.writeText(this.prompt.prompt);
+    navigator.clipboard.writeText(this.prompt.system);
     this.addHistory();
   }
 

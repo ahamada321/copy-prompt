@@ -14,7 +14,6 @@ export class Prompt {
   description!: string;
   usage!: string;
   example!: string;
-  prompt!: string;
   system!: string;
   firstGuidance!: string;
   firstMessageSample!: string;

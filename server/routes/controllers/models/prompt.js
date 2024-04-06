@@ -15,7 +15,6 @@ const promptSchema = new Schema({
   description: String,
   usage: String, // Will be removed in future.
   example: String, // Output sample. Will be removed in future.
-  prompt: String, // Old version. Going to replace to "system"
   system: String,
   firstGuidance: String,
   firstMessageSample: String,

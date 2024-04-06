@@ -99,16 +99,6 @@
           ></div>
         </div>
       </div>
-      <!-- <div *ngIf="prompt.usage" class="text-center">
-        <h2 class="title">ChatGPTでの送信手順</h2>
-        <p>{{ prompt.usage }}</p>
-        <a
-          class="btn btn-outline-success btn-round"
-          [routerLink]="['/blog/how-to-use-chatgpt']"
-        >
-          初めてChatGPTを使う方はこちら
-        </a>
-      </div> -->
     </div>
   </div>
 
@@ -125,17 +115,24 @@
       <div class="space-top"></div>
       <!-- <app-prompt-form [prompt]="prompt"></app-prompt-form> -->
       <app-code-snippet [prompt]="prompt"></app-code-snippet>
-    </div>
-  </div>
 
-  <div class="section section-nude">
-    <div class="container text-center">
-      <button
-        class="btn btn-round btn-outline-default mt-2"
-        (click)="windowOpen(OutputSample)"
-      >
-        このプロンプトを使った際のChatGPTからの応答例
-      </button>
+      <div class="text-center">
+        <h3 class="title">ChatGPTでの送信手順</h3>
+        <p>{{ prompt.usage }}</p>
+        <a
+          class="btn btn-outline-success btn-round mt-2"
+          [routerLink]="['/blog/how-to-use-chatgpt']"
+        >
+          初めてChatGPTを使う方はこちら
+        </a>
+        <br />
+        <button
+          class="btn btn-round btn-outline-default mt-3"
+          (click)="windowOpen(OutputSample)"
+        >
+          このプロンプトを使った際のChatGPTからの応答例
+        </button>
+      </div>
     </div>
   </div>
 

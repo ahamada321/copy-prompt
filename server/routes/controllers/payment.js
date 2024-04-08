@@ -40,6 +40,6 @@ exports.createPayment = async function (req, res) {
       clientSecret: subscription.latest_invoice.payment_intent.client_secret,
     });
   } catch (err) {
-    return res.status(400).send({ error: { message: error.message } });
+    return res.status(400).send({ detail: err.message });
   }
 };

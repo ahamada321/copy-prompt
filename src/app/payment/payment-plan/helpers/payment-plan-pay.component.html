@@ -1,8 +1,16 @@
-<form id="payment-form" (ngSubmit)="checkout()">
-  <div id="payment-element" #payment></div>
-
-  <button type="submit">Pay $10</button>
-</form>
+<div *ngIf="loadingFlg" class="loader"></div>
+<div *ngIf="!loadingFlg">
+  <form id="payment-form" (ngSubmit)="checkout()">
+    <div id="payment-element" #payment></div>
+    <div class="text-center">
+      <button *ngIf="!error" type="submit" class="btn">サブスクする</button>
+    </div>
+  </form>
+  <br />
+  <div *ngIf="error" class="alert alert-danger">
+    <p>{{ error }}</p>
+  </div>
+</div>
 
 <!-- <form [ngClass]="validatingCardFlag ? 'loading' : ''">
   <div class="group">
@@ -31,5 +39,5 @@
     カードを登録/変更
   </button>
 </form> -->
-
+<div class="space-top"></div>
 <div class="text-center">Powered by Stripe.</div>

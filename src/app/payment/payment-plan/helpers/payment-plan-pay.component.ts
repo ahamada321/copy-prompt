@@ -12,6 +12,8 @@ export class PaymentPlanPayComponent implements OnInit {
   validatingCardFlag: boolean = false;
   error: any;
 
+  loadingFlg: boolean = true;
+
   stripe: any;
   elements: any;
 
@@ -28,29 +30,38 @@ export class PaymentPlanPayComponent implements OnInit {
     this.stripe = await loadStripe(
       'pk_test_pb83wBnjrbxnUltLLCR5KlYC00NK6M8day'
     );
-    this.paymentService
-      .createPayment(this.priceId)
-      .subscribe((subscription) => {
+    this.paymentService.createPayment(this.priceId).subscribe(
+      (subscription) => {
         const options = {
           clientSecret: subscription.clientSecret,
         };
         this.elements = this.stripe.elements(options);
         this.payment = this.elements.create('payment');
         this.payment.mount(this.paymentRef.nativeElement);
-      });
+        this.loadingFlg = false;
+      },
+      (err) => {
+        this.error = err.error.detail;
+        console.error(this.error);
+        this.loadingFlg = false;
+      }
+    );
   }
 
-  async checkout() {
-    try {
-      const baseURL = window.location.origin;
-      await this.stripe.confirmPayment({
+  checkout() {
+    const baseURL = window.location.origin;
+    this.stripe
+      .confirmPayment({
         elements: this.elements,
         confirmParams: {
           return_url: baseURL,
         },
+      })
+      .then((result: any) => {
+        if (result.error) {
+          this.error = result.error;
+          console.error(this.error);
+        }
       });
-    } catch (err) {
-      console.log(err);
-    }
   }
 }

@@ -6,6 +6,6 @@ const PaymentCtrl = require("./controllers/payment");
 
 router.get("/:id", UserCtrl.authMiddleware, PaymentCtrl.getPayments);
 
-router.get("/user/:id", UserCtrl.authMiddleware, PaymentCtrl.getUserPayments);
+router.post("/create", UserCtrl.authMiddleware, PaymentCtrl.createPayment);
 
 module.exports = router;

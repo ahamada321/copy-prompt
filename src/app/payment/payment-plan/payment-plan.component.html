@@ -10,112 +10,112 @@
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-transition" data-radius="none">
-          <img src="./assets/img/lp/1.png" alt="" />
+          <img src="./assets/img/lp/1.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/2.png" alt="" />
+          <img src="./assets/img/lp/2.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/3.png" alt="" />
+          <img src="./assets/img/lp/3.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/4.png" alt="" />
+          <img src="./assets/img/lp/4.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/5.png" alt="" />
+          <img src="./assets/img/lp/5.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/6.png" alt="" />
+          <img src="./assets/img/lp/6.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/7.png" alt="" />
+          <img src="./assets/img/lp/7.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/8.png" alt="" />
+          <img src="./assets/img/lp/8.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/9.png" alt="" />
+          <img src="./assets/img/lp/9.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/10.png" alt="" />
+          <img src="./assets/img/lp/10.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/11.png" alt="" />
+          <img src="./assets/img/lp/11.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/12.png" alt="" />
+          <img src="./assets/img/lp/12.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/13.png" alt="" />
+          <img src="./assets/img/lp/13.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-transition" data-radius="none">
-          <img src="./assets/img/lp/14.png" alt="" />
+          <img src="./assets/img/lp/14.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/15.png" alt="" />
+          <img src="./assets/img/lp/15.png" alt="..." />
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-8 ml-auto mr-auto">
         <div class="card no-shadow no-transition" data-radius="none">
-          <img src="./assets/img/lp/16.png" alt="" />
+          <img src="./assets/img/lp/16.png" alt="..." />
         </div>
       </div>
     </div>
@@ -141,7 +141,10 @@
                   </p>
                   <div class="space-top"></div>
                   <a
-                    href="javascript:void(0)"
+                    (click)="
+                      openStripeForm(stripeForm);
+                      priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                    "
                     class="btn btn-lg btn-primary btn-round"
                     ><i class="nc-icon nc-diamond"></i>&nbsp;このプランにする</a
                   >
@@ -184,7 +187,10 @@
                   </p>
                   <div class="space-top"></div>
                   <a
-                    href="javascript:void(0)"
+                    (click)="
+                      openStripeForm(stripeForm);
+                      priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                    "
                     class="btn btn-lg btn-primary btn-round"
                     ><i class="nc-icon nc-diamond"></i>&nbsp;このプランにする</a
                   >
@@ -226,7 +232,10 @@
                   <div class="space-top"></div>
 
                   <a
-                    href="javascript:void(0)"
+                    (click)="
+                      openStripeForm(stripeForm);
+                      priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                    "
                     class="btn btn-lg btn-primary btn-round"
                     ><i class="nc-icon nc-diamond"></i>&nbsp;このプランにする</a
                   >
@@ -261,3 +270,24 @@
     </div>
   </div>
 </div>
+
+<ng-template #stripeForm let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button class="close" (click)="d('Cross click')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title">決済フォーム画面</h3>
+  </div>
+  <div class="modal-body">
+    <app-payment-plan-pay [priceId]="priceId"></app-payment-plan-pay>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>

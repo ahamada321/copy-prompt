@@ -5,6 +5,7 @@ import { PromptModule } from './prompt/prompt.module';
 import { UserModule } from './user/user.module';
 import { StaticModule } from './statics/statics.module';
 import { BlogModule } from './blog/blog.module';
+import { PaymentModule } from './payment/payment.module';
 
 const routes: Routes = [];
 
@@ -12,6 +13,7 @@ const routes: Routes = [];
   imports: [
     RouterModule.forRoot(routes),
     AuthModule,
+    PaymentModule,
     PromptModule,
     BlogModule,
     UserModule,

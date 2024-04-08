@@ -8,6 +8,7 @@ import { PaymentComponent } from './payment.component';
 import { PaymentService } from './shared/payment.service';
 import { PaymentPlanComponent } from './payment-plan/payment-plan.component';
 import { PaymentPlanPayComponent } from './payment-plan/helpers/payment-plan-pay.component';
+import { MangaLpModule } from '../shared/manga-lp/manga-lp.module';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    MangaLpModule,
   ],
   providers: [PaymentService],
 })

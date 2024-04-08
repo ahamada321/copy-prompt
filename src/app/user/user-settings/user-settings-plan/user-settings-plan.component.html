@@ -1,0 +1,236 @@
+<div class="wrapper">
+  <div
+    class="page-header page-header-xxs settings-background"
+    style="background-image: url('./assets/img/bg/tressure-map.jpg')"
+  >
+    <div class="filter"></div>
+    <div class="content-center">
+      <div class="container">
+        <div class="space-50"></div>
+        <h1 class="title">
+          プラン変更 <br /><small class="description">Change your plan</small>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="profile-content section section-nude">
+    <div class="container text-center">
+      <div class="space-50"></div>
+      <button
+        href="javascript:void(0)"
+        class="btn btn-lg btn-primary btn-round"
+      >
+        今すぐプラン変更する &nbsp;<i class="nc-icon nc-spaceship"></i>
+      </button>
+      <h1 class="title">プレミアムプランって何ができるの？</h1>
+      <div class="space-top"></div>
+      <app-manga-lp></app-manga-lp>
+      <div class="space-top"></div>
+      <div class="container text-center">
+        <h2>プランを選択</h2>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="choose-plan">
+              <div class="space-top"></div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card card-pricing">
+                    <div class="card-body">
+                      <h3 class="card-category text-primary">
+                        <span class="text-black">\ 一番お得 /<br /></span
+                        >年間プラン
+                      </h3>
+                      <h2 class="card-title">770円/月<small>(税込)</small></h2>
+                      <p>
+                        9,240(税込)/年のお支払いになります
+                        <br />※契約は自動更新となります
+                      </p>
+                      <div class="space-top"></div>
+                      <a
+                        (click)="
+                          openStripeForm(stripeForm);
+                          priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                        "
+                        class="btn btn-lg btn-primary btn-round"
+                        ><i class="nc-icon nc-diamond"></i
+                        >&nbsp;このプランに変更</a
+                      >
+                      <ul>
+                        <li>
+                          <i class="nc-icon nc-tv-2" aria-hidden="true"></i
+                          >&nbsp;
+                          <b>広告表示なし</b>
+                        </li>
+                        <li>
+                          <i
+                            class="nc-icon nc-delivery-fast"
+                            aria-hidden="true"
+                          ></i
+                          >&nbsp; <b>高速文字生成</b>
+                        </li>
+
+                        <li>
+                          <i class="nc-icon nc-spaceship" aria-hidden="true"></i
+                          >&nbsp; <b>利用無制限</b>
+                        </li>
+                        <li>
+                          <i class="nc-icon nc-bulb-63" aria-hidden="true"></i
+                          >&nbsp; <b>26円/日</b>で使い放題
+                        </li>
+                      </ul>
+                      <span class="badge badge-pill badge-default mr-1"
+                        >最大62%お得なプラン</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card card-pricing">
+                    <div class="card-body">
+                      <h3 class="card-category text-primary">
+                        <span class="text-black">\ 少しお得 /<br /></span
+                        >6ヶ月プラン
+                      </h3>
+                      <h2 class="card-title">1480円/月<small>(税込)</small></h2>
+                      <p>
+                        8,880(税込)/6ヶ月のお支払いになります
+                        <br />※契約は自動更新となります
+                      </p>
+                      <div class="space-top"></div>
+                      <a
+                        (click)="
+                          openStripeForm(stripeForm);
+                          priceId = 'price_1P3C2nGvQ0173hUnP168f8lU'
+                        "
+                        class="btn btn-lg btn-primary btn-round"
+                        ><i class="nc-icon nc-diamond"></i
+                        >&nbsp;このプランに変更</a
+                      >
+                      <ul>
+                        <li>
+                          <i class="nc-icon nc-tv-2" aria-hidden="true"></i
+                          >&nbsp;
+                          <b>広告表示なし</b>
+                        </li>
+                        <li>
+                          <i
+                            class="nc-icon nc-delivery-fast"
+                            aria-hidden="true"
+                          ></i
+                          >&nbsp; <b>高速文字生成</b>
+                        </li>
+
+                        <li>
+                          <i class="nc-icon nc-spaceship" aria-hidden="true"></i
+                          >&nbsp; <b>利用無制限</b>
+                        </li>
+                        <li>
+                          <i class="nc-icon nc-bulb-63" aria-hidden="true"></i
+                          >&nbsp; <b>50円/日</b>で使い放題
+                        </li>
+                      </ul>
+                      <span class="badge badge-pill badge-default mr-1"
+                        >最大26%お得なプラン</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card card-pricing no-transition selected">
+                    <div class="card-body">
+                      <h3 class="card-category text-primary">
+                        <span class="text-black">\ 期間限定割引 /<br /></span
+                        >1ヶ月プラン
+                      </h3>
+
+                      <h2 class="card-title">1980円/月<small>(税込)</small></h2>
+                      <p><br />※契約は自動更新となります</p>
+                      <div class="space-top"></div>
+
+                      <a
+                        (click)="
+                          openStripeForm(stripeForm);
+                          priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                        "
+                        disabled
+                        class="btn btn-lg btn-default btn-round"
+                        ><i class="nc-icon nc-diamond"></i>&nbsp;現在適用中</a
+                      >
+                      <ul>
+                        <li>
+                          <i class="nc-icon nc-tv-2" aria-hidden="true"></i
+                          >&nbsp;
+                          <b>広告表示なし</b>
+                        </li>
+                        <li>
+                          <i
+                            class="nc-icon nc-delivery-fast"
+                            aria-hidden="true"
+                          ></i
+                          >&nbsp; <b>高速文字生成</b>
+                        </li>
+
+                        <li>
+                          <i class="nc-icon nc-spaceship" aria-hidden="true"></i
+                          >&nbsp; <b>利用無制限</b>
+                        </li>
+                        <li>
+                          <i class="nc-icon nc-bulb-63" aria-hidden="true"></i
+                          >&nbsp; <b>66円/日</b>で使い放題
+                        </li>
+                      </ul>
+                      <span class="badge badge-pill badge-default mr-1"
+                        >期間限定プライス</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-top"></div>
+        <div class="row">
+          <div class="col-md-4 mr-auto ml-auto">
+            <div class="card card-pricing">
+              <div class="card-body">
+                <h3 class="card-category">フリープラン</h3>
+                <h2 class="card-title">0円</h2>
+
+                <a
+                  (click)="
+                    openStripeForm(stripeForm);
+                    priceId = 'price_1P3C2nGvQ0173hUnP168f8lU'
+                  "
+                  class="btn btn-lg btn-primary btn-round mt-3"
+                  >このプランに変更</a
+                >
+                <ul>
+                  <li>
+                    <i class="nc-icon nc-tv-2" aria-hidden="true"></i>&nbsp;
+                    <b>広告表示あり</b>
+                  </li>
+                  <li>
+                    <i class="nc-icon nc-delivery-fast" aria-hidden="true"></i
+                    >&nbsp; <b>文字生成</b>
+                  </li>
+
+                  <li>
+                    <i class="nc-icon nc-spaceship" aria-hidden="true"></i
+                    >&nbsp; <b>利用制限あり</b>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a class="btn btn-primary btn-link" [routerLink]="['/user/settings']">
+          戻る
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

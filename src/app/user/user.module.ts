@@ -18,6 +18,8 @@ import { UserMypageHistoryComponent } from './user-mypage/user-mypage-history/us
 import { UserMypageMypromptComponent } from './user-mypage/user-mypage-myprompt/user-mypage-myprompt.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ListCardModule } from '../shared/list-card/list-card.module';
+import { UserSettingsPlanComponent } from './user-settings/user-settings-plan/user-settings-plan.component';
+import { MangaLpModule } from '../shared/manga-lp/manga-lp.module';
 
 const routes: Routes = [
   {
@@ -40,6 +42,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
+        path: 'plan',
+        component: UserSettingsPlanComponent,
+        canActivate: [AuthGuard],
+      },
+      {
         path: ':userId',
         component: UserProfileComponent,
       },
@@ -57,6 +64,7 @@ const routes: Routes = [
     UserMypageMypromptComponent,
     UserSettingsComponent,
     UserSettingsPasswordComponent,
+    UserSettingsPlanComponent,
     UserProfileComponent,
   ],
   imports: [
@@ -68,6 +76,7 @@ const routes: Routes = [
     ImageUploadModule,
     // ImageUploadMyverModule,
     ListCardModule,
+    MangaLpModule,
   ],
   providers: [UserService],
 })

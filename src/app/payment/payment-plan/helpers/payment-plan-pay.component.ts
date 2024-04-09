@@ -9,15 +9,13 @@ import { PaymentService } from '../../shared/payment.service';
 })
 export class PaymentPlanPayComponent implements OnInit {
   @Input() priceId!: string;
-  validatingCardFlag: boolean = false;
-  error: any;
-
-  loadingFlg: boolean = true;
+  @ViewChild('payment') paymentRef!: ElementRef;
+  isLoading: boolean = true;
+  isClicked: boolean = false;
 
   stripe: any;
   elements: any;
-
-  @ViewChild('payment') paymentRef!: ElementRef;
+  error: any;
   payment: any;
 
   constructor(private paymentService: PaymentService) {}
@@ -32,36 +30,36 @@ export class PaymentPlanPayComponent implements OnInit {
     );
     this.paymentService.createPayment(this.priceId).subscribe(
       (subscription) => {
+        this.isLoading = false;
         const options = {
           clientSecret: subscription.clientSecret,
         };
         this.elements = this.stripe.elements(options);
         this.payment = this.elements.create('payment');
         this.payment.mount(this.paymentRef.nativeElement);
-        this.loadingFlg = false;
       },
       (err) => {
+        this.isLoading = false;
         this.error = err.error.detail;
         console.error(this.error);
-        this.loadingFlg = false;
       }
     );
   }
 
-  checkout() {
+  async checkout() {
+    this.isClicked = true;
     const baseURL = window.location.origin;
-    this.stripe
-      .confirmPayment({
+
+    try {
+      await this.stripe.confirmPayment({
         elements: this.elements,
         confirmParams: {
-          return_url: baseURL,
+          return_url: baseURL + '/user#subscriber',
         },
-      })
-      .then((result: any) => {
-        if (result.error) {
-          this.error = result.error;
-          console.error(this.error);
-        }
       });
+    } catch (err) {
+      this.error = err;
+      console.error(this.error);
+    }
   }
 }

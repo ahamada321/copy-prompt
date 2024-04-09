@@ -39,6 +39,7 @@ export class PromptFormComponent {
     });
     postForm.value.system = this.prompt.system;
 
+    this.addHistory();
     this.promptService.postPrompt(postForm.value).subscribe(
       (content) => {
         this.contents.push(content);
@@ -51,6 +52,15 @@ export class PromptFormComponent {
       }
     );
     postForm.reset();
+  }
+
+  private addHistory() {
+    this.userService.addHistory(this.prompt._id).subscribe(
+      (success) => {},
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   modalLoginOpen() {

@@ -35,9 +35,9 @@
             </ng-template>
           </li>
           <li [ngbNavItem]="2">
-            <a ngbNavLink>過去コピーしたプロンプト</a>
+            <a ngbNavLink>過去使用したプロンプト</a>
             <ng-template ngbNavContent>
-              <h3>過去コピーしたプロンプト</h3>
+              <h3>過去使用したプロンプト</h3>
               <app-user-mypage-history></app-user-mypage-history>
             </ng-template>
           </li>
@@ -60,3 +60,45 @@
     </div>
   </div>
 </div>
+
+<ng-template #Subscriber let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button class="close" (click)="d('Cross click')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title">決済完了のお知らせ</h3>
+  </div>
+  <div class="modal-body">
+    <h3 class="modal-title text-center">プレミアムプラン登録ありがとう</h3>
+    <br />
+    <p>決済が無事完了したよ。</p>
+    <p>
+      ご利用期間中は上限を気にせず使えるからいろんなプロンプトをたくさん試してね。現在の契約プランの確認と変更は「アカウント設定」からできるよ。
+    </p>
+    <p>それでは早速、今まで使ったプロンプトを確認しよう！</p>
+    <br />
+    <div class="text-center">
+      <button
+        class="btn btn-primary btn-round btn-move-right"
+        (click)="d('Cross click')"
+      >
+        <i class="nc-icon nc-minimal-right"></i>&nbsp;
+        過去に利用したプロンプトを見る
+      </button>
+    </div>
+    <div class="card card-plain text-center">
+      <div class="card-img-top">
+        <img class="img" src="./assets/icons/2.png" />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="d('Cross click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>

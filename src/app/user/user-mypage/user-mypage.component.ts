@@ -1,5 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  TemplateRef,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
@@ -8,11 +15,13 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   styleUrls: ['./user-mypage.component.scss'],
 })
 export class UserMypageComponent implements OnInit, OnDestroy {
-  activeTab = 2;
+  @ViewChild('Subscriber') subscriberTemplateRef!: TemplateRef<any>;
+  activeTab: number = 2;
 
   constructor(
     private route: ActivatedRoute,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -24,11 +33,17 @@ export class UserMypageComponent implements OnInit, OnDestroy {
         this.activeTab = 2;
       } else if (fragment === 'favorite') {
         this.activeTab = 1;
+      } else if (fragment === 'subscriber') {
+        this.activeTab = 2;
+        this.modalService.open(this.subscriberTemplateRef, {
+          backdrop: 'static',
+        });
       }
     });
   }
 
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
+    this.modalService.dismissAll();
   }
 }

@@ -64,6 +64,8 @@ export class PaymentPlanComponent implements OnInit {
       );
   }
 
+  cancelSubscription() {}
+
   private showSwalSuccess() {
     Swal.fire({
       // title: 'User infomation has been updated!',

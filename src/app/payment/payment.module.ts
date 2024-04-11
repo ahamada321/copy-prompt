@@ -35,6 +35,7 @@ const routes: Routes = [
     MangaLpModule,
     SubscribeFaqModule,
   ],
+  exports: [PaymentPlanComponent],
   providers: [PaymentService],
 })
 export class PaymentModule {}

@@ -307,47 +307,44 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="space-top"></div>
-    <div class="row">
-      <div
-        class="col-md-4 mr-auto ml-auto"
-        *ngIf="foundUser.isConfirmedPayment"
-      >
-        <div class="card card-pricing">
-          <div class="card-body">
-            <h3 class="card-category">フリープラン</h3>
-            <h2 class="card-title">0円</h2>
-            <div class="space-top"></div>
-            <button
-              class="btn btn-primary btn-lg btn-round"
-              (click)="
-                priceId = '';
-                billingCycle = 0;
-                openStripeForm(cancelSubscriptionWindow)
-              "
+            <div
+              class="col-md-4 mr-auto ml-auto"
+              *ngIf="foundUser.isConfirmedPayment"
             >
-              このプランに変更
-            </button>
-            <ul>
-              <li>
-                <i class="nc-icon nc-tv-2" aria-hidden="true"></i>&nbsp;
-                <b>広告表示あり</b>
-              </li>
-              <li>
-                <i class="nc-icon nc-delivery-fast" aria-hidden="true"></i
-                >&nbsp; <b>文字生成</b>
-              </li>
+              <div class="card card-pricing">
+                <div class="card-body">
+                  <h3 class="card-category">フリープラン</h3>
+                  <h2 class="card-title">0円</h2>
+                  <div class="space-top"></div>
+                  <button
+                    class="btn btn-primary btn-lg btn-round"
+                    (click)="
+                      priceId = '';
+                      billingCycle = 0;
+                      openStripeForm(cancelSubscriptionWindow)
+                    "
+                  >
+                    このプランに変更
+                  </button>
+                  <ul>
+                    <li>
+                      <i class="nc-icon nc-tv-2" aria-hidden="true"></i>&nbsp;
+                      <b>広告表示あり</b>
+                    </li>
+                    <li>
+                      <i class="nc-icon nc-delivery-fast" aria-hidden="true"></i
+                      >&nbsp; <b>文字生成</b>
+                    </li>
 
-              <li>
-                <i class="nc-icon nc-spaceship" aria-hidden="true"></i>&nbsp;
-                <b>利用制限あり</b>
-              </li>
-            </ul>
+                    <li>
+                      <i class="nc-icon nc-spaceship" aria-hidden="true"></i
+                      >&nbsp;
+                      <b>利用制限あり</b>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

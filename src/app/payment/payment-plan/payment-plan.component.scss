@@ -1,6 +1,11 @@
-.row {
-  flex-wrap: nowrap;
-  overflow-x: scroll;
+@media screen and (max-width: 991px) {
+  .row {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+}
+.card {
+  min-width: 284px; // For Price card height.
 }
 
 .card-pricing .card-title {

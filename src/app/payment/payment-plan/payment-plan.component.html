@@ -10,15 +10,23 @@
     <app-manga-lp></app-manga-lp>
   </div>
   <div class="space-top"></div>
-  <div class="container text-center">
+  <div class="container text-center" *ngIf="foundUser">
     <h2>プランを選択</h2>
+    <p *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </p>
     <div class="row">
       <div class="col-md-12">
         <div class="choose-plan">
           <div class="space-top"></div>
           <div class="row">
             <div class="col-md-4">
-              <div class="card card-pricing">
+              <div
+                class="card card-pricing"
+                [class.selected]="
+                  foundUser.isConfirmedPayment && foundUser.billingCycle === 12
+                "
+              >
                 <div class="card-body">
                   <h3 class="card-category text-primary">
                     <span class="text-black">\ 一番お得 /<br /></span>年間プラン
@@ -29,14 +37,60 @@
                     <br />※契約は自動更新となります
                   </p>
                   <div class="space-top"></div>
-                  <a
-                    (click)="
-                      openStripeForm(stripeForm);
-                      priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                  <button
+                    *ngIf="!foundUser.isConfirmedPayment"
+                    class="btn btn-lg btn-round"
+                    [class.btn-primary]="
+                      !(
+                        foundUser.isConfirmedPayment &&
+                        foundUser.billingCycle === 12
+                      )
                     "
-                    class="btn btn-lg btn-primary btn-round"
-                    ><i class="nc-icon nc-diamond"></i>&nbsp;このプランにする</a
+                    (click)="
+                      priceId = 'price_1P3wjTGvQ0173hUnsexTFfWB';
+                      billingCycle = 12;
+                      openStripeForm(stripeForm)
+                    "
+                    [disabled]="
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 12
+                    "
                   >
+                    <i class="nc-icon nc-diamond"></i>&nbsp;
+                    {{
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 12
+                        ? "現在適用中"
+                        : "このプランにする"
+                    }}
+                  </button>
+                  <button
+                    *ngIf="foundUser.isConfirmedPayment"
+                    class="btn btn-lg btn-round"
+                    [class.btn-primary]="
+                      !(
+                        foundUser.isConfirmedPayment &&
+                        foundUser.billingCycle === 12
+                      )
+                    "
+                    (click)="
+                      priceId = 'price_1P3wjTGvQ0173hUnsexTFfWB';
+                      billingCycle = 12;
+                      openStripeForm(updateSubscriptionWindow)
+                    "
+                    [disabled]="
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 12
+                    "
+                  >
+                    <i class="nc-icon nc-diamond"></i>&nbsp;
+                    {{
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 12
+                        ? "現在適用中"
+                        : "このプランに変更"
+                    }}
+                  </button>
                   <ul>
                     <li>
                       <i class="nc-icon nc-tv-2" aria-hidden="true"></i>&nbsp;
@@ -63,7 +117,12 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card card-pricing">
+              <div
+                class="card card-pricing"
+                [class.selected]="
+                  foundUser.isConfirmedPayment && foundUser.billingCycle === 6
+                "
+              >
                 <div class="card-body">
                   <h3 class="card-category text-primary">
                     <span class="text-black">\ 少しお得 /<br /></span
@@ -75,14 +134,60 @@
                     <br />※契約は自動更新となります
                   </p>
                   <div class="space-top"></div>
-                  <a
-                    (click)="
-                      openStripeForm(stripeForm);
-                      priceId = 'price_1P3C2nGvQ0173hUnP168f8lU'
+                  <button
+                    *ngIf="!foundUser.isConfirmedPayment"
+                    class="btn btn-lg btn-round"
+                    [class.btn-primary]="
+                      !(
+                        foundUser.isConfirmedPayment &&
+                        foundUser.billingCycle === 6
+                      )
                     "
-                    class="btn btn-lg btn-primary btn-round"
-                    ><i class="nc-icon nc-diamond"></i>&nbsp;このプランにする</a
+                    (click)="
+                      priceId = 'price_1P3C2nGvQ0173hUnP168f8lU';
+                      billingCycle = 6;
+                      openStripeForm(stripeForm)
+                    "
+                    [disabled]="
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 6
+                    "
                   >
+                    <i class="nc-icon nc-diamond"></i>&nbsp;
+                    {{
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 6
+                        ? "現在適用中"
+                        : "このプランにする"
+                    }}
+                  </button>
+                  <button
+                    *ngIf="foundUser.isConfirmedPayment"
+                    class="btn btn-lg btn-round"
+                    [class.btn-primary]="
+                      !(
+                        foundUser.isConfirmedPayment &&
+                        foundUser.billingCycle === 6
+                      )
+                    "
+                    (click)="
+                      priceId = 'price_1P3C2nGvQ0173hUnP168f8lU';
+                      billingCycle = 6;
+                      openStripeForm(updateSubscriptionWindow)
+                    "
+                    [disabled]="
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 6
+                    "
+                  >
+                    <i class="nc-icon nc-diamond"></i>&nbsp;
+                    {{
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 6
+                        ? "現在適用中"
+                        : "このプランに変更"
+                    }}
+                  </button>
                   <ul>
                     <li>
                       <i class="nc-icon nc-tv-2" aria-hidden="true"></i>&nbsp;
@@ -109,7 +214,12 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card card-pricing">
+              <div
+                class="card card-pricing"
+                [class.selected]="
+                  foundUser.isConfirmedPayment && foundUser.billingCycle === 1
+                "
+              >
                 <div class="card-body">
                   <h3 class="card-category text-primary">
                     <span class="text-black">\ 期間限定割引 /<br /></span
@@ -120,14 +230,60 @@
                   <p><br />※契約は自動更新となります</p>
                   <div class="space-top"></div>
 
-                  <a
-                    (click)="
-                      openStripeForm(stripeForm);
-                      priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                  <button
+                    *ngIf="!foundUser.isConfirmedPayment"
+                    class="btn btn-lg btn-round"
+                    [class.btn-primary]="
+                      !(
+                        foundUser.isConfirmedPayment &&
+                        foundUser.billingCycle === 1
+                      )
                     "
-                    class="btn btn-lg btn-primary btn-round"
-                    ><i class="nc-icon nc-diamond"></i>&nbsp;このプランにする</a
+                    (click)="
+                      priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5';
+                      billingCycle = 1;
+                      openStripeForm(stripeForm)
+                    "
+                    [disabled]="
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 1
+                    "
                   >
+                    <i class="nc-icon nc-diamond"></i>&nbsp;
+                    {{
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 1
+                        ? "現在適用中"
+                        : "このプランにする"
+                    }}
+                  </button>
+                  <button
+                    *ngIf="foundUser.isConfirmedPayment"
+                    class="btn btn-lg btn-round"
+                    [class.btn-primary]="
+                      !(
+                        foundUser.isConfirmedPayment &&
+                        foundUser.billingCycle === 1
+                      )
+                    "
+                    (click)="
+                      priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5';
+                      billingCycle = 1;
+                      openStripeForm(updateSubscriptionWindow)
+                    "
+                    [disabled]="
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 1
+                    "
+                  >
+                    <i class="nc-icon nc-diamond"></i>&nbsp;
+                    {{
+                      foundUser.isConfirmedPayment &&
+                      foundUser.billingCycle === 1
+                        ? "現在適用中"
+                        : "このプランに変更"
+                    }}
+                  </button>
                   <ul>
                     <li>
                       <i class="nc-icon nc-tv-2" aria-hidden="true"></i>&nbsp;
@@ -168,7 +324,54 @@
     <h3 class="modal-title">決済フォーム画面</h3>
   </div>
   <div class="modal-body">
-    <app-payment-plan-pay [priceId]="priceId"></app-payment-plan-pay>
+    <app-payment-plan-pay
+      [priceId]="priceId"
+      [billingCycle]="billingCycle"
+    ></app-payment-plan-pay>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #updateSubscriptionWindow let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button class="close" (click)="d('Cross click')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title">プランを変更しますか？</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      プランをアップグレードされる場合は、契約更新月の残日数分の差額が自動割引されるので、お得にアップグレードできます。<br />
+    </p>
+    <div class="space-top"></div>
+    <div class="text-center">
+      <p *ngIf="error" class="alert alert-danger">
+        {{ error }}
+      </p>
+      <button
+        *ngIf="isClicked"
+        [disabled]="true"
+        class="btn btn-primary btn-round btn-wd"
+      >
+        <span class="loader"></span>
+      </button>
+      <button
+        *ngIf="!isClicked"
+        (click)="updateSubscription()"
+        class="btn btn-primary btn-round btn-wd"
+      >
+        プランを変更する
+      </button>
+      <div class="btn btn-link">(クレジットカードの入力は省略できます。)</div>
+    </div>
   </div>
   <div class="modal-footer">
     <button

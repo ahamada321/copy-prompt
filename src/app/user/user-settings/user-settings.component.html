@@ -182,16 +182,20 @@
               <button
                 [disabled]="!(userForm.valid && userForm.dirty && !isClicked)"
                 type="submit"
-                class="btn btn-primary btn-lg btn-round btn-wd"
+                class="btn btn-primary btn-round btn-wd"
               >
                 更新する
               </button>
+              <br />
+              <a [routerLink]="['/user']" class="btn btn-primary btn-link mt-3">
+                マイページへ戻る
+              </a>
             </div>
           </form>
         </div>
       </div>
       <div class="text-center">
-        <button class="btn btn-primary btn-link" (click)="logout()">
+        <button class="btn btn-primary btn-link mb-2" (click)="logout()">
           ログアウトする
         </button>
       </div>

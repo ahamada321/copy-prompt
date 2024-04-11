@@ -31,6 +31,10 @@ const userSchema = new Schema({
     required: "Password is required",
   },
   customerId: String, // Stripe
+  subscriptionId: String, // Stripe
+  billingCycle: Number, // Stripe
+  currentPeriodEnd: Number, // Unix timestamp
+  isConfirmedPayment: Boolean, // Stripe
 
   description: String,
   image: String,

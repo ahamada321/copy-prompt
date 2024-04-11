@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="profile-content section section-nude">
+  <div *ngIf="foundUser" class="profile-content section section-nude">
     <div class="container text-center">
       <div class="space-50"></div>
       <button
@@ -34,7 +34,10 @@
               <div class="space-top"></div>
               <div class="row">
                 <div class="col-md-4">
-                  <div class="card card-pricing">
+                  <div
+                    class="card card-pricing"
+                    [class.selected]="foundUser.billingCycle === 12"
+                  >
                     <div class="card-body">
                       <h3 class="card-category text-primary">
                         <span class="text-black">\ 一番お得 /<br /></span
@@ -49,11 +52,16 @@
                       <a
                         (click)="
                           openStripeForm(stripeForm);
-                          priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                          priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5';
+                          billingCycle = 12
                         "
                         class="btn btn-lg btn-primary btn-round"
-                        ><i class="nc-icon nc-diamond"></i
-                        >&nbsp;このプランに変更</a
+                        ><i class="nc-icon nc-diamond"></i>&nbsp;
+                        {{
+                          foundUser.billingCycle === 12
+                            ? "現在適用中"
+                            : "このプランに変更"
+                        }}</a
                       >
                       <ul>
                         <li>
@@ -85,7 +93,10 @@
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="card card-pricing">
+                  <div
+                    class="card card-pricing"
+                    [class.selected]="foundUser.billingCycle === 6"
+                  >
                     <div class="card-body">
                       <h3 class="card-category text-primary">
                         <span class="text-black">\ 少しお得 /<br /></span
@@ -100,11 +111,16 @@
                       <a
                         (click)="
                           openStripeForm(stripeForm);
-                          priceId = 'price_1P3C2nGvQ0173hUnP168f8lU'
+                          priceId = 'price_1P3C2nGvQ0173hUnP168f8lU';
+                          billingCycle = 6
                         "
                         class="btn btn-lg btn-primary btn-round"
-                        ><i class="nc-icon nc-diamond"></i
-                        >&nbsp;このプランに変更</a
+                        ><i class="nc-icon nc-diamond"></i>&nbsp;
+                        {{
+                          foundUser.billingCycle === 6
+                            ? "現在適用中"
+                            : "このプランに変更"
+                        }}</a
                       >
                       <ul>
                         <li>
@@ -136,7 +152,10 @@
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="card card-pricing no-transition selected">
+                  <div
+                    class="card card-pricing no-transition selected"
+                    [class.selected]="foundUser.billingCycle === 1"
+                  >
                     <div class="card-body">
                       <h3 class="card-category text-primary">
                         <span class="text-black">\ 期間限定割引 /<br /></span
@@ -147,15 +166,22 @@
                       <p><br />※契約は自動更新となります</p>
                       <div class="space-top"></div>
 
-                      <a
+                      <button
                         (click)="
                           openStripeForm(stripeForm);
-                          priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5'
+                          priceId = 'price_1P2vguGvQ0173hUnSY8iSDS5';
+                          billingCycle = 1
                         "
-                        disabled
+                        [disabled]="foundUser.billingCycle === 1"
                         class="btn btn-lg btn-default btn-round"
-                        ><i class="nc-icon nc-diamond"></i>&nbsp;現在適用中</a
                       >
+                        <i class="nc-icon nc-diamond"></i>&nbsp;
+                        {{
+                          foundUser.billingCycle === 1
+                            ? "現在適用中"
+                            : "このプランに変更"
+                        }}
+                      </button>
                       <ul>
                         <li>
                           <i class="nc-icon nc-tv-2" aria-hidden="true"></i
@@ -203,7 +229,10 @@
                     priceId = 'price_1P3C2nGvQ0173hUnP168f8lU'
                   "
                   class="btn btn-lg btn-primary btn-round mt-3"
-                  >このプランに変更</a
+                >
+                  {{
+                    !foundUser.billingCycle ? "現在適用中" : "このプランに変更"
+                  }}</a
                 >
                 <ul>
                   <li>
@@ -234,3 +263,27 @@
     </div>
   </div>
 </div>
+
+<ng-template #stripeForm let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button class="close" (click)="d('Cross click')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title">決済フォーム画面</h3>
+  </div>
+  <div class="modal-body">
+    <app-change-plan-pay
+      [priceId]="priceId"
+      [billingCycle]="billingCycle"
+    ></app-change-plan-pay>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>

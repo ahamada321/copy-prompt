@@ -20,6 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ListCardModule } from '../shared/list-card/list-card.module';
 import { UserSettingsPlanComponent } from './user-settings/user-settings-plan/user-settings-plan.component';
 import { MangaLpModule } from '../shared/manga-lp/manga-lp.module';
+import { ChangePlanPayComponent } from './user-settings/user-settings-plan/helpers/change-plan-pay.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,7 @@ const routes: Routes = [
     UserSettingsComponent,
     UserSettingsPasswordComponent,
     UserSettingsPlanComponent,
+    ChangePlanPayComponent, // tmp
     UserProfileComponent,
   ],
   imports: [

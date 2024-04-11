@@ -14,6 +14,11 @@ export class User {
   description?: string;
   image?: string;
   stripe?: string;
+  customerId?: string; // Stripe
+  subscriptionId?: string; // Stripe
+  billingCycle?: number; // Stripe
+  currentPeriodEnd?: Date; // Stripe
+  isConfirmedPayment?: boolean; // Stripe
 
   homepage?: string;
   twitter?: string;

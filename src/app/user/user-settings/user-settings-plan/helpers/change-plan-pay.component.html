@@ -1,8 +1,5 @@
 <form (ngSubmit)="checkout()">
-  <div *ngIf="isLoading">
-    <div class="loader"></div>
-    <br />
-  </div>
+  <div [class.loader]="isLoading"></div>
   <p *ngIf="error" class="alert alert-danger">
     {{ error }}
   </p>
@@ -15,7 +12,7 @@
       [disabled]="isClicked"
       class="btn btn-stripe mb-3"
     >
-      サブスクする
+      変更する
     </button>
   </div>
 </form>

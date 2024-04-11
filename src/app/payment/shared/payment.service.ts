@@ -11,7 +11,26 @@ export class PaymentService {
     return this.http.get('/api/v1/payments');
   }
 
-  public createPayment(priceId: string): Observable<any> {
-    return this.http.post('/api/v1/payments/create', { priceId });
+  public createSubscription(
+    priceId: string,
+    billingCycle: number
+  ): Observable<any> {
+    return this.http.post('/api/v1/payments/create', { priceId, billingCycle });
+  }
+
+  public confirmSubscription(payment_intent: string): Observable<any> {
+    return this.http.patch('/api/v1/payments/confirm', {
+      payment_intent,
+    });
+  }
+
+  public updateSubscription(
+    priceId: string,
+    billingCycle: number
+  ): Observable<any> {
+    return this.http.patch('/api/v1/payments/update', {
+      priceId,
+      billingCycle,
+    });
   }
 }

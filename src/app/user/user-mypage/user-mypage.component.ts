@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentService } from 'src/app/payment/shared/payment.service';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class UserMypageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private navbarService: NavbarService,
+    private paymentService: PaymentService,
     private modalService: NgbModal
   ) {}
 
@@ -33,11 +35,24 @@ export class UserMypageComponent implements OnInit, OnDestroy {
         this.activeTab = 2;
       } else if (fragment === 'favorite') {
         this.activeTab = 1;
-      } else if (fragment === 'subscriber') {
-        this.activeTab = 2;
+      }
+    });
+  }
+
+  ngAfterViewInit() {
+    this.route.queryParams.subscribe((params) => {
+      if (params['payment_intent']) {
         this.modalService.open(this.subscriberTemplateRef, {
           backdrop: 'static',
         });
+        this.paymentService
+          .confirmSubscription(params['payment_intent'])
+          .subscribe(
+            (result) => {},
+            (errorResponse) => {
+              console.error(errorResponse);
+            }
+          );
       }
     });
   }

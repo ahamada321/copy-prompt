@@ -1,13 +1,13 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js';
-import { PaymentService } from '../../shared/payment.service';
+import { PaymentService } from 'src/app/payment/shared/payment.service';
 
 @Component({
-  selector: 'app-payment-plan-pay',
-  templateUrl: './payment-plan-pay.component.html',
-  styleUrls: ['./payment-plan-pay.component.scss'],
+  selector: 'app-change-plan-pay',
+  templateUrl: './change-plan-pay.component.html',
+  styleUrls: ['./change-plan-pay.component.scss'],
 })
-export class PaymentPlanPayComponent implements OnInit {
+export class ChangePlanPayComponent implements OnInit {
   @Input() priceId!: string;
   @Input() billingCycle!: number;
   @ViewChild('payment') paymentRef!: ElementRef;
@@ -30,7 +30,7 @@ export class PaymentPlanPayComponent implements OnInit {
       'pk_test_pb83wBnjrbxnUltLLCR5KlYC00NK6M8day'
     );
     this.paymentService
-      .createSubscription(this.priceId, this.billingCycle)
+      .updateSubscription(this.priceId, this.billingCycle)
       .subscribe(
         (subscription) => {
           this.isLoading = false;
@@ -42,6 +42,7 @@ export class PaymentPlanPayComponent implements OnInit {
           this.payment.mount(this.paymentRef.nativeElement);
         },
         (err) => {
+          this.isLoading = false;
           this.error = err.error.detail;
           console.error(this.error);
         }
@@ -56,7 +57,7 @@ export class PaymentPlanPayComponent implements OnInit {
       await this.stripe.confirmPayment({
         elements: this.elements,
         confirmParams: {
-          return_url: baseURL + '/user',
+          return_url: baseURL + '/user#subscriber',
         },
       });
     } catch (err) {

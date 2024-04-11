@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TermsComponent } from './terms/terms.component';
 import { TermsTextModule } from './terms/helpers/terms-text/terms-text.module';

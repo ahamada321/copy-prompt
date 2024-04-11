@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../../shared/user.model';
 import Swal from 'sweetalert2';
 import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-user-settings-plan',
@@ -13,18 +14,34 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 })
 export class UserSettingsPlanComponent implements OnInit {
   priceId!: string;
+  billingCycle!: number;
   isClicked: boolean = false;
   stripeForm: any;
+
+  foundUser!: User;
 
   constructor(
     private router: Router,
     private navbarService: NavbarService,
-    private auth: MyOriginAuthService
+    private auth: MyOriginAuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {}
   ngOnDestroy() {
     this.navbarService.resetNavbarPosition();
+  }
+
+  getUser() {
+    const userId = this.auth.getUserId();
+    this.userService.getUserById(userId).subscribe(
+      (foundUser) => {
+        this.foundUser = foundUser;
+      },
+      (errorResponse) => {
+        console.error(errorResponse);
+      }
+    );
   }
 
   updateUser(userForm: NgForm) {

@@ -28,3 +28,31 @@
   font-size: 1.05em;
   border-radius: 2px;
 }
+
+.selected {
+  background-color: rgb(230, 229, 229);
+  opacity: 0.8;
+}
+
+.loader {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: block;
+  margin: 5px auto;
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
+  animation: shadowExpandX 2s linear infinite alternate;
+}
+
+@keyframes shadowExpandX {
+  0% {
+    box-shadow: 0 0, 0 0;
+    color: rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: -24px 0, 24px 0;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}

@@ -94,7 +94,7 @@ exports.updateSubscription = async function (req, res) {
 
   try {
     const foundUser = await User.findOne({ _id: user._id }).select(
-      "customerId subscriptionId email"
+      "subscriptionId"
     );
 
     const currentSubscription = await stripe.subscriptions.retrieve(
@@ -133,35 +133,24 @@ exports.cancelSubscription = async function (req, res) {
 
   try {
     const foundUser = await User.findOne({ _id: user._id }).select(
-      "customerId subscriptionId email"
+      "subscriptionId"
     );
 
-    const currentSubscription = await stripe.subscriptions.retrieve(
+    const subscription = await stripe.subscriptions.cancel(
       foundUser.subscriptionId
-    );
-
-    const newSubscription = await stripe.subscriptions.update(
-      foundUser.subscriptionId,
-      {
-        items: [
-          {
-            id: currentSubscription.items.data[0].id,
-            price: priceId,
-          },
-        ],
-      }
     );
 
     await User.updateOne(
       { _id: user._id },
       {
-        subscriptionId: newSubscription.id,
-        billingCycle,
-        currentPeriodEnd: newSubscription.current_period_end,
+        subscriptionId: "",
+        billingCycle: 0,
+        currentPeriodEnd: 0,
+        isConfirmedPayment: false,
       }
     );
 
-    return res.json(newSubscription);
+    return res.json(subscription);
   } catch (err) {
     return res.status(400).send({ detail: err.message });
   }

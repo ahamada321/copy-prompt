@@ -7,10 +7,6 @@ import { HttpClient } from '@angular/common/http';
 export class PaymentService {
   constructor(private http: HttpClient) {}
 
-  public getClientSecret(): Observable<any> {
-    return this.http.get('/api/v1/payments');
-  }
-
   public createSubscription(
     priceId: string,
     billingCycle: number

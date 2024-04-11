@@ -87,9 +87,13 @@ export class PaymentPlanComponent implements OnInit {
       buttonsStyling: false,
     }).then(() => {
       this.modalRef.close();
-      this.router.navigate(['/user/settings'], {
-        queryParams: { planChanged: true },
-      });
+      if (this.billingCycle) {
+        this.router.navigate(['/user/settings'], {
+          queryParams: { planChanged: true },
+        });
+      } else {
+        this.router.navigate(['/user/settings']);
+      }
     });
   }
 }

@@ -154,7 +154,15 @@
             <div class="form-group">
               <label>現在のご利用プラン</label>
               <div>
-                &nbsp; &nbsp; 6ヶ月プラン（次回更新予定日：2023/01/01）
+                <div *ngIf="userData.billingCycle; else freePlan">
+                  &nbsp; &nbsp;
+                  {{ userData.billingCycle }}ヶ月更新プラン（次回更新：{{
+                    currentPeriodEnd | date : "YYYY年 M月 d日 HH:mm"
+                  }}）
+                </div>
+                <ng-template #freePlan>
+                  &nbsp; &nbsp; フリープラン（回数制限版）
+                </ng-template>
                 <a
                   class="btn btn-primary btn-link"
                   [routerLink]="['/user/plan']"

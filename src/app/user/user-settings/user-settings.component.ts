@@ -13,10 +13,11 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   styleUrls: ['./user-settings.component.scss'],
 })
 export class UserSettingsComponent implements OnInit, OnDestroy {
+  isClicked: boolean = false;
   userData!: User;
   focus1 = false;
+  currentPeriodEnd!: Date;
 
-  isClicked: boolean = false;
   errors: any[] = [];
 
   constructor(
@@ -43,6 +44,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this.userService.getUserById(userId).subscribe(
       (foundUser) => {
         this.userData = foundUser;
+        this.currentPeriodEnd = new Date(foundUser.currentPeriodEnd * 1000);
         this.isClicked = false;
       },
       (errorResponse) => {

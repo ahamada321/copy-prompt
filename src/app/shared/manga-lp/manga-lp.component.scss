@@ -1,0 +1,11 @@
+.card {
+  min-width: 260px; // For Price card height.
+  &.no-shadow {
+    box-shadow: none;
+  }
+
+  img {
+    border-radius: initial;
+    background-color: #fffcf6;
+  }
+}

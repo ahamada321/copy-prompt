@@ -1,0 +1,22 @@
+<form (ngSubmit)="checkout()">
+  <div *ngIf="isLoading">
+    <div class="loader"></div>
+    <br />
+  </div>
+  <p *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </p>
+  <div id="payment-element" #payment></div>
+  <div class="text-center">
+    <br />
+    <button
+      type="submit"
+      *ngIf="!error && !isLoading"
+      [disabled]="isClicked"
+      class="btn btn-stripe mb-3"
+    >
+      プランを契約する
+    </button>
+  </div>
+</form>
+<div class="text-center">Powered by Stripe.</div>

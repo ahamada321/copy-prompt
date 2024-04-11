@@ -73,14 +73,23 @@
         </div>
         <div class="space-top"></div>
         <div class="text-center">
-          <div *ngIf="auth.isAuthenticated() && !isClicked">
+          <div *ngIf="error" class="alert alert-danger">
+            <p>{{ error }}</p>
+          </div>
+          <div *ngIf="auth.isAuthenticated() && foundUser && !isClicked">
             <div *ngIf="!auth.hasExceedMaxClicks(); else exceedMaxClicks">
               <button
                 [disabled]="!postForm.valid"
                 type="submit"
                 class="btn btn-round btn-wd btn-primary"
               >
-                送信する（ あと{{ 4 - auth.getClicks() }}回 / 本日 ）
+                {{
+                  foundUser.isConfirmedPayment
+                    ? "送信する"
+                    : "送信する（ あと" +
+                      (auth.getMaxClicks() - auth.getClicks()) +
+                      "回 /本日 ）"
+                }}
               </button>
             </div>
             <ng-template #exceedMaxClicks>
@@ -91,10 +100,7 @@
                 本日の利用上限に達しました
               </button>
               <p class="description font-small">12時間後に回復します</p>
-              <a
-                [routerLink]="['/prompt/plan']"
-                class="btn btn-link btn-primary"
-              >
+              <a [routerLink]="['/plan']" class="btn btn-link btn-primary">
                 1日の利用上限を増やすには？
               </a>
             </ng-template>

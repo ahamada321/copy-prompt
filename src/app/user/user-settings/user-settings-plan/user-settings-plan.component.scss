@@ -1,8 +1,3 @@
-.row {
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-}
-
 .card {
   min-width: 260px; // For Price card height.
   &.no-shadow {
@@ -27,4 +22,8 @@
   display: block;
   font-size: 1.05em;
   border-radius: 2px;
+}
+.selected {
+  background-color: rgb(230, 229, 229);
+  opacity: 0.8;
 }

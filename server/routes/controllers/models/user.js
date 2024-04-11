@@ -30,9 +30,14 @@ const userSchema = new Schema({
     min: [4, "Too short, min is 4 characters."],
     required: "Password is required",
   },
+  customerId: String, // Stripe
+  subscriptionId: String, // Stripe
+  billingCycle: Number, // Stripe
+  currentPeriodEnd: Number, // Unix timestamp
+  isConfirmedPayment: Boolean, // Stripe
+
   description: String,
   image: String,
-  stripe: String,
 
   homepage: String,
   twitter: String,
@@ -55,7 +60,6 @@ const userSchema = new Schema({
       ref: "Prompt",
     },
   ],
-  newsletter: { type: Boolean, default: true },
 });
 
 userSchema.methods.hasSamePassword = function (requestPassword) {

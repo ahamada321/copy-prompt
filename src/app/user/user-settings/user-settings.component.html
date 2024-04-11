@@ -106,18 +106,6 @@
             </div>
 
             <div class="form-group">
-              <label>パスワード変更</label>
-              <div>
-                <a
-                  class="btn btn-primary btn-link"
-                  [routerLink]="['/user/password']"
-                >
-                  パスワードを変更する
-                </a>
-              </div>
-            </div>
-
-            <div class="form-group">
               <label>ホームページURL</label>
               <input
                 type="text"
@@ -151,6 +139,39 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label>パスワード変更</label>
+              <div>
+                <a
+                  class="btn btn-primary btn-link"
+                  [routerLink]="['/user/password']"
+                >
+                  パスワードを変更する
+                </a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>現在のご利用プラン</label>
+              <div>
+                <div *ngIf="userData.billingCycle; else freePlan">
+                  &nbsp; &nbsp;
+                  {{ userData.billingCycle }}ヶ月更新プラン（次回更新：{{
+                    currentPeriodEnd | date : "YYYY年 M月 d日 HH:mm"
+                  }}）
+                </div>
+                <ng-template #freePlan>
+                  &nbsp; &nbsp; フリープラン（回数制限版）
+                </ng-template>
+                <a
+                  class="btn btn-primary btn-link"
+                  [routerLink]="['/user/plan']"
+                >
+                  変更する
+                </a>
+              </div>
+            </div>
+
             <!-- <div class="space-top"></div>
             <label>通知</label>
             <ul class="notifications">
@@ -169,16 +190,20 @@
               <button
                 [disabled]="!(userForm.valid && userForm.dirty && !isClicked)"
                 type="submit"
-                class="btn btn-primary btn-lg btn-round btn-wd"
+                class="btn btn-primary btn-round btn-wd"
               >
                 更新する
               </button>
+              <br />
+              <a [routerLink]="['/user']" class="btn btn-primary btn-link mt-3">
+                マイページへ戻る
+              </a>
             </div>
           </form>
         </div>
       </div>
       <div class="text-center">
-        <button class="btn btn-primary btn-link" (click)="logout()">
+        <button class="btn btn-primary btn-link mb-2" (click)="logout()">
           ログアウトする
         </button>
       </div>

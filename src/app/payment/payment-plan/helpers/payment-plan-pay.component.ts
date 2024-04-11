@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js';
 import { PaymentService } from '../../shared/payment.service';
+import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
   selector: 'app-payment-plan-pay',
@@ -19,7 +20,10 @@ export class PaymentPlanPayComponent implements OnInit {
   error: any;
   payment: any;
 
-  constructor(private paymentService: PaymentService) {}
+  constructor(
+    public auth: MyOriginAuthService,
+    private paymentService: PaymentService
+  ) {}
 
   ngOnInit() {
     this.setup();
@@ -53,6 +57,7 @@ export class PaymentPlanPayComponent implements OnInit {
     const baseURL = window.location.origin;
 
     try {
+      this.auth.resetClicks();
       await this.stripe.confirmPayment({
         elements: this.elements,
         confirmParams: {

@@ -351,6 +351,9 @@ exports.postPrompt = async function (req, res) {
     });
     return res.json({ role: "assistant", content: msg.content[0].text });
   } catch (err) {
-    return res.status(422).send(err);
+    return res.status(400).send({
+      detail:
+        "API通信エラー：時間をおいても改善しない場合はお問い合わせフォームよりお知らせください。",
+    });
   }
 };

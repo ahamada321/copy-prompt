@@ -20,6 +20,7 @@ export class PromptFormComponent {
   isRespond: boolean = false;
   contents: any[] = [];
   foundUser!: User;
+  error!: string;
 
   constructor(
     public auth: MyOriginAuthService,
@@ -70,6 +71,7 @@ export class PromptFormComponent {
       },
       (err) => {
         console.error(err);
+        this.error = err.error.detail;
         this.isClicked = false;
       }
     );

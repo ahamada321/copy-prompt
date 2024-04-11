@@ -64,7 +64,17 @@ export class PaymentPlanComponent implements OnInit {
       );
   }
 
-  cancelSubscription() {}
+  cancelSubscription() {
+    this.isClicked = true;
+    this.paymentService.cancelSubscription().subscribe(
+      (subscription) => {
+        this.showSwalSuccess();
+      },
+      (err) => {
+        this.error = err.error.detail;
+      }
+    );
+  }
 
   private showSwalSuccess() {
     Swal.fire({

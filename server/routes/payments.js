@@ -18,4 +18,6 @@ router.patch(
   PaymentCtrl.updateSubscription
 );
 
+router.get("/cancel", UserCtrl.authMiddleware, PaymentCtrl.cancelSubscription);
+
 module.exports = router;

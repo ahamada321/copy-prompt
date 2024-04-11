@@ -33,4 +33,8 @@ export class PaymentService {
       billingCycle,
     });
   }
+
+  public cancelSubscription(): Observable<any> {
+    return this.http.get('/api/v1/payments/cancel');
+  }
 }

@@ -16,7 +16,7 @@ class DecodedToken {
 @Injectable()
 export class MyOriginAuthService {
   private decodedToken;
-  private maxClicks: number = 4;
+  private maxClicks: number = 3;
 
   constructor(private http: HttpClient) {
     this.decodedToken =
@@ -119,5 +119,9 @@ export class MyOriginAuthService {
 
   public hasExceedMaxClicks(): boolean {
     return this.decodedToken.clicks >= this.maxClicks;
+  }
+
+  public getMaxClicks(): number {
+    return this.maxClicks;
   }
 }

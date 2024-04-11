@@ -73,14 +73,20 @@
         </div>
         <div class="space-top"></div>
         <div class="text-center">
-          <div *ngIf="auth.isAuthenticated() && !isClicked">
+          <div *ngIf="auth.isAuthenticated() && foundUser && !isClicked">
             <div *ngIf="!auth.hasExceedMaxClicks(); else exceedMaxClicks">
               <button
                 [disabled]="!postForm.valid"
                 type="submit"
                 class="btn btn-round btn-wd btn-primary"
               >
-                送信する（ あと{{ 4 - auth.getClicks() }}回 / 本日 ）
+                {{
+                  foundUser.isConfirmedPayment
+                    ? "送信する"
+                    : "送信する（ あと" +
+                      (auth.getMaxClicks() - auth.getClicks()) +
+                      "回 /本日 ）"
+                }}
               </button>
             </div>
             <ng-template #exceedMaxClicks>

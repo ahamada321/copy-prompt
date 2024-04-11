@@ -5,6 +5,7 @@ import { LoginPopupComponent } from 'src/app/auth/login-popup/login-popup.compon
 import { MyOriginAuthService } from 'src/app/auth/shared/auth.service';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { PromptService } from 'src/app/prompt/shared/prompt.service';
+import { User } from 'src/app/user/shared/user.model';
 import { UserService } from 'src/app/user/shared/user.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class PromptFormComponent {
   isClicked: boolean = false;
   isRespond: boolean = false;
   contents: any[] = [];
+  foundUser!: User;
 
   constructor(
     public auth: MyOriginAuthService,
@@ -26,13 +28,33 @@ export class PromptFormComponent {
     private modalService: NgbModal
   ) {}
 
+  ngOnInit() {
+    if (this.auth.isAuthenticated()) {
+      this.getUser();
+    }
+  }
+
+  getUser() {
+    const userId = this.auth.getUserId();
+    this.userService.getUserById(userId).subscribe(
+      (foundUser) => {
+        this.foundUser = foundUser;
+      },
+      (errorResponse) => {
+        console.error(errorResponse);
+      }
+    );
+  }
+
   insertFirstMessageSample() {
     this.text = this.prompt.firstMessageSample;
   }
 
   postPrompt(postForm: NgForm) {
     this.isClicked = true;
-    this.auth.incrementClick();
+    if (!this.foundUser.isConfirmedPayment) {
+      this.auth.incrementClick();
+    }
     this.contents.push({
       role: 'user',
       content: postForm.value.postPrompt,

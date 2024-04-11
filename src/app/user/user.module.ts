@@ -20,6 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ListCardModule } from '../shared/list-card/list-card.module';
 import { UserSettingsPlanComponent } from './user-settings/user-settings-plan/user-settings-plan.component';
 import { MangaLpModule } from '../shared/manga-lp/manga-lp.module';
+import { SubscribeFaqModule } from '../shared/subscribe-faq/subscribe-faq.module';
 import { ChangePlanPayComponent } from './user-settings/user-settings-plan/helpers/change-plan-pay.component';
 
 const routes: Routes = [
@@ -79,6 +80,7 @@ const routes: Routes = [
     // ImageUploadMyverModule,
     ListCardModule,
     MangaLpModule,
+    SubscribeFaqModule,
   ],
   providers: [UserService],
 })

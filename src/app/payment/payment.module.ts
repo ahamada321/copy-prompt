@@ -9,6 +9,7 @@ import { PaymentService } from './shared/payment.service';
 import { PaymentPlanComponent } from './payment-plan/payment-plan.component';
 import { PaymentPlanPayComponent } from './payment-plan/helpers/payment-plan-pay.component';
 import { MangaLpModule } from '../shared/manga-lp/manga-lp.module';
+import { SubscribeFaqModule } from '../shared/subscribe-faq/subscribe-faq.module';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MangaLpModule,
+    SubscribeFaqModule,
   ],
   providers: [PaymentService],
 })

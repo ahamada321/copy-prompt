@@ -31,7 +31,7 @@ export class PaymentPlanPayComponent implements OnInit {
 
   async setup() {
     this.stripe = await loadStripe(
-      'pk_test_pb83wBnjrbxnUltLLCR5KlYC00NK6M8day'
+      'pk_live_3m195F2MzyizUqu53t1YOGOB00CyyOvnDU'
     );
     this.paymentService
       .createSubscription(this.priceId, this.billingCycle)

@@ -17,8 +17,9 @@ export class PaymentPlanPayComponent implements OnInit {
 
   stripe: any;
   elements: any;
-  error: any;
   payment: any;
+  confirmData: any;
+  error: any;
 
   constructor(
     public auth: MyOriginAuthService,
@@ -31,19 +32,24 @@ export class PaymentPlanPayComponent implements OnInit {
 
   async setup() {
     this.stripe = await loadStripe(
-      'pk_live_3m195F2MzyizUqu53t1YOGOB00CyyOvnDU'
+      'pk_live_3m195F2MzyizUqu53t1YOGOB00CyyOvnDU' // Prod
+      // 'pk_test_pb83wBnjrbxnUltLLCR5KlYC00NK6M8day' // Dev
     );
     this.paymentService
       .createSubscription(this.priceId, this.billingCycle)
       .subscribe(
-        (subscription) => {
+        (result) => {
           this.isLoading = false;
-          const options = {
-            clientSecret: subscription.clientSecret,
-          };
-          this.elements = this.stripe.elements(options);
+          this.elements = this.stripe.elements({
+            clientSecret: result.clientSecret,
+          });
           this.payment = this.elements.create('payment');
           this.payment.mount(this.paymentRef.nativeElement);
+          this.confirmData = {
+            subscriptionId: result.subscriptionId,
+            currentPeriodEnd: result.currentPeriodEnd,
+            billingCycle: result.billingCycle,
+          };
         },
         (err) => {
           this.error = err.error.detail;
@@ -55,13 +61,14 @@ export class PaymentPlanPayComponent implements OnInit {
   async checkout() {
     this.isClicked = true;
     const baseURL = window.location.origin;
+    const jsonParam = encodeURIComponent(JSON.stringify(this.confirmData));
+    this.auth.resetClicks();
 
     try {
-      this.auth.resetClicks();
       await this.stripe.confirmPayment({
         elements: this.elements,
         confirmParams: {
-          return_url: baseURL + '/user',
+          return_url: baseURL + '/user?confirmData=' + jsonParam,
         },
       });
     } catch (err) {

@@ -41,18 +41,18 @@ export class UserMypageComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     this.route.queryParams.subscribe((params) => {
-      if (params['payment_intent']) {
+      if (params['confirmData']) {
         this.modalService.open(this.subscriberTemplateRef, {
           backdrop: 'static',
         });
-        this.paymentService
-          .confirmSubscription(params['payment_intent'])
-          .subscribe(
-            (result) => {},
-            (errorResponse) => {
-              console.error(errorResponse);
-            }
-          );
+        const jsonString = params['confirmData'];
+        const confirmData = JSON.parse(jsonString);
+        this.paymentService.confirmSubscription(confirmData).subscribe(
+          (result) => {},
+          (errorResponse) => {
+            console.error(errorResponse);
+          }
+        );
       }
     });
   }

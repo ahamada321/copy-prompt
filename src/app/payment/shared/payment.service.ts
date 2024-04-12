@@ -14,10 +14,8 @@ export class PaymentService {
     return this.http.post('/api/v1/payments/create', { priceId, billingCycle });
   }
 
-  public confirmSubscription(payment_intent: string): Observable<any> {
-    return this.http.patch('/api/v1/payments/confirm', {
-      payment_intent,
-    });
+  public confirmSubscription(confirmData: object): Observable<any> {
+    return this.http.patch('/api/v1/payments/confirm', confirmData);
   }
 
   public updateSubscription(

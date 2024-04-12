@@ -24,6 +24,12 @@ exports.createSubscription = async function (req, res) {
         email: foundUser.email,
       });
       foundUser.customerId = customer.id;
+      await User.updateOne(
+        { _id: user._id },
+        {
+          customerId: customer.id,
+        }
+      );
     }
 
     const subscription = await stripe.subscriptions.create({
@@ -33,40 +39,16 @@ exports.createSubscription = async function (req, res) {
           price: priceId,
         },
       ],
-      // billing_cycle_anchor_config: {
-      //   hour: 0,
-      //   minute: 0,
-      //   second: 0,
-      // },
       payment_behavior: "default_incomplete",
       payment_settings: { save_default_payment_method: "on_subscription" },
       expand: ["latest_invoice.payment_intent"],
     });
 
-    if (!foundUser.customerId) {
-      await User.updateOne(
-        { _id: user._id },
-        {
-          customerId: customer.id,
-          subscriptionId: subscription.id,
-          billingCycle,
-          currentPeriodEnd: subscription.current_period_end,
-        }
-      );
-    } else {
-      await User.updateOne(
-        { _id: user._id },
-        {
-          subscriptionId: subscription.id,
-          billingCycle,
-          currentPeriodEnd: subscription.current_period_end,
-        }
-      );
-    }
-
     return res.json({
-      // subscriptionId: subscription.id,
       clientSecret: subscription.latest_invoice.payment_intent.client_secret,
+      subscriptionId: subscription.id,
+      currentPeriodEnd: subscription.current_period_end,
+      billingCycle,
     });
   } catch (err) {
     return res.status(400).send({ detail: err.message });
@@ -75,14 +57,11 @@ exports.createSubscription = async function (req, res) {
 
 exports.confirmSubscription = async function (req, res) {
   const user = res.locals.user;
+  const userData = req.body;
+  userData.isConfirmedPayment = true;
 
   try {
-    await User.updateOne(
-      { _id: user._id },
-      {
-        isConfirmedPayment: true,
-      }
-    );
+    await User.updateOne({ _id: user._id }, userData);
   } catch (err) {
     return res.status(400).send({ detail: err.message });
   }

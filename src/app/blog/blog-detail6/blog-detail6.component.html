@@ -65,57 +65,15 @@
         <div class="col-md-8 ml-auto mr-auto">
           <h2>
             <small>ステップ 2</small><br />
-            プロンプトをコピーする
+            プロンプトを試す
           </h2>
           <p>
             <a [routerLink]="['/register']" class="text-primary">無料会員登録</a
-            >した後に、プロンプト（指令文）エリアにある「STEP1
-            プロンプトをコピーする」ボタンを押すことでプロンプトがコピーできます。
+            >をするとプロンプトを試すことができます。
           </p>
-          <div class="card card-plain">
-            <div class="card-img-top">
-              <img class="img" src="./assets/img/tutorial/step2.jpg" />
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8 ml-auto mr-auto">
-          <h2>
-            <small>ステップ 3</small><br />
-            ChatGPTにペーストする
-          </h2>
-          <p>
-            プロンプトがコピーできたので、すぐ下にある「STEP2
-            ChatGPTでペーストする」ボタンを押してChatGPTのページへ移動します。
-          </p>
-          <br />
-          <p>もしChatGPTを今までに使った経験がない場合は、</p>
-          <a class="text-success" [routerLink]="['/blog/how-to-use-chatgpt']">
-            <h3>"はじめてChatGPTを使う方はこちら"</h3></a
-          >
-          <p>からChatGPTの使い方を学ぶことができるのでぜひ読んでみましょう。</p>
-          <div class="card card-plain">
-            <div class="card-img-top">
-              <img class="img" src="./assets/img/tutorial/step3.jpg" />
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8 ml-auto mr-auto">
-          <h2>
-            <small>ステップ 4</small><br />
-            「ChatGPTへの送信手順」通りに操作をして送信
-          </h2>
-          <p>
-            プロンプトの使い方は「ChatGPTへの送信手順」のところに記述されています。<br />
-            今回の説明に使うプロンプトの詳細ページには「ChatGPTにコピペして好みに書き換えてから送信」と書かれています。
-          </p>
-          <div class="card card-plain">
-            <div class="card-img-top">
-              <img class="img" src="./assets/img/tutorial/step4-1.jpg" />
-            </div>
-          </div>
           <p>
             今回は【誤字脱字を直してくれるプロンプト】なので、<br />
-            以下の”誤字脱字が含間れる例文”で実際に試してみましょう。
+            以下の”誤字脱字がある例文”で実際に試してみましょう。
           </p>
           <div class="card-big-shadow">
             <div class="card card-just-text no-transition" data-radius="none">
@@ -145,23 +103,28 @@
             "
           ></app-blog-chat>
 
-          <p>せっかくなので早速試してみましょう。</p>
           <p>
-            プロンプトのコピーは既にできているので、移動したChatGPTのメッセージボックスにペーストし、今回の例文に下の部分を書き換えます。
+            あつプロAIのガイドに従って入力すると、「送信する」ボタンが押せるようになります。
           </p>
-          <div class="card card-plain no-transition">
+          <div class="card card-plain">
             <div class="card-img-top">
-              <img class="img" src="./assets/img/tutorial/step4-2.jpg" />
+              <img class="img" src="./assets/img/tutorial/step2.jpg" />
             </div>
           </div>
-          <p>あとは送信ボタンを押すだけです。</p>
         </div>
         <div class="col-md-8 ml-auto mr-auto">
           <h2>
-            <small>ステップ 5</small><br />
+            <small>ステップ 3</small><br />
             ChatGPTから返答がくる
           </h2>
-          <p>送信してから１秒足らずで以下の返答がきました。</p>
+          <p>送信して1分足らずで以下の返答がきました。</p>
+          <br />
+
+          <div class="card card-plain">
+            <div class="card-img-top">
+              <img class="img" src="./assets/img/tutorial/step3.jpg" />
+            </div>
+          </div>
           <div class="card-big-shadow">
             <div class="card card-just-text no-transition" data-radius="none">
               <div class="card-body">
@@ -177,7 +140,7 @@
                 <h4 class="card-category">↓</h4>
                 <h4 class="card-category">修正後</h4>
                 <h5 class="card-description">
-                  恐れ入りますが、明日に改めてお電話のご連絡のお時間をお知らせいたしますので、引き続きどうぞよろしくお願いいたします。
+                  恐れ入りますが、また明日にお電話の時間をご連絡させていただきますので、引き続きどうぞよろしくお願いいたします。
                 </h5>
               </div>
             </div>
@@ -205,7 +168,7 @@
 
       <div class="text-center" *ngIf="!auth.isAuthenticated()">
         <div class="space-50"></div>
-        <p>\ 今すぐ無料会員登録してプロンプトをGet! /</p>
+        <p>\ 今すぐ無料会員登録してプロンプトを試そう! /</p>
         <a [routerLink]="['/register']" class="btn btn-round btn-wd btn-primary"
           >無料会員登録する</a
         >

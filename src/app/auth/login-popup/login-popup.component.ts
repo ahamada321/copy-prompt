@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 import { take } from 'rxjs/operators';
+import { UserService } from 'src/app/user/shared/user.service';
 
 @Component({
   selector: 'app-login-popup',
@@ -20,6 +21,7 @@ export class LoginPopupComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
+    private userService: UserService,
     private formBuilder: FormBuilder,
     private auth: MyOriginAuthService,
     private route: ActivatedRoute,
@@ -71,8 +73,7 @@ export class LoginPopupComponent implements OnInit {
       (token) => {
         this.activeModal.close('Close click');
         if (this.promptId) {
-          this.router.navigate(['/prompt', this.promptId]);
-          return;
+          this.addHistory(this.promptId);
         }
         this.router.navigate(['/user']);
       },
@@ -80,6 +81,15 @@ export class LoginPopupComponent implements OnInit {
         console.error(errorResponse);
         this.errors = errorResponse.error.errors;
         this.isClicked = false;
+      }
+    );
+  }
+
+  private addHistory(promptId: string) {
+    this.userService.addHistory(promptId).subscribe(
+      (success) => {},
+      (err) => {
+        console.error(err);
       }
     );
   }

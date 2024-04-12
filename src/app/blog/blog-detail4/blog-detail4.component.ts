@@ -10,7 +10,7 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
   styleUrls: ['./blog-detail4.component.scss'],
 })
 export class BlogDetail4Component implements OnInit {
-  title: string = 'ChatGPTを使いこなせてないと感じたら';
+  title: string = 'プロンプトを使いこなせてないと感じたら';
   description: string =
     'ChatGPTを試したけど、結局よくわからなかった。でも、それでChatGPTを使わなくなるのはかなりもったいない！生成AIの本領を発揮する方法を知りたい人はこちら';
   prompt!: Prompt;

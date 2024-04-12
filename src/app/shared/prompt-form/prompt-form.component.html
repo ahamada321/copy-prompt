@@ -76,7 +76,7 @@
           <div *ngIf="error" class="alert alert-danger">
             <p>{{ error }}</p>
           </div>
-          <div *ngIf="auth.isAuthenticated() && foundUser && !isClicked">
+          <div *ngIf="auth.isAuthenticated() && !isClicked">
             <div *ngIf="!auth.hasExceedMaxClicks(); else exceedMaxClicks">
               <button
                 [disabled]="!postForm.valid"
@@ -84,7 +84,7 @@
                 class="btn btn-round btn-wd btn-primary"
               >
                 {{
-                  foundUser.isConfirmedPayment
+                  foundUser && foundUser.isConfirmedPayment
                     ? "送信する"
                     : "送信する（ あと" +
                       (auth.getMaxClicks() - auth.getClicks()) +

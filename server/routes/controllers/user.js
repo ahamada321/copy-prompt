@@ -14,6 +14,7 @@ exports.getBookmarks = async function (req, res) {
   try {
     const foundUser = await User.findOne({ _id: user._id }).populate({
       path: "bookmarks",
+      match: { isShared: true },
       populate: { path: "user", select: "-email -password" },
     });
     return res.json(foundUser.bookmarks);
@@ -28,6 +29,7 @@ exports.getHistories = async function (req, res) {
   try {
     const foundUser = await User.findOne({ _id: user._id }).populate({
       path: "histories",
+      match: { isShared: true },
       populate: { path: "user", select: "-email -password" },
       options: { sort: { createdAt: -1 } },
     });
@@ -227,6 +229,7 @@ exports.auth = async function (req, res) {
       {
         userId: foundUser.id,
         name: foundUser.name,
+        isConfirmedPayment: foundUser.isConfirmedPayment,
       },
       config.SECRET,
       { expiresIn: "12h" }
@@ -310,6 +313,7 @@ exports.register = async function (req, res) {
       {
         userId: newUser.id,
         name: newUser.name,
+        isConfirmedPayment: false,
       },
       config.SECRET,
       { expiresIn: "12h" }
@@ -385,7 +389,8 @@ exports.deleteUser = async function (req, res) {
 exports.updateUser = async function (req, res) {
   const user = res.locals.user; // This is logined user infomation.
   const userData = req.body;
-  const { email, password, passwordConfirmation } = req.body;
+  const { email, password, passwordConfirmation, isConfirmedPayment } =
+    req.body;
   const reqUserId = req.params.id;
 
   if (reqUserId !== user.id) {
@@ -418,6 +423,9 @@ exports.updateUser = async function (req, res) {
         {
           userId: user.id,
           name: userData.name,
+          isConfirmedPayment: isConfirmedPayment
+            ? isConfirmedPayment
+            : user.isConfirmedPayment,
         },
         config.SECRET,
         { expiresIn: "12h" }
@@ -442,7 +450,8 @@ exports.updateUser = async function (req, res) {
       const token = jwt.sign(
         {
           userId: user.id,
-          name: foundUser.name,
+          name: user.name,
+          isConfirmedPayment: user.isConfirmedPayment,
         },
         config.SECRET,
         { expiresIn: "12h" }

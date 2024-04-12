@@ -9,6 +9,7 @@ const jwt = new JwtHelperService();
 class DecodedToken {
   userId: string = '';
   name: string = '';
+  isConfirmedPayment: boolean = false;
   exp: number = 0;
   clicks: number = 0;
 }

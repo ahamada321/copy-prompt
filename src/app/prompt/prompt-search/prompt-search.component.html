@@ -6,11 +6,9 @@
 <div *ngIf="prompts" class="section section-nude text-center">
   <div class="container" *ngIf="prompts.length > 0">
     <div class="row">
-      <ng-container *ngFor="let prompt of prompts">
-        <div class="col-6 col-md-4">
-          <app-list-card [prompt]="prompt"></app-list-card>
-        </div>
-      </ng-container>
+      <div *ngFor="let prompt of prompts" class="col-6 col-md-4">
+        <app-list-card [prompt]="prompt"></app-list-card>
+      </div>
     </div>
     <div class="space-top"></div>
     <div class="pagination-area pagination-primary justify-content-center">

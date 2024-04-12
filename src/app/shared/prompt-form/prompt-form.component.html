@@ -100,10 +100,14 @@
                 本日の利用上限に達しました
               </button>
               <p class="description font-small">12時間後に回復します</p>
-              <a [routerLink]="['/plan']" class="btn btn-link btn-primary">
-                1日の利用上限を増やすには？
-              </a>
             </ng-template>
+            <a
+              *ngIf="!(foundUser && foundUser.isConfirmedPayment)"
+              [routerLink]="['/plan']"
+              class="btn btn-link btn-primary mt-3"
+            >
+              回数を気にせずに使いたい方はこちら
+            </a>
           </div>
         </div>
       </form>

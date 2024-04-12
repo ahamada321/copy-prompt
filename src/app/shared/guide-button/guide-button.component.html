@@ -1,5 +1,5 @@
 <div class="space-top"></div>
-<div *ngIf="isTop()">
+<div *ngIf="isTop() || isDetail()">
   <a *ngIf="!auth.isAuthenticated()" [routerLink]="['/faq']" class="top-popup">
     <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
     <div class="popover-content">Q & A は<br />タヌキをクリック</div>
@@ -11,17 +11,6 @@
     class="top-popup-auth"
   >
     <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
-    <div class="popover-content">ご意見 & 改善要望は<br />タヌキをクリック</div>
+    <div class="popover-content">お問い合わせは<br />タヌキをクリック</div>
   </a>
 </div>
-
-<a
-  *ngIf="isDetail()"
-  [routerLink]="['/blog/tutorial']"
-  [ngClass]="auth.isAuthenticated() ? 'detail-popup-auth' : 'detail-popup'"
->
-  <img src="./assets/icons/2.png" alt="ガイドボタン" draggable="false" />
-  <div class="popover-content">
-    ChatGPTにこのプロンプト(指令文)を<br />コピー＆ペーストしてね
-  </div>
-</a>

@@ -31,12 +31,7 @@
 
     <div class="text-center">
       <button
-        *ngIf="
-          auth.isAuthenticated() &&
-          prompt.firstMessageSample &&
-          !isRespond &&
-          !isClicked
-        "
+        *ngIf="prompt.firstMessageSample && !isRespond && !isClicked"
         (click)="insertFirstMessageSample()"
         class="btn btn-link btn-danger btn-sm mb-1"
       >

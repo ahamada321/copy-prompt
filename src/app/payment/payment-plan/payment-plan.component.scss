@@ -5,7 +5,11 @@
   }
 }
 .card {
-  min-width: 284px; // For Price card height.
+  min-width: 284px; // Price card width.
+  &.selected {
+    background-color: rgb(230, 229, 229);
+    opacity: 0.8;
+  }
 }
 
 .card-pricing .card-title {
@@ -20,11 +24,6 @@
   display: block;
   font-size: 1.05em;
   border-radius: 2px;
-}
-
-.selected {
-  background-color: rgb(230, 229, 229);
-  opacity: 0.8;
 }
 
 .loader {

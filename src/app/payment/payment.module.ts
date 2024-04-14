@@ -7,9 +7,10 @@ import { AuthGuard } from '../auth/shared/auth.guard';
 import { PaymentComponent } from './payment.component';
 import { PaymentService } from './shared/payment.service';
 import { PaymentPlanComponent } from './payment-plan/payment-plan.component';
-import { PaymentPlanPayComponent } from './payment-plan/helpers/payment-plan-pay.component';
-import { MangaLpModule } from '../shared/manga-lp/manga-lp.module';
-import { SubscribeFaqModule } from '../shared/subscribe-faq/subscribe-faq.module';
+import { PaymentPlanPayComponent } from './payment-plan/payment-plan-pay/payment-plan-pay.component';
+import { PaymentPlanMangaComponent } from './payment-plan/payment-plan-manga/payment-plan-manga.component';
+import { PaymentPlanFaqFaqComponent } from './payment-plan/payment-plan-faq/payment-plan-faq.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -25,6 +26,8 @@ const routes: Routes = [
   declarations: [
     PaymentComponent,
     PaymentPlanComponent,
+    PaymentPlanFaqFaqComponent,
+    PaymentPlanMangaComponent,
     PaymentPlanPayComponent,
   ],
   imports: [
@@ -32,8 +35,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    MangaLpModule,
-    SubscribeFaqModule,
+    NgbModule,
   ],
   exports: [PaymentPlanComponent],
   providers: [PaymentService],

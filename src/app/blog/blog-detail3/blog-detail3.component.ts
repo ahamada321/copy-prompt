@@ -23,7 +23,7 @@ export class BlogDetail3Component implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getPrompt('65e546cae72b7e84013b3bbb'); // Prod
+    this.getPrompt('65b71666b60cde74d57215db'); // Prod
     // this.getPrompt('65b458188516101cf32a45a7'); // Dev
   }
 

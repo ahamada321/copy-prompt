@@ -61,7 +61,7 @@ export class PaymentPlanComponent implements OnInit {
     this.scrollTo(
       document.scrollingElement || document.documentElement,
       targetScroll!.offsetTop,
-      1250
+      900
     );
   }
   scrollTo(element: any, to: any, duration: number) {

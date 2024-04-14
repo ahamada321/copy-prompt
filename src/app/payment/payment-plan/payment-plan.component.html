@@ -17,11 +17,11 @@
     <p *ngIf="error" class="alert alert-danger">
       {{ error }}
     </p>
-    <div id="pricing" class="row">
+    <div class="row" id="pricing">
       <div class="col-md-12">
-        <div class="choose-plan" *ngIf="foundUser">
-          <div class="space-top"></div>
-          <div class="row">
+        <div class="choose-plan">
+          <div class="row" *ngIf="foundUser">
+            <div class="space-top"></div>
             <div class="col-md-4">
               <div
                 class="card card-pricing"

@@ -1,6 +1,9 @@
 <div class="section section-nude">
   <div class="container text-center">
-    <button href="javascript:void(0)" class="btn btn-lg btn-primary btn-round">
+    <button
+      (click)="smoothScroll('pricing')"
+      class="btn btn-lg btn-primary btn-round"
+    >
       今すぐアップグレードする &nbsp;<i class="nc-icon nc-spaceship"></i>
     </button>
 
@@ -9,14 +12,14 @@
     <app-payment-plan-manga></app-payment-plan-manga>
   </div>
   <div class="space-top"></div>
-  <div class="container text-center" *ngIf="foundUser">
+  <div class="container text-center">
     <h2>プランを選択</h2>
     <p *ngIf="error" class="alert alert-danger">
       {{ error }}
     </p>
-    <div class="row">
+    <div id="pricing" class="row">
       <div class="col-md-12">
-        <div class="choose-plan">
+        <div class="choose-plan" *ngIf="foundUser">
           <div class="space-top"></div>
           <div class="row">
             <div class="col-md-4">
@@ -129,7 +132,7 @@
                   </h3>
                   <h2 class="card-title">1480円/月<small>(税込)</small></h2>
                   <p>
-                    8,880(税込)/6ヶ月のお支払いになります
+                    8,880(税込)/半年のお支払いになります
                     <br />※契約は自動更新となります
                   </p>
                   <div class="space-top"></div>

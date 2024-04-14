@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 
 @Component({
   selector: 'app-user-settings-plan',
@@ -7,10 +6,7 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
   styleUrls: ['./user-settings-plan.component.scss'],
 })
 export class UserSettingsPlanComponent implements OnInit {
-  constructor(private navbarService: NavbarService) {}
+  constructor() {}
 
   ngOnInit() {}
-  ngOnDestroy() {
-    this.navbarService.resetNavbarPosition();
-  }
 }

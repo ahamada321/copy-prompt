@@ -31,8 +31,8 @@ exports.getHistories = async function (req, res) {
       path: "histories",
       match: { isShared: true },
       populate: { path: "user", select: "-email -password" },
-      options: { sort: { createdAt: -1 } },
     });
+
     return res.json(foundUser.histories);
   } catch (err) {
     return res.status(422).send({ errors: normalizeErrors(err.errors) });
@@ -68,10 +68,12 @@ exports.addHistory = async function (req, res) {
       { _id: user._id },
       { $pull: { histories: reqPromptId } }
     );
+
     await User.updateOne(
       { _id: user._id },
-      { $push: { histories: reqPromptId } }
+      { $push: { histories: { $each: [reqPromptId], $slice: -30 } } }
     );
+
     await Prompt.updateOne(
       { _id: reqPromptId },
       { $pull: { isCopiedFrom: user._id } }

@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { UserService } from '../../shared/user.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-mypage-history',
@@ -13,6 +14,7 @@ export class UserMypageHistoryComponent implements OnInit {
   @ViewChild('Notice') noticeTemplateRef!: TemplateRef<any>;
 
   constructor(
+    private route: ActivatedRoute,
     private userService: UserService,
     private modalService: NgbModal
   ) {}
@@ -21,17 +23,19 @@ export class UserMypageHistoryComponent implements OnInit {
     this.getHistories();
   }
 
-  // ngAfterViewInit() {
-  //   this.guideOpen();
-  // }
-
   private getHistories() {
     this.userService.getHistories().subscribe(
       (foundHistories: Prompt[]) => {
-        this.histories = foundHistories;
-        if (this.histories.length === 0) {
+        if (foundHistories.length === 0) {
           this.guideOpen();
+          return;
         }
+        this.route.queryParams.subscribe((params) => {
+          if (params['fromDetail'] && foundHistories.length === 1) {
+            this.guideOpen();
+          }
+        });
+        this.histories = foundHistories.reverse();
       },
       (errorResponse) => {
         console.error(errorResponse);

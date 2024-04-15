@@ -72,10 +72,11 @@ export class LoginPopupComponent implements OnInit {
     this.auth.login(this.loginForm.value).subscribe(
       (token) => {
         this.activeModal.close('Close click');
-        if (this.promptId) {
+        if (!this.promptId) {
+          this.router.navigate(['/user']);
+        } else {
           this.addHistory(this.promptId);
         }
-        this.router.navigate(['/user']);
       },
       (errorResponse: HttpErrorResponse) => {
         console.error(errorResponse);
@@ -87,7 +88,9 @@ export class LoginPopupComponent implements OnInit {
 
   private addHistory(promptId: string) {
     this.userService.addHistory(promptId).subscribe(
-      (success) => {},
+      (success) => {
+        this.router.navigate(['/user'], { queryParams: { fromDetail: true } });
+      },
       (err) => {
         console.error(err);
       }

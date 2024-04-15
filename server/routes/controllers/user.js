@@ -64,15 +64,19 @@ exports.addHistory = async function (req, res) {
   const user = res.locals.user;
 
   try {
+    // await User.updateOne(
+    //   { _id: user._id },
+    //   {
+    //     $pull: {
+    //       histories: {
+    //         $or: [{ isShared: false }, { _id: reqPromptId }],
+    //       },
+    //     },
+    //   }
+    // );
     await User.updateOne(
       { _id: user._id },
-      {
-        $pull: {
-          histories: {
-            $or: [{ isShared: false }, { _id: reqPromptId }],
-          },
-        },
-      }
+      { $pull: { histories: reqPromptId } }
     );
 
     await User.updateOne(

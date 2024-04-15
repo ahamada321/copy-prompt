@@ -71,7 +71,7 @@ exports.addHistory = async function (req, res) {
 
     await User.updateOne(
       { _id: user._id },
-      { $push: { histories: { $each: [reqPromptId], $slice: -30 } } }
+      { $push: { histories: { $each: [reqPromptId], $slice: -20 } } }
     );
 
     await Prompt.updateOne(

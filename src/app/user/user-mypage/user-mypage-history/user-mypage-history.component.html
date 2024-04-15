@@ -1,5 +1,5 @@
 <div *ngIf="histories">
-  <div class="info" *ngIf="histories.length === 0">
+  <div class="info" *ngIf="histories.length === 0; else hasHistories">
     <div class="icon">
       <i class="nc-icon nc-single-copy-04"></i>
     </div>
@@ -11,12 +11,14 @@
       </p>
     </div>
   </div>
-  <div class="space-top" *ngIf="histories.length > 0"></div>
-  <div class="row">
-    <div *ngFor="let history of histories" class="col-6 col-sm-4">
-      <app-list-card [prompt]="history"> </app-list-card>
+  <ng-template #hasHistories>
+    <div class="space-top"></div>
+    <div class="row">
+      <div *ngFor="let history of histories" class="col-6 col-sm-4">
+        <app-list-card [prompt]="history"> </app-list-card>
+      </div>
     </div>
-  </div>
+  </ng-template>
 </div>
 
 <ng-template #Notice let-c="close" let-d="dismiss">

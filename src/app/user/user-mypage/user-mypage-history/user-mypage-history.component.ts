@@ -43,7 +43,7 @@ export class UserMypageHistoryComponent implements OnInit {
     );
   }
 
-  guideOpen() {
+  private guideOpen() {
     this.modalService.open(this.noticeTemplateRef, { backdrop: 'static' });
   }
 }

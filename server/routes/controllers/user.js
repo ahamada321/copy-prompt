@@ -66,7 +66,13 @@ exports.addHistory = async function (req, res) {
   try {
     await User.updateOne(
       { _id: user._id },
-      { $pull: { histories: reqPromptId } }
+      {
+        $pull: {
+          histories: {
+            $or: [{ isShared: false }, { _id: reqPromptId }],
+          },
+        },
+      }
     );
 
     await User.updateOne(

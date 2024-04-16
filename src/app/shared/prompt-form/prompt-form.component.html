@@ -4,7 +4,7 @@
       <div class="card-body">
         <div class="author">
           <img src="assets/icons/gpt.svg" alt="..." class="avatar img-raised" />
-          <span>あつプロ AI</span>
+          <span>AI</span>
         </div>
         <div class="clearfix"></div>
         <p class="card-description" style="white-space: pre-line">
@@ -17,7 +17,7 @@
       <div class="card-body">
         <div class="author" *ngIf="content.role === 'assistant'; else userRole">
           <img src="assets/icons/gpt.svg" alt="..." class="avatar img-raised" />
-          <span>あつプロ AI</span>
+          <span>AI</span>
         </div>
         <ng-template #userRole>
           <div class="author">あなた</div>

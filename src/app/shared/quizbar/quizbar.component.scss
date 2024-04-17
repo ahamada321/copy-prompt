@@ -1,11 +1,14 @@
-.btn-stripe {
-  background-color: #635bff;
-  border-color: #635bff;
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  margin: 15px 0 20px;
 }
 
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #635bff; /* Stripe color */
+  border-top: 16px solid #f5593d; /* Stripe color */
   border-radius: 50%;
   width: 120px;
   height: 120px;

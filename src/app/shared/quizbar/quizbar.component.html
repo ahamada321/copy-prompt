@@ -1,0 +1,168 @@
+<div
+  class="page-header page-header-middle"
+  style="background-image: url('./assets/img/bg/tressure-map.jpg')"
+>
+  <div class="filter"></div>
+  <div class="content-center">
+    <div class="container">
+      <div class="space-50"></div>
+      <h1 class="title">今すぐ使える<br /></h1>
+      <h2 class="title">ChatGPTプロンプト集</h2>
+      <h2 class="description">\ あなたに合うプロンプトは？ /</h2>
+
+      <button
+        class="btn btn-primary btn-round btn-move-right btn-lg"
+        (click)="popup(Quiz)"
+      >
+        <i class="nc-icon nc-minimal-right"></i>&nbsp; プロンプト診断
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #Quiz let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button class="close" (click)="d('Cross click')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title">プロンプト診断</h3>
+  </div>
+  <div class="modal-body">
+    <h3 class="modal-title text-center">ChatGPTにしてほしいのはどっち？</h3>
+    <br />
+    <div class="text-center">
+      <button
+        class="btn btn-primary btn-round btn-move-right mr-1"
+        (click)="c('Close click'); popup(Quiz2a)"
+      >
+        仕事に役立つ
+      </button>
+      <button
+        class="btn btn-primary btn-round btn-move-right ml-1"
+        (click)="c('Close click'); popup(Quiz2b)"
+      >
+        なんか楽しそう
+      </button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #Quiz2a let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button class="close" (click)="d('Cross click')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title">プロンプト診断</h3>
+  </div>
+  <div class="modal-body">
+    <h3 class="modal-title text-center">あなたの職業は？</h3>
+    <br />
+    <div class="text-center">
+      <button
+        class="btn btn-primary btn-round btn-move-right mr-1"
+        (click)="
+          c('Close click'); popup(QuizAnswer, '65b71666b60cde74d57215db')
+        "
+      >
+        エンジニア以外
+      </button>
+      <button
+        class="btn btn-primary btn-round btn-move-right ml-1"
+        (click)="
+          c('Close click'); popup(QuizAnswer, '65d949577c6d04fd3b1bcb8a')
+        "
+      >
+        エンジニア
+      </button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #Quiz2b let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button class="close" (click)="d('Cross click')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title">プロンプト診断</h3>
+  </div>
+  <div class="modal-body">
+    <h3 class="modal-title text-center">今、大きな悩みを抱えている？</h3>
+    <br />
+    <div class="text-center">
+      <button
+        class="btn btn-primary btn-round btn-move-right mr-1"
+        (click)="
+          c('Close click'); popup(QuizAnswer, '65ed743b802198118a34ff3a')
+        "
+      >
+        はい
+      </button>
+      <button
+        class="btn btn-primary btn-round btn-move-right ml-1"
+        (click)="
+          c('Close click'); popup(QuizAnswer, '65c98b01b20c808f092a302f')
+        "
+      >
+        いいえ
+      </button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #QuizAnswer let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button class="close" (click)="d('Cross click')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <h3 class="modal-title">プロンプト診断</h3>
+  </div>
+  <div class="modal-body">
+    <h3 class="modal-title text-center">あなたにお勧めなのは...</h3>
+    <br />
+    <div class="row" *ngIf="!isLoading; else Loading">
+      <div class="col-11 col-sm-10 col-md-9 col-xl-7 ml-auto mr-auto">
+        <div class="space-top"></div>
+        <app-list-card [prompt]="prompt"></app-list-card>
+      </div>
+    </div>
+    <ng-template #Loading>
+      <div class="loader"></div>
+    </ng-template>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-link"
+      (click)="c('Close click')"
+    >
+      閉じる
+    </button>
+  </div>
+</ng-template>

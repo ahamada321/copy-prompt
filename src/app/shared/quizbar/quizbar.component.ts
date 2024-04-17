@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Prompt } from 'src/app/prompt/shared/prompt.model';
 import { PromptService } from 'src/app/prompt/shared/prompt.service';
@@ -8,7 +8,7 @@ import { PromptService } from 'src/app/prompt/shared/prompt.service';
   templateUrl: './quizbar.component.html',
   styleUrls: ['./quizbar.component.scss'],
 })
-export class QuizbarComponent implements OnInit, OnDestroy {
+export class QuizbarComponent implements OnInit {
   prompt!: Prompt;
   isLoading: boolean = false;
 
@@ -18,10 +18,6 @@ export class QuizbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {}
-
-  ngOnDestroy() {
-    this.modalService.dismissAll();
-  }
 
   popup(content: any, promptId?: string) {
     if (promptId) {

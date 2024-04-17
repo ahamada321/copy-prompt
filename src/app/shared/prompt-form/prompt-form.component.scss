@@ -10,6 +10,11 @@
 .blur {
   color: transparent;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  min-height: 70px;
+}
+
+.card-body {
+  position: relative;
 }
 
 .no-copy {
@@ -19,8 +24,11 @@
 }
 
 .login-btn-area {
-  position: relative;
-  top: -25px;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   z-index: 3;
 }
 

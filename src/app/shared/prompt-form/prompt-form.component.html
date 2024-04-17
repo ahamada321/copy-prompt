@@ -14,24 +14,23 @@
         >
           {{ prompt.firstGuidance }}
         </p>
-      </div>
-    </div>
-    <div class="text-center login-btn-area">
-      <div *ngIf="!auth.isAuthenticated()">
-        <button
-          class="btn btn-round btn-wd btn-primary"
-          (click)="modalLoginOpen()"
-        >
-          <i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログインして利用する
-        </button>
-        <br />
-        <a
-          class="btn btn-primary btn-link btn-lg mt-1"
-          [routerLink]="['/register']"
-          [queryParams]="{ promptId: prompt._id }"
-        >
-          <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
-        </a>
+        <div *ngIf="!auth.isAuthenticated()" class="text-center login-btn-area">
+          <button
+            class="btn btn-round btn-wd btn-primary"
+            (click)="modalLoginOpen()"
+          >
+            <i class="nc-icon nc-lock-circle-open"></i>&nbsp;
+            ログインして利用する
+          </button>
+          <br />
+          <a
+            class="btn btn-primary btn-link btn-lg mt-1"
+            [routerLink]="['/register']"
+            [queryParams]="{ promptId: prompt._id }"
+          >
+            <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
+          </a>
+        </div>
       </div>
     </div>
     <div *ngIf="auth.isAuthenticated()">
@@ -78,7 +77,6 @@
             [class.has-danger]="text && text.length === 300"
           >
             <textarea
-              [disabled]="!auth.isAuthenticated()"
               type="text"
               class="form-control textarea-limited"
               placeholder="ここに入力して送信ボタンを押してね。"
@@ -100,7 +98,7 @@
             <div *ngIf="error" class="alert alert-danger">
               <p>{{ error }}</p>
             </div>
-            <div *ngIf="auth.isAuthenticated() && !isClicked">
+            <div *ngIf="!isClicked">
               <div *ngIf="!auth.hasExceedMaxClicks(); else exceedMaxClicks">
                 <button
                   [disabled]="!postForm.valid"
@@ -170,4 +168,3 @@
     </div>
   </div>
 </div>
-<div class="space-top"></div>

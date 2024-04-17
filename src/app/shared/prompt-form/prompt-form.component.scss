@@ -7,6 +7,23 @@
   font-size: 90%;
 }
 
+.blur {
+  color: transparent;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.no-copy {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+.login-btn-area {
+  position: relative;
+  top: -112px;
+  z-index: 3;
+}
+
 .loader {
   width: 10.5px;
   height: 10.5px;

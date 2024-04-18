@@ -33,7 +33,19 @@ export class AppComponent implements OnInit {
     public auth: MyOriginAuthService,
     private gtmService: GoogleTagManagerService
   ) {
-    this.gtmService.addGtmToDom();
+    // if (!auth.isAuthenticated()) {
+    //   this.gtmService.addGtmToDom();
+    // }
+
+    this.router.events.forEach((item) => {
+      if (item instanceof NavigationEnd) {
+        const gtmTag = {
+          event: 'page',
+          pageName: item.url,
+        };
+        this.gtmService.pushTag(gtmTag);
+      }
+    });
   }
 
   @HostListener('window:scroll', ['$event'])

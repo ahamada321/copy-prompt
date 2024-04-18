@@ -30,7 +30,7 @@
                 type="text"
                 placeholder="例：誤字脱字を修正してくれる"
                 class="form-control"
-                maxlength="30"
+                maxlength="24"
                 required
               />
               <div class="input-group-append">
@@ -38,9 +38,9 @@
               </div>
             </div>
             <div id="textarea-limited-message" class="description pull-right">
-              <div *ngIf="!newPrompt.name">残文字数 30</div>
+              <div *ngIf="!newPrompt.name">残文字数 24</div>
               <div *ngIf="newPrompt.name">
-                残文字数 {{ 30 - newPrompt.name.length }}
+                残文字数 {{ 24 - newPrompt.name.length }}
               </div>
             </div>
           </div>

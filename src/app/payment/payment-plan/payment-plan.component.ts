@@ -103,6 +103,7 @@ export class PaymentPlanComponent implements OnInit {
     this.isClicked = true;
     this.paymentService.cancelSubscription().subscribe(
       (subscription) => {
+        this.auth.setSubscriptionStatus(false);
         this.showSwalSuccess();
       },
       (err) => {

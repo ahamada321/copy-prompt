@@ -65,6 +65,7 @@ export class PaymentPlanPayComponent implements OnInit {
     this.auth.resetClicks();
 
     try {
+      this.auth.setSubscriptionStatus(true);
       await this.stripe.confirmPayment({
         elements: this.elements,
         confirmParams: {
@@ -72,6 +73,7 @@ export class PaymentPlanPayComponent implements OnInit {
         },
       });
     } catch (err) {
+      this.auth.setSubscriptionStatus(false);
       this.error = err;
       console.error(this.error);
     }

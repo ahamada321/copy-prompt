@@ -71,12 +71,16 @@ export class MyOriginAuthService {
     return this.decodedToken.userId;
   }
 
+  public getUserName(): string {
+    return this.decodedToken.name;
+  }
+
   public getSubscriptionStatus(): any {
     return this.decodedToken.isConfirmedPayment;
   }
 
-  public getUserName(): string {
-    return this.decodedToken.name;
+  public setSubscriptionStatus(status: boolean): any {
+    this.decodedToken.isConfirmedPayment = status;
   }
 
   // public getUserRole(): string {

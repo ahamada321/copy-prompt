@@ -47,6 +47,7 @@
       }
     </script>
     <script
+      *ngIf="!auth.getSubscriptionStatus()"
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2809828478095489"
       crossorigin="anonymous"

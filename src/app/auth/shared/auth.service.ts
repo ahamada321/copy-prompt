@@ -81,6 +81,7 @@ export class MyOriginAuthService {
 
   public setSubscriptionStatus(status: boolean): any {
     this.decodedToken.isConfirmedPayment = status;
+    localStorage.setItem('app-meta', JSON.stringify(this.decodedToken));
   }
 
   // public getUserRole(): string {

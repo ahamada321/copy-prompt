@@ -71,6 +71,10 @@ export class MyOriginAuthService {
     return this.decodedToken.userId;
   }
 
+  public getSubscriptionStatus(): any {
+    return this.decodedToken.isConfirmedPayment;
+  }
+
   public getUserName(): string {
     return this.decodedToken.name;
   }

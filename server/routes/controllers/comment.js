@@ -6,25 +6,24 @@ const { normalizeErrors } = require("./helpers/mongoose");
 exports.getRandomComments = async function (req, res) {
   try {
     const result = await Comment.aggregate([
-      { $sample: { size: 4 } },
       {
         $lookup: {
           from: "prompts", // 結合するコレクション
-          localField: "prompt", // rentalsコレクションのフィールド
+          localField: "prompt", // promptsコレクションのフィールド
           foreignField: "_id", // usersコレクションのフィールド
           as: "prompt", // 結果を格納するフィールド名
           pipeline: [
             {
-              $project: {
-                name: 1,
-              },
+              $match: { isShared: true },
+            },
+            {
+              $project: { name: 1 },
             },
           ],
         },
       },
-      {
-        $unwind: "$prompt",
-      },
+      { $unwind: "$prompt" },
+      { $sample: { size: 4 } },
     ]);
     return res.json(result);
   } catch (err) {

@@ -9,8 +9,11 @@
 
 .blur {
   color: transparent;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   min-height: 70px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 .card-body {
@@ -20,12 +23,6 @@
 .card-description {
   overflow: hidden;
   white-space: pre-line;
-}
-
-.no-copy {
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-user-drag: none;
 }
 
 .login-btn-area {

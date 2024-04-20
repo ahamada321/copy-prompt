@@ -17,6 +17,11 @@
   position: relative;
 }
 
+.card-description {
+  overflow: hidden;
+  white-space: pre-line;
+}
+
 .no-copy {
   user-select: none;
   -webkit-user-select: none;

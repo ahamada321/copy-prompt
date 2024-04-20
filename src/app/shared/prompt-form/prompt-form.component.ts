@@ -18,7 +18,8 @@ export class PromptFormComponent {
   text: string = '';
   isClicked: boolean = false;
   isRespond: boolean = false;
-  contents: any[] = [];
+  contents: { role: string; content: string; displayContent?: string }[] = [];
+
   foundUser!: User;
   error!: string;
 
@@ -33,6 +34,7 @@ export class PromptFormComponent {
     if (this.auth.isAuthenticated()) {
       this.getUser();
     }
+    this.initFirstText();
   }
 
   getUser() {
@@ -47,6 +49,24 @@ export class PromptFormComponent {
     );
   }
 
+  initFirstText() {
+    this.contents.push({
+      role: 'assistant',
+      content: this.prompt.firstGuidance,
+      displayContent: '',
+    });
+    this.textAnimation(this.contents[this.contents.length - 1]);
+  }
+
+  textAnimation(content: any) {
+    content.displayContent = '';
+    for (let i = 0; i < content.content.length; i++) {
+      setTimeout(() => {
+        content.displayContent += content.content.charAt(i);
+      }, i * 100);
+    }
+  }
+
   insertFirstMessageSample() {
     this.text = this.prompt.firstMessageSample;
   }
@@ -59,13 +79,16 @@ export class PromptFormComponent {
     this.contents.push({
       role: 'user',
       content: postForm.value.postPrompt,
+      displayContent: postForm.value.postPrompt,
     });
-    postForm.value.system = this.prompt.system;
 
     this.addHistory();
+    postForm.value.system = this.prompt.system;
     this.promptService.postPrompt(postForm.value).subscribe(
       (content) => {
         this.contents.push(content);
+        this.textAnimation(this.contents[this.contents.length - 1]);
+
         this.isClicked = false;
         this.isRespond = true;
       },

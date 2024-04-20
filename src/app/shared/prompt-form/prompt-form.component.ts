@@ -110,6 +110,11 @@ export class PromptFormComponent {
     );
   }
 
+  retry() {
+    this.isRespond = false;
+    this.initFirstText();
+  }
+
   modalLoginOpen() {
     this.modalService.open(LoginPopupComponent, { backdrop: 'static' });
   }

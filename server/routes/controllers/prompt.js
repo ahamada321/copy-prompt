@@ -345,7 +345,7 @@ exports.postPrompt = async function (req, res) {
   try {
     const msg = await anthropic.messages.create({
       model: "claude-3-haiku-20240307",
-      max_tokens: 334, // (150*2 + 34) 1 token = 3文字
+      max_tokens: 434, // (200*2 + 34) 1 token = 3文字
       system: content.system,
       messages: [{ role: "user", content: content.postPrompt }],
     });

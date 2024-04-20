@@ -1,7 +1,10 @@
 <h3>この人が作った他のプロンプト</h3>
 <div *ngIf="foundUser" class="row">
   <ng-container *ngFor="let prompt of foundUser.prompts">
-    <div *ngIf="prompt.isShared" class="col-10 col-sm-5 col-md-5 col-xl-5">
+    <div
+      *ngIf="prompt.isShared && prompt._id !== inputPrompt._id"
+      class="col-10 col-sm-5 col-md-5 col-xl-5"
+    >
       <br />
       <a [routerLink]="['/prompt', prompt._id]">
         <div
@@ -62,9 +65,12 @@
       </a>
     </div>
   </ng-container>
-  <div class="col-md-3 col-xl-2 ml-auto mr-auto">
+  <div class="col-md-3 col-xl-2 mr-auto">
     <br />
-    <a aria-label="他のプロンプト" [routerLink]="['/user', user._id]">
+    <a
+      aria-label="他のプロンプト"
+      [routerLink]="['/user', inputPrompt.user._id]"
+    >
       <div class="card" data-color="orange">
         <div class="card-body">
           <div class="card-icon">

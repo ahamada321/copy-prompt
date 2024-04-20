@@ -149,7 +149,9 @@
   <!--     *********     Recommends      *********      -->
   <div class="section section-nude">
     <div class="container">
-      <app-prompt-detail-others [user]="prompt.user"></app-prompt-detail-others>
+      <app-prompt-detail-others
+        [inputPrompt]="prompt"
+      ></app-prompt-detail-others>
       <app-prompt-list-latest></app-prompt-list-latest>
     </div>
   </div>

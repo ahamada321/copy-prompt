@@ -1,18 +1,18 @@
 <div class="row">
   <div class="col-md-8 mr-auto ml-auto">
-    <div class="card no-transition">
+    <div class="card no-transition" *ngFor="let content of contents">
       <div class="card-body">
-        <div class="author">
+        <div *ngIf="content.role === 'assistant'; else userRole" class="author">
           <img src="assets/icons/gpt.svg" alt="..." class="avatar img-raised" />
-          <!-- <span>AI</span> -->
         </div>
-        <div class="clearfix"></div>
+        <ng-template #userRole>
+          <div class="author">あなた</div>
+        </ng-template>
         <p
+          class="card-description"
           [ngClass]="{ blur: !auth.isAuthenticated() }"
-          class="card-description no-copy"
-          style="white-space: pre-line"
         >
-          {{ prompt.firstGuidance }}
+          {{ content.displayContent }}
         </p>
         <div *ngIf="!auth.isAuthenticated()" class="text-center login-btn-area">
           <button
@@ -33,30 +33,8 @@
         </div>
       </div>
     </div>
-    <div *ngIf="auth.isAuthenticated()">
-      <div class="card no-transition" *ngFor="let content of contents">
-        <div class="card-body">
-          <div
-            class="author"
-            *ngIf="content.role === 'assistant'; else userRole"
-          >
-            <img
-              src="assets/icons/gpt.svg"
-              alt="..."
-              class="avatar img-raised"
-            />
-            <!-- <span>AI</span> -->
-          </div>
-          <ng-template #userRole>
-            <div class="author">あなた</div>
-          </ng-template>
-          <div class="clearfix"></div>
-          <p class="card-description" style="white-space: pre-line">
-            {{ content.content }}
-          </p>
-        </div>
-      </div>
 
+    <div *ngIf="auth.isAuthenticated()">
       <div class="text-center">
         <button
           *ngIf="prompt.firstMessageSample && !isRespond && !isClicked"
@@ -148,22 +126,6 @@
         >
           もう一度使う
         </button>
-        <!-- <div *ngIf="!auth.isAuthenticated()">
-      <button
-        class="btn btn-round btn-wd btn-primary"
-        (click)="modalLoginOpen()"
-      >
-        <i class="nc-icon nc-lock-circle-open"></i>&nbsp; ログインして利用する
-      </button>
-      <br />
-      <a
-        class="btn btn-primary btn-link btn-lg mt-1"
-        [routerLink]="['/register']"
-        [queryParams]="{ promptId: prompt._id }"
-      >
-        <i class="nc-icon nc-lock-circle-open"></i>&nbsp; 無料会員登録する
-      </a>
-    </div> -->
       </div>
     </div>
   </div>

@@ -12,7 +12,7 @@ import { NavbarService } from 'src/app/shared/navbar/shared/navbar.service';
 })
 export class PromptListComponent implements OnInit, OnDestroy {
   description: string =
-    'プロンプトテンプレをコピペするだけで、今まで使いこなせなかったChatGPTが超有能に生まれ変わる！';
+    'プロンプトのテンプレを使うことで、今まで使いこなせなかったChatGPTが超有能に生まれ変わる！';
   prompts: Prompt[] = [];
   pageIndex: number = 1;
   pageSize: number = 40; // Displaying contents per page.
@@ -37,7 +37,7 @@ export class PromptListComponent implements OnInit, OnDestroy {
 
   updateTitleAndMeta() {
     this.titleService.setTitle(
-      'チャットGPTで時短！コピペで使える便利なテンプレート集 | あつまれ！GPTプロンプト'
+      'チャットGPTで時短！簡単に試せる便利なテンプレート集 | あつまれ！GPTプロンプト'
     );
 
     this.meta.updateTag({

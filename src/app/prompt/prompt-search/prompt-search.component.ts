@@ -73,7 +73,6 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   filterByName(keywords: string) {
     this.keywords = keywords;
     this.pageIndex = 1;
-    this.prompts = undefined;
     this.router.navigate(['/prompt'], {
       queryParams: { keywords: this.keywords, page: this.pageIndex },
     });
@@ -86,7 +85,6 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
       this.isNgbInitialCall = false;
       return;
     }
-    this.prompts = undefined;
 
     if (this.isRanking) {
       this.router.navigate(['/prompt'], {
@@ -105,6 +103,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   private getPromptsByKeywords() {
+    this.prompts = undefined;
     this.promptService
       .getPrompts(this.keywords, this.pageIndex, this.pageSize)
       .subscribe(
@@ -126,6 +125,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   private getPromptRanking() {
+    this.prompts = undefined;
     this.promptService
       .getPromptRanking(this.pageIndex, this.pageSize)
       .subscribe(

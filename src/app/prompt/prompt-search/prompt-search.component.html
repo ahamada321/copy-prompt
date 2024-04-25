@@ -45,6 +45,8 @@
       <i class="nc-icon nc-minimal-right"></i>&nbsp; 自作プロンプトを登録する
     </a>
     <div class="space-top"></div>
-    <app-prompt-list-category></app-prompt-list-category>
+    <app-prompt-list-category
+      (event)="readQueryParams($event)"
+    ></app-prompt-list-category>
   </div>
 </div>

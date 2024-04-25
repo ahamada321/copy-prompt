@@ -13,13 +13,12 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./prompt-search.component.scss'],
 })
 export class PromptSearchComponent implements OnInit, OnDestroy {
-  keywords!: string;
+  keywords: string = '';
   condition!: string;
   pageIndex: number = 1;
   pageCollectionSize!: number;
   pageSize: number = 30; // Displaying contents per page.
-  prompts!: Prompt[];
-  isPrompts: boolean = false;
+  prompts!: Prompt[] | undefined;
   isNgbInitialCall!: boolean; // Avoiding NgbPagination Initial calling bug.
 
   constructor(
@@ -34,7 +33,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateMeta();
 
-    this.route.queryParams.pipe(take(1)).subscribe((params) => {
+    this.route.queryParams.subscribe((params) => {
       if (params['condition']) {
         this.condition = params['condition'];
       }
@@ -44,8 +43,8 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
       if (params['page']) {
         this.pageIndex = params['page'];
       }
+      this.getPrompts();
     });
-    this.getPrompts();
   }
 
   ngOnDestroy() {
@@ -70,7 +69,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     this.condition = '';
     this.pageIndex = 1;
 
-    this.prompts = [];
+    this.prompts = undefined;
     this.getPrompts();
   }
 
@@ -81,7 +80,7 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.prompts = [];
+    this.prompts = undefined;
     this.getPrompts();
   }
 
@@ -95,9 +94,9 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
 
   private getPromptsByKeywords() {
     this.keywords = this.keywords ? this.keywords : '';
-    this.router.navigate(['/prompt'], {
-      queryParams: { keywords: this.keywords, page: this.pageIndex },
-    });
+    // this.router.navigate(['/prompt'], {
+    //   queryParams: { keywords: this.keywords, page: this.pageIndex },
+    // });
 
     this.promptService
       .getPrompts(this.keywords, this.pageIndex, this.pageSize)
@@ -109,14 +108,11 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
               this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
             }
             this.prompts = result[0].foundPrompts;
-            this.isPrompts = true;
           } else {
             this.prompts = [];
-            this.isPrompts = false;
           }
         },
         (errorResponse) => {
-          this.isPrompts = false;
           console.error(errorResponse);
         }
       );
@@ -137,11 +133,9 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
               this.isNgbInitialCall = true; // Avoiding NgbPagination recalling bug.
             }
             this.prompts = result[0].foundPrompts;
-            this.isPrompts = true;
           }
         },
         (err) => {
-          this.isPrompts = false;
           console.error(err);
         }
       );

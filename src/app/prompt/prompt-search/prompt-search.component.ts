@@ -68,9 +68,10 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     this.keywords = keywords;
     this.condition = '';
     this.pageIndex = 1;
-
     this.prompts = undefined;
-    this.getPrompts();
+    this.router.navigate(['/prompt'], {
+      queryParams: { keywords: this.keywords, page: this.pageIndex },
+    });
   }
 
   pageChange() {
@@ -81,7 +82,9 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     }
 
     this.prompts = undefined;
-    this.getPrompts();
+    this.router.navigate(['/prompt'], {
+      queryParams: { keywords: this.keywords, page: this.pageIndex },
+    });
   }
 
   private getPrompts() {
@@ -94,9 +97,6 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
 
   private getPromptsByKeywords() {
     this.keywords = this.keywords ? this.keywords : '';
-    // this.router.navigate(['/prompt'], {
-    //   queryParams: { keywords: this.keywords, page: this.pageIndex },
-    // });
 
     this.promptService
       .getPrompts(this.keywords, this.pageIndex, this.pageSize)
@@ -119,9 +119,9 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   private getPromptRanking() {
-    this.router.navigate(['/prompt'], {
-      queryParams: { condition: 'ranking', page: this.pageIndex },
-    });
+    // this.router.navigate(['/prompt'], {
+    //   queryParams: { condition: 'ranking', page: this.pageIndex },
+    // });
 
     this.promptService
       .getPromptRanking(this.pageIndex, this.pageSize)

@@ -88,20 +88,6 @@
     </div>
   </div>
 
-  <!--     *********     Detail info     *********      -->
-  <div class="section section-nude">
-    <div class="container">
-      <h2 class="title text-center">このプロンプトの説明</h2>
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <div
-            [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.description)"
-          ></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!--     *********     Prompt     *********      -->
   <div class="section section-nude">
     <div class="container">
@@ -133,6 +119,20 @@
           このプロンプトを使った際のChatGPTからの応答例
         </button>
       </div> -->
+    </div>
+  </div>
+
+  <!--     *********     Detail info     *********      -->
+  <div class="section section-nude">
+    <div class="container">
+      <h2 class="title text-center">このプロンプトの説明</h2>
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div
+            [innerHTML]="sanitizer.bypassSecurityTrustHtml(prompt.description)"
+          ></div>
+        </div>
+      </div>
     </div>
   </div>
 

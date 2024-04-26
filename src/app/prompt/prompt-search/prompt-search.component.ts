@@ -32,7 +32,17 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updateMeta();
-    this.readQueryParams();
+    this.route.queryParams.pipe(take(1)).subscribe((params) => {
+      this.keywords = params['keywords'] ? params['keywords'] : '';
+      this.pageIndex = params['page'] ? params['page'] : 1;
+
+      if (params['condition'] === 'ranking') {
+        this.isRanking = true;
+        this.getPromptRanking();
+      } else {
+        this.getPromptsByKeywords();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -52,31 +62,8 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  readQueryParams(keywords?: string) {
-    if (keywords) {
-      this.keywords = keywords;
-      this.router.navigate(['/prompt'], {
-        queryParams: { keywords, page: 1 },
-      });
-    }
-
-    this.route.queryParams.pipe(take(1)).subscribe((params) => {
-      if (!keywords) {
-        this.keywords = params['keywords'] ? params['keywords'] : '';
-      }
-
-      this.pageIndex = params['page'] ? params['page'] : 1;
-
-      if (params['condition'] === 'ranking') {
-        this.isRanking = true;
-        this.getPromptRanking();
-      } else {
-        this.getPromptsByKeywords();
-      }
-    });
-  }
-
   filterByName(keywords: string) {
+    this.isRanking = false;
     this.keywords = keywords;
     this.pageIndex = 1;
     this.router.navigate(['/prompt'], {

@@ -53,6 +53,12 @@ export class PromptSearchComponent implements OnInit, OnDestroy {
   }
 
   readQueryParams(keywords?: string) {
+    if (keywords) {
+      this.router.navigate(['/prompt'], {
+        queryParams: { keywords, page: 1 },
+      });
+    }
+
     this.route.queryParams.pipe(take(1)).subscribe((params) => {
       this.keywords = keywords
         ? keywords
